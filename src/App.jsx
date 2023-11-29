@@ -1,6 +1,7 @@
-import { AppShell, Group, Burger, Box, Center, Container, Paper, Transition, Stack, Title, Text, Divider, Button, Space, em, Tooltip, ActionIcon, Kbd } from '@mantine/core'
+import { AppShell, Group, Burger, Box, Center, Container, Paper, Transition, Stack, Title, Text, Divider, Button, Space, em, Tooltip, ActionIcon, Kbd, Badge } from '@mantine/core'
 import { UnstyledButton } from '@mantine/core';
 import { useDisclosure, useHotkeys, useHover, useMediaQuery, useMergedRef, useScrollIntoView, useWindowEvent } from '@mantine/hooks';
+import { IconBook2 } from '@tabler/icons-react';
 import { IconBrandDiscord } from '@tabler/icons-react';
 import { IconBrandMinecraft } from '@tabler/icons-react';
 import { IconBrandGithub } from '@tabler/icons-react';
@@ -14,18 +15,17 @@ const Projects = [
         desc: <Text>
             Powerful Minecraft Server Manager API
         </Text>,
-        website: "https://paradigmmc.github.io/mcman/",
-        websiteButton: "View Documentation",
+        docs: "https://paradigmmc.github.io/mcman/",
         repo: "ParadigmMC/mcman",
         color: "purple",
         languages: ["Rust"],
     },
     {
         name: "LighttubeReact",
-        status: "alpha",
+        status: "forgor",
         desc: <Text>
             <a href='https://github.com/kuylar/lighttube'>Lighttube</a> but its frontend is made in React.
-            Thanks <a href="https://github.com/kuylar/">kuylar</a> for her work on Lighttube!
+            Thanks <a href="https://kuylar.dev/">kuylar</a> for her work on Lighttube!
         </Text>,
         repo: "TheAlan404/lighttube-react",
         color: "gray",
@@ -60,6 +60,13 @@ const Projects = [
     },
 ];
 
+const StatusRender = ({ status }) => {
+    return {
+        wip: <Badge variant="light" color="yellow">Work In Progress</Badge>,
+        forgor: <Badge variant="light" color="gray">forgor</Badge>
+    }[status] || <></>;
+}
+
 const ProjectRender = ({ isActive, p }) => {
     const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
     let { ref, hovered } = useHover();
@@ -78,6 +85,7 @@ const ProjectRender = ({ isActive, p }) => {
 
     let websiteAnchorRef = useRef();
     let repoAnchorRef = useRef();
+    let docsAnchorRef = useRef();
 
     const openFirst = () => {
         if (isActive) {
@@ -85,6 +93,8 @@ const ProjectRender = ({ isActive, p }) => {
                 websiteAnchorRef.current.click();
             } else if (p.repo) {
                 repoAnchorRef.current.click();
+            } else if (p.docs) {
+                docsAnchorRef.current.click();
             }
         }
     };
@@ -101,7 +111,12 @@ const ProjectRender = ({ isActive, p }) => {
             if (isActive && p.repo) {
                 repoAnchorRef.current.click();
             }
-        }]
+        }],
+        ["f", () => {
+            if (isActive && p.docs) {
+                docsAnchorRef.current.click();
+            }
+        }],
     ]);
 
     return (
@@ -112,6 +127,7 @@ const ProjectRender = ({ isActive, p }) => {
                     <Text><Kbd>→</Kbd>/<Kbd>D</Kbd>: Open project</Text>
                     {p.website && <Text><Kbd>E</Kbd>: Open Website</Text>}
                     {p.repo && <Text><Kbd>R</Kbd>: Open Repository</Text>}
+                    {p.docs && <Text><Kbd>F</Kbd>: View Documentation</Text>}
                 </Stack>
             }
             opened={isActive}
@@ -134,6 +150,7 @@ const ProjectRender = ({ isActive, p }) => {
                     <Stack>
                         <Group>
                             <Title order={3}>{p.name}</Title>
+                            <StatusRender status={p.status} />
                             {p.website && (
                                 <Tooltip label={p.websiteButton || `Open ${p.name}`}>
                                     <ActionIcon
@@ -155,6 +172,18 @@ const ProjectRender = ({ isActive, p }) => {
                                         href={`https://github.com/${p.repo}`}
                                         ref={repoAnchorRef}>
                                         <IconBrandGithub />
+                                    </ActionIcon>
+                                </Tooltip>
+                            )}
+                            {p.docs && (
+                                <Tooltip label={`View Documentation`}>
+                                    <ActionIcon
+                                        variant="light"
+                                        component="a"
+                                        color="gray"
+                                        href={p.docs}
+                                        ref={docsAnchorRef}>
+                                        <IconBook2 />
                                     </ActionIcon>
                                 </Tooltip>
                             )}
