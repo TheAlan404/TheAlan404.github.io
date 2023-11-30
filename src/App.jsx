@@ -153,8 +153,8 @@ const ProjectRender = ({ isActive, p }) => {
         <Tooltip
             position='right'
             label={
-                <Stack color='white'>
-                    <Text><Kbd>→</Kbd>/<Kbd>D</Kbd>: Open project</Text>
+                <Stack style={{ color: "var(--mantine-color-text)" }}>
+                    {(p.website || p.repo || p.docs) ? <Text><Kbd>→</Kbd>/<Kbd>D</Kbd>: Open project</Text> : <Text>No shortcuts</Text>}
                     {p.website && <Text><Kbd>E</Kbd>: Open Website</Text>}
                     {p.repo && <Text><Kbd>R</Kbd>: Open Repository</Text>}
                     {p.docs && <Text><Kbd>F</Kbd>: View Documentation</Text>}
@@ -162,6 +162,7 @@ const ProjectRender = ({ isActive, p }) => {
             }
             opened={isActive}
             color='dark'
+            transitionProps={{ transition: 'slide-right', duration: 300 }}
             withArrow>
             <Box style={{
                 ...(isActive ? {
