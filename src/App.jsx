@@ -10,10 +10,20 @@ import { useEffect, useRef, useState } from 'react';
 
 const Projects = [
     {
+        name: "This Website",
+        status: "done",
+        desc: <Text>
+            Can't have a personal projects website that doesn't mention itself as a project!
+        </Text>,
+        website: "https://thealan404.github.io/",
+        repo: "TheAlan404/thealan404.github.io",
+        languages: ["React"],
+    },
+    {
         name: "mcman",
         status: "done",
         desc: <Text>
-            Powerful Minecraft Server Manager API
+            A powerful Minecraft Server Management CLI.
         </Text>,
         docs: "https://paradigmmc.github.io/mcman/",
         repo: "ParadigmMC/mcman",
@@ -32,6 +42,24 @@ const Projects = [
         languages: ["React"],
     },
     {
+        name: "ZilTek",
+        status: "wip",
+        desc: <Text>
+            A school bell app with multilanguage support. Used in my school but planned to be expanded.
+        </Text>,
+        languages: ["React"],
+    },
+    {
+        name: "DenVis",
+        status: "forgor",
+        repo: "TheAlan404/DenVis",
+        docs: "https://denvis.glitch.me/",
+        desc: <Text>
+            A simple Windows Audio Visualizer with some extra features such as snow.
+        </Text>,
+        languages: ["C#"],
+    },
+    {
         name: "tdk-wiki",
         status: "wip",
         desc: <Text>
@@ -42,20 +70,22 @@ const Projects = [
         languages: ["React"],
     },
     {
+        name: "FFMPEG Editor",
+        status: "wip",
+        desc: <Text>
+            A command editor for <a href="https://ffmpeg.org/">FFMPEG</a>
+        </Text>,
+        repo: "TheAlan404/ffmpeg-editor",
+        website: "https://thealan404.github.io/ffmpeg-editor/",
+        languages: ["React"],
+    },
+    {
         name: "alphamath",
         status: "wip",
         desc: <Text>
             An experimental interactive math engine/solver
         </Text>,
         repo: "TheAlan404/alphamath",
-        languages: ["React"],
-    },
-    {
-        name: "ZilTek",
-        status: "wip",
-        desc: <Text>
-            A school bell app with multilanguage support. Used in my school but planned to be expanded.
-        </Text>,
         languages: ["React"],
     },
 ];
@@ -139,6 +169,8 @@ const ProjectRender = ({ isActive, p }) => {
                     borderRadius: "1em",
                     inset: 0,
                 } : {}),
+
+                textAlign: "left",
             }}>
                 <Paper
                     m="md"
@@ -150,43 +182,45 @@ const ProjectRender = ({ isActive, p }) => {
                     <Stack>
                         <Group>
                             <Title order={3}>{p.name}</Title>
-                            <StatusRender status={p.status} />
-                            {p.website && (
-                                <Tooltip label={p.websiteButton || `Open ${p.name}`}>
-                                    <ActionIcon
-                                        variant="light"
-                                        component="a"
-                                        color="gray"
-                                        href={p.website}
-                                        ref={websiteAnchorRef}>
-                                        <IconSquareArrowRight />
-                                    </ActionIcon>
-                                </Tooltip>
-                            )}
-                            {p.repo && (
-                                <Tooltip label={`Go to Repository`}>
-                                    <ActionIcon
-                                        variant="light"
-                                        component="a"
-                                        color="gray"
-                                        href={`https://github.com/${p.repo}`}
-                                        ref={repoAnchorRef}>
-                                        <IconBrandGithub />
-                                    </ActionIcon>
-                                </Tooltip>
-                            )}
-                            {p.docs && (
-                                <Tooltip label={`View Documentation`}>
-                                    <ActionIcon
-                                        variant="light"
-                                        component="a"
-                                        color="gray"
-                                        href={p.docs}
-                                        ref={docsAnchorRef}>
-                                        <IconBook2 />
-                                    </ActionIcon>
-                                </Tooltip>
-                            )}
+                            <Group>
+                                <StatusRender status={p.status} />
+                                {p.website && (
+                                    <Tooltip label={p.websiteButton || `Open ${p.name}`}>
+                                        <ActionIcon
+                                            variant="light"
+                                            component="a"
+                                            color="gray"
+                                            href={p.website}
+                                            ref={websiteAnchorRef}>
+                                            <IconSquareArrowRight />
+                                        </ActionIcon>
+                                    </Tooltip>
+                                )}
+                                {p.repo && (
+                                    <Tooltip label={`Go to Repository`}>
+                                        <ActionIcon
+                                            variant="light"
+                                            component="a"
+                                            color="gray"
+                                            href={`https://github.com/${p.repo}`}
+                                            ref={repoAnchorRef}>
+                                            <IconBrandGithub />
+                                        </ActionIcon>
+                                    </Tooltip>
+                                )}
+                                {p.docs && (
+                                    <Tooltip label={`View Documentation`}>
+                                        <ActionIcon
+                                            variant="light"
+                                            component="a"
+                                            color="gray"
+                                            href={p.docs}
+                                            ref={docsAnchorRef}>
+                                            <IconBook2 />
+                                        </ActionIcon>
+                                    </Tooltip>
+                                )}
+                            </Group>
                         </Group>
                         {p.desc}
                     </Stack>
@@ -204,21 +238,26 @@ const App = () => {
         if (selectedIndex < 0) {
             setSelectedIndex(0);
         } else if (selectedIndex >= Projects.length) {
-            setSelectedIndex(Projects.length-1);
+            setSelectedIndex(Projects.length - 1);
         }
     }, [selectedIndex]);
 
-    useWindowEvent("keydown", (e) => setUseSelecor(true));
+    useWindowEvent("keydown", (e) => ([
+        "ArrowDown",
+        "ArrowUp",
+        "w", "s", "a", "d",
+        "ArrowRight"].includes(e.key)) && setUseSelecor(true));
 
     useHotkeys([
         ["ArrowDown", () => setSelectedIndex((i) => i + 1)],
         ["s", () => setSelectedIndex((i) => i + 1)],
         ["ArrowUp", () => setSelectedIndex((i) => i - 1)],
         ["w", () => setSelectedIndex((i) => i - 1)],
+        ["Escape", () => setUseSelecor(false)],
     ]);
 
     return (
-        <Stack align="center">
+        <Stack align='center' style={{ textAlign: "center" }} px="sm">
             <Space h="xl" />
             <Title>Hi! I'm dennis</Title>
 
@@ -251,7 +290,7 @@ const App = () => {
 
             <Title>My Projects</Title>
             <Text>
-                arrow keys to navigate
+                <Kbd>W</Kbd>/<Kbd>S</Kbd>/<Kbd>↑</Kbd>/<Kbd>↓</Kbd>: Navigate
             </Text>
             <Stack>
                 {Projects.map((p, i) => (
