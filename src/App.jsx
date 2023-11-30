@@ -5,6 +5,7 @@ import { IconBook2 } from '@tabler/icons-react';
 import { IconBrandDiscord } from '@tabler/icons-react';
 import { IconBrandMinecraft } from '@tabler/icons-react';
 import { IconBrandGithub } from '@tabler/icons-react';
+import Eggs from "./eggs";
 import { IconSquareArrowRight } from '@tabler/icons-react';
 import { useEffect, useRef, useState } from 'react';
 
@@ -40,6 +41,16 @@ const Projects = [
         repo: "TheAlan404/lighttube-react",
         color: "gray",
         languages: ["React"],
+    },
+    {
+        name: "[Portal 2] Want You Gone",
+        status: "forgor",
+        desc: <Text>
+            Portal 2 ending credits song animation recreated using (very bad) HTML
+        </Text>,
+        website: "http://want-you-gone.glitch.me/",
+        color: "yellow",
+        languages: ["html", "js"],
     },
     {
         name: "ZilTek",
@@ -231,9 +242,16 @@ const ProjectRender = ({ isActive, p }) => {
     )
 }
 
+const randomEgg = () => {
+    let list = Eggs;
+    return list[Math.floor(Math.random() * list.length)];
+};
+
 const App = () => {
     let [useSelector, setUseSelecor] = useState(false);
     let [selectedIndex, setSelectedIndex] = useState(0);
+    let [usedEggs, setUsedEggs] = useState("");
+    let [easterEggText, setEasterEggText] = useState(randomEgg());
 
     useEffect(() => {
         if (selectedIndex < 0) {
@@ -243,11 +261,20 @@ const App = () => {
         }
     }, [selectedIndex]);
 
-    useWindowEvent("keydown", (e) => ([
-        "ArrowDown",
-        "ArrowUp",
-        "w", "s", "a", "d",
-        "ArrowRight"].includes(e.key)) && setUseSelecor(true));
+    useWindowEvent("keydown", (e) => {
+        if ([
+            "ArrowDown",
+            "ArrowUp",
+            "w", "s", "a", "d",
+            "ArrowRight"].includes(e.key)
+        ) setUseSelecor(true);
+
+        if ([
+            "ArrowDown",
+            "s",
+            "Space",
+        ].includes(e.key)) setEasterEggText(randomEgg());
+    });
 
     useHotkeys([
         ["ArrowDown", () => setSelectedIndex((i) => i + 1)],
@@ -298,7 +325,9 @@ const App = () => {
                     <ProjectRender p={p} isActive={(useSelector && selectedIndex == i)} key={i} />
                 ))}
             </Stack>
-            <Space h="30vh" />
+            <Space h="20vh" />
+            <Text>{easterEggText}</Text>
+            <Space h="20vh" />
         </Stack>
     )
 }
