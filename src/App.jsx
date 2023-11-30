@@ -43,16 +43,6 @@ const Projects = [
         languages: ["React"],
     },
     {
-        name: "[Portal 2] Want You Gone",
-        status: "forgor",
-        desc: <Text>
-            Portal 2 ending credits song animation recreated using (very bad) HTML
-        </Text>,
-        website: "http://want-you-gone.glitch.me/",
-        color: "yellow",
-        languages: ["html", "js"],
-    },
-    {
         name: "ZilTek",
         status: "wip",
         desc: <Text>
@@ -98,6 +88,17 @@ const Projects = [
         </Text>,
         repo: "TheAlan404/alphamath",
         languages: ["React"],
+    },
+    {
+        name: "[Portal 2] Want You Gone",
+        status: "forgor",
+        desc: <Text>
+            Portal 2 ending credits song animation recreated using (very bad) HTML
+        </Text>,
+        website: "https://thealan404.github.io/want-you-gone/",
+        repo: "TheAlan404/want-you-gone",
+        color: "yellow",
+        languages: ["html", "js"],
     },
 ];
 
