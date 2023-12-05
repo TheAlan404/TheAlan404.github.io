@@ -86,6 +86,7 @@ const Projects = [
         desc: <Text>
             An experimental interactive math engine/solver
         </Text>,
+        website: "https://thealan404.github.io/alphamath",
         repo: "TheAlan404/alphamath",
         languages: ["React"],
     },
