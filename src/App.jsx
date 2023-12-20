@@ -32,6 +32,24 @@ const Projects = [
         languages: ["Rust"],
     },
     {
+        name: "ZilTek",
+        status: "wip",
+        desc: <Text>
+            A school bell app with multilanguage support. Used in my school - currently rewriting it so its better and can be used anywhere.
+        </Text>,
+        languages: ["React"],
+    },
+    {
+        name: "tools",
+        status: "done",
+        desc: <Text>
+            Some useful, convenient tools ive made
+        </Text>,
+        website: "https://thealan404.github.io/tools/",
+        repo: "TheAlan404/tools",
+        languages: ["React"],
+    },
+    {
         name: "LighttubeReact",
         status: "forgor",
         desc: <Text>
@@ -40,14 +58,6 @@ const Projects = [
         </Text>,
         repo: "TheAlan404/lighttube-react",
         color: "gray",
-        languages: ["React"],
-    },
-    {
-        name: "ZilTek",
-        status: "wip",
-        desc: <Text>
-            A school bell app with multilanguage support. Used in my school but planned to be expanded.
-        </Text>,
         languages: ["React"],
     },
     {
@@ -86,6 +96,7 @@ const Projects = [
         desc: <Text>
             An experimental interactive math engine/solver
         </Text>,
+        website: "https://thealan404.github.io/alphamath",
         repo: "TheAlan404/alphamath",
         languages: ["React"],
     },
@@ -296,19 +307,24 @@ const App = () => {
                         link: "https://github.com/TheAlan404",
                         ico: <IconBrandGithub />,
                         color: "dark",
+                        label: "GitHub Profile",
                     },
                     {
                         link: "https://discord.com/users/258638629839175681",
                         ico: <IconBrandDiscord />,
+                        label: "Discord Profile",
                     },
                     {
                         link: "https://namemc.com/profile/Alan404",
                         color: "green",
                         ico: <IconBrandMinecraft />,
+                        label: "NameMC",
                     },
-                ].map((l, i) => (<ActionIcon component="a" variant="subtle" href={l.link} color={l.color}>
-                    {l.ico}
-                </ActionIcon>))}
+                ].map((l, i) => (<Tooltip label={l.label}>
+                    <ActionIcon component="a" variant="subtle" href={l.link} color={l.color}>
+                        {l.ico}
+                    </ActionIcon>
+                </Tooltip>))}
             </Group>
 
             <Text>
