@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { MantineProvider, createTheme } from '@mantine/core';
 
 import '@mantine/core/styles.css';
+import './style.css';
+import { Snow } from "./Snow";
 
 const theme = createTheme({
     colors: {
@@ -36,5 +38,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <MantineProvider theme={theme} defaultColorScheme='dark'>
         <App />
+        <Snow />
     </MantineProvider>
 );

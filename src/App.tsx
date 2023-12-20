@@ -50,6 +50,16 @@ const Projects = [
         languages: ["React"],
     },
     {
+        name: "Çarpanga",
+        status: "done",
+        website: "https://thealan404.github.io/carpanga",
+        repo: "TheAlan404/carpanga",
+        desc: <Text>
+            A game about multiplying - in turkish only for now
+        </Text>,
+        languages: ["React"],
+    },
+    {
         name: "LighttubeReact",
         status: "forgor",
         desc: <Text>
@@ -297,9 +307,9 @@ const App = () => {
     ]);
 
     return (
-        <Stack align='center' style={{ textAlign: "center" }} px="sm">
+        <Stack align='center' style={{ textAlign: "center" }} px="sm" className="app">
             <Space h="xl" />
-            <Title>Hi! I'm dennis</Title>
+            <Title>dennis</Title>
 
             <Group>
                 {[
@@ -320,7 +330,7 @@ const App = () => {
                         ico: <IconBrandMinecraft />,
                         label: "NameMC",
                     },
-                ].map((l, i) => (<Tooltip label={l.label}>
+                ].map((l, i) => (<Tooltip key={i} label={l.label}>
                     <ActionIcon component="a" variant="subtle" href={l.link} color={l.color}>
                         {l.ico}
                     </ActionIcon>
@@ -328,12 +338,10 @@ const App = () => {
             </Group>
 
             <Text>
-                personal website work in progress!
-
-                If you are here for my school's MUN project, <a href="https://thealan404.github.io/oaalmun">click here</a>.
+                snoooooooow! (code was stolen from DenVis)
             </Text>
 
-            <Title>My Projects</Title>
+            <Title order={3}>My Projects</Title>
             <Text>
                 <Kbd>W</Kbd>/<Kbd>S</Kbd>/<Kbd>↑</Kbd>/<Kbd>↓</Kbd>: Navigate
             </Text>
