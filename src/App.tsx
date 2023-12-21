@@ -16,7 +16,7 @@ const Projects = [
         desc: <Text>
             Can't have a personal projects website that doesn't mention itself as a project!
         </Text>,
-        website: "https://thealan404.github.io/",
+        website: "https://dennisunderscore.is-a.dev/",
         repo: "TheAlan404/thealan404.github.io",
         languages: ["React"],
     },
@@ -45,14 +45,14 @@ const Projects = [
         desc: <Text>
             Some useful, convenient tools ive made
         </Text>,
-        website: "https://thealan404.github.io/tools/",
+        website: "https://dennisunderscore.is-a.dev/tools/",
         repo: "TheAlan404/tools",
         languages: ["React"],
     },
     {
         name: "Çarpanga",
         status: "done",
-        website: "https://thealan404.github.io/carpanga",
+        website: "https://dennisunderscore.is-a.dev/carpanga",
         repo: "TheAlan404/carpanga",
         desc: <Text>
             A game about multiplying - in turkish only for now
@@ -87,7 +87,7 @@ const Projects = [
             <a href="https://tdk.gov.tr/kategori/icerik/yazim-kurallari/">TDK</a>'s Turkish Language Rules but as a mkdocs website
         </Text>,
         repo: "TheAlan404/tdk-wiki",
-        website: "https://thealan404.github.io/tdk-wiki/",
+        website: "https://dennisunderscore.is-a.dev/tdk-wiki/",
         languages: ["React"],
     },
     {
@@ -97,7 +97,7 @@ const Projects = [
             A command editor for <a href="https://ffmpeg.org/">FFMPEG</a>
         </Text>,
         repo: "TheAlan404/ffmpeg-editor",
-        website: "https://thealan404.github.io/ffmpeg-editor/",
+        website: "https://dennisunderscore.is-a.dev/ffmpeg-editor/",
         languages: ["React"],
     },
     {
@@ -106,7 +106,7 @@ const Projects = [
         desc: <Text>
             An experimental interactive math engine/solver
         </Text>,
-        website: "https://thealan404.github.io/alphamath",
+        website: "https://dennisunderscore.is-a.dev/alphamath",
         repo: "TheAlan404/alphamath",
         languages: ["React"],
     },
@@ -116,7 +116,7 @@ const Projects = [
         desc: <Text>
             Portal 2 ending credits song animation recreated using (very bad) HTML
         </Text>,
-        website: "https://thealan404.github.io/want-you-gone/",
+        website: "https://dennisunderscore.is-a.dev/want-you-gone/",
         repo: "TheAlan404/want-you-gone",
         color: "yellow",
         languages: ["html", "js"],
