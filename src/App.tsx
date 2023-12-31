@@ -382,8 +382,8 @@ const NewYearEvent = () => {
                 setSec(new Date().getSeconds());
             } else {
                 setHour(23 - new Date().getHours());
-                setMin(60 - new Date().getMinutes());
-                setSec(60 - new Date().getSeconds());
+                setMin(59 - new Date().getMinutes());
+                setSec(59 - new Date().getSeconds());
 
                 if((PLAY_ON.getTime()-(PLAY_OFFSET_SECONDS*1000)-1000) < new Date().getTime()) {
                     // should already be playing
