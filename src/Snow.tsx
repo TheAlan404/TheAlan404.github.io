@@ -2,12 +2,13 @@ import { useEffect, useRef } from "react";
 
 const SnowAmount = 150;
 
+const a = "20";
 const colors = [
-    "rgb(170, 170, 204)",
-    "rgb(221, 221, 255)",
-    "rgb(204, 204, 221)",
-    "rgb(243, 243, 243)",
-    "rgb(240, 255, 255)",
+    "#AAAACC"+a,
+    "#DDDDFF"+a,
+    "#CCCCDD"+a,
+    "#F3F3F3"+a,
+    "#F0FFFF"+a,
 ];
 
 const fonts = [
@@ -79,6 +80,11 @@ export const Snow = () => {
             let flakes = new Array(SnowAmount).fill(1).map(
                 () => randParticle(ctx)
             );
+
+            new Array(SnowAmount * 10).fill(1).forEach(() => {
+                // premove
+                flakes = flakes.map((f) => moveSnowflake(f, ctx))
+            });
 
             let lastScrollY = 0;
             const onScroll = () => {
