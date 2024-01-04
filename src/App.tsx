@@ -9,6 +9,8 @@ import Eggs from "./eggs";
 import { IconSquareArrowRight } from '@tabler/icons-react';
 import { useEffect, useRef, useState } from 'react';
 
+const Domain = "https://thealan404.github.io";
+
 const Projects = [
     {
         name: "This Website",
@@ -16,7 +18,7 @@ const Projects = [
         desc: <Text>
             Can't have a personal projects website that doesn't mention itself as a project!
         </Text>,
-        website: "https://dennisunderscore.is-a.dev/",
+        website: Domain,
         repo: "TheAlan404/thealan404.github.io",
         languages: ["React"],
     },
@@ -45,14 +47,14 @@ const Projects = [
         desc: <Text>
             Some useful, convenient tools ive made
         </Text>,
-        website: "https://dennisunderscore.is-a.dev/tools/",
+        website: Domain + "/tools/",
         repo: "TheAlan404/tools",
         languages: ["React"],
     },
     {
         name: "Çarpanga",
         status: "done",
-        website: "https://dennisunderscore.is-a.dev/carpanga",
+        website: Domain + "/carpanga",
         repo: "TheAlan404/carpanga",
         desc: <Text>
             A game about multiplying - in turkish only for now
@@ -87,7 +89,7 @@ const Projects = [
             <a href="https://tdk.gov.tr/kategori/icerik/yazim-kurallari/">TDK</a>'s Turkish Language Rules but as a mkdocs website
         </Text>,
         repo: "TheAlan404/tdk-wiki",
-        website: "https://dennisunderscore.is-a.dev/tdk-wiki/",
+        website: Domain + "/tdk-wiki/",
         languages: ["React"],
     },
     {
@@ -97,7 +99,7 @@ const Projects = [
             A command editor for <a href="https://ffmpeg.org/">FFMPEG</a>
         </Text>,
         repo: "TheAlan404/ffmpeg-editor",
-        website: "https://dennisunderscore.is-a.dev/ffmpeg-editor/",
+        website: Domain + "/ffmpeg-editor/",
         languages: ["React"],
     },
     {
@@ -106,7 +108,7 @@ const Projects = [
         desc: <Text>
             An experimental interactive math engine/solver
         </Text>,
-        website: "https://dennisunderscore.is-a.dev/alphamath",
+        website: Domain + "/alphamath",
         repo: "TheAlan404/alphamath",
         languages: ["React"],
     },
@@ -116,7 +118,7 @@ const Projects = [
         desc: <Text>
             Portal 2 ending credits song animation recreated using (very bad) HTML
         </Text>,
-        website: "https://dennisunderscore.is-a.dev/want-you-gone/",
+        website: Domain + "/want-you-gone/",
         repo: "TheAlan404/want-you-gone",
         color: "yellow",
         languages: ["html", "js"],
