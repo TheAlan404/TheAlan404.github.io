@@ -311,8 +311,6 @@ const App = () => {
     return (
         <Stack align='center' style={{ textAlign: "center" }} px="sm" className="app">
 
-            <NewYearEvent />
-
             <Space h="xl" />
             <Title>dennis</Title>
 
