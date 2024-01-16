@@ -185,41 +185,8 @@ const PersonalIcons = () => {
 
 const App = () => {
     let isMobile = useMediaQuery(`(max-width: ${em(750)})`);
-    let [useSelector, setUseSelecor] = useState(false);
-    let [selectedIndex, setSelectedIndex] = useState(0);
     let [search, setSearch] = useState("");
     let [easterEggText, setEasterEggText] = useState(randomEgg());
-
-    useEffect(() => {
-        if (selectedIndex < 0) {
-            setSelectedIndex(0);
-        } else if (selectedIndex >= Projects.length) {
-            setSelectedIndex(Projects.length - 1);
-        }
-    }, [selectedIndex]);
-
-    useWindowEvent("keydown", (e) => {
-        if ([
-            "ArrowDown",
-            "ArrowUp",
-            "w", "s", "a", "d",
-            "ArrowRight"].includes(e.key)
-        ) setUseSelecor(true);
-
-        if ([
-            "ArrowDown",
-            "s",
-            "Space",
-        ].includes(e.key)) setEasterEggText(randomEgg());
-    });
-
-    useHotkeys([
-        ["ArrowDown", () => setSelectedIndex((i) => i + 1)],
-        ["s", () => setSelectedIndex((i) => i + 1)],
-        ["ArrowUp", () => setSelectedIndex((i) => i - 1)],
-        ["w", () => setSelectedIndex((i) => i - 1)],
-        ["Escape", () => setUseSelecor(false)],
-    ]);
 
     let filteredProjects = (!!search ? (
         Projects.filter(p => [
@@ -248,9 +215,7 @@ const App = () => {
 
 
             <Title order={3}>My Projects</Title>
-            <Text>
-                <Kbd>W</Kbd>/<Kbd>S</Kbd>/<Kbd>↑</Kbd>/<Kbd>↓</Kbd>: Navigate
-            </Text>
+            
             <Stack w={isMobile ? "90vw" : "50vw"} py="md">
                 <TextInput
                     m="md"
@@ -261,7 +226,6 @@ const App = () => {
                 {filteredProjects.map((p, i) => (
                     <ProjectRender
                         p={p}
-                        isActive={(useSelector && selectedIndex == (i + 1))}
                         key={i}
                     />
                 ))}
