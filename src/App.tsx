@@ -10,6 +10,9 @@ import image_oaalmun from "./assets/oaalmun.png"
 import image_wantyougone from "./assets/wantyougone.png"
 import image_denvis from "./assets/denvis.png"
 import { ProjectRender } from "./components/ProjectRender";
+import { IconPlaylist } from "@tabler/icons-react";
+import { IconBrandYoutube } from "@tabler/icons-react";
+import { IconTool } from "@tabler/icons-react";
 
 const Domain = "https://thealan404.github.io";
 
@@ -26,14 +29,6 @@ export interface Project {
 }
 
 const Projects: Partial<Project>[] = [
-    {
-        name: "This Website",
-        status: "done",
-        desc: "Can't have a personal projects website that doesn't mention itself as a project!",
-        website: Domain,
-        repo: "TheAlan404/thealan404.github.io",
-        languages: ["React"],
-    },
     {
         name: "mcman",
         status: "done",
@@ -60,6 +55,24 @@ const Projects: Partial<Project>[] = [
         languages: ["React"],
     },
     {
+        name: "Çarpanga",
+        status: "done",
+        website: Domain + "/carpanga",
+        repo: "TheAlan404/carpanga",
+        desc: "A game about multiplying - in turkish only for now",
+        languages: ["React"],
+    },
+    {
+        name: "Want You Gone",
+        status: "forgor",
+        desc: "Portal 2 ending credits song animation recreated using (very bad) HTML",
+        img: image_wantyougone,
+        website: Domain + "/want-you-gone/",
+        repo: "TheAlan404/want-you-gone",
+        color: "yellow",
+        languages: ["html", "js"],
+    },
+    {
         name: "tools",
         status: "done",
         desc: "Some useful, convenient tools ive made",
@@ -68,12 +81,13 @@ const Projects: Partial<Project>[] = [
         languages: ["React"],
     },
     {
-        name: "Çarpanga",
-        status: "done",
-        website: Domain + "/carpanga",
-        repo: "TheAlan404/carpanga",
-        desc: "A game about multiplying - in turkish only for now",
-        languages: ["React"],
+        name: "DenVis",
+        status: "forgor",
+        repo: "TheAlan404/DenVis",
+        docs: "https://denvis.glitch.me/",
+        desc: "A simple Windows Audio Visualizer with some extra features such as snow.",
+        img: image_denvis,
+        languages: ["C#"],
     },
     {
         name: "LighttubeReact",
@@ -85,15 +99,6 @@ const Projects: Partial<Project>[] = [
         repo: "TheAlan404/lighttube-react",
         color: "gray",
         languages: ["React"],
-    },
-    {
-        name: "DenVis",
-        status: "forgor",
-        repo: "TheAlan404/DenVis",
-        docs: "https://denvis.glitch.me/",
-        desc: "A simple Windows Audio Visualizer with some extra features such as snow.",
-        img: image_denvis,
-        languages: ["C#"],
     },
     {
         name: "tdk-wiki",
@@ -123,22 +128,60 @@ const Projects: Partial<Project>[] = [
         repo: "TheAlan404/alphamath",
         languages: ["React"],
     },
-    {
-        name: "[Portal 2] Want You Gone",
-        status: "forgor",
-        desc: "Portal 2 ending credits song animation recreated using (very bad) HTML",
-        img: image_wantyougone,
-        website: Domain + "/want-you-gone/",
-        repo: "TheAlan404/want-you-gone",
-        color: "yellow",
-        languages: ["html", "js"],
-    },
 ];
 
 const randomEgg = () => {
     let list = Eggs;
     return list[Math.floor(Math.random() * list.length)];
 };
+
+const PersonalIcons = () => {
+    return (
+        <Group>
+            {[
+                {
+                    link: "https://github.com/TheAlan404",
+                    ico: <IconBrandGithub />,
+                    color: "dark",
+                    label: "GitHub Profile",
+                },
+                {
+                    link: "https://discord.com/users/258638629839175681",
+                    ico: <IconBrandDiscord />,
+                    label: "Discord Profile",
+                },
+                {
+                    link: "https://namemc.com/profile/Alan404",
+                    color: "green",
+                    ico: <IconBrandMinecraft />,
+                    label: "NameMC",
+                },
+                {
+                    link: "https://www.youtube.com/@dennisunderscore",
+                    color: "red",
+                    ico: <IconBrandYoutube />,
+                    label: "Youtube Channel",
+                },
+                {
+                    link: "https://music.youtube.com/playlist?list=PLXx81TwpiRfJolKp8WJE-Ep_NJzT6_GF2",
+                    color: "violet",
+                    label: "YT Music Playlist: Diagnosed ADHD",
+                    ico: <IconPlaylist />,
+                },
+                {
+                    link: Domain + "/tools/",
+                    color: "gray",
+                    label: "Dennis' Toolbox",
+                    ico: <IconTool />,
+                },
+            ].map((l, i) => (<Tooltip key={i} label={l.label}>
+                <ActionIcon component="a" target="_blank" variant="subtle" href={l.link} color={l.color}>
+                    {l.ico}
+                </ActionIcon>
+            </Tooltip>))}
+        </Group>
+    )
+}
 
 const App = () => {
     let isMobile = useMediaQuery(`(max-width: ${em(750)})`);
@@ -183,7 +226,7 @@ const App = () => {
             p.name,
             p.desc,
             p.repo,
-        ].filter(x=>x).join(" ").toLowerCase().includes(search.toLowerCase()))
+        ].filter(x => x).join(" ").toLowerCase().includes(search.toLowerCase()))
     ) : Projects);
 
     return (
@@ -197,35 +240,12 @@ const App = () => {
             <Space h="xl" />
             <Title>dennis</Title>
 
-            <Group>
-                {[
-                    {
-                        link: "https://github.com/TheAlan404",
-                        ico: <IconBrandGithub />,
-                        color: "dark",
-                        label: "GitHub Profile",
-                    },
-                    {
-                        link: "https://discord.com/users/258638629839175681",
-                        ico: <IconBrandDiscord />,
-                        label: "Discord Profile",
-                    },
-                    {
-                        link: "https://namemc.com/profile/Alan404",
-                        color: "green",
-                        ico: <IconBrandMinecraft />,
-                        label: "NameMC",
-                    },
-                ].map((l, i) => (<Tooltip key={i} label={l.label}>
-                    <ActionIcon component="a" variant="subtle" href={l.link} color={l.color}>
-                        {l.ico}
-                    </ActionIcon>
-                </Tooltip>))}
-            </Group>
+            <PersonalIcons />
 
             <Code>
                 {"{love && hate && <Relationship with=\"webDev\" />}"}
             </Code>
+
 
             <Title order={3}>My Projects</Title>
             <Text>
@@ -241,7 +261,7 @@ const App = () => {
                 {filteredProjects.map((p, i) => (
                     <ProjectRender
                         p={p}
-                        isActive={(useSelector && selectedIndex == (i+1))}
+                        isActive={(useSelector && selectedIndex == (i + 1))}
                         key={i}
                     />
                 ))}
