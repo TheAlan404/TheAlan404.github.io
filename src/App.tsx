@@ -14,7 +14,9 @@ import { IconPlaylist } from "@tabler/icons-react";
 import { IconBrandYoutube } from "@tabler/icons-react";
 import { IconTool } from "@tabler/icons-react";
 
-const Domain = "https://thealan404.github.io";
+const Domain = "deniz.blue";
+const Subdomain = (s: string) => `https://${s}.${Domain}/`;
+const Pages = (s: string) => `https://${Domain}/${s}/`;
 
 export interface Project {
     name: string,
@@ -42,14 +44,15 @@ const Projects: Partial<Project>[] = [
     {
         name: "ZilTek",
         status: "done",
-        website: "https://ziltek.kuylar.dev",
+        website: Subdomain("ziltek"),
         desc: "The school bell app with multilanguage support.",
         languages: ["React"],
+        img: "/ziltekscreenshot.png",
     },
     {
         name: "OAALMUN",
         status: "done",
-        website: Domain + "/oaalmun/",
+        website: "https://mun.oaal.com.tr",
         desc: "MUN (Model United Nations) website for my school",
         img: image_oaalmun,
         languages: ["React"],
@@ -57,17 +60,24 @@ const Projects: Partial<Project>[] = [
     {
         name: "Çarpanga",
         status: "done",
-        website: Domain + "/carpanga",
+        website: Pages("carpanga"),
         repo: "TheAlan404/carpanga",
         desc: "A game about multiplying - in turkish only for now",
         languages: ["React"],
+    },
+    {
+        name: "ModFest 1.20",
+        status: "done",
+        desc: "I'm a ModFest Coordinator! This isnt really a personal project but I wanted to put it up here anyways.",
+        img: "https://modfest.net/assets/event/1.20/cover.png",
+        website: "https://modfest.net/1.20",
     },
     {
         name: "Want You Gone",
         status: "forgor",
         desc: "Portal 2 ending credits song animation recreated using (very bad) HTML",
         img: image_wantyougone,
-        website: Domain + "/want-you-gone/",
+        website: Pages("want-you-gone"),
         repo: "TheAlan404/want-you-gone",
         color: "yellow",
         languages: ["html", "js"],
@@ -76,7 +86,7 @@ const Projects: Partial<Project>[] = [
         name: "tools",
         status: "done",
         desc: "Some useful, convenient tools ive made",
-        website: Domain + "/tools/",
+        website: Pages("tools"),
         repo: "TheAlan404/tools",
         languages: ["React"],
     },
@@ -107,7 +117,7 @@ const Projects: Partial<Project>[] = [
             <a href="https://tdk.gov.tr/kategori/icerik/yazim-kurallari/">TDK</a>'s Turkish Language Rules but as a mkdocs website
         </Text>,
         repo: "TheAlan404/tdk-wiki",
-        website: Domain + "/tdk-wiki/",
+        website: Pages("tdk-wiki"),
         languages: ["React"],
     },
     {
@@ -117,14 +127,14 @@ const Projects: Partial<Project>[] = [
             A command editor for <a href="https://ffmpeg.org/">FFMPEG</a>
         </Text>,
         repo: "TheAlan404/ffmpeg-editor",
-        website: Domain + "/ffmpeg-editor/",
+        website: Pages("ffmpeg-editor"),
         languages: ["React"],
     },
     {
         name: "alphamath",
         status: "wip",
         desc: "An experimental interactive math engine/solver",
-        website: Domain + "/alphamath",
+        website: Pages("alphamath"),
         repo: "TheAlan404/alphamath",
         languages: ["React"],
     },
@@ -169,13 +179,14 @@ const PersonalIcons = () => {
                     ico: <IconPlaylist />,
                 },
                 {
-                    link: Domain + "/tools/",
+                    link: Pages("tools"),
                     color: "gray",
                     label: "Dennis' Toolbox",
                     ico: <IconTool />,
+                    target: "",
                 },
             ].map((l, i) => (<Tooltip key={i} label={l.label}>
-                <ActionIcon component="a" target="_blank" variant="subtle" href={l.link} color={l.color}>
+                <ActionIcon component="a" target={l.target ?? "_blank"} variant="subtle" href={l.link} color={l.color}>
                     {l.ico}
                 </ActionIcon>
             </Tooltip>))}
@@ -209,10 +220,25 @@ const App = () => {
 
             <PersonalIcons />
 
-            <Code>
-                {"{love && hate && <Relationship with=\"webDev\" />}"}
-            </Code>
+            <Stack>
+                <Code>
+                    {"{love && hate && <Relationship with=\"webDev\" />}"}
+                </Code>
+                
+                <Text>
+                    hi :3 i'm dennis - a full stack developer
+                </Text>
 
+                <Group ta="center" justify="center">
+                    <Code fz={"xs"}>
+                        //TODO add more info
+                    </Code>
+                </Group>
+
+                <Text fz={"sm"}>
+                    ps. deniz means sea in turkish
+                </Text>
+            </Stack>
 
             <Title order={3}>My Projects</Title>
             
