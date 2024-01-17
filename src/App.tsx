@@ -13,6 +13,7 @@ import { ProjectRender } from "./components/ProjectRender";
 import { IconPlaylist } from "@tabler/icons-react";
 import { IconBrandYoutube } from "@tabler/icons-react";
 import { IconTool } from "@tabler/icons-react";
+import { NewYearEvent } from "./events/NewYear";
 
 const Domain = "deniz.blue";
 const Subdomain = (s: string) => `https://${s}.${Domain}/`;
@@ -198,6 +199,7 @@ const App = () => {
     let isMobile = useMediaQuery(`(max-width: ${em(750)})`);
     let [search, setSearch] = useState("");
     let [easterEggText, setEasterEggText] = useState(randomEgg());
+    let [newYearEvent, { toggle }] = useDisclosure();
 
     let filteredProjects = (!!search ? (
         Projects.filter(p => [
@@ -207,13 +209,21 @@ const App = () => {
         ].filter(x => x).join(" ").toLowerCase().includes(search.toLowerCase()))
     ) : Projects);
 
+    useHotkeys([
+        ["n", () => toggle()],
+    ])
+
     return (
         <Stack
             align='center'
             style={{ textAlign: "center" }}
             px="sm"
-            className="app"
-            onClick={() => setUseSelecor(false)}>
+            className="app">
+
+            {newYearEvent && (
+                <NewYearEvent
+                />
+            )}
 
             <Space h="xl" />
             <Title>dennis</Title>

@@ -67,7 +67,7 @@ export const NewYearEvent = ({
                     </Stack>
                 ) : (
                     <Text>Time until suprise: {(() => {
-                        let d = new Date((PLAY_ON.getTime()-(PLAY_OFFSET_SECONDS*1000)-1000));
+                        let d = new Date((playOn.getTime()-(PLAY_OFFSET_SECONDS*1000)-1000));
 
                         let formatter = new Intl.RelativeTimeFormat();
                         let f = automaticRelativeDifference(d);
