@@ -1,11 +1,11 @@
-import { AppShell, Group, Burger, Center, Container, Transition, Stack, Title, Text, Divider, Button, Space, Tooltip, ActionIcon, Kbd, Code, Image, TextInput, em } from '@mantine/core'
+import { AppShell, Group, Burger, Center, Container, Transition, Stack, Title, Text, Divider, Button, Space, Tooltip, ActionIcon, Kbd, Code, Image, TextInput, em, Accordion, Anchor, SimpleGrid, Box, ScrollArea } from '@mantine/core'
 import { UnstyledButton } from '@mantine/core';
 import { useDisclosure, useHotkeys, useMediaQuery, useWindowEvent } from '@mantine/hooks';
 import { IconBrandDiscord } from '@tabler/icons-react';
 import { IconBrandMinecraft } from '@tabler/icons-react';
 import { IconBrandGithub } from '@tabler/icons-react';
 import Eggs from "./eggs";
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import image_oaalmun from "./assets/oaalmun.png"
 import image_wantyougone from "./assets/wantyougone.png"
 import image_denvis from "./assets/denvis.png"
@@ -196,22 +196,15 @@ const PersonalIcons = () => {
 }
 
 const App = () => {
-    let isMobile = useMediaQuery(`(max-width: ${em(750)})`);
-    let [search, setSearch] = useState("");
-    let [easterEggText, setEasterEggText] = useState(randomEgg());
     let [newYearEvent, { toggle }] = useDisclosure();
 
-    let filteredProjects = (!!search ? (
-        Projects.filter(p => [
-            p.name,
-            p.desc,
-            p.repo,
-        ].filter(x => x).join(" ").toLowerCase().includes(search.toLowerCase()))
-    ) : Projects);
+    
 
     useHotkeys([
         ["n", () => toggle()],
     ])
+
+    let playOn = useMemo(() => new Date(new Date().getTime() + 5 * 60 * 1000), [newYearEvent]);
 
     return (
         <Stack
@@ -222,37 +215,54 @@ const App = () => {
 
             {newYearEvent && (
                 <NewYearEvent
+                    playOn={playOn}
                 />
             )}
-
-            <Space h="xl" />
-            <Title>dennis</Title>
-
-            <PersonalIcons />
-
-            <Stack>
-                <Code>
-                    {"{love && hate && <Relationship with=\"webDev\" />}"}
-                </Code>
-                
-                <Text>
-                    hi :3 i'm dennis - a full stack developer
-                </Text>
-
-                <Group ta="center" justify="center">
-                    <Code fz={"xs"}>
-                        //TODO add more info
-                    </Code>
-                </Group>
-
-                <Text fz={"sm"}>
-                    ps. deniz means sea in turkish
-                </Text>
-            </Stack>
-
-            <Title order={3}>My Projects</Title>
             
-            <Stack w={isMobile ? "90vw" : "50vw"} py="md">
+            <Hero />
+            <ProjectsList />
+
+            {/* <SimpleGrid cols={{
+                base: 1,
+                md: 2,
+            }}>
+                <Hero />
+                <Box h="100%" visibleFrom="md">
+                    <ScrollArea h="100vh">
+                        <ProjectsList />
+                    </ScrollArea>
+                </Box>
+                <Box hiddenFrom="md">
+                    <ProjectsList />
+                </Box>
+            </SimpleGrid> */}
+
+            
+
+            
+        </Stack>
+    )
+}
+
+export const ProjectsList = () => {
+    let isMobile = useMediaQuery(`(max-width: ${em(750)})`);
+    let [search, setSearch] = useState("");
+    let [easterEggText, setEasterEggText] = useState(randomEgg());
+
+    let filteredProjects = (!!search ? (
+        Projects.filter(p => [
+            p.name,
+            p.desc,
+            p.repo,
+        ].filter(x => x).join(" ").toLowerCase().includes(search.toLowerCase()))
+    ) : Projects);
+
+    return (
+        <Stack gap={0} align="center" w="100%">
+            <Space h="xl" />
+            <Title order={3}>My Projects</Title>
+
+            <Stack w={isMobile ? "90%" : "50%"} py="md">
                 <TextInput
                     m="md"
                     placeholder="Search..."
@@ -269,6 +279,69 @@ const App = () => {
             <Space h="20vh" />
             <Text onClick={() => setEasterEggText(randomEgg())}>{easterEggText}</Text>
             <Space h="20vh" />
+        </Stack>
+    )
+}
+
+export const Hero = () => {
+    return (
+        <Stack gap={0} align="center">
+            <Space h="xl" />
+            <Title>
+                dennis
+            </Title>
+
+            <PersonalIcons />
+
+            <Stack>
+                <Code>
+                    {"{love && hate && <Relationship with=\"webDev\" />}"}
+                </Code>
+                <Accordion>
+                    <Accordion.Item value="a">
+                        <Accordion.Control>
+                            about me
+                        </Accordion.Control>
+                        <Accordion.Panel>
+                            <Text>
+                                hi :3 i'm dennis - a full stack developer
+                                <br />
+                                i've been coding for about 4 years now
+                                <br />
+                                sorry idk what to put here
+                                <br />
+                                yeah
+                            </Text>
+                            
+                            <Stack p="md" gap={2}>
+                                {[
+                                    ["Timezone", "GMT+3"],
+                                    ["Pronouns", "she/her"],
+                                    ["Education", "Highschool"],
+                                    ["Languages", "JS, Rust, C#"],
+                                    ["Fave UI lib", "Mantine", {
+                                        Comp: Anchor,
+                                        href: "https://mantine.dev/",
+                                        target: "_blank",
+                                    }],
+                                    ["Trans", "rights"],
+                                    ["meower", "true", { Comp: Code, }],
+                                    ["lover of", "may"],
+                                ].map(([k, v, { Comp = Text, ...vp } = {}], i) => (
+                                    <Group justify="space-between" key={i}>
+                                        <Text fw="bold">{k}</Text>
+                                        <Comp {...vp}>{v}</Comp>
+                                    </Group>
+                                ))}
+                            </Stack>
+
+                            <Text fz={"sm"}>
+                                ps. deniz means sea in turkish
+                            </Text>
+                        </Accordion.Panel>
+                    </Accordion.Item>
+                </Accordion>
+            </Stack>
         </Stack>
     )
 }

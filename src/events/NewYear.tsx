@@ -17,17 +17,16 @@ export const NewYearEvent = ({
 
     useEffect(() => {
         let int = setInterval(() => {
-            let past = new Date().getTime() > playOn;
+            let past = new Date().getTime() > playOn.getTime();
             setIsNewYear(past);
 
+            let diff = Math.round((Math.abs(new Date().getTime() - playOn.getTime())) / 1000);
+            setHour(Math.round(diff / (60*60)));
+            setMin(Math.round(diff / 60) % 60);
+            setSec(diff % 60);
             if(past) {
                 setHour(new Date().getHours());
-                setMin(new Date().getMinutes());
-                setSec(new Date().getSeconds());
             } else {
-                setHour(23 - new Date().getHours());
-                setMin(59 - new Date().getMinutes());
-                setSec(59 - new Date().getSeconds());
 
                 if((playOn.getTime()-(PLAY_OFFSET_SECONDS*1000)-1000) < new Date().getTime()) {
                     // should already be playing
