@@ -2,9 +2,6 @@ import { AppShell, Burger, Center, Container, Transition, Stack, Text, Divider, 
 import { UnstyledButton } from '@mantine/core';
 import { useDisclosure, useHotkeys, useWindowEvent } from '@mantine/hooks';
 import { useEffect, useMemo } from 'react';
-import image_oaalmun from "./assets/oaalmun.png"
-import image_wantyougone from "./assets/wantyougone.png"
-import image_denvis from "./assets/denvis.png"
 import { NewYearEvent } from "./events/NewYear";
 import { ProjectsList } from "./page/ProjectsList";
 import { Hero } from "./page/Hero";
@@ -50,7 +47,7 @@ export const Projects: Partial<Project>[] = [
         status: "done",
         website: "https://mun.oaal.com.tr",
         desc: "MUN (Model United Nations) website for my school",
-        img: image_oaalmun,
+        img: "/oaalmun.png",
         languages: ["React"],
     },
     {
@@ -72,7 +69,7 @@ export const Projects: Partial<Project>[] = [
         name: "Want You Gone",
         status: "forgor",
         desc: "Portal 2 ending credits song animation recreated using (very bad) HTML",
-        img: image_wantyougone,
+        img: "/wantyougone.png",
         website: Pages("want-you-gone"),
         repo: "TheAlan404/want-you-gone",
         color: "yellow",
@@ -92,7 +89,7 @@ export const Projects: Partial<Project>[] = [
         repo: "TheAlan404/DenVis",
         docs: "https://denvis.glitch.me/",
         desc: "A simple Windows Audio Visualizer with some extra features such as snow.",
-        img: image_denvis,
+        img: "/denvis.png",
         languages: ["C#"],
     },
     {
