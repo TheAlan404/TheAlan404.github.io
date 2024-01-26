@@ -35,7 +35,6 @@ export const Hero = () => {
                                 <Stack p="md" gap={2}>
                                     {[
                                         ["Timezone", "GMT+3"],
-                                        ["Pronouns", "she/her"],
                                         ["Education", "Highschool"],
                                         ["Languages", "JS, Rust, C#"],
                                         ["Fave UI lib", "Mantine", {
@@ -44,8 +43,6 @@ export const Hero = () => {
                                             target: "_blank",
                                         }],
                                         ["Trans", "rights"],
-                                        ["meower", "true", { Comp: Code, }],
-                                        ["lover of", "may"],
                                     ].map(([k, v, { Comp = Text, ...vp } = {}], i) => (
                                         <Group justify="space-between" key={i}>
                                             <Text fw="bold">{k}</Text>
