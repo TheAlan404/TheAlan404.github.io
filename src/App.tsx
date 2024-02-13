@@ -1,7 +1,7 @@
 import { AppShell, Burger, Center, Container, Transition, Stack, Text, Divider, Button, Kbd, Image, SimpleGrid, Box, ScrollArea } from '@mantine/core'
 import { UnstyledButton } from '@mantine/core';
 import { useDisclosure, useHotkeys, useWindowEvent } from '@mantine/hooks';
-import { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { NewYearEvent } from "./events/NewYear";
 import { ProjectsList } from "./page/ProjectsList";
 import { Hero } from "./page/Hero";
@@ -14,16 +14,17 @@ export const Pages = (s: string) => `https://${Domain}/${s}/`;
 export interface Project {
     name: string,
     status: "done" | "wip" | "forgor",
-    desc: string,
-    website: string,
-    repo: string,
-    languages: string[],
-    color: string,
-    img: string,
-    content: JSX.Element,
+    desc?: string,
+    website?: string,
+    docs?: string,
+    repo?: string,
+    languages?: string[],
+    color?: string,
+    img?: string,
+    content?: JSX.Element,
 }
 
-export const Projects: Partial<Project>[] = [
+export const Projects: Project[] = [
     {
         name: "mcman",
         status: "done",
@@ -142,7 +143,9 @@ const App = () => {
     ])
 
     useEffect(() => {
+        // @ts-ignore
         window.me = "@me";
+        // @ts-ignore
         window.world = {
             execute() {
                 openMili();
@@ -169,10 +172,7 @@ const App = () => {
                 <GodDrinksJava />
             )}
             
-            <Hero />
-            <ProjectsList />
-
-            {/* <SimpleGrid cols={{
+            <SimpleGrid cols={{
                 base: 1,
                 md: 2,
             }}>
@@ -185,10 +185,8 @@ const App = () => {
                 <Box hiddenFrom="md">
                     <ProjectsList />
                 </Box>
-            </SimpleGrid> */}
-
+            </SimpleGrid>
             
-
             
         </Stack>
     )

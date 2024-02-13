@@ -1,64 +1,111 @@
-import { Group, Stack, Title, Text, Space, Code, Accordion, Anchor, Paper } from '@mantine/core';
+import { Group, Stack, Title, Text, Space, Code, Accordion, Anchor, Paper, Tooltip, Center, Flex, Image } from '@mantine/core';
 import { PersonalIcons } from "../components/PersonalIcons";
+import { MantineLogo } from "@mantinex/mantine-logo";
+import React from "react";
 
 export const Hero = () => {
     return (
-        <Paper bg="dark.7" shadow="xl">
-            <Stack gap={0} align="center">
+        <Stack justify="space-between" gap={0}>
+            <Stack gap={0} align="center" w="100%">
                 <Space h="xl" />
-                <Title>
-                    dennis
-                </Title>
-
-                <PersonalIcons />
-
-                <Stack>
+                <Stack align="center">
+                    <Title>
+                        dennis
+                    </Title>
+                    <PersonalIcons />
                     <Code>
                         {"{love && hate && <Relationship with=\"webDev\" />}"}
                     </Code>
-                    <Accordion>
-                        <Accordion.Item value="a">
-                            <Accordion.Control>
-                                about me
-                            </Accordion.Control>
-                            <Accordion.Panel>
-                                <Text>
-                                    hi :3 i'm dennis - a full stack developer
-                                    <br />
-                                    i've been coding for about 4 years now
-                                    <br />
-                                    sorry idk what to put here
-                                    <br />
-                                    yeah
-                                </Text>
-
-                                <Stack p="md" gap={2}>
-                                    {[
-                                        ["Timezone", "GMT+3"],
-                                        ["Education", "Highschool"],
-                                        ["Languages", "JS, Rust, C#"],
-                                        ["Fave UI lib", "Mantine", {
-                                            Comp: Anchor,
-                                            href: "https://mantine.dev/",
-                                            target: "_blank",
-                                        }],
-                                        ["Trans", "rights"],
-                                    ].map(([k, v, { Comp = Text, ...vp } = {}], i) => (
-                                        <Group justify="space-between" key={i}>
-                                            <Text fw="bold">{k}</Text>
-                                            <Comp {...vp}>{v}</Comp>
-                                        </Group>
-                                    ))}
-                                </Stack>
-
-                                <Text fz={"sm"}>
-                                    ps. deniz means sea in turkish
-                                </Text>
-                            </Accordion.Panel>
-                        </Accordion.Item>
-                    </Accordion>
                 </Stack>
+
+                <Space h="xl" />
+
+                <Stack>
+                    <Text>
+                        Hi! I'm
+                        {" "}
+                        <Text
+                            span
+                            fw={900}
+                            variant="gradient"
+                            gradient={{ from: 'blue.4', to: 'indigo.3', deg: 90 }}
+                        >
+                            deniz
+                        </Text>
+                        {" "}
+                        <Text span c="dimmed">
+                            (turkish for sea)
+                        </Text>
+                        , known as
+                        {" "}
+                        <Text
+                            span
+                            fw={900}
+                            variant="gradient"
+                            gradient={{ from: 'blue.4', to: 'indigo.3', deg: 90 }}
+                        >
+                            dennis
+                        </Text>
+                        {" "}
+                        online.
+                        {" "}
+                        <Tooltip label="mrow~" position="right" withArrow>
+                            <Text
+                                span
+                                c="blue"
+                                fw="bolder"
+                            >
+                                :3
+                            </Text>
+                        </Tooltip>
+                    </Text>
+                    <Text>
+                        I call myself a <Text span c="indigo">full stack developer</Text> since I can do both frontend and backend
+                        <Text>
+                            ...but I mainly love working on backends.
+                        </Text>
+                    </Text>
+                    <Text>
+                        I only do frontend because
+                        {"   "}
+                        <Anchor
+                            href="https://mantine.dev/"
+                            target="_blank"
+                        >
+                            <MantineLogo size={"1em"} style={{ alignSelf: "center" }} type="mark" />
+                            {" "}
+                            Mantine
+                        </Anchor> exists
+                        {" "}
+                        <Text span c="dimmed">(best UI lib ever btw)</Text>
+                    </Text>
+                    <Group gap={"xs"} justify="center">
+                        <Text>My timezone is</Text>
+                        {" "}
+                        <Tooltip label="or, UTC+3" withArrow>
+                            <Text span fw="bold">
+                                GMT+3
+                            </Text>
+                        </Tooltip>
+                        {" "}
+                        <Text>and I live in</Text>
+                        {" "}
+                        <Text span fw="bold">
+                            Istanbul, Turkey
+                        </Text>
+                        <Image
+                            src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1f9-1f1f7.svg"
+                            height="22"
+                            width="100"
+                            fit="contain"
+                            style={{
+                                display: "inline"
+                            }}
+                        />
+                    </Group>
+                </Stack>
+
             </Stack>
-        </Paper>
+        </Stack>
     );
 };

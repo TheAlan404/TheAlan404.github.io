@@ -1,7 +1,8 @@
 const Eggs = [
     "have i told you I love Mantine?",
     "have you guys heard about rust its 🚀 BLAZINGLY FAST 🚀 and 🚀 MEMORY SAFE 🚀",
-    "I love May very much",
+    "may my beloved",
+    "ülker my beloved",
     "i animated lagtrain using minecraft maps once",
     "Technoblade never dies.",
     "oh hey look funny characters: dQw4w9WgXcQ",
