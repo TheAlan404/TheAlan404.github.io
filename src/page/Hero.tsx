@@ -59,6 +59,32 @@ export const Hero = () => {
                             </Text>
                         </Tooltip>
                     </Text>
+
+                    <Group gap={"xs"} justify="center">
+                        <Text>My timezone is</Text>
+                        {" "}
+                        <Tooltip label="or, UTC+3" withArrow>
+                            <Text span fw="bold">
+                                GMT+3
+                            </Text>
+                        </Tooltip>
+                        {" "}
+                        <Text>and I live in</Text>
+                        {" "}
+                        <Text span fw="bold">
+                            Istanbul, Turkey
+                        </Text>
+                        <Image
+                            src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1f9-1f1f7.svg"
+                            h="22"
+                            w="100"
+                            fit="contain"
+                            style={{
+                                display: "inline"
+                            }}
+                        />
+                    </Group>
+                    
                     <Text>
                         I call myself a <Text span c="indigo">full stack developer</Text> since I can do both frontend and backend
                         <Text>
@@ -79,29 +105,24 @@ export const Hero = () => {
                         {" "}
                         <Text span c="dimmed">(best UI lib ever btw)</Text>
                     </Text>
-                    <Group gap={"xs"} justify="center">
-                        <Text>My timezone is</Text>
-                        {" "}
-                        <Tooltip label="or, UTC+3" withArrow>
-                            <Text span fw="bold">
-                                GMT+3
-                            </Text>
-                        </Tooltip>
-                        {" "}
-                        <Text>and I live in</Text>
-                        {" "}
-                        <Text span fw="bold">
-                            Istanbul, Turkey
-                        </Text>
+                    <Group gap={"xs"} justify="center" wrap="nowrap">
                         <Image
-                            src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1f9-1f1f7.svg"
-                            height="22"
-                            width="100"
-                            fit="contain"
-                            style={{
-                                display: "inline"
-                            }}
+                            src="https://github.com/ModFest/art/blob/main/64w/ModFest%20Generic%201.20%20Colors%20Transparent.png?raw=true"
+                            w="1.5em"
+                            h="1.5em"
                         />
+                        <Text>
+                            I am also a
+                            {" "}
+                            <Anchor
+                                href="https://modfest.net/"
+                                target="_blank"
+                            >
+                                ModFest
+                            </Anchor>
+                            {" "}
+                            Coordinator!
+                        </Text>
                     </Group>
                 </Stack>
 

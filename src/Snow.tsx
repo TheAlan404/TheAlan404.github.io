@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 const SnowAmount = 150;
 
-const a = "20";
+const a = "10";
 const colors = [
     "#AAAACC"+a,
     "#DDDDFF"+a,
@@ -28,7 +28,6 @@ interface Snowflake {
     sway: number,
     mass: number,
     momentum: number,
-    life: number,
 }
 
 const randParticle = (ctx): Snowflake => {
@@ -68,15 +67,16 @@ const applyDelta = (flake, delta) => ({
 });
 
 export const Snow = () => {
-    let ref = useRef<HTMLCanvasElement>();
+    let ref = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
         if(ref.current) {
             ref.current.width = ref.current.clientWidth;
             ref.current.height = ref.current.clientHeight;
 
-            let frame;
+            let frame = 0;
             let ctx = ref.current.getContext("2d");
+            if (!ctx) return;
             let flakes = new Array(SnowAmount).fill(1).map(
                 () => randParticle(ctx)
             );
