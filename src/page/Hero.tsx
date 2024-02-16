@@ -84,7 +84,7 @@ export const Hero = () => {
                             }}
                         />
                     </Group>
-                    
+
                     <Text>
                         I call myself a <Text span c="indigo">full stack developer</Text> since I can do both frontend and backend
                         <Text>
@@ -126,6 +126,16 @@ export const Hero = () => {
                     </Group>
                 </Stack>
 
+            </Stack>
+            <Stack>
+                <Group justify="center">
+                    <Anchor
+                        href="https://subabi.com/"
+                        target="_blank"
+                    >
+                        owo
+                    </Anchor>
+                </Group>
             </Stack>
         </Stack>
     );
