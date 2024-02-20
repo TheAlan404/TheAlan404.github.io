@@ -54,7 +54,7 @@ export const Projects: Project[] = [
     {
         name: "Çarpanga",
         status: "done",
-        website: Pages("carpanga"),
+        website: Subdomain("carpanga"),
         repo: "TheAlan404/carpanga",
         desc: "A game about multiplying - in turkish only for now",
         languages: ["React"],
