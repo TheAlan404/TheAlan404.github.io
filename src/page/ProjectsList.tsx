@@ -3,7 +3,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import { randomEgg } from "../assets/eggs";
 import React, { useState } from 'react';
 import { ProjectRender } from "../components/ProjectRender";
-import { Projects } from "../App";
+import { Projects } from "../data";
 
 export const ProjectsList = () => {
     let isMobile = useMediaQuery(`(max-width: ${em(750)})`);

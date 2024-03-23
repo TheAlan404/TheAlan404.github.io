@@ -1,16 +1,16 @@
-import { Group, Stack, Title, Text, Space, Code, Accordion, Anchor, Paper, Tooltip, Center, Flex, Image } from '@mantine/core';
+import { Group, Stack, Title, Text, Space, Code, Accordion, Anchor, Paper, Tooltip, Center, Flex, Image, List, Divider } from '@mantine/core';
 import { PersonalIcons } from "../components/PersonalIcons";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import React from "react";
 
 export const Hero = () => {
     return (
-        <Stack justify="space-between" gap={0}>
+        <Stack justify="space-between" mb="md">
             <Stack gap={0} align="center" w="100%">
                 <Space h="xl" />
                 <Stack align="center">
                     <Title>
-                        dennis
+                        ✨ deniz.blue 🌸
                     </Title>
                     <PersonalIcons />
                     <Code>
@@ -98,43 +98,43 @@ export const Hero = () => {
                             href="https://mantine.dev/"
                             target="_blank"
                         >
-                            <MantineLogo size={"1em"} style={{ alignSelf: "center" }} type="mark" />
+                            <MantineLogo size={"1em"} type="mark" />
                             {" "}
                             Mantine
                         </Anchor> exists
                         {" "}
                         <Text span c="dimmed">(best UI lib ever btw)</Text>
                     </Text>
-                    <Group gap={"xs"} justify="center" wrap="nowrap">
-                        <Image
-                            src="https://github.com/ModFest/art/blob/main/64w/ModFest%20Generic%201.20%20Colors%20Transparent.png?raw=true"
-                            w="1.5em"
-                            h="1.5em"
-                        />
-                        <Text>
-                            I am also a
-                            {" "}
-                            <Anchor
-                                href="https://modfest.net/"
-                                target="_blank"
-                            >
-                                ModFest
-                            </Anchor>
-                            {" "}
-                            Coordinator!
-                        </Text>
-                    </Group>
-                </Stack>
 
+
+
+                </Stack>
             </Stack>
             <Stack>
-                <Group justify="center">
-                    <Anchor
-                        href="https://subabi.com/"
-                        target="_blank"
-                    >
-                        owo
-                    </Anchor>
+                <Group justify="center" gap="xs">
+                    {[{
+                        url: "https://subabi.com/",
+                        text: "subabi.com",
+                    }, {
+                        url: "https://skyrina.dev/",
+                        text: "Skyrina",
+                    }, {
+                        url: "https://ashley0143.xyz/",
+                        text: "Ashley"
+                    }].map(({ url, text }, i, a) => <>
+                        <Anchor
+                            href={url}
+                            target="_blank"
+                        >
+                            {text}
+                        </Anchor>
+                        {!!a[i+1] && (
+                            <Divider
+                                orientation="vertical"
+                                size="md"
+                            />
+                        )}
+                    </>)}
                 </Group>
             </Stack>
         </Stack>

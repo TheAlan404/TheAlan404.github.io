@@ -1,3 +1,4 @@
+import React from "react";
 import { Text } from "@mantine/core";
 import code from "../assets/package_goddrinksjava";
 import { useEffect, useMemo, useRef, useState } from "react";

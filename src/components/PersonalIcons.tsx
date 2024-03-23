@@ -1,3 +1,4 @@
+import React from "react";
 import { Group, Tooltip, ActionIcon } from '@mantine/core';
 import { IconBrandDiscord } from '@tabler/icons-react';
 import { IconBrandMinecraft } from '@tabler/icons-react';
@@ -5,7 +6,7 @@ import { IconBrandGithub } from '@tabler/icons-react';
 import { IconPlaylist } from "@tabler/icons-react";
 import { IconBrandYoutube } from "@tabler/icons-react";
 import { IconTool } from "@tabler/icons-react";
-import { Pages } from "../App";
+import { Pages } from "../data";
 
 export const PersonalIcons = () => {
     return (
