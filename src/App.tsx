@@ -49,7 +49,12 @@ const App = () => {
                 base: 1,
                 md: 2,
             }}>
-                <Hero />
+                <ScrollArea h="100vh" visibleFrom="md" type="never">
+                    <Hero />
+                </ScrollArea>
+                <Box hiddenFrom="md">
+                    <Hero />
+                </Box>
                 <Box h="100%" visibleFrom="md">
                     <ScrollArea h="100vh">
                         <ProjectsList />

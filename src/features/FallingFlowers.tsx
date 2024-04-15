@@ -1,0 +1,106 @@
+import React, { useEffect, useRef } from "react";
+
+const SnowAmount = 50;
+
+const Chars = [
+    "🌸",
+    "🍂",
+    "🍃",
+];
+
+
+interface Snowflake {
+    char: number,
+    initialX: number,
+    x: number,
+    y: number,
+    size: number,
+    sinkSpeed: number,
+    sway: number,
+    mass: number,
+    momentum: number,
+}
+
+const randParticle = (ctx): Snowflake => {
+    let x = Math.floor(Math.random() * ctx.canvas.width);
+
+    return {
+        char: Math.floor(Math.random() * Chars.length),
+        initialX: x,
+        x,
+        y: 0,
+        sinkSpeed: Math.random(),
+        size: Math.random() * 25,
+        sway: Math.random() * 15,
+        mass: 0.03 + (Math.random() / 10),
+        momentum: 0,
+    };
+};
+
+const moveSnowflake = (flake: Snowflake, ctx): Snowflake => {
+    if(flake.y > ctx.canvas.height)
+        return randParticle(ctx);
+
+    let momentum = flake.momentum + flake.mass;
+
+    return {
+        ...flake,
+        y: (flake.y + flake.sinkSpeed),
+        momentum,
+        x: flake.initialX + (Math.sin(momentum) * flake.sway),
+    }
+}
+
+const applyDelta = (flake, delta) => ({
+    ...flake,
+    y: flake.y + delta,
+});
+
+export const FallingFlowers = () => {
+    let ref = useRef<HTMLCanvasElement>(null);
+
+    useEffect(() => {
+        if(ref.current) {
+            ref.current.width = ref.current.clientWidth;
+            ref.current.height = ref.current.clientHeight;
+
+            let frame = 0;
+            let ctx = ref.current.getContext("2d");
+            if (!ctx) return;
+            let flakes = new Array(SnowAmount).fill(1).map(
+                () => randParticle(ctx)
+            );
+
+            ctx.fillStyle = `#ffffff30`;
+
+            new Array(SnowAmount * 10).fill(1).forEach(() => {
+                // premove
+                flakes = flakes.map((f) => moveSnowflake(f, ctx))
+            });
+
+            const render = () => {
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                flakes = flakes.map((f) => moveSnowflake(f, ctx));
+
+                if(!ctx) console.log("!ctx");
+
+                for(let flake of flakes) {
+                    ctx?.fillText(Chars[flake.char], flake.x, flake.y);
+                }
+
+                frame = requestAnimationFrame(render);
+            }
+
+            requestAnimationFrame(render);
+
+            return () => {
+                cancelAnimationFrame(frame);
+            };
+        }
+    }, [ref]);
+    
+    return <canvas
+        className='snow'
+        ref={ref}
+    />;
+}

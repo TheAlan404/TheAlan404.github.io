@@ -5,7 +5,8 @@ import { MantineProvider, createTheme } from '@mantine/core';
 
 import '@mantine/core/styles.css';
 import './style.css';
-import { Snow } from "./Snow";
+import { FallingFlowers } from "./features/FallingFlowers";
+import { Snow } from "./features/Snow";
 
 const theme = createTheme({
     colors: {
