@@ -1,19 +1,28 @@
-import { Anchor, Group } from "@mantine/core"
+import { Anchor, Button, ButtonProps, Group } from "@mantine/core"
 import { IconExternalLink } from "@tabler/icons-react"
 
 export const Link = ({
     url,
     text,
+    icon,
+    size,
 }: {
     url: string,
     text: string,
+    icon?: React.ReactNode,
+    size?: ButtonProps["size"],
 }) => {
     return (
-        <Anchor href={url} target="_blank">
-            <Group gap="xs" align="center">
-                {text}
-                <IconExternalLink size="1.2em" />
-            </Group>
-        </Anchor>
+        <Button
+            variant="subtle"
+            size={size || "compact-md"}
+            leftSection={icon}
+            rightSection={<IconExternalLink size="1.2em" />}
+            component="a"
+            href={url}
+            target="_blank"
+        >
+            {text}
+        </Button>
     )
 }

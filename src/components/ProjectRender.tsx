@@ -5,7 +5,8 @@ import { IconBrandGithub } from '@tabler/icons-react';
 import { IconSquareArrowRight } from '@tabler/icons-react';
 import React, { useEffect, useRef } from 'react';
 import { StatusRender } from "./StatusRender";
-import { Project } from "../App";
+import { Project } from "../data";
+import { ImageWithLoader } from "./ImageWithLoader";
 
 export const ProjectRender = ({ p }: { p: Project }) => {
     let { ref, hovered } = useHover();
@@ -16,6 +17,7 @@ export const ProjectRender = ({ p }: { p: Project }) => {
             p="md"
             m="md"
             withBorder
+            shadow="xl"
             bg={hovered ? "dark" : ""}
             ref={mergedRef}
             ta="left">
@@ -68,11 +70,12 @@ export const ProjectRender = ({ p }: { p: Project }) => {
                             {p.content}
                         </Stack>
                     </Stack>
-                    {p.img && <Image
-                        src={p.img}
-                        radius="md"
-                        style={{ alignSelf: "end" }}
-                    />}
+                    <Box style={{ alignSelf: "end" }}>
+                        {p.img && <ImageWithLoader
+                            src={p.img}
+                            radius="md"
+                        />}
+                    </Box>
                 </SimpleGrid>
             </Stack>
         </Paper>

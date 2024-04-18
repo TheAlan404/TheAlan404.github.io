@@ -1,19 +1,8 @@
-import React from "react";
-import { Text } from "@mantine/core";
 import code from "../assets/package_goddrinksjava";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useWindowScroll } from "@mantine/hooks";
-
-interface FloatyText {
-    x: number,
-    y: number,
-    text: string,
-}
 
 export const GodDrinksJava = () => {
     let [yOffset, setYOffset] = useState(0);
-
-    let [{ y: scrollY }] = useWindowScroll();
 
     let audioRef = useRef(useMemo(() => new Audio("/worldexecuteme.webm"), []));
 
@@ -39,7 +28,6 @@ export const GodDrinksJava = () => {
             <div
                 style={{
                     position: "fixed",
-                    zIndex: -100,
                     whiteSpace: "pre-wrap",
                     textAlign: "left",
                     width: "100vw",
@@ -50,7 +38,7 @@ export const GodDrinksJava = () => {
                     padding: "1em",
                     color: "var(--mantine-color-dimmed)",
                     fontFamily: "monospace",
-                    top: `${(-scrollY / 10) - (yOffset)}%`,
+                    top: `${-yOffset}%`,
                     transition: "transform 100ms linear",
                 }}
             >

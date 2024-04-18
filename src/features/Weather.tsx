@@ -1,21 +1,18 @@
-import { Affix, Box, SegmentedControl } from "@mantine/core";
-import { IconSnowflake } from "@tabler/icons-react";
-import { IconCloudRain } from "@tabler/icons-react";
-import { IconSun } from "@tabler/icons-react";
+import { Affix, Box, Group, SegmentedControl } from "@mantine/core";
 import { useState } from "react"
 import { useCanvas } from "../utils/useCanvas";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useBackgroundAudio } from "../utils/useBackgroundAudio";
+import { rand } from "../utils/utils";
 
 enum Weather {
     Sunny = "sunny",
     Rain = "rain",
     Snow = "snow",
     CherryBlossom = "cherryBlossom",
+    Starry = "starry",
 };
-
-const rand = (x = 1) => Math.floor(Math.random() * x);
 
 interface WeatherSystem {
     amount: number;
@@ -27,6 +24,12 @@ interface WeatherSystem {
 
 const config: Record<Weather, WeatherSystem & Record<string, any>> = {
     sunny: {
+        amount: 0,
+        generate: () => ({ x: 0, y: 0, d: [] }),
+        draw: () => {},
+        move: (ctx, x) => x,
+    },
+    starry: {
         amount: 0,
         generate: () => ({ x: 0, y: 0, d: [] }),
         draw: () => {},
@@ -159,6 +162,7 @@ export const WeatherRenderer = () => {
 
     useEffect(() => {
         store.current = [];
+        document.body.setAttribute("data-starry", (weather == Weather.Starry) + "");
     }, [weather]);
     
     let ref = useCanvas((ctx: CanvasRenderingContext2D) => {
@@ -187,16 +191,19 @@ export const WeatherRenderer = () => {
                 ref={ref}
             />
             <Affix p="md">
-                <SegmentedControl
-                    value={weather}
-                    onChange={(v) => setWeather(v as Weather)}
-                    data={[
-                        { label: "☀️", value: Weather.Sunny },
-                        { label: "🌧️", value: Weather.Rain },
-                        { label: "❄️", value: Weather.Snow },
-                        { label: "🌸", value: Weather.CherryBlossom, disabled: true },
-                    ]}
-                />
+                <Group>
+                    <SegmentedControl
+                        value={weather}
+                        onChange={(v) => setWeather(v as Weather)}
+                        data={[
+                            { label: "☀️", value: Weather.Sunny },
+                            { label: "🌧️", value: Weather.Rain },
+                            { label: "❄️", value: Weather.Snow },
+                            { label: "🌸", value: Weather.CherryBlossom },
+                            { label: "✨", value: Weather.Starry },
+                        ]}
+                    />
+                </Group>
             </Affix>
         </Box>
     );

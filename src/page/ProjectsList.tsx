@@ -1,14 +1,13 @@
 import { Stack, Title, Text, Space, TextInput, em } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { randomEgg } from "../assets/eggs";
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ProjectRender } from "../components/ProjectRender";
 import { Projects } from "../data";
+import { EasterEgg } from "../components/EasterEgg";
 
 export const ProjectsList = () => {
     let isMobile = useMediaQuery(`(max-width: ${em(750)})`);
     let [search, setSearch] = useState("");
-    let [easterEggText, setEasterEggText] = useState(randomEgg());
 
     let filteredProjects = (!!search ? (
         Projects.filter(p => [
@@ -40,8 +39,6 @@ export const ProjectsList = () => {
                     </Text>
                 )}
             </Stack>
-            <Space h="20vh" />
-            <Text onClick={() => setEasterEggText(randomEgg())}>{easterEggText}</Text>
             <Space h="20vh" />
         </Stack>
     );

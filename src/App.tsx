@@ -1,19 +1,12 @@
-import { AppShell, Burger, Center, Container, Transition, Stack, Text, Divider, Button, Kbd, Image, SimpleGrid, Box, ScrollArea } from '@mantine/core'
-import { UnstyledButton } from '@mantine/core';
-import { useDisclosure, useHotkeys, useWindowEvent } from '@mantine/hooks';
-import React, { useEffect, useMemo } from 'react';
-import { NewYearEvent } from "./events/NewYear";
+import { Stack, SimpleGrid, Box, ScrollArea } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks';
+import { useEffect } from 'react';
 import { ProjectsList } from "./page/ProjectsList";
 import { Hero } from "./page/Hero";
 import { GodDrinksJava } from "./events/GodDrinksJava";
 
 const App = () => {
-    let [newYearEvent, { toggle: toggleNewYear }] = useDisclosure();
     let [mili, { open: openMili }] = useDisclosure();
-
-    useHotkeys([
-        ["n", () => toggleNewYear()],
-    ])
 
     useEffect(() => {
         // @ts-ignore
@@ -26,8 +19,6 @@ const App = () => {
         };
     }, []);
 
-    let playOn = useMemo(() => new Date(new Date().getTime() + 5 * 60 * 1000), [newYearEvent]);
-
     return (
         <Stack
             align='center'
@@ -35,42 +26,38 @@ const App = () => {
             px="sm"
             className="app">
 
-            {newYearEvent && (
-                <NewYearEvent
-                    playOn={playOn}
-                />
-            )}
-
             {mili && (
                 <GodDrinksJava />
             )}
-            
-            <SimpleGrid cols={{
-                base: 1,
-                md: 2,
-            }}>
+
+            {/* Desktop */}
+            <SimpleGrid cols={2} visibleFrom="md">
                 <ScrollArea
                     h="100vh"
-                    visibleFrom="md"
                     offsetScrollbars
                     className="scrollbarOnLeft"
                 >
-                    <Hero />
+                    {!mili && <Hero />}
                 </ScrollArea>
-                <Box hiddenFrom="md">
-                    <Hero />
-                </Box>
-                <Box h="100%" visibleFrom="md">
-                    <ScrollArea h="100vh" offsetScrollbars>
-                        <ProjectsList />
-                    </ScrollArea>
-                </Box>
-                <Box hiddenFrom="md">
+                <ScrollArea
+                    h="100vh"
+                    offsetScrollbars
+                >
                     <ProjectsList />
-                </Box>
+                </ScrollArea>
             </SimpleGrid>
             
-            
+            {/* Mobile */}
+            <Box hiddenFrom="md">
+                <ScrollArea
+                    h="100vh"
+                    offsetScrollbars
+                >
+                    {!mili && <Hero />}
+                    {mili && <Box h="100vh" />}
+                    <ProjectsList />
+                </ScrollArea>
+            </Box>
         </Stack>
     )
 }

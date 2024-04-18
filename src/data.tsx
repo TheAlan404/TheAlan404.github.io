@@ -25,7 +25,7 @@ export const Projects: Project[] = [
         website: Subdomain("ziltek"),
         desc: "The school bell app with multilanguage support.",
         languages: ["React"],
-        img: "/ziltekscreenshot.png",
+        img: "/img/proj/ziltekscreenshot.png",
     },
     {
         name: "mcman",
@@ -42,7 +42,7 @@ export const Projects: Project[] = [
         status: "done",
         website: "https://mun.oaal.com.tr",
         desc: "MUN (Model United Nations) website for my school",
-        img: "/oaalmun.png",
+        img: "/img/proj/oaalmun.png",
         languages: ["React"],
     },
     {
@@ -52,7 +52,7 @@ export const Projects: Project[] = [
         repo: "TheAlan404/carpanga",
         desc: "A game about multiplying. Get 3 numbers in a row to win, but be careful because your opponent will choose which number you are multiplying with!",
         languages: ["React"],
-        img: "/carpanga.png",
+        img: "/img/proj/carpanga.png",
     },
     {
         name: "ModFest 1.20: Sky and Sea",
@@ -65,7 +65,7 @@ export const Projects: Project[] = [
         name: "Want You Gone",
         status: "forgor",
         desc: "Portal 2 ending credits song animation recreated using (very bad) HTML",
-        img: "/wantyougone.png",
+        img: "/img/proj/wantyougone.png",
         website: Pages("want-you-gone"),
         repo: "TheAlan404/want-you-gone",
         color: "yellow",
@@ -85,7 +85,7 @@ export const Projects: Project[] = [
         repo: "TheAlan404/DenVis",
         docs: "https://denvis.glitch.me/",
         desc: "A simple Windows Audio Visualizer with some extra features such as snow.",
-        img: "/denvis.png",
+        img: "/img/proj/denvis.png",
         languages: ["C#"],
     },
     {
