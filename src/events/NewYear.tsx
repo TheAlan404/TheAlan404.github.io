@@ -13,7 +13,7 @@ export const NewYearEvent = ({
     let [hour, setHour] = useState("");
     let [min, setMin] = useState("");
     let [sec, setSec] = useState("");
-    let ref = useRef(new Audio("Opus.mp4"));
+    let ref = useRef(new Audio("/audio/Opus.mp4"));
 
     useEffect(() => {
         let int = setInterval(() => {

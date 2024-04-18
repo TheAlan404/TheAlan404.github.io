@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 export const GodDrinksJava = () => {
     let [yOffset, setYOffset] = useState(0);
 
-    let audioRef = useRef(useMemo(() => new Audio("/worldexecuteme.webm"), []));
+    let audioRef = useRef(useMemo(() => new Audio("/audio/worldexecuteme.webm"), []));
 
     useEffect(() => {
         audioRef.current.play();
