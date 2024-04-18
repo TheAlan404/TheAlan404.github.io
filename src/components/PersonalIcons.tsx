@@ -7,6 +7,7 @@ import { IconPlaylist } from "@tabler/icons-react";
 import { IconBrandYoutube } from "@tabler/icons-react";
 import { IconTool } from "@tabler/icons-react";
 import { Pages } from "../data";
+import { IconMail } from "@tabler/icons-react";
 
 export const PersonalIcons = () => {
     return (
@@ -24,10 +25,10 @@ export const PersonalIcons = () => {
                     label: "Discord Profile",
                 },
                 {
-                    link: "https://namemc.com/profile/Alan404",
-                    color: "green",
-                    ico: <IconBrandMinecraft />,
-                    label: "NameMC",
+                    link: "mailto:gokdenizbektas@gmail.com",
+                    color: "yellow",
+                    ico: <IconMail />,
+                    label: "E-Mail",
                 },
                 {
                     link: "https://www.youtube.com/@dennisunderscore",

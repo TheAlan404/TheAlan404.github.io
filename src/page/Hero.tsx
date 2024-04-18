@@ -6,10 +6,11 @@ import { MantineLogo } from "@mantinex/mantine-logo";
 import { IconBrandJavascript } from "@tabler/icons-react";
 import { IconBrandRust } from "@tabler/icons-react";
 import { IconBrandCSharp } from "@tabler/icons-react";
+import { useMediaQuery } from "@mantine/hooks";
 
 export const Hero = () => {
     return (
-        <Stack justify="space-between" mb="md">
+        <Stack>
             <Stack gap={0} align="center" w="100%">
                 <Space h="xl" />
                 <Stack align="center">
@@ -27,43 +28,48 @@ export const Hero = () => {
                 <Space h="xl" />
 
                 <Stack>
-                    <Text>
-                        Hi! I'm
-                        {" "}
-                        <Text
-                            span
-                            fw={900}
-                            variant="gradient"
-                            gradient={{ from: 'blue.4', to: 'indigo.3', deg: 90 }}
-                        >
-                            Gökçe Deniz
-                        </Text>
-                        {" "}
-                        <Text span c="dimmed">
-                            (turkish for sea)
-                        </Text>
-                        , known as
-                        {" "}
-                        <Text
-                            span
-                            fw={900}
-                            variant="gradient"
-                            gradient={{ from: 'blue.4', to: 'indigo.3', deg: 90 }}
-                        >
-                            dennis
-                        </Text>
-                        {" "}
-                        online.
-                        {" "}
-                        <Tooltip label="mrow~" position="right" withArrow>
+                    <Text span>
+                        <Text span>
+                            Hi! I'm
+                            {" "}
                             <Text
                                 span
-                                c="blue"
-                                fw="bolder"
+                                fw={900}
+                                variant="gradient"
+                                gradient={{ from: 'blue.4', to: 'indigo.3', deg: 90 }}
                             >
-                                :3
+                                Gökçe Deniz
                             </Text>
-                        </Tooltip>
+                            {" "}
+                            <Text span c="dimmed">
+                                (turkish for sea)
+                            </Text>
+                            {", "}
+                        </Text>
+                        <Text span>
+                            known as
+                            {" "}
+                            <Text
+                                span
+                                fw={900}
+                                variant="gradient"
+                                gradient={{ from: 'blue.4', to: 'indigo.3', deg: 90 }}
+                            >
+                                dennis
+                            </Text>
+                            {" "}
+                            online.
+                            {" "}
+                            <Tooltip label="mrow~" position="right" withArrow>
+                                <Text
+                                    span
+                                    c="blue"
+                                    fw="bolder"
+                                >
+                                    :3
+                                </Text>
+                            </Tooltip>
+                        </Text>
                     </Text>
 
                     <Group gap={5} justify="end">
@@ -133,59 +139,55 @@ export const Hero = () => {
                             </List>
                         </Stack>
                     </Stack>
-
-                    <Stack align="center">
-                        <Accordion>
-                            <Accordion.Item value="dev">
-                                <Accordion.Control>
-                                    Developer Background
-                                </Accordion.Control>
-                                <Accordion.Panel>
-                                    <Stack>
-                                        <Text>
-                                            I call mx   yself a <Text span c="indigo">full stack developer</Text> since I can do both frontend and backend
-                                            <Text>
-                                                ...but I mainly love working on backends.
-                                            </Text>
-                                        </Text>
-                                        <Text>
-                                            I only do frontend because
-                                            {"   "}
-                                            <Anchor
-                                                href="https://mantine.dev/"
-                                                target="_blank"
-                                            >
-                                                <MantineLogo size={"1em"} type="mark" />
-                                                {" "}
-                                                Mantine
-                                            </Anchor> exists
-                                            {" "}
-                                            <Text span c="dimmed">(best UI lib ever btw)</Text>
-                                        </Text>
-                                        <Text>
-                                            I've been writing code for about 5 years now, and I'm still improving.
-                                        </Text>
-                                        <Text>
-
-                                            I started via JavaScript, then I got into C#, React and then Rust.
-                                        </Text>
-                                        <Text>
-
-                                            I hope I can land an internship or sorts. Or a job...
-                                        </Text>
-                                    </Stack>
-                                </Accordion.Panel>
-                            </Accordion.Item>
-                        </Accordion>
-                    </Stack>
-
-
-                    <Box py="lg" my="lg" />
-
                 </Stack>
             </Stack>
             <Stack>
+                <Stack align="center">
+                <Accordion>
+                        <Accordion.Item value="dev">
+                            <Accordion.Control>
+                                Developer Background
+                            </Accordion.Control>
+                            <Accordion.Panel>
+                                <Stack>
+                                    <Text>
+                                        I call myself a <Text span c="indigo">full stack developer</Text> since I can do both frontend and backend
+                                        <Text>
+                                            ...but I mainly love working on backends.
+                                        </Text>
+                                    </Text>
+                                    <Text>
+                                        I only do frontend because
+                                        {"   "}
+                                        <Anchor
+                                            href="https://mantine.dev/"
+                                            target="_blank"
+                                        >
+                                            <MantineLogo size={"1em"} type="mark" />
+                                            {" "}
+                                            Mantine
+                                        </Anchor> exists
+                                        {" "}
+                                        <Text span c="dimmed">(best UI lib ever btw)</Text>
+                                    </Text>
+                                    <Text>
+                                        I've been writing code for about 5 years now, and I'm still improving.
+                                    </Text>
+                                    <Text>
 
+                                        I started via JavaScript, then I got into C#, React and then Rust.
+                                    </Text>
+                                    <Text>
+
+                                        I hope I can land an internship or sorts. Or a job...
+                                    </Text>
+                                </Stack>
+                            </Accordion.Panel>
+                        </Accordion.Item>
+                    </Accordion>
+                </Stack>
+
+                <Box py="lg" my="lg" />
             </Stack>
         </Stack>
     );

@@ -1,4 +1,4 @@
-.snow {
+.weatherCanvas {
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -10,6 +10,11 @@
 
 .app {
     pointer-events: auto;
+}
+
+.scrollbarOnLeft .mantine-ScrollArea-scrollbar {
+    inset-inline-start: unset !important;
+    right: unset !important;
 }
 
 @keyframes execution {
