@@ -173,10 +173,12 @@ export const Hero = () => {
                     </Stack>
                 </Stack>
             </Stack>
-            <Stack align="center">
+            <Stack align="center" ta="center">
                 <About />
                 <Space h="20vh" />
-                <EasterEgg />
+                <Box ta="center" w="100%">
+                    <EasterEgg />
+                </Box>
             </Stack>
         </Stack>
     );

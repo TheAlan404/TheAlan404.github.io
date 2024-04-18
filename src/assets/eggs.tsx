@@ -29,6 +29,7 @@ export const Eggs: React.FC[] = [
             <Group>
                 <Tooltip
                     withArrow
+                    events={{ hover: true, focus: false, touch: true }}
                     label={(
                         <ImageWithLoader
                             src={`/img/cuties/${qt}.png`}

@@ -10,7 +10,7 @@ export const EasterEgg = () => {
     let EggComponent = Eggs[egg];
 
     return (
-        <Group>
+        <Group justify="center">
             <Text>
                 <EggComponent />
             </Text>
