@@ -3,10 +3,11 @@ import { useEffect } from "react";
 import { useRef } from "react";
 
 export const useCanvas = (
-    render: (ctx: CanvasRenderingContext2D) => void,
+    render: (ctx: CanvasRenderingContext2D, dt: number) => void,
     deps: React.DependencyList,
 ) => {
     let ref = useRef<HTMLCanvasElement>(null);
+    let lastDraw = useRef(Date.now());
 
     useEffect(() => {
         if(!ref.current) return;
@@ -27,12 +28,14 @@ export const useCanvas = (
         let ctx = ref.current.getContext("2d");
         if (!ctx) return;
 
-        const renderer = () => {
-            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-            
-            render(ctx);
-
+        const perfectFrameTime = 1000 / 60;
+        const renderer: FrameRequestCallback = (timestamp) => {
             frame = requestAnimationFrame(renderer);
+            let deltaTime = (timestamp - lastDraw.current) / perfectFrameTime;
+            lastDraw.current = timestamp;
+
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            render(ctx, Math.min(deltaTime, 5));
         }
 
         requestAnimationFrame(renderer);

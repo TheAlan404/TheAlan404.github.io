@@ -6,7 +6,7 @@ import { Hero } from "./page/Hero";
 import { GodDrinksJava } from "./events/GodDrinksJava";
 
 const App = () => {
-    let [mili, { open: openMili }] = useDisclosure();
+    let [mili, { open: openMili, close: closeMili }] = useDisclosure();
 
     useEffect(() => {
         // @ts-ignore
@@ -27,7 +27,7 @@ const App = () => {
             className="app">
 
             {mili && (
-                <GodDrinksJava />
+                <GodDrinksJava close={closeMili} />
             )}
 
             {/* Desktop */}

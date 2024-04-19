@@ -1,12 +1,7 @@
-import { Group, Stack, Title, Text, Space, Code, Accordion, Anchor, Paper, Tooltip, Center, Flex, Image, List, Divider, Box } from '@mantine/core';
+import { Group, Stack, Title, Text, Space, Tooltip, Image, List, Divider, Box } from '@mantine/core';
 import { PersonalIcons } from "../components/PersonalIcons";
 import { Link } from "../components/Link";
 import { IconSchool } from "@tabler/icons-react";
-import { MantineLogo } from "@mantinex/mantine-logo";
-import { IconBrandJavascript } from "@tabler/icons-react";
-import { IconBrandRust } from "@tabler/icons-react";
-import { IconBrandCSharp } from "@tabler/icons-react";
-import { useMediaQuery } from "@mantine/hooks";
 import { About } from "./About";
 import { EasterEgg } from "../components/EasterEgg";
 

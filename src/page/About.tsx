@@ -1,10 +1,11 @@
-import { Accordion, Anchor, List, Stack, Text } from "@mantine/core";
+import { Accordion, Anchor, Group, List, Stack, Text } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import { IconBrandReact } from "@tabler/icons-react";
 import { IconBrandRust } from "@tabler/icons-react";
 import { IconBrandCSharp } from "@tabler/icons-react";
 import { IconBrandJavascript } from "@tabler/icons-react";
 import { Link } from "../components/Link";
+import { IconBrandGit } from "@tabler/icons-react";
 
 export const About = () => {
     return (
@@ -46,14 +47,25 @@ export const About = () => {
                                 {" "}
                                 <Text span fw="bold">5 years</Text>.
                             </Text>
-                            <Text ta="start">
-                                Here are the languages I'm good at:
-                                <List withPadding>
-                                    <List.Item icon={<IconBrandJavascript />}>JavaScript</List.Item>
-                                    <List.Item icon={<IconBrandCSharp />}>C#</List.Item>
-                                    <List.Item icon={<IconBrandRust />}>Rust</List.Item>
-                                </List>
-                            </Text>
+                            <Group grow align="start">
+                                <Stack align="start" ta="start">
+                                    <Text span fw="bold">
+                                        Languages I'm good at:
+                                    </Text>
+                                    <List center withPadding>
+                                        <List.Item icon={<IconBrandJavascript />}>JavaScript</List.Item>
+                                        <List.Item icon={<IconBrandCSharp />}>C#</List.Item>
+                                        <List.Item icon={<IconBrandRust />}>Rust</List.Item>
+                                    </List>
+                                </Stack>
+                                <Text ta="end">
+                                    And the technologies I use:
+                                    <List center withPadding>
+                                        <List.Item icon={<IconBrandReact />}>React</List.Item>
+                                        <List.Item icon={<IconBrandGit />}>Git</List.Item>
+                                    </List>
+                                </Text>
+                            </Group>
                             <Text>
                                 I hope I can land an internship or sorts. Or a job...
                             </Text>

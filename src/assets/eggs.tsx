@@ -3,8 +3,6 @@ import { ImageWithLoader } from "../components/ImageWithLoader";
 import { Link } from "../components/Link";
 
 export const Eggs: React.FC[] = [
-    () => "Change the world. My final message. Goodbye",
-    () => "Technoblade never dies.",
     () => (
         <Group>
             My friend has a custom discord client:
@@ -68,5 +66,10 @@ export const Eggs: React.FC[] = [
         <Code>
             {'{love && hate && <Relationship with="webDev" />}'}
         </Code>
-    )
+    ),
+    () => (
+        <Text span>
+            rain sounds "borrowed" from <Link text="dimden.dev" url="https://dimden.dev" size="compact-xs" />
+        </Text>
+    ),
 ];
