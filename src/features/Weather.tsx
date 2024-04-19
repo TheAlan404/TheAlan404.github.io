@@ -1,10 +1,11 @@
-import { Affix, Box, Group, SegmentedControl } from "@mantine/core";
+import { Affix, Box, Group, SegmentedControl, Stack } from "@mantine/core";
 import { useState } from "react"
 import { useCanvas } from "../utils/useCanvas";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useBackgroundAudio } from "../utils/useBackgroundAudio";
 import { rand, toRadians } from "../utils/utils";
+import { MiniClock } from "../components/MiniClock";
 
 enum Weather {
     Sunny = "sunny",
@@ -233,7 +234,8 @@ export const WeatherRenderer = () => {
                 ref={ref}
             />
             <Affix p="md" zIndex={300}>
-                <Group>
+                <Stack align="end" gap={5}>
+                    <MiniClock />
                     <SegmentedControl
                         value={weather}
                         onChange={(v) => setWeather(v as Weather)}
@@ -245,7 +247,7 @@ export const WeatherRenderer = () => {
                             { label: "✨", value: Weather.Starry },
                         ]}
                     />
-                </Group>
+                </Stack>
             </Affix>
         </Box>
     );
