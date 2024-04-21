@@ -47,7 +47,7 @@ export const About = () => {
                                 {" "}
                                 <Text span fw="bold">5 years</Text>.
                             </Text>
-                            <Group grow align="start">
+                            <Group grow align="start" gap={0}>
                                 <Stack align="start" ta="start">
                                     <Text span fw="bold">
                                         Languages I'm good at:
@@ -58,13 +58,23 @@ export const About = () => {
                                         <List.Item icon={<IconBrandRust />}>Rust</List.Item>
                                     </List>
                                 </Stack>
-                                <Text ta="end">
-                                    And the technologies I use:
-                                    <List center withPadding>
+                                <Stack align="end" ta="end">
+                                    <Text span fw="bold">
+                                        And the technologies I use:
+                                    </Text>
+                                    <List center withPadding styles={{
+                                        itemWrapper: {
+                                            flexDirection: "row-reverse"
+                                        },
+                                        itemIcon: {
+                                            marginLeft: "var(--_item-icon-mr,var(--mantine-spacing-sm))",
+                                            marginRight: "var(--_item-icon-ml,0)",
+                                        },
+                                    }}>
                                         <List.Item icon={<IconBrandReact />}>React</List.Item>
                                         <List.Item icon={<IconBrandGit />}>Git</List.Item>
                                     </List>
-                                </Text>
+                                </Stack>
                             </Group>
                             <Text>
                                 I hope I can land an internship or sorts. Or a job...

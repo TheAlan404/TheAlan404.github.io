@@ -1,9 +1,8 @@
-import { Stack, Title, Text, Space, TextInput, em } from '@mantine/core';
+import { Stack, Title, Text, Space, TextInput, em, Group } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { useState } from 'react';
 import { ProjectRender } from "../components/ProjectRender";
 import { Projects } from "../data";
-import { EasterEgg } from "../components/EasterEgg";
 
 export const ProjectsList = () => {
     let isMobile = useMediaQuery(`(max-width: ${em(750)})`);
@@ -13,14 +12,18 @@ export const ProjectsList = () => {
         Projects.filter(p => [
             p.name,
             p.desc,
-            p.repo,
         ].filter(x => x).join(" ").toLowerCase().includes(search.toLowerCase()))
     ) : Projects);
 
     return (
         <Stack gap={0} align="center" w="100%">
             <Space h="xl" />
-            <Title order={3}>My Projects</Title>
+            <Group>
+                <Title order={3}>My Projects</Title>
+                <Text c="dimmed" span>
+                    ({Projects.length})
+                </Text>
+            </Group>
 
             <Stack w={isMobile ? "100%" : "80%"} py="md">
                 <TextInput
@@ -34,7 +37,7 @@ export const ProjectsList = () => {
                         key={i} />
                 ))}
                 {!filteredProjects.length && (
-                    <Text>
+                    <Text w="100%">
                         No results found :(
                     </Text>
                 )}

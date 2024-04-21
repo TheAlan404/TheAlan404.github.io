@@ -1,30 +1,39 @@
-import { Text } from "@mantine/core";
-import React from "react";
+import { Stack, Text } from "@mantine/core";
+import { Link } from "./components/Link";
 
 export const Domain = "deniz.blue";
 export const Subdomain = (s: string) => `https://${s}.${Domain}/`;
 export const Pages = (s: string) => `https://${Domain}/${s}/`;
 
 export interface Project {
-    name: string,
-    status: "done" | "wip" | "forgor",
-    desc?: string,
-    website?: string,
-    docs?: string,
-    repo?: string,
-    languages?: string[],
+    name: string;
+    status: ProjectStatus;
+    desc?: string;
+    buttons: ProjectButton[];
+    tech?: Tech[];
     color?: string,
     img?: string,
     content?: JSX.Element,
 }
 
+export type ProjectStatus = "done" | "wip" | "forgor" | "abandoned";
+
+export type Tech = "rust" | "react" | "cs" | "js" | "ts" | "html" | "css";
+
+export type ProjectButton =
+    | { type: "website"; url: string; text?: string; }
+    | { type: "docs", url: string; }
+    | { type: "repo", repo: string; }
+
 export const Projects: Project[] = [
     {
         name: "ZilTek",
         status: "done",
-        website: Subdomain("ziltek"),
+        buttons: [
+            { type: "website", url: Subdomain("ziltek") }
+        ],
         desc: "The school bell app with multilanguage support.",
-        languages: ["React"],
+        tech: ["ts", "react"],
         img: "/img/proj/ziltekscreenshot.png",
     },
     {
@@ -32,99 +41,169 @@ export const Projects: Project[] = [
         status: "done",
         desc: "A powerful Minecraft Server Management CLI which allows you to use git and many other things",
         img: "https://github.com/ParadigmMC/mcman/raw/main/docs/mcman-3.png",
-        docs: "https://paradigmmc.github.io/mcman/",
-        repo: "ParadigmMC/mcman",
+        buttons: [
+            { type: "repo", repo: "ParadigmMC/mcman" },
+            { type: "docs", url: "https://paradigmmc.github.io/mcman/" },
+        ],
+        tech: ["rust"],
         color: "purple",
-        languages: ["Rust"],
     },
     {
         name: "OAALMUN",
         status: "done",
-        website: "https://mun.oaal.com.tr",
+        buttons: [
+            { type: "website", url: "https://mun.oaal.com.tr", text: "View OAALMUN" }
+        ],
         desc: "MUN (Model United Nations) website for my school",
         img: "/img/proj/oaalmun.png",
-        languages: ["React"],
+        tech: ["js", "ts", "react"],
     },
     {
         name: "Çarpanga",
         status: "done",
-        website: Subdomain("carpanga"),
-        repo: "TheAlan404/carpanga",
+        buttons: [
+            { type: "website", url: Subdomain("carpanga"), text: "Play Çarpanga" },
+            { type: "repo", repo: "TheAlan404/carpanga" },
+        ],
         desc: "A game about multiplying. Get 3 numbers in a row to win, but be careful because your opponent will choose which number you are multiplying with!",
-        languages: ["React"],
+        tech: ["ts", "react"],
         img: "/img/proj/carpanga.png",
     },
     {
         name: "ModFest 1.20: Sky and Sea",
         status: "done",
-        desc: "ModFest 1.20 was a Minecraft modding event.",
+        desc: "ModFest 1.20 was a Minecraft modding event I helped coordinate.",
         img: "https://modfest.net/assets/event/1.20/cover.png",
-        website: "https://modfest.net/1.20",
+        buttons: [
+            { type: "website", url: "https://modfest.net/1.20", text: "View Event" },
+        ],
     },
     {
         name: "Want You Gone",
-        status: "forgor",
+        status: "done",
         desc: "Portal 2 ending credits song animation recreated using (very bad) HTML",
         img: "/img/proj/wantyougone.png",
-        website: Pages("want-you-gone"),
-        repo: "TheAlan404/want-you-gone",
+        buttons: [
+            { type: "website", url: Pages("want-you-gone") },
+            { type: "repo", repo: "TheAlan404/want-you-gone" },
+        ],
         color: "yellow",
-        languages: ["html", "js"],
+        tech: ["html", "css", "js"],
     },
     {
-        name: "tools",
+        name: "discord-jsx",
         status: "done",
-        desc: "Some useful, convenient tools ive made",
-        website: Pages("tools"),
-        repo: "TheAlan404/tools",
-        languages: ["React"],
-    },
-    {
-        name: "DenVis",
-        status: "forgor",
-        repo: "TheAlan404/DenVis",
-        docs: "https://denvis.glitch.me/",
-        desc: "A simple Windows Audio Visualizer with some extra features such as snow.",
-        img: "/img/proj/denvis.png",
-        languages: ["C#"],
-    },
-    {
-        name: "LighttubeReact",
-        status: "forgor",
-        content: <Text>
-            <a href='https://github.com/kuylar/lighttube'>Lighttube</a> but its frontend is made in React.
-            Thanks <a href="https://kuylar.dev/">kuylar</a> for her work on Lighttube!
-        </Text>,
-        repo: "TheAlan404/lighttube-react",
-        color: "gray",
-        languages: ["React"],
-    },
-    {
-        name: "tdk-wiki",
-        status: "wip",
-        content: <Text>
-            <a href="https://tdk.gov.tr/kategori/icerik/yazim-kurallari/">TDK</a>'s Turkish Language Rules but as a mkdocs website
-        </Text>,
-        repo: "TheAlan404/tdk-wiki",
-        website: Pages("tdk-wiki"),
-        languages: ["React"],
-    },
-    {
-        name: "FFMPEG Editor",
-        status: "wip",
-        content: <Text>
-            A command editor for <a href="https://ffmpeg.org/">FFMPEG</a>
-        </Text>,
-        repo: "TheAlan404/ffmpeg-editor",
-        website: Pages("ffmpeg-editor"),
-        languages: ["React"],
+        buttons: [
+            { type: "repo", repo: "TheAlan404/discord-jsx" },
+            { type: "website", url: "https://www.npmjs.com/package/@alan404/discordjsx", text: "NPM" },
+        ],
+        tech: ["ts", "react"],
+        desc: "A library that allows you to use React/JSX inside your discord bot projects",
     },
     {
         name: "alphamath",
         status: "wip",
         desc: "An experimental interactive math engine/solver",
-        website: Pages("alphamath"),
-        repo: "TheAlan404/alphamath",
-        languages: ["React"],
+        buttons: [
+            { type: "website", url: Pages("alphamath") },
+            { type: "repo", repo: "TheAlan404/alphamath" }
+        ],
+        tech: ["ts", "react"],
+    },
+    {
+        name: "tools",
+        status: "done",
+        desc: "Some useful, convenient tools ive made",
+        buttons: [
+            { type: "website", url: Pages("tools") },
+            { type: "repo", repo: "TheAlan404/tools" },
+        ],
+        tech: ["ts", "react"],
+    },
+    {
+        name: "DenVis",
+        status: "forgor",
+        buttons: [
+            { type: "repo", repo: "TheAlan404/DenVis" },
+            { type: "website", url: "https://denvis.glitch.me/" },
+        ],
+        desc: "A simple Windows Audio Visualizer with some extra features such as snow.",
+        img: "/img/proj/denvis.png",
+        tech: ["cs"],
+    },
+    {
+        name: "LighttubeReact",
+        status: "forgor",
+        content: (
+            <Stack ta="left">
+                <Text>
+                    <Link text="Lighttube" url="https://lighttube.org/" size="compact-sm" /> but its frontend is made in React.
+                </Text>
+                
+                <Text>
+                    Thanks <Link text="kuylar" url="https://kuylar.dev/" size="compact-sm" /> for her work on Lighttube!
+                </Text>
+            </Stack>
+        ),
+        buttons: [
+            { type: "repo", repo: "TheAlan404/lighttube-react" },
+        ],
+        color: "gray",
+        tech: ["js", "react"],
+    },
+    {
+        name: "FFMPEG Editor",
+        status: "wip",
+        content: (
+            <Text>
+                A command editor for <Link text="FFMPEG" url="https://ffmpeg.org/" size="compact-sm" />
+            </Text>
+        ),
+        buttons: [
+            { type: "website", url: Pages("ffmpeg-editor") },
+            { type: "repo", repo: "TheAlan404/ffmpeg-editor" }
+        ],
+        tech: ["js", "react"],
+    },
+    {
+        name: "nbs.js",
+        status: "abandoned",
+        content: (
+            <Stack>
+                <Text>
+                    <Link text="NBS (note block song)" url="https://opennbs.org/nbs" size="compact-sm" /> parser in Javascript
+                </Text>
+                <Text>
+                    It's a bit abandoned though
+                </Text>
+            </Stack>
+        ),
+        buttons: [
+            { type: "repo", repo: "TheAlan404/nbs.js" },
+            { type: "website", url: "https://www.npmjs.com/package/nbs.js", text: "NPM" },
+        ],
+        tech: ["js"],
+    },
+    {
+        name: "DSharpPlus.PaginatedSelects",
+        status: "abandoned",
+        content: (
+            <Stack>
+                <Text>
+                    A <Link text="DSharpPlus" url="https://dsharpplus.github.io/DSharpPlus/" size="compact-sm" /> extension that adds paginated select components.
+                </Text>
+            </Stack>
+        ),
+        tech: ["cs"],
+        buttons: [
+            { type: "repo", repo: "TheAlan404/DSharpPlus.PaginatedSelects" }
+        ],
     },
 ];
+
+export interface Song {
+    id: string;
+    url: string;
+    name: string;
+    author: string;
+}

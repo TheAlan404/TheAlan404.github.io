@@ -7,6 +7,10 @@ body[data-starry=true] {
         radial-gradient(circle at 50% -20%, #7d1f4b, transparent 30%);
 }
 
+.hoverable:hover {
+    background-color: var(--mantine-color-dark-6);
+}
+
 .weatherCanvas {
     width: 100vw;
     height: 100vh;
@@ -24,6 +28,11 @@ body[data-starry=true] {
 .scrollbarOnLeft .mantine-ScrollArea-scrollbar {
     inset-inline-start: unset !important;
     right: unset !important;
+}
+
+.scrollbarOnLeft .mantine-ScrollArea-viewport {
+    padding-right: unset;
+    padding-left: var(--scrollarea-scrollbar-size);
 }
 
 @keyframes execution {

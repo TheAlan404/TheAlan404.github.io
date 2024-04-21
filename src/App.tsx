@@ -31,7 +31,7 @@ const App = () => {
             )}
 
             {/* Desktop */}
-            <SimpleGrid cols={2} visibleFrom="md">
+            <SimpleGrid cols={2} w="100%" visibleFrom="md">
                 <ScrollArea
                     h="100vh"
                     offsetScrollbars
