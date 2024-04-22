@@ -3,6 +3,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import { useState } from 'react';
 import { ProjectRender } from "../components/ProjectRender";
 import { Projects } from "../data";
+import { Decor } from "../components/Decor";
 
 export const ProjectsList = () => {
     let isMobile = useMediaQuery(`(max-width: ${em(750)})`);
@@ -26,6 +27,14 @@ export const ProjectsList = () => {
             </Group>
 
             <Stack w={isMobile ? "100%" : "80%"} py="md">
+                <Decor
+                    img="jumping.gif"
+                    style={{
+                        bottom: "-32px",
+                        right: "5%",
+                        width: "4em",
+                    }}
+                />
                 <TextInput
                     m="md"
                     placeholder="Search..."

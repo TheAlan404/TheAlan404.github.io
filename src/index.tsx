@@ -4,7 +4,7 @@ import { MantineProvider, createTheme } from '@mantine/core';
 
 import '@mantine/core/styles.css';
 import './style.css';
-import { WeatherRenderer } from "./features/Weather";
+import { WeatherProvider, WeatherRenderer } from "./features/Weather";
 
 const theme = createTheme({
     colors: {
@@ -36,7 +36,9 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
     <MantineProvider theme={theme} defaultColorScheme='dark'>
-        <App />
-        <WeatherRenderer />
+        <WeatherProvider>
+            <App />
+            <WeatherRenderer />
+        </WeatherProvider>
     </MantineProvider>
 );

@@ -43,7 +43,7 @@ export const useCanvas = (
         return () => {
             cancelAnimationFrame(frame);
         };
-    }, [ref.current, ...deps]);
+    }, [ref.current, render, ...deps]);
 
     return ref;
 };

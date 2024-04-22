@@ -4,6 +4,8 @@ import { Link } from "../components/Link";
 import { IconSchool } from "@tabler/icons-react";
 import { About } from "./About";
 import { EasterEgg } from "../components/EasterEgg";
+import { Decor } from "../components/Decor";
+import { SleepingOneko } from "../components/SleepingOneko";
 
 export const Hero = () => {
     return (
@@ -18,14 +20,14 @@ export const Hero = () => {
                     </Group>
                     <PersonalIcons />
                     <Group gap={5} align="center">
-                        {["0.1em", "0.3em", "1em", null, "1em", "0.3em", "0.1em"].map((w, i) => (
+                        {["0.2em", "0.4em", "1em", null, "1em", "0.4em", "0.2em"].map((w, i) => (
                             w ? (
                                 <Divider
                                     w={w}
                                     key={i}
                                 />
                             ) : (
-                                <Text span key={i} fz="sm" style={{ top: "-0.05em", position: "relative" }}>
+                                <Text className="rainbowText" span key={i} fz="sm" style={{ top: "-0.05em", position: "relative" }}>
                                     ☆
                                 </Text>
                             )
@@ -33,9 +35,8 @@ export const Hero = () => {
                     </Group>
                 </Stack>
 
-                <Space h="lg" />
-
                 <Stack>
+                    <SleepingOneko />
                     <Text span>
                         <Text span>
                             Hi! I'm

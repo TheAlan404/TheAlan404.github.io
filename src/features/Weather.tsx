@@ -1,5 +1,5 @@
 import { ActionIcon, Affix, Box, Group, SegmentedControl, Stack } from "@mantine/core";
-import { useState } from "react"
+import React, { useContext, useState } from "react"
 import { useCanvas } from "../utils/useCanvas";
 import { useRef } from "react";
 import { useEffect } from "react";
@@ -9,7 +9,7 @@ import { MiniClock } from "../components/MiniClock";
 import { IconVolumeOff } from "@tabler/icons-react";
 import { IconVolume } from "@tabler/icons-react";
 
-enum Weather {
+export enum Weather {
     Sunny = "sunny",
     Rain = "rain",
     Snow = "snow",
@@ -249,10 +249,31 @@ const config: Record<Weather, WeatherSystem & Record<string, any>> = {
     },
 };
 
+export const WeatherContext = React.createContext<[Weather, (w: Weather) => void]>([Weather.Sunny, () => {}]);
+
+export const WeatherProvider = ({
+    children
+}: React.PropsWithChildren) => {
+    let [weather, setWeatherState] = useState<Weather>(Weather.Sunny);
+    useEffect(() => {
+        setWeatherState((localStorage.getItem("deniz.blue:weather") as (Weather | null)) || Weather.Rain);
+    }, []);
+    const setWeather = (w: Weather) => {
+        localStorage.setItem("deniz.blue:weather", w);
+        setWeatherState(w);
+    };
+
+    return (
+        <WeatherContext.Provider
+            value={[weather, setWeather]}
+        >
+            {children}
+        </WeatherContext.Provider>
+    )
+}
+
 export const WeatherRenderer = () => {
-    let [weather, setWeather] = useState<Weather>(
-        [Weather.Sunny, Weather.Rain, Weather.Snow][rand(3)]
-    );
+    let [weather, setWeather] = useContext(WeatherContext);
     let [muted, setMuted] = useState(false);
     let store = useRef<Particle[]>([]);
     let wind = useRef<Coord>({ x: 0, y: 0 });

@@ -1,4 +1,4 @@
-import { Accordion, Anchor, Group, List, Stack, Text } from "@mantine/core";
+import { Accordion, Anchor, Button, Code, Group, List, Space, Stack, Text } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import { IconBrandReact } from "@tabler/icons-react";
 import { IconBrandRust } from "@tabler/icons-react";
@@ -6,6 +6,9 @@ import { IconBrandCSharp } from "@tabler/icons-react";
 import { IconBrandJavascript } from "@tabler/icons-react";
 import { Link } from "../components/Link";
 import { IconBrandGit } from "@tabler/icons-react";
+import { Decor } from "../components/Decor";
+import { IconBrandDiscord } from "@tabler/icons-react";
+import { DISCORD_INVITE } from "../data";
 
 export const About = () => {
     return (
@@ -96,6 +99,45 @@ export const About = () => {
                             <List.Item>My favorite fruits are strawberries. 🍓</List.Item>
                             <List.Item>meow</List.Item>
                         </List>
+                        <Space h="5em" />
+                        <Decor
+                            img="toro.gif"
+                            style={{
+                                bottom: 0,
+                                width: "2em",
+                            }}
+                        />
+                    </Accordion.Panel>
+                </Accordion.Item>
+                <Accordion.Item value="friends">
+                    <Accordion.Control>
+                        Other
+                    </Accordion.Control>
+                    <Accordion.Panel>
+                        <Stack align="end">
+                            <Link
+                                text="Join My Discord!"
+                                url={`https://discord.gg/${DISCORD_INVITE}`}
+                                icon={<IconBrandDiscord />}
+                                variant="light"
+                            />
+                        </Stack>
+
+                        <Space h="md" />
+
+                        <Code fz="xl">
+                            // TODO
+                        </Code>
+
+                        <Space h="5em" />
+
+                        <Decor
+                            img="puppyhappy.gif"
+                            style={{
+                                bottom: 0,
+                                width: "2em",
+                            }}
+                        />
                     </Accordion.Panel>
                 </Accordion.Item>
             </Accordion>

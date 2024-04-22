@@ -1,6 +1,9 @@
 import { Stack, Text } from "@mantine/core";
 import { Link } from "./components/Link";
 
+// dont want any bots so
+export const DISCORD_INVITE = "YUkqcuYJAn";
+
 export const Domain = "deniz.blue";
 export const Subdomain = (s: string) => `https://${s}.${Domain}/`;
 export const Pages = (s: string) => `https://${Domain}/${s}/`;
@@ -125,7 +128,7 @@ export const Projects: Project[] = [
         status: "forgor",
         buttons: [
             { type: "repo", repo: "TheAlan404/DenVis" },
-            { type: "website", url: "https://denvis.glitch.me/" },
+            { type: "website", url: "https://denvis.glitch.me/", text: "Settings Page" },
         ],
         desc: "A simple Windows Audio Visualizer with some extra features such as snow.",
         img: "/img/proj/denvis.png",

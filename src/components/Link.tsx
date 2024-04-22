@@ -6,15 +6,20 @@ export const Link = ({
     text,
     icon,
     size,
+    variant,
+    color,
 }: {
     url: string,
     text: string,
     icon?: React.ReactNode,
     size?: ButtonProps["size"],
+    variant?: ButtonProps["variant"],
+    color?: ButtonProps["color"],
 }) => {
     return (
         <Button
-            variant="subtle"
+            variant={variant || "subtle"}
+            color={color}
             size={size || "compact-md"}
             leftSection={icon}
             rightSection={<IconExternalLink size="1.2em" />}

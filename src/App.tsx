@@ -1,9 +1,10 @@
-import { Stack, SimpleGrid, Box, ScrollArea } from '@mantine/core'
+import { Stack, SimpleGrid, Box, ScrollArea, Image, Tooltip, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks';
 import { useEffect } from 'react';
 import { ProjectsList } from "./page/ProjectsList";
 import { Hero } from "./page/Hero";
 import { GodDrinksJava } from "./events/GodDrinksJava";
+import { Decor } from "./components/Decor";
 
 const App = () => {
     let [mili, { open: openMili, close: closeMili }] = useDisclosure();
@@ -29,6 +30,26 @@ const App = () => {
             {mili && (
                 <GodDrinksJava close={closeMili} />
             )}
+
+            <Box
+                style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 30,
+                    width: "8px",
+                    height: "8px",
+                    zIndex: "999",
+                }}
+            >
+                <Tooltip label={(
+                    <Text fz={10}>:3</Text>
+                )} withArrow>
+                    <Image
+                        src="/img/cats/kuylars.png"
+                        draggable={false}
+                    />
+                </Tooltip>
+            </Box>
 
             {/* Desktop */}
             <SimpleGrid cols={2} w="100%" visibleFrom="md">
