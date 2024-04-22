@@ -32,12 +32,12 @@ export const SleepingOneko = () => {
             />
             {(weather == Weather.Rain || weather == Weather.Snow) && (
                 <Image
-                    src="/img/cats/umbrella.webp"
+                    src="/img/cats/umbrella2.webp"
                     draggable={false}
                     style={{
-                        right: "calc(5% - 16px)",
-                        width: "32px",
-                        top: "-20px",
+                        right: "calc(5% - 37px)",
+                        width: "60px",
+                        top: "-25px",
                         imageRendering: "pixelated",
                         position: "absolute",
                         userSelect: "none",
