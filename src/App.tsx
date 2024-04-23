@@ -54,6 +54,7 @@ const App = () => {
             {/* Desktop */}
             <SimpleGrid cols={2} w="100%" visibleFrom="md">
                 <ScrollArea
+                    id="scroller-1"
                     h="100vh"
                     offsetScrollbars
                     className="scrollbarOnLeft"
@@ -61,6 +62,7 @@ const App = () => {
                     {!mili && <Hero />}
                 </ScrollArea>
                 <ScrollArea
+                    id="scroller-2"
                     h="100vh"
                     offsetScrollbars
                 >
@@ -71,6 +73,7 @@ const App = () => {
             {/* Mobile */}
             <Box hiddenFrom="md">
                 <ScrollArea
+                    id="scroller-mobileglobal"
                     h="100vh"
                     offsetScrollbars
                 >

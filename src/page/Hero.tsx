@@ -5,7 +5,7 @@ import { IconSchool } from "@tabler/icons-react";
 import { About } from "./About";
 import { EasterEgg } from "../components/EasterEgg";
 import { Decor } from "../components/Decor";
-import { SleepingOneko } from "../components/SleepingOneko";
+import { OnekoInitialPosition } from "../components/OnekoInitialPosition";
 
 export const Hero = () => {
     return (
@@ -36,7 +36,7 @@ export const Hero = () => {
                 </Stack>
 
                 <Stack>
-                    <SleepingOneko />
+                    <OnekoInitialPosition />
                     <Text span>
                         <Text span>
                             Hi! I'm

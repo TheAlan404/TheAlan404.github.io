@@ -3,15 +3,27 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react"
 import { Weather, WeatherContext } from "../features/Weather";
+import { OnekoContext } from "../features/OnekoAPI";
+import { useRef } from "react";
 
-export const SleepingOneko = () => {
+export const OnekoInitialPosition = () => {
     const [weather] = useContext(WeatherContext);
-    const [odd, setOdd] = useState(true);
+    const ref = useRef<HTMLDivElement>(null);
+    const { setInitial } = useContext(OnekoContext);
 
     useEffect(() => {
-        let i = setInterval(() => setOdd(x => !x), 1000);
-        return () => clearInterval(i);
-    }, []);
+        if(!ref.current) return;
+        
+        let rect = ref.current.getBoundingClientRect();
+
+        // wtf
+        if(!rect.x || !rect.y) return;
+
+        setInitial({
+            x: rect.x,
+            y: rect.y,
+        });
+    }, [ref]);
 
     return (
         <Box style={{
@@ -19,14 +31,12 @@ export const SleepingOneko = () => {
             userSelect: "none",
         }}>
             <div
+                ref={ref}
                 style={{
-                    right: "5%",
-                    top: "-12px",
-                    backgroundImage: "url(/img/cats/oneko-classic.gif)",
-                    width: "32px",
-                    height: "32px",
-                    imageRendering: "pixelated",
-                    backgroundPosition: `${-2 * 32}px ${(odd ? 0 : -1) * 32}px`,
+                    right: "calc(5% + 12px)",
+                    top: "5px",
+                    width: "1px",
+                    height: "1px",
                     position: "absolute"
                 }}
             />

@@ -8,6 +8,7 @@ import { rand, toRadians } from "../utils/utils";
 import { MiniClock } from "../components/MiniClock";
 import { IconVolumeOff } from "@tabler/icons-react";
 import { IconVolume } from "@tabler/icons-react";
+import { Coord } from "./Coord";
 
 export enum Weather {
     Sunny = "sunny",
@@ -16,11 +17,6 @@ export enum Weather {
     CherryBlossom = "cherryBlossom",
     Starry = "starry",
 };
-
-interface Coord {
-    x: number;
-    y: number;
-}
 
 type Particle = Coord & {
     d: number[];

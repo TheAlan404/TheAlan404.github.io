@@ -5,6 +5,8 @@ import { MantineProvider, createTheme } from '@mantine/core';
 import '@mantine/core/styles.css';
 import './style.css';
 import { WeatherProvider, WeatherRenderer } from "./features/Weather";
+import { Oneko } from "./features/Oneko";
+import { OnekoAPIProvider } from "./features/OnekoAPI";
 
 const theme = createTheme({
     colors: {
@@ -37,8 +39,11 @@ const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
     <MantineProvider theme={theme} defaultColorScheme='dark'>
         <WeatherProvider>
-            <App />
-            <WeatherRenderer />
+            <OnekoAPIProvider>
+                <Oneko />
+                <WeatherRenderer />
+                <App />
+            </OnekoAPIProvider>
         </WeatherProvider>
     </MantineProvider>
 );
