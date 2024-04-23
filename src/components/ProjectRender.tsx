@@ -1,9 +1,7 @@
-import { Group, Box, Paper, Stack, Title, Text, em, Tooltip, ActionIcon, Kbd, Image, SimpleGrid, Button } from '@mantine/core';
-import { useHotkeys, useHover, useMediaQuery, useMergedRef, useScrollIntoView } from '@mantine/hooks';
+import { Group, Box, Paper, Stack, Title, Text, Tooltip, SimpleGrid, Button } from '@mantine/core';
 import { IconBook2, IconExternalLink } from '@tabler/icons-react';
 import { IconBrandGithub } from '@tabler/icons-react';
-import { IconSquareArrowRight } from '@tabler/icons-react';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { StatusRender } from "./StatusRender";
 import { Project, ProjectButton, Tech } from "../data";
 import { ImageWithLoader } from "./ImageWithLoader";
@@ -14,6 +12,14 @@ import { IconBrandCSharp } from "@tabler/icons-react";
 import { IconBrandHtml5 } from "@tabler/icons-react";
 import { IconBrandCss3 } from "@tabler/icons-react";
 import { IconBrandRust } from "@tabler/icons-react";
+
+const ButtonRender = ({ btn, project }: {
+    btn: ProjectButton,
+    project: Project,
+}) => (
+    // @ts-ignore
+    ButtonRenderers[btn.type](btn, project)
+);
 
 const ButtonRenderers: {
     [K in ProjectButton["type"]]: (btn: Extract<ProjectButton, { type: K }>, project: Project) => React.ReactNode
@@ -55,6 +61,10 @@ const ButtonRenderers: {
         </Button>
     ),
 };
+
+const TechRender = ({ tech }: { tech: Tech }) => (
+    TechRenderers[tech]
+);
 
 const TechRenderers: Record<Tech, React.ReactNode> = {
     react: (
@@ -111,7 +121,7 @@ export const ProjectRender = ({ p }: { p: Project }) => {
                     </Group>
                     <Group>
                         {p.tech?.map((l, i) => (
-                            TechRenderers[l]
+                            <TechRender tech={l} key={i} />
                         ))}
                     </Group>
                 </Group>
@@ -133,14 +143,12 @@ export const ProjectRender = ({ p }: { p: Project }) => {
                 </SimpleGrid>
                 <Group grow visibleFrom="sm">
                     {p.buttons.map((btn, i) => (
-                        // @ts-ignore
-                        ButtonRenderers[btn.type](btn, p)
+                        <ButtonRender btn={btn} project={p} key={i} />
                     ))}
                 </Group>
                 <Stack hiddenFrom="sm">
                     {p.buttons.map((btn, i) => (
-                        // @ts-ignore
-                        ButtonRenderers[btn.type](btn, p)
+                        <ButtonRender btn={btn} project={p} key={i} />
                     ))}
                 </Stack>
             </Stack>

@@ -195,7 +195,7 @@ const config: Record<Weather, WeatherSystem & Record<string, any>> = {
     },
     rain: {
         amount: 0.3,
-        audio: "/audio/rain.mp3",
+        audio: "/audio/rain2.mp3",
         opacity: 0.5,
         colors: [
             "#0000FF",

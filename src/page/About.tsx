@@ -1,4 +1,4 @@
-import { Accordion, ActionIcon, Anchor, Button, Code, Group, Image, List, Space, Stack, Text, Tooltip } from "@mantine/core";
+import { Accordion, ActionIcon, Anchor, Button, Code, Divider, Group, Image, List, SimpleGrid, Space, Stack, Text, Tooltip } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import { IconBrandReact } from "@tabler/icons-react";
 import { IconBrandRust } from "@tabler/icons-react";
@@ -11,11 +11,16 @@ import { IconBrandDiscord } from "@tabler/icons-react";
 import { DISCORD_INVITE } from "../data";
 import { IconExternalLink } from "@tabler/icons-react";
 import { IconInfoCircle } from "@tabler/icons-react";
+import { IconBrandTypescript } from "@tabler/icons-react";
+import { IconBrandGithub } from "@tabler/icons-react";
 
 export const About = () => {
     return (
         <Stack align="center" w="100%">
-            <Accordion w="80%">
+            <Accordion w={{
+                base: "100%",
+                xs: "80%",
+            }}>
                 <Accordion.Item value="dev">
                     <Accordion.Control>
                         Developer Background
@@ -52,13 +57,14 @@ export const About = () => {
                                 {" "}
                                 <Text span fw="bold">5 years</Text>.
                             </Text>
-                            <Group grow align="start" gap={0}>
+                            <Group grow align="start" gap={0} wrap="nowrap">
                                 <Stack align="start" ta="start">
                                     <Text span fw="bold">
                                         Languages I'm good at:
                                     </Text>
                                     <List center withPadding>
                                         <List.Item icon={<IconBrandJavascript />}>JavaScript</List.Item>
+                                        <List.Item icon={<IconBrandTypescript />}>TypeScript</List.Item>
                                         <List.Item icon={<IconBrandCSharp />}>C#</List.Item>
                                         <List.Item icon={<IconBrandRust />}>Rust</List.Item>
                                     </List>
@@ -67,17 +73,10 @@ export const About = () => {
                                     <Text span fw="bold">
                                         And the technologies I use:
                                     </Text>
-                                    <List center withPadding styles={{
-                                        itemWrapper: {
-                                            flexDirection: "row-reverse"
-                                        },
-                                        itemIcon: {
-                                            marginLeft: "var(--_item-icon-mr,var(--mantine-spacing-sm))",
-                                            marginRight: "var(--_item-icon-ml,0)",
-                                        },
-                                    }}>
+                                    <List center withPadding className="listAlignEnd">
                                         <List.Item icon={<IconBrandReact />}>React</List.Item>
                                         <List.Item icon={<IconBrandGit />}>Git</List.Item>
+                                        <List.Item icon={<IconBrandGithub />}>GitHub</List.Item>
                                     </List>
                                 </Stack>
                             </Group>
@@ -98,6 +97,7 @@ export const About = () => {
                         <List ta="start" withPadding>
                             <List.Item>My favorite fruits are strawberries. 🍓</List.Item>
                             <List.Item>I LOVE rain!</List.Item>
+                            <List.Item>I like cats</List.Item>
                             <List.Item>I have ADHD</List.Item>
                             <List.Item>im a catgirl meowmeo</List.Item>
                             <List.Item>I play Minecraft and osu!, other than that I watch no commentaries of games :3</List.Item>
@@ -133,12 +133,13 @@ export const About = () => {
                                     </ActionIcon>
                                 </Group>
                             </List.Item>
+                            <List.Item>I'm easily startled</List.Item>
                         </List>
-                        <Space h="5em" />
+                        <Space h="3em" />
                         <Decor
                             img="toro.gif"
                             style={{
-                                bottom: 0,
+                                bottom: "-15px",
                                 width: "2em",
                             }}
                         />
@@ -149,31 +150,69 @@ export const About = () => {
                         Other
                     </Accordion.Control>
                     <Accordion.Panel>
-                        <Stack align="start">
-                            <Stack align="end">
+                        <Stack align="center">
+                            <Group justify="space-between" w="100%">
+                                <Image
+                                    src="/img/cats/emir.gif"
+                                    draggable={false}
+                                    w="3em"
+                                />
                                 <Link
                                     text="Join My Discord!"
                                     url={`https://discord.gg/${DISCORD_INVITE}`}
                                     icon={<IconBrandDiscord />}
                                     variant="light"
                                 />
-                            </Stack>
+                            </Group>
 
-                            <Text>Thanks to:</Text>
-                            <List>
-                                <List.Item>nokia for giving oneko an umbrella</List.Item>
-                                <List.Item>kuylar for existing i guess</List.Item>
-                                <List.Item>all my friends for being with me {"<3"}</List.Item>
-                            </List>
+                            <Divider
+                                w="100%"
+                                labelPosition="left"
+                                label={"Friends' Websites"}
+                            />
+
+                            <SimpleGrid cols={{
+                                base: 1,
+                                xs: 2,
+                                sm: 3,
+                            }} spacing={"0.1em"}>
+                                <Link text="kuylar.dev" url="https://kuylar.dev" />
+                                <Link text="skyrina.dev" url="https://skyrina.dev" />
+                                TODO
+                            </SimpleGrid>
+
+                            <Divider
+                                w="100%"
+                                labelPosition="right"
+                                label={"Credits"}
+                            />
+
+                            <Stack ta="end" align="end" w="100%">
+                                <Stack gap={0}>
+                                    <Tooltip label={"discord @nokia6600"}>
+                                        <Text fw="bold">nokia</Text>
+                                    </Tooltip>
+
+                                    <Text>for giving an umbrella to oneko</Text>
+                                </Stack>
+                                <Stack gap={0}>
+                                    <Tooltip label={"dimden.dev"}>
+                                        <Text fw="bold">dimden</Text>
+                                    </Tooltip>
+
+                                    <Text>
+                                        for <Code>rain.mp3</Code>
+                                    </Text>
+                                </Stack>
+                            </Stack>
                         </Stack>
 
-                        <Space h="5em" />
-
                         <Decor
-                            img="puppyhappy.gif"
+                            img="oneko-circling.gif"
                             style={{
-                                bottom: 0,
-                                width: "2em",
+                                top: "-5em",
+                                left: "2em",
+                                width: "3em",
                             }}
                         />
                     </Accordion.Panel>
