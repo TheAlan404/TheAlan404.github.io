@@ -1,4 +1,4 @@
-import { Stack, Text } from "@mantine/core";
+import { Group, Stack, Text } from "@mantine/core";
 import { Link } from "./components/Link";
 
 // dont want any bots so
@@ -36,12 +36,17 @@ export const Projects: Project[] = [
         content: (
             <Stack ta="left">
                 <Text>
-                    <Link text="Lighttube" url="https://lighttube.org/" size="compact-sm" /> but its frontend is made in React.
+                    an alternative YouTube video player
                 </Text>
-                
+
                 <Text>
-                    Thanks <Link text="kuylar" url="https://kuylar.dev/" size="compact-sm" /> for her work on Lighttube!
+                    supports:
                 </Text>
+
+                <Group>
+                    <Link text="Invidious" url="https://lighttube.org/" size="compact-sm" />
+                    <Link text="Lighttube" url="https://invidious.io/" size="compact-sm" />
+                </Group>
             </Stack>
         ),
         buttons: [

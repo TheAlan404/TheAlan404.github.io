@@ -187,6 +187,10 @@ export const About = () => {
                                     <Paper
                                         key={i}
                                         withBorder
+                                        style={{
+                                            aspectRatio: "3/4",
+                                            overflow: "hidden",
+                                        }}
                                     >
                                         {el}
                                     </Paper>
