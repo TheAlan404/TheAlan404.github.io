@@ -12,48 +12,41 @@ export const OnekoInitialPosition = () => {
     const { setInitial } = useContext(OnekoContext);
 
     useEffect(() => {
-        if(!ref.current) return;
-        
-        let rect = ref.current.getBoundingClientRect();
+        if (!ref.current) return;
 
-        // wtf
+        let rect = ref.current.parentElement!.getBoundingClientRect()!;
+
+        // WTF
         if(!rect.x || !rect.y) return;
 
         setInitial({
-            x: rect.x,
-            y: rect.y,
+            x: rect.x + (rect.width / 2),
+            y: rect.y - 10,
         });
     }, [ref]);
 
     return (
-        <Box style={{
-            position: "relative",
-            userSelect: "none",
-        }}>
-            <div
-                ref={ref}
-                style={{
-                    right: "calc(5% + 12px)",
-                    top: "5px",
-                    width: "1px",
-                    height: "1px",
-                    position: "absolute"
-                }}
-            />
+        <span
+            ref={ref}
+            style={{
+                position: "relative",
+                userSelect: "none",
+            }}
+        >
             {(weather == Weather.Rain || weather == Weather.Snow) && (
                 <Image
                     src="/img/cats/umbrella2.webp"
                     draggable={false}
                     style={{
-                        right: "calc(5% - 37px)",
+                        left: "1em",
                         width: "60px",
-                        top: "-25px",
+                        top: "-2.3em",
                         imageRendering: "pixelated",
                         position: "absolute",
                         userSelect: "none",
                     }}
                 />
             )}
-        </Box>
+        </span>
     )
 }

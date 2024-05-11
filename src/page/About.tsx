@@ -1,4 +1,4 @@
-import { Accordion, ActionIcon, Anchor, Button, Code, Divider, Group, Image, List, SimpleGrid, Space, Stack, Text, Tooltip } from "@mantine/core";
+import { Accordion, ActionIcon, Anchor, Button, Code, Divider, Group, Image, List, Paper, SimpleGrid, Space, Stack, Text, Tooltip } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import { IconBrandReact } from "@tabler/icons-react";
 import { IconBrandRust } from "@tabler/icons-react";
@@ -13,6 +13,9 @@ import { IconExternalLink } from "@tabler/icons-react";
 import { IconInfoCircle } from "@tabler/icons-react";
 import { IconBrandTypescript } from "@tabler/icons-react";
 import { IconBrandGithub } from "@tabler/icons-react";
+import { FriendKuylar } from "../friends/kuylar";
+import { FriendSkyrina } from "../friends/skyrina";
+import { FriendInftord } from "../friends/inftord";
 
 export const About = () => {
     return (
@@ -175,10 +178,19 @@ export const About = () => {
                                 base: 1,
                                 xs: 2,
                                 sm: 3,
-                            }} spacing={"0.1em"}>
-                                <Link text="kuylar.dev" url="https://kuylar.dev" />
-                                <Link text="skyrina.dev" url="https://skyrina.dev" />
-                                TODO
+                            }} spacing={"0.1em"} w="100%">
+                                {[
+                                    <FriendKuylar />,
+                                    <FriendSkyrina />,
+                                    <FriendInftord />,
+                                ].map((el, i) => (
+                                    <Paper
+                                        key={i}
+                                        withBorder
+                                    >
+                                        {el}
+                                    </Paper>
+                                ))}
                             </SimpleGrid>
 
                             <Divider

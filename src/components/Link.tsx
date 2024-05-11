@@ -8,14 +8,12 @@ export const Link = ({
     size,
     variant,
     color,
+    ...rest
 }: {
     url: string,
     text: string,
     icon?: React.ReactNode,
-    size?: ButtonProps["size"],
-    variant?: ButtonProps["variant"],
-    color?: ButtonProps["color"],
-}) => {
+} & ButtonProps) => {
     return (
         <Button
             variant={variant || "subtle"}
@@ -26,6 +24,7 @@ export const Link = ({
             component="a"
             href={url}
             target="_blank"
+            {...rest}
         >
             {text}
         </Button>

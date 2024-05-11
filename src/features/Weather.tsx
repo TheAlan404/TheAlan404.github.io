@@ -252,7 +252,7 @@ export const WeatherProvider = ({
 }: React.PropsWithChildren) => {
     let [weather, setWeatherState] = useState<Weather>(Weather.Sunny);
     useEffect(() => {
-        setWeatherState((localStorage.getItem("deniz.blue:weather") as (Weather | null)) || Weather.Rain);
+        setWeatherState((localStorage.getItem("deniz.blue:weather") as (Weather | null)) || Weather.Sunny);
     }, []);
     const setWeather = (w: Weather) => {
         localStorage.setItem("deniz.blue:weather", w);

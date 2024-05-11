@@ -19,7 +19,7 @@ export const Hero = () => {
                         <Text span fz={22}>🌸</Text>
                     </Group>
                     <PersonalIcons />
-                    <Group gap={5} align="center">
+                    <Group gap={5} align="center" pb="sm">
                         {["0.2em", "0.4em", "1em", null, "1em", "0.4em", "0.2em"].map((w, i) => (
                             w ? (
                                 <Divider
@@ -36,50 +36,58 @@ export const Hero = () => {
                 </Stack>
 
                 <Stack>
-                    <OnekoInitialPosition />
-                    <Text span>
+                    <Stack gap={0}>
                         <Text span>
-                            Hi! I'm
-                            {" "}
-                            <Text
-                                span
-                                fw={900}
-                                variant="gradient"
-                                gradient={{ from: 'blue.4', to: 'indigo.3', deg: 90 }}
-                            >
-                                Gökçe Deniz
-                            </Text>
-                            {" "}
-                            <Text span c="dimmed">
-                                (turkish for sea)
-                            </Text>
-                            {", "}
-                        </Text>
-                        <Text span>
-                            known as
-                            {" "}
-                            <Text
-                                span
-                                fw={900}
-                                variant="gradient"
-                                gradient={{ from: 'blue.4', to: 'indigo.3', deg: 90 }}
-                            >
-                                dennis
-                            </Text>
-                            {" "}
-                            online.
-                            {" "}
-                            <Tooltip label="mrow~" position="right" withArrow>
+                            <Text span>
+                                Hi! I'm
+                                {" "}
                                 <Text
                                     span
-                                    c="blue"
-                                    fw="bolder"
+                                    fw={900}
+                                    variant="gradient"
+                                    gradient={{ from: 'blue.4', to: 'indigo.3', deg: 90 }}
                                 >
-                                    :3
+                                    Gökçe Deniz
                                 </Text>
-                            </Tooltip>
+                                {" "}
+                                <Text span c="dimmed">
+                                    (turkish for sea)
+                                </Text>
+                                {", "}
+                            </Text>
+                            <Text span>
+                                known as
+                                {" "}
+                                <Text
+                                    span
+                                    fw={900}
+                                    variant="gradient"
+                                    gradient={{ from: 'blue.4', to: 'indigo.3', deg: 90 }}
+                                >
+                                    dennis
+                                </Text>
+                                {" "}
+                                <Text span>
+                                    <OnekoInitialPosition />
+                                    online.
+                                </Text>
+                                {" "}
+                                <Tooltip label="mrow~" position="right" withArrow>
+                                    <Text
+                                        span
+                                        c="blue"
+                                        fw="bolder"
+                                    >
+                                        :3
+                                    </Text>
+                                </Tooltip>
+                            </Text>
                         </Text>
-                    </Text>
+
+                        <Group gap={5} justify="end">
+                            <Text c="dimmed" fs="italic">fun fact: this website has weather! (check bottom right)</Text>
+                        </Group>
+                    </Stack>
 
                     <Group gap={5} justify="end">
                         <Text>I'm from</Text>

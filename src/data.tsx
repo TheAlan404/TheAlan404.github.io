@@ -30,6 +30,28 @@ export type ProjectButton =
 
 export const Projects: Project[] = [
     {
+        name: "NekoTube",
+        status: "wip",
+        img: "/img/proj/nekotube.png",
+        content: (
+            <Stack ta="left">
+                <Text>
+                    <Link text="Lighttube" url="https://lighttube.org/" size="compact-sm" /> but its frontend is made in React.
+                </Text>
+                
+                <Text>
+                    Thanks <Link text="kuylar" url="https://kuylar.dev/" size="compact-sm" /> for her work on Lighttube!
+                </Text>
+            </Stack>
+        ),
+        buttons: [
+            { type: "website", url: Subdomain("tube") },
+            { type: "repo", repo: "TheAlan404/nekotube" },
+        ],
+        color: "gray",
+        tech: ["js", "react"],
+    },
+    {
         name: "ZilTek",
         status: "done",
         buttons: [
@@ -133,26 +155,6 @@ export const Projects: Project[] = [
         desc: "A simple Windows Audio Visualizer with some extra features such as snow.",
         img: "/img/proj/denvis.png",
         tech: ["cs"],
-    },
-    {
-        name: "LighttubeReact",
-        status: "forgor",
-        content: (
-            <Stack ta="left">
-                <Text>
-                    <Link text="Lighttube" url="https://lighttube.org/" size="compact-sm" /> but its frontend is made in React.
-                </Text>
-                
-                <Text>
-                    Thanks <Link text="kuylar" url="https://kuylar.dev/" size="compact-sm" /> for her work on Lighttube!
-                </Text>
-            </Stack>
-        ),
-        buttons: [
-            { type: "repo", repo: "TheAlan404/lighttube-react" },
-        ],
-        color: "gray",
-        tech: ["js", "react"],
     },
     {
         name: "FFMPEG Editor",
