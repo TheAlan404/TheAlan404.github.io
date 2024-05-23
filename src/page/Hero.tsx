@@ -47,11 +47,13 @@ export const Hero = () => {
                                     variant="gradient"
                                     gradient={{ from: 'blue.4', to: 'indigo.3', deg: 90 }}
                                 >
-                                    Gökçe Deniz
-                                </Text>
-                                {" "}
-                                <Text span c="dimmed">
-                                    (turkish for sea)
+                                    Gökçe
+                                    {" "}
+                                    <Tooltip label="turkish for sea">
+                                        <Text span inherit>
+                                            Deniz
+                                        </Text>
+                                    </Tooltip>
                                 </Text>
                                 {", "}
                             </Text>
@@ -100,14 +102,11 @@ export const Hero = () => {
                         <Text span fw="bold">
                             Istanbul, Turkey
                         </Text>
-                        {"("}
                         <Tooltip label="or, UTC+3" withArrow>
-                            <Text span>
-                                GMT+3
+                            <Text span c="dimmed">
+                                (GMT+3)
                             </Text>
                         </Tooltip>
-                        {")"}
-
                     </Group>
 
                     <Stack align="start" pl="md">
@@ -116,26 +115,6 @@ export const Hero = () => {
                                 I am a:
                             </Text>
                             <List spacing="md">
-                                <List.Item>
-                                    <Stack gap={0}>
-                                        <Group gap={7} wrap="nowrap" justify="start">
-                                            <Text span fw="bold">Developer</Text>
-                                            at
-                                            <Link
-                                                text="Ulus"
-                                                url="https://ulusgroup.org/"
-                                                icon={<Image
-                                                    src="/img/ico/ulus_icon.ico"
-                                                    w="1.5em"
-                                                    h="1.5em"
-                                                />}
-                                            />
-                                        </Group>
-                                        <Text c="dimmed" fz="xs">
-                                            a turkish news agency
-                                        </Text>
-                                    </Stack>
-                                </List.Item>
                                 <List.Item>
                                     <Stack gap={0}>
                                         <Group gap={7} wrap="nowrap" justify="start">
@@ -153,6 +132,27 @@ export const Hero = () => {
                                         </Group>
                                         <Text c="dimmed" fz="xs">
                                             game jams but its minecraft mods
+                                        </Text>
+                                    </Stack>
+                                </List.Item>
+                                <List.Item>
+                                    <Stack gap={0}>
+                                        <Group gap={7} wrap="nowrap" justify="start">
+                                            <Text span fw="bold">Developer</Text>
+                                            at
+                                            <Link
+                                                text="Ulus"
+                                                //url="https://ulusgroup.org/"
+                                                tooltip="Website WIP"
+                                                icon={<Image
+                                                    src="/img/ico/ulus_icon.ico"
+                                                    w="1.5em"
+                                                    h="1.5em"
+                                                />}
+                                            />
+                                        </Group>
+                                        <Text c="dimmed" fz="xs">
+                                            a turkish news agency
                                         </Text>
                                     </Stack>
                                 </List.Item>

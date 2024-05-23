@@ -1,33 +1,39 @@
 import { BackgroundImage, Box, Stack, Text, Tooltip } from "@mantine/core";
-import { Link } from "../components/Link";
 
-const URL = "https://skyrina.dev";
+import "./styles.css"
 
-export const FriendSkyrina = () => {
+export const StockFriendRenderer = ({
+    url,
+    image,
+    tooltip,
+    children,
+}: {
+    tooltip: string,
+    url: string,
+    image: string,
+} & React.PropsWithChildren) => {
     return (
-        <Tooltip label="skyrina.dev">
+        <Tooltip label={tooltip}>
             <Box
                 w="100%"
                 h="100%"
                 component="a"
                 style={{ textDecoration: "none" }}
-                href={URL}
+                href={url}
                 target="_blank"
                 pos="relative"
             >
                 <BackgroundImage
                     w="100%"
                     h="100%"
-                    src="/img/other/skylar.png"
+                    src={image}
                     className="hoverbgimg"
                 >
                     <Stack h="100%" align="center" justify="center">
-                        <Text span c="var(--mantine-color-blue-light-color)">
-                            skyrina
-                        </Text>
+                        {children}
                     </Stack>
                 </BackgroundImage>
             </Box>
         </Tooltip>
     )
-}
+};

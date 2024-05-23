@@ -7,6 +7,13 @@ body[data-starry=true] {
         radial-gradient(circle at 50% -20%, #7d1f4b, transparent 30%);
 }
 
+@font-face {
+    font-family: "Lexend-VariableFont";
+    src:
+        local("Lexend-VariableFont"),
+        url("/fonts/Lexend-VariableFont_wght.ttf");
+}
+
 .hoverable:hover {
     background-color: var(--mantine-color-dark-6);
 }
