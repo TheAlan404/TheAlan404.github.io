@@ -67,7 +67,7 @@ const AboutSection = ({
 export const About = () => {
     return (
         <Stack gap="xl" w="100%">
-            <Accordion w="100%" multiple defaultValue={["dev", "facts", "other"]}>
+            <Accordion w="100%" multiple defaultValue={["dev", "other"]}>
                 <AboutSection
                     value="dev"
                     title="Developer Background"

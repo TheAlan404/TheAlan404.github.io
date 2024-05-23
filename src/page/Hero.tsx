@@ -35,7 +35,7 @@ export const Hero = () => {
                     </Group>
                 </Stack>
 
-                <Stack>
+                <Stack w={{ base: "100%", xs: "80%" }}>
                     <Stack gap={0}>
                         <Text span>
                             <Text span>
@@ -112,7 +112,7 @@ export const Hero = () => {
                     <Stack align="start" pl="md">
                         <Stack ta="start">
                             <Text ta="start">
-                                I am a:
+                                I volunteer as a:
                             </Text>
                             <List spacing="md">
                                 <List.Item>
