@@ -5,10 +5,11 @@ export const ImageWithLoader = (imageProps: ImageProps) => {
     let [isLoaded, setLoaded] = useState(false);
 
     return (
-        <Box>
-            <LoadingOverlay visible={!isLoaded} overlayProps={{ backgroundOpacity: 0 }} />
+        <Box pos="relative">
+            <LoadingOverlay visible={!isLoaded} pos="absolute" overlayProps={{ backgroundOpacity: 0 }} />
             <Image
                 onLoad={() => setLoaded(true)}
+                onError={() => setLoaded(true)}
                 {...imageProps}
             />
         </Box>
