@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { Coord } from "./Coord";
 import { clamp, useWindowEvent } from "@mantine/hooks";
 import { useSetInterval } from "../utils/useInterval";
-import { randArr } from "../utils/utils";
+import { rand, randArr } from "../utils/utils";
 import { Text, Tooltip } from "@mantine/core";
 import { useContext } from "react";
 import { OnekoContext } from "./OnekoAPI";
@@ -211,6 +211,7 @@ export const Oneko = () => {
             } else if(nekoState == "sleep") {
                 say("*yawn* hiii");
                 idleAnimation = null;
+                idleTime = 0;
                 setNekoState("follow");
                 setSprite("tired");
             }
@@ -218,19 +219,26 @@ export const Oneko = () => {
 
         const onRightClick = (e: MouseEvent) => {
             e.preventDefault();
+            idleTime = 0;
             if(nekoState == "sleep") {
                 say(randArr([
                     "*purrr*",
-                    "*car noise*",
+                    "*car noises*",
                     "*happy kitten*",
                     "*purrrrrrrr*",
                 ]));
             } else {
+                new Audio(`/audio/meows/${rand(12)}.wav`).play();
                 say(randArr([
                     "meoww",
                     "mrow~!",
                     "i love pets :3",
                     "nya~",
+                    "mrrow",
+                    "mrrp~",
+                    "miuw",
+                    "mm yes pets uwu",
+                    "miau :3",
                 ]));
             }
         };

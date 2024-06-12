@@ -1,5 +1,5 @@
 import { Badge } from '@mantine/core';
-import { ProjectStatus } from "../data";
+import { ProjectStatus } from "../types";
 
 const Renderers: Record<ProjectStatus, React.ReactNode> = {
     done: <></>,

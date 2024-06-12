@@ -1,9 +1,11 @@
 import { Group, Box, Paper, Stack, Title, Text, Tooltip, SimpleGrid, Button } from '@mantine/core';
-import { IconBook2, IconExternalLink } from '@tabler/icons-react';
+import { IconBook2, IconBrandNextjs, IconBrandVite, IconExternalLink } from '@tabler/icons-react';
 import { IconBrandGithub } from '@tabler/icons-react';
 import React from 'react';
 import { StatusRender } from "./StatusRender";
-import { Project, ProjectButton, Tech } from "../data";
+import { ProjectButton } from "../types";
+import { Tech } from "../types";
+import { Project } from "../types";
 import { ImageWithLoader } from "./ImageWithLoader";
 import { IconBrandReact } from "@tabler/icons-react";
 import { IconBrandTypescript } from "@tabler/icons-react";
@@ -102,6 +104,16 @@ const TechRenderers: Record<Tech, React.ReactNode> = {
             <IconBrandRust />
         </Tooltip>
     ),
+    nextjs: (
+        <Tooltip label="Next.js" withArrow>
+            <IconBrandNextjs />
+        </Tooltip>
+    ),
+    vite: (
+        <Tooltip label="Vite" withArrow>
+            <IconBrandVite />
+        </Tooltip>
+    ),
 };
 
 export const ProjectRender = ({ p }: { p: Project }) => {
@@ -128,7 +140,7 @@ export const ProjectRender = ({ p }: { p: Project }) => {
                 <SimpleGrid cols={{ base: 1, lg: (p.img ? 2 : 1) }}>
                     <Stack>
                         <Stack>
-                            {p.desc && <Text>
+                            {p.desc && <Text fz="sm">
                                 {p.desc}
                             </Text>}
                             {p.content}

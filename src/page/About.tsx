@@ -1,4 +1,4 @@
-import { Accordion, ActionIcon, Anchor, Button, Code, Divider, Group, Image, List, Paper, SimpleGrid, Space, Stack, Text, Title, Tooltip } from "@mantine/core";
+import { Accordion, ActionIcon, Anchor, Button, Code, Divider, Group, Image, List, Paper, SimpleGrid, Space, Stack, Text, Title, Tooltip, useMantineTheme, useMatches } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import { IconBrandReact, IconDeviceDesktop, IconDeviceDesktopCode } from "@tabler/icons-react";
 import { IconBrandRust } from "@tabler/icons-react";
@@ -7,8 +7,6 @@ import { IconBrandJavascript } from "@tabler/icons-react";
 import { Link } from "../components/Link";
 import { IconBrandGit } from "@tabler/icons-react";
 import { Decor } from "../components/Decor";
-import { IconBrandDiscord } from "@tabler/icons-react";
-import { DISCORD_INVITE } from "../data";
 import { IconExternalLink } from "@tabler/icons-react";
 import { IconInfoCircle } from "@tabler/icons-react";
 import { IconBrandTypescript } from "@tabler/icons-react";
@@ -21,6 +19,7 @@ import { IconBooks } from "@tabler/icons-react";
 import { IconApps } from "@tabler/icons-react";
 import { DiscordSection } from "../features/DiscordSection";
 import { FriendLiliana } from "../friends/liliana";
+import { useMediaQuery } from "@mantine/hooks";
 
 const AboutSection = ({
     value,
@@ -67,7 +66,7 @@ const AboutSection = ({
 export const About = () => {
     return (
         <Stack gap="xl" w="100%">
-            <Accordion w="100%" multiple defaultValue={["dev", "other"]}>
+            <Accordion w="100%" multiple defaultValue={[]}>
                 <AboutSection
                     value="dev"
                     title="Developer Background"
@@ -246,15 +245,6 @@ export const About = () => {
                             </Stack>
                         </Stack>
                     </Stack>
-
-                    <Decor
-                        img="oneko-circling.gif"
-                        style={{
-                            top: "-5em",
-                            left: "2em",
-                            width: "3em",
-                        }}
-                    />
                 </AboutSection>
             </Accordion>
         </Stack>

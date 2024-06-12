@@ -12,7 +12,7 @@ export const GodDrinksJava = ({
     let [yOffset, setYOffset] = useState(0);
     let [volume, setVolume] = useState(0.5);
 
-    let audioRef = useRef(useMemo(() => new Audio("/audio/worldexecuteme.webm"), []));
+    let audioRef = useRef(useMemo(() => new Audio("/audio/events/worldexecuteme.webm"), []));
 
     useEffect(() => {
         audioRef.current.volume = volume;
