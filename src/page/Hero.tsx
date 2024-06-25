@@ -1,24 +1,42 @@
-import { Group, Stack, Title, Text, Space, Tooltip, Image, List, Divider, Box } from '@mantine/core';
+import { Group, Stack, Title, Text, Space, Tooltip, Image, List, Divider, Box, Avatar } from '@mantine/core';
 import { PersonalIcons } from "../components/PersonalIcons";
 import { Link } from "../components/Link";
 import { IconSchool } from "@tabler/icons-react";
 import { About } from "./About";
-import { EasterEgg } from "../components/EasterEgg";
-import { Decor } from "../components/Decor";
 import { OnekoInitialPosition } from "../components/OnekoInitialPosition";
 
 export const Hero = () => {
     return (
-        <Stack>
+        <Stack px="sm">
             <Stack gap={0} align="center" w="100%">
                 <Space h="xl" />
                 <Stack align="center">
-                    <Group align="center">
-                        <Text span fz={22}>✨</Text>
-                        <Title>deniz.blue</Title>
-                        <Text span fz={22}>🌸</Text>
+                    <Group wrap="nowrap" align="center" justify="center">
+                        <Stack align="center">
+                            <Tooltip withArrow events={{ touch: true, focus: true, hover: true }} label={(
+                                <Image
+                                    w="auto"
+                                    h="30vh"
+                                    src="/img/me/dennis_ka.png"
+                                />
+                            )}>
+                                <Avatar
+                                    src="/img/me/dennis_ka_pfp.png"
+                                    size="xl"
+                                    draggable={false}
+                                    style={{ userSelect: "none" }}
+                                />
+                            </Tooltip>
+                        </Stack>
+                        <Stack align="center">
+                            <Group align="center">
+                                <Text span fz={22}>✨</Text>
+                                <Title>deniz.blue</Title>
+                                <Text span fz={22}>🌸</Text>
+                            </Group>
+                            <PersonalIcons />
+                        </Stack>
                     </Group>
-                    <PersonalIcons />
                     <Group gap={5} align="center" pb="sm">
                         {["0.2em", "0.4em", "1em", null, "1em", "0.4em", "0.2em"].map((w, i) => (
                             w ? (
@@ -70,7 +88,6 @@ export const Hero = () => {
                                 </Text>
                                 {" "}
                                 <Text span>
-                                    <OnekoInitialPosition />
                                     online.
                                 </Text>
                                 {" "}
@@ -85,35 +102,55 @@ export const Hero = () => {
                                 </Tooltip>
                             </Text>
                         </Text>
-
-                        <Group gap={5} justify="end">
-                            <Text c="dimmed" fs="italic">fun fact: this website has weather! (check bottom right)</Text>
-                        </Group>
                     </Stack>
 
-                    <Group gap={5} justify="end">
-                        <Text>I'm from</Text>
-                        {" "}
-                        <Image
-                            src="/img/ico/flag_tr.svg"
-                            w="1.2em"
-                            h="1.2em"
-                        />
-                        <Text span fw="bold">
-                            Istanbul, Turkey
-                        </Text>
-                        <Tooltip label="or, UTC+3" withArrow>
-                            <Text span c="dimmed">
-                                (GMT+3)
+                    <Stack align="end" gap={0}>
+                        <Group gap={5}>
+                            <Text>I'm from</Text>
+                            {" "}
+                            <Image
+                                src="/img/ico/flag_tr.svg"
+                                w="1.2em"
+                                h="1.2em"
+                            />
+                            <Text span fw="bold">
+                                Istanbul, Turkey
                             </Text>
-                        </Tooltip>
-                    </Group>
+                            <Tooltip label="or, UTC+3" withArrow>
+                                <Text span c="dimmed">
+                                    (GMT+3)
+                                </Text>
+                            </Tooltip>
+                        </Group>
+                        <Text c="dimmed" fz="xs">
+                            profile picture by
+                            {" "}
+                            <Text
+                                component="a"
+                                target="_blank"
+                                href="https://www.instagram.com/kiwi_asli/"
+                                td="underline"
+                                inherit
+                                inline
+                            >
+                                @kiwi_asli
+                            </Text>
+                        </Text>
+                    </Stack>
 
                     <Stack align="start" pl="md">
                         <Stack ta="start">
                             <Text ta="start">
-                                I volunteer as a:
+                                <OnekoInitialPosition />
+                                I am a
+                                {" "}
+                                <Text span c="indigo">full stack developer</Text>.
                             </Text>
+
+                            <Text ta="start">
+                                I volunteer at:
+                            </Text>
+                            
                             <List spacing="md">
                                 <List.Item>
                                     <Stack gap={0}>
@@ -161,15 +198,11 @@ export const Hero = () => {
                                         <Group gap={4} justify="start">
                                             ...and a
                                             {" "}
-                                            <Text span fw="bold">Technician</Text>
+                                            <Text span fw="bold">lot</Text>
                                             {" "}
-                                            at
-                                            {" "}
-                                            <Text span c="blue.4">my school</Text>
-                                            {" "}
-                                            <IconSchool />
+                                            more
                                         </Group>
-                                        <Text span c="dimmed" fz="xs">(unpaid lmao)</Text>
+                                        <Text span c="dimmed" fz="xs">(i love doing unpaid work!! /j)</Text>
                                     </Stack>
                                 </List.Item>
                             </List>
@@ -180,9 +213,6 @@ export const Hero = () => {
             <Stack align="center" ta="center">
                 <About />
                 <Space h="20vh" />
-                <Box ta="center" w="100%">
-                    <EasterEgg />
-                </Box>
             </Stack>
         </Stack>
     );

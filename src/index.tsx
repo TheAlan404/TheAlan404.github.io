@@ -10,6 +10,7 @@ import { OnekoAPIProvider } from "./features/OnekoAPI";
 
 const theme = createTheme({
     fontFamily: "Lexend-VariableFont",
+    primaryColor: "violet",
     colors: {
         dark: [
             '#C1C2C5',

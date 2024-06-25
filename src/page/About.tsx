@@ -20,6 +20,10 @@ import { IconApps } from "@tabler/icons-react";
 import { DiscordSection } from "../features/DiscordSection";
 import { FriendLiliana } from "../friends/liliana";
 import { useMediaQuery } from "@mantine/hooks";
+import { FriendSophia } from "../friends/sophia";
+import { FriendAthenya } from "../friends/ath";
+import { FriendAshley } from "../friends/ashley";
+import { IconBrandDocker } from "@tabler/icons-react";
 
 const AboutSection = ({
     value,
@@ -74,31 +78,6 @@ export const About = () => {
                 >
                     <Stack>
                         <Text>
-                            I am a
-                            {" "}
-                            <Text span fw="bold">backend</Text>
-                            {" "}
-                            oriented
-                            {" "}
-                            <Text span c="indigo">full stack developer</Text>.
-                        </Text>
-                        <Stack gap={0}>
-                            <Text>
-                                I only do frontend because
-                                {" "}
-                                <Link
-                                    text="Mantine"
-                                    url="https://mantine.dev"
-                                    icon={<MantineLogo size={"1em"} type="mark" />}
-                                    size="compact-sm"
-                                />
-                                {" "}
-                                exists
-                            </Text>
-                            <Text c="dimmed">(otherwise I would just stick to backend)</Text>
-                        </Stack>
-
-                        <Text>
                             I've been writing code for about
                             {" "}
                             <Text span fw="bold">5 years</Text>.
@@ -106,7 +85,7 @@ export const About = () => {
                         <Group grow align="start" gap={0} wrap="nowrap">
                             <Stack align="start" ta="start">
                                 <Text span fw="bold">
-                                    Languages I'm good at:
+                                    Languages I'm best at:
                                 </Text>
                                 <List center withPadding>
                                     <List.Item icon={<IconBrandJavascript />}>JavaScript</List.Item>
@@ -123,14 +102,40 @@ export const About = () => {
                                     <List.Item icon={<IconBrandReact />}>React</List.Item>
                                     <List.Item icon={<IconBrandGit />}>Git</List.Item>
                                     <List.Item icon={<IconBrandGithub />}>GitHub</List.Item>
+                                    <List.Item icon={<IconBrandDocker />}>Docker</List.Item>
                                 </List>
                             </Stack>
                         </Group>
+
                         <Text>
-                            I hope I can land an internship or sorts. Or a job...
+                            I am an open-source contributor and maintainer. This website and almost all my projects are free and open source
                         </Text>
-                        <Text span c="dimmed">
-                            (please send me an email)
+
+                        <Stack gap={0}>
+                            <Text>
+                                My favorite UI library is
+                                {" "}
+                                <Link
+                                    text="Mantine"
+                                    url="https://mantine.dev"
+                                    icon={<MantineLogo size={"1em"} type="mark" />}
+                                    size="compact-sm"
+                                />
+                            </Text>
+                            <Text c="dimmed">(I can't live without it.)</Text>
+                        </Stack>
+
+                        <Text>
+                            Here's my GitHub activity for some reason:
+                        </Text>
+
+                        <Image
+                            src="https://ghchart.rshah.org/7048e8/thealan404"
+                            w="100%"
+                        />
+
+                        <Text>
+                            fun fact i am desperate for a job or freelances rn!!
                         </Text>
                     </Stack>
                 </AboutSection>
@@ -140,47 +145,59 @@ export const About = () => {
                     title="Fun facts"
                     icon={<IconBooks />}
                 >
-                    <List ta="start" withPadding>
-                        <List.Item>My favorite fruits are strawberries. 🍓</List.Item>
-                        <List.Item>I LOVE rain!</List.Item>
-                        <List.Item>I like cats</List.Item>
-                        <List.Item>I have ADHD</List.Item>
-                        <List.Item>im a catgirl meowmeo</List.Item>
-                        <List.Item>I play Minecraft and osu!, other than that I watch no commentaries of games :3</List.Item>
-                        <List.Item>I love Portal, Undertale/Deltatune, Splatoon, Oneshot, FNAF (only the lore), Mario stuff, etc..</List.Item>
-                        <List.Item>
-                            <Group gap={5}>
-                                <Text>
-                                    I have ADHD
-                                </Text>
-                                <Tooltip
-                                    withArrow
-                                    label={(
-                                        <Image
-                                            src="/img/other/adhd.png"
-                                        />
-                                    )}
-                                >
-                                    <IconInfoCircle size="0.8em" />
-                                </Tooltip>
-                            </Group>
-                        </List.Item>
-                        <List.Item>I'm a 12th grade student</List.Item>
-                        <List.Item>
-                            <Group align="center">
-                                <Text>hexagons are the bestagons</Text>
-                                <ActionIcon
-                                    variant="subtle"
-                                    component="a"
-                                    href="https://www.youtube.com/watch?v=thOifuHs6eY"
-                                    target="_blank"
-                                >
-                                    <IconExternalLink />
-                                </ActionIcon>
-                            </Group>
-                        </List.Item>
-                        <List.Item>I'm easily startled</List.Item>
-                    </List>
+                    <SimpleGrid cols={2}>
+                        <Stack gap="xs">
+                            <Text fw="bold">Likes</Text>
+                            <List ta="start">
+                                <List.Item>🍓 strawberries</List.Item>
+                                <List.Item>cats (if you couldn't tell)</List.Item>
+                                <List.Item>rain</List.Item>
+                            </List>
+                        </Stack>
+                        <Stack gap="xs">
+                            <Text fw="bold">Games</Text>
+                            <List ta="start">
+                                <List.Item>Minecraft</List.Item>
+                                <List.Item>osu!</List.Item>
+                                <List.Item>for other games I watch no-commentaries</List.Item>
+                            </List>
+                        </Stack>
+                        <Stack gap="xs">
+                            <Text fw="bold">neofetch</Text>
+                            <List ta="start">
+                                <List.Item>CPU: Intel Core i5 M480 @ 2.67GHz</List.Item>
+                                <List.Item>RAM: 4 GB (it just like me fr)</List.Item>
+                                <List.Item>Phone Model: Samsung Galaxy A13</List.Item>
+                            </List>
+                        </Stack>
+                        <Stack gap="xs">
+                            <Text fw="bold">Other</Text>
+                            <List ta="start">
+                                <List.Item>I have ADHD</List.Item>
+                                <List.Item>also autistic</List.Item>
+                                <List.Item>also transgender</List.Item>
+                                <List.Item>I'm easily startled</List.Item>
+                                <List.Item>
+                                    <Group wrap="nowrap">
+                                        <Text>
+                                            I have ADHD
+                                        </Text>
+                                        <Tooltip
+                                            withArrow
+                                            label={(
+                                                <Image
+                                                    src="/img/other/adhd.png"
+                                                />
+                                            )}
+                                        >
+                                            <IconInfoCircle size="0.8em" />
+                                        </Tooltip>
+                                    </Group>
+                                </List.Item>
+                                <List.Item>I believe coding is a form of art</List.Item>
+                            </List>
+                        </Stack>
+                    </SimpleGrid>
                 </AboutSection>
 
                 <AboutSection
@@ -206,6 +223,9 @@ export const About = () => {
                                 <FriendSkyrina />,
                                 <FriendInftord />,
                                 <FriendLiliana />,
+                                <FriendSophia />,
+                                <FriendAthenya />,
+                                <FriendAshley />,
                             ].map((el, i) => (
                                 <Paper
                                     key={i}
@@ -220,30 +240,9 @@ export const About = () => {
                             ))}
                         </SimpleGrid>
 
-                        <Divider
-                            w="100%"
-                            labelPosition="right"
-                            label={"Credits"}
-                        />
-
-                        <Stack ta="end" align="end" w="100%">
-                            <Stack gap={0}>
-                                <Tooltip label={"discord @nokia6600"}>
-                                    <Text fw="bold">nokia</Text>
-                                </Tooltip>
-
-                                <Text>for giving an umbrella to oneko</Text>
-                            </Stack>
-                            <Stack gap={0}>
-                                <Tooltip label={"dimden.dev"}>
-                                    <Text fw="bold">dimden</Text>
-                                </Tooltip>
-
-                                <Text>
-                                    for <Code>rain.mp3</Code>
-                                </Text>
-                            </Stack>
-                        </Stack>
+                        <Text>
+                            these are supposed to be custom elements made by them but uhhh
+                        </Text>
                     </Stack>
                 </AboutSection>
             </Accordion>

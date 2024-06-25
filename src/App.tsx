@@ -24,7 +24,6 @@ const App = () => {
         <Stack
             align='center'
             style={{ textAlign: "center" }}
-            px="sm"
             className="app">
 
             {mili && (

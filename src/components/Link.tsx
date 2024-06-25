@@ -20,7 +20,7 @@ export const Link = ({
         <Tooltip label={tooltip} disabled={!tooltip}>
             <Button
                 variant={variant || "subtle"}
-                color={color}
+                color={color || "blue"}
                 size={size || "compact-md"}
                 leftSection={icon}
                 rightSection={url && <IconExternalLink size="1.2em" />}

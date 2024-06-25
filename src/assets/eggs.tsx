@@ -4,16 +4,6 @@ import { Link } from "../components/Link";
 
 export const Eggs: React.FC[] = [
     () => (
-        <Group>
-            My friend has a custom discord client:
-            <Link
-                text="Acord"
-                url="https://acord.app/"
-                size="compact-xs"
-            />
-        </Group>
-    ),
-    () => (
         <Text span component="a" href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
             dQw4w9WgXcQ
         </Text>

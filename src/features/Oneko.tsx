@@ -101,9 +101,10 @@ export const Oneko = () => {
     let sayTimeoutRef = useRef<number | null>();
     const backgroundImage = "url(/img/cats/oneko-classic.gif)";
 
-    const say = (s: string) => {
+    const say = (s: string, keep = false) => {
         setSpeak(s);
-        if(sayTimeoutRef.current) clearTimeout(sayTimeoutRef.current);
+        if (sayTimeoutRef.current) clearTimeout(sayTimeoutRef.current);
+        if (keep) return;
         sayTimeoutRef.current = setTimeout(() => {
             setSpeak("");
             sayTimeoutRef.current = null;
@@ -145,13 +146,29 @@ export const Oneko = () => {
             targetPos = coord;
         };
 
-        const onMouseMove = (e: MouseEvent) => {
+        const onInputMove = (x: number, y: number) => {
             if (nekoState != "follow") return;
 
             setTargetPos({
-                x: e.clientX,
-                y: e.clientY,
+                x,
+                y,
             });
+        }
+
+        const onMouseMove = (e: MouseEvent) => {
+            onInputMove(e.clientX, e.clientY);
+        };
+
+        const onTouchMove = (e: TouchEvent) => {
+            if(e.touches.length !== 1) return;
+            let touch = e.touches[0];
+            onInputMove(touch.clientX, touch.clientY);
+        };
+
+        const onTouchEnd = (e: TouchEvent) => {
+            if(e.touches.length !== 1) return;
+            let touch = e.touches[0];
+            onInputMove(touch.clientX, touch.clientY);
         };
 
         const onWindowResize = () => {
@@ -177,7 +194,7 @@ export const Oneko = () => {
             let newScroll = el.scrollTop;
             lastScrollCache[el.id] = newScroll;
             let scrollDelta = oldScroll - newScroll;
-            if(
+            if (
                 (rect.left < nekoPos.x && nekoPos.x < rect.right)
             ) {
                 // kitty inside (tm)
@@ -189,7 +206,7 @@ export const Oneko = () => {
         };
 
         const onKeyDown = (e: KeyboardEvent) => {
-            if(e.key != "n") return;
+            if (e.key != "n") return;
 
             e.preventDefault();
 
@@ -197,19 +214,38 @@ export const Oneko = () => {
             setNekoPos(initial);
         };
 
+        // https://stackoverflow.com/questions/45804917/dblclick-doesnt-work-on-touch-devices
+        // TODO: rewrite
+        let expired;
+        const onTouchStartDblClick = (e: TouchEvent) => {
+            if (e.touches.length !== 1) return;
+            if (!expired) {
+                expired = e.timeStamp + 400
+            } else if (e.timeStamp <= expired) {
+                // remove the default of this event ( Zoom )
+                e.preventDefault()
+                onDoubleClick()
+                // then reset the variable for other "double Touches" event
+                expired = null
+            } else {
+                // if the second touch was expired, make it as it's the first
+                expired = e.timeStamp + 400
+            }
+        };
+
         const onDoubleClick = () => {
-            if(nekoState == "sit") {
+            if (nekoState == "sit") {
                 say(randArr([
                     "its following time!",
                     "mrow!",
                     "mice?!",
                 ]));
                 setNekoState("follow");
-            } else if(nekoState == "follow") {
+            } else if (nekoState == "follow") {
                 say("oki i sit :3");
                 setNekoState("sit");
-            } else if(nekoState == "sleep") {
-                say("*yawn* hiii");
+            } else if (nekoState == "sleep") {
+                say("*yawn* car activated owo");
                 idleAnimation = null;
                 idleTime = 0;
                 setNekoState("follow");
@@ -220,13 +256,8 @@ export const Oneko = () => {
         const onRightClick = (e: MouseEvent) => {
             e.preventDefault();
             idleTime = 0;
-            if(nekoState == "sleep") {
-                say(randArr([
-                    "*purrr*",
-                    "*car noises*",
-                    "*happy kitten*",
-                    "*purrrrrrrr*",
-                ]));
+            if (nekoState == "sleep") {
+                say("(wake her up to hear her meow!)");
             } else {
                 new Audio(`/audio/meows/${rand(12)}.wav`).play();
                 say(randArr([
@@ -243,21 +274,16 @@ export const Oneko = () => {
             }
         };
 
-        const onMouseDown = (e: MouseEvent) => {
-            if (e.button !== 0) return;
-            e.preventDefault();
-
+        const onInputDown = (initial: Coord) => {
             let beforeState = nekoState;
             setNekoState("grabbed");
-            let dragStart: Coord = {
-                x: e.clientX,
-                y: e.clientY,
-            };
+
+            let dragStart = initial;
             let nekoStart = nekoPos;
 
-            const mousemove = (e: MouseEvent) => {
-                const deltaX = e.clientX - dragStart.x;
-                const deltaY = e.clientY - dragStart.y;
+            const move = (x: number, y: number) => {
+                const deltaX = x - dragStart.x;
+                const deltaY = y - dragStart.y;
                 const absDeltaX = Math.abs(deltaX);
                 const absDeltaY = Math.abs(deltaY);
 
@@ -269,8 +295,8 @@ export const Oneko = () => {
                 }
 
                 setNekoPos(clampWindow({
-                    x: nekoStart.x + e.clientX - dragStart.x,
-                    y: nekoStart.y + e.clientY - dragStart.y,
+                    x: nekoStart.x + x - dragStart.x,
+                    y: nekoStart.y + y - dragStart.y,
                 }));
 
                 if (
@@ -279,22 +305,57 @@ export const Oneko = () => {
                     Math.sqrt(deltaX ** 2 + deltaY ** 2) > 10
                 ) {
                     dragStart = {
-                        x: e.clientX,
-                        y: e.clientY,
+                        x,
+                        y,
                     };
                     nekoStart = nekoPos;
                 }
             };
 
-            const mouseup = () => {
+            const mouseMove = (e: MouseEvent) => move(e.clientX, e.clientY);
+            const touchMove = (e: TouchEvent) => e.touches.length == 1 && move(e.touches[0].clientX, e.touches[0].clientY);
+
+            const end = () => {
                 setTargetPos(nekoPos);
                 setNekoState(beforeState);
-                window.removeEventListener("mousemove", mousemove);
-                window.removeEventListener("mouseup", mouseup);
+                window.removeEventListener("mousemove", mouseMove);
+                window.removeEventListener("mouseup", mouseUp);
+                window.removeEventListener("touchmove", touchMove);
+                window.removeEventListener("touchend", touchEnd);
             };
 
-            window.addEventListener("mousemove", mousemove);
-            window.addEventListener("mouseup", mouseup);
+            const mouseUp = () => {
+                end();
+            };
+
+            const touchEnd = () => {
+                end();
+            }
+
+            window.addEventListener("mousemove", mouseMove);
+            window.addEventListener("mouseup", mouseUp);
+            window.addEventListener("touchmove", touchMove);
+            window.addEventListener("touchend", touchEnd);
+        }
+
+        const onMouseDown = (e: MouseEvent) => {
+            if (e.button !== 0) return;
+            e.preventDefault();
+            onInputDown({
+                x: e.clientX,
+                y: e.clientY,
+            });
+        };
+
+        const onTouchStart = (e: TouchEvent) => {
+            if (e.touches.length !== 1) return;
+            onTouchStartDblClick(e);
+            e.preventDefault();
+            let touch = e.touches[0];
+            onInputDown({
+                x: touch.clientX,
+                y: touch.clientY,
+            });
         };
 
         const getIdleAnimations = (): SpriteName[] => {
@@ -325,13 +386,13 @@ export const Oneko = () => {
                 frameCounter = 0;
             }
 
-            if(nekoState == "sleep") {
+            if (nekoState == "sleep") {
                 idleAnimation = "sleeping";
             }
 
             if (idleAnimation?.startsWith("scratch")) {
                 setSprite(idleAnimation);
-                if(idleAnimation == "scratchSelf" && frameCounter > 10) {
+                if (idleAnimation == "scratchSelf" && frameCounter > 10) {
                     idleAnimation = null;
                 }
             } else if (idleAnimation == "sleeping") {
@@ -401,13 +462,16 @@ export const Oneko = () => {
             });
         }, 100);
 
-        say("(double click)");
+        say("(double click)", true);
 
         window.addEventListener("mousemove", onMouseMove);
         window.addEventListener("resize", onWindowResize);
         window.addEventListener("keydown", onKeyDown);
         let scrollAreas = document.querySelectorAll(".mantine-ScrollArea-viewport");
         scrollAreas.forEach((e) => e.addEventListener("scroll", onWindowScroll));
+        ref.current.addEventListener("touchmove", onTouchMove);
+        ref.current.addEventListener("touchstart", onTouchStart);
+        ref.current.addEventListener("touchend", onTouchEnd);
         ref.current.addEventListener("dblclick", onDoubleClick);
         ref.current.addEventListener("mousedown", onMouseDown);
         ref.current.addEventListener("contextmenu", onRightClick);
@@ -417,6 +481,9 @@ export const Oneko = () => {
             window.removeEventListener("resize", onWindowResize);
             window.removeEventListener("keydown", onKeyDown);
             scrollAreas.forEach((e) => e.removeEventListener("scroll", onWindowScroll));
+            ref.current?.removeEventListener("touchmove", onTouchMove);
+            ref.current?.removeEventListener("touchstart", onTouchStart);
+            ref.current?.removeEventListener("touchend", onTouchEnd);
             ref.current?.removeEventListener("dblclick", onDoubleClick);
             ref.current?.removeEventListener("mousedown", onMouseDown);
             ref.current?.removeEventListener("contextmenu", onRightClick);
