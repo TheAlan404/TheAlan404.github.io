@@ -174,8 +174,7 @@ export const About = () => {
                             <Text fw="bold">Other</Text>
                             <List ta="start">
                                 <List.Item>I have ADHD</List.Item>
-                                <List.Item>also autistic</List.Item>
-                                <List.Item>also transgender</List.Item>
+                                <List.Item>I use she/her pronouns</List.Item>
                                 <List.Item>I'm easily startled</List.Item>
                                 <List.Item>
                                     <Group wrap="nowrap">
@@ -195,6 +194,7 @@ export const About = () => {
                                     </Group>
                                 </List.Item>
                                 <List.Item>I believe coding is a form of art</List.Item>
+                                <List.Item>I also believe people should think on their own</List.Item>
                             </List>
                         </Stack>
                     </SimpleGrid>
@@ -223,7 +223,6 @@ export const About = () => {
                                 <FriendSkyrina />,
                                 <FriendInftord />,
                                 <FriendLiliana />,
-                                <FriendSophia />,
                                 <FriendAthenya />,
                                 <FriendAshley />,
                             ].map((el, i) => (
