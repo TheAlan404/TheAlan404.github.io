@@ -11,7 +11,7 @@ export interface Project {
 
 export type ProjectStatus = "done" | "wip" | "forgor" | "abandoned";
 
-export type Tech = "rust" | "react" | "cs" | "js" | "ts" | "html" | "css" | "vite" | "nextjs";
+export type Tech = "rust" | "react" | "cs" | "js" | "ts" | "html" | "css" | "vite" | "nextjs" | "nodejs";
 
 export type ProjectButton = { type: "website"; url: string; text?: string; } |
     { type: "docs"; url: string; } |

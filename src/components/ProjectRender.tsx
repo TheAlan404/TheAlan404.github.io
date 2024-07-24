@@ -1,5 +1,5 @@
 import { Group, Box, Paper, Stack, Title, Text, Tooltip, SimpleGrid, Button } from '@mantine/core';
-import { IconBook2, IconBrandNextjs, IconBrandVite, IconExternalLink } from '@tabler/icons-react';
+import { IconBook2, IconBrandNextjs, IconBrandNodejs, IconBrandVite, IconExternalLink } from '@tabler/icons-react';
 import { IconBrandGithub } from '@tabler/icons-react';
 import React from 'react';
 import { StatusRender } from "./StatusRender";
@@ -112,6 +112,11 @@ const TechRenderers: Record<Tech, React.ReactNode> = {
     vite: (
         <Tooltip label="Vite" withArrow>
             <IconBrandVite />
+        </Tooltip>
+    ),
+    nodejs: (
+        <Tooltip label="NodeJS" withArrow>
+            <IconBrandNodejs />
         </Tooltip>
     ),
 };

@@ -8,12 +8,13 @@ export const Subdomain = (s: string) => `https://${s}.${Domain}/`;
 
 const Istanbus: Project = {
     name: "Istanbus",
-    status: "wip",
+    status: "done",
     buttons: [
-        { type: "repo", repo: "TheAlan404/istanbus" }
+        { type: "website", url: Subdomain("istanbus") },
+        { type: "repo", repo: "TheAlan404/istanbus" },
     ],
-    desc: "A WIP better Istanbul bus info website",
-    tech: ["ts", "react", "nextjs"]
+    desc: "Istanbul Bus Information website (IETT)",
+    tech: ["ts", "react", "nodejs"]
 };
 
 const KuirBlog: Project = {
@@ -46,7 +47,7 @@ const ZilTek: Project = {
         { type: "website", url: Subdomain("ziltek") }
     ],
     desc: "The school bell app with multilanguage support.",
-    tech: ["ts", "react", "vite"],
+    tech: ["ts", "react", "vite", "nodejs"],
     img: "/img/proj/ziltekscreenshot.png",
 };
 
@@ -106,7 +107,7 @@ const discordjsx: Project = {
         { type: "repo", repo: "TheAlan404/discord-jsx" },
         { type: "website", url: "https://www.npmjs.com/package/@alan404/discordjsx", text: "NPM" },
     ],
-    tech: ["ts", "react"],
+    tech: ["ts", "react", "nodejs"],
     desc: "A library that allows you to use React/JSX inside your discord bot projects",
 };
 
@@ -197,11 +198,11 @@ const DSharpPlusPaginatedSelects: Project = {
 
 export const Projects: Project[] = [
     mcman,
+    Istanbus,
     Carpanga,
-    KuirBlog,
     NekoTube,
     ZilTek,
-    Istanbus,
+    KuirBlog,
     OAALMUN,
     WantYouGone,
     discordjsx,
