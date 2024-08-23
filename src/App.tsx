@@ -1,13 +1,15 @@
-import { Stack, SimpleGrid, Box, ScrollArea, Image, Tooltip, Text } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks';
-import { useEffect } from 'react';
-import { ProjectsList } from "./page/ProjectsList";
-import { Hero } from "./page/Hero";
-import { GodDrinksJava } from "./events/GodDrinksJava";
-import { Decor } from "./components/Decor";
+import { Stack, Box, ScrollArea, Image, Tooltip, Text, Container, SegmentedControl, Space } from '@mantine/core'
+import { useEffect, useState } from 'react';
+import { ProjectsList } from "./pages/projects/ProjectsList";
+import { GodDrinksJava } from "./features/events/GodDrinksJava";
+import { About } from "./pages/about/About";
+import { Header } from "./pages/Header";
+import { BlogPage } from "./pages/blog/BlogPage";
+
+export type Page = "projects" | "mili" | "about" | "blog";
 
 const App = () => {
-    let [mili, { open: openMili, close: closeMili }] = useDisclosure();
+    const [page, setPage] = useState<Page>("about");
 
     useEffect(() => {
         // @ts-ignore
@@ -15,7 +17,7 @@ const App = () => {
         // @ts-ignore
         window.world = {
             execute() {
-                openMili();
+                setPage("mili");
             }
         };
     }, []);
@@ -25,10 +27,54 @@ const App = () => {
             align='center'
             style={{ textAlign: "center" }}
             className="app">
+            
+            <Box>
+                <ScrollArea
+                    id="scroller-global"
+                    h="100vh"
+                    w="100vw"
+                    offsetScrollbars
+                >
+                    <Container size="sm">
+                        {page == "mili" ? (
+                            <>
+                                <GodDrinksJava close={() => setPage("projects")} />
+                                <Box h="100vh" />
+                            </>
+                        ) : (
+                            <Stack>
+                                <Header />
 
-            {mili && (
-                <GodDrinksJava close={closeMili} />
-            )}
+                                <Stack gap={0}>
+                                    <SegmentedControl
+                                        fullWidth
+                                        data={[
+                                            { value: "about", label: "About" },
+                                            { value: "projects", label: "Projects" },
+                                            { value: "blog", label: "Blog" },
+                                        ]}
+                                        onChange={(v) => setPage(v as Page)}
+                                    />
+                                </Stack>
+
+                                {page == "projects" && (
+                                    <ProjectsList />
+                                )}
+
+                                {page == "about" && (
+                                    <About />
+                                )}
+
+                                {page == "blog" && (
+                                    <BlogPage />
+                                )}
+                                
+                                <Space h="30vh" />
+                            </Stack>
+                        )}
+                    </Container>
+                </ScrollArea>
+            </Box>
 
             <Box
                 style={{
@@ -48,38 +94,6 @@ const App = () => {
                         draggable={false}
                     />
                 </Tooltip>
-            </Box>
-
-            {/* Desktop */}
-            <SimpleGrid cols={2} w="100%" visibleFrom="md">
-                <ScrollArea
-                    id="scroller-1"
-                    h="100vh"
-                    offsetScrollbars
-                    className="scrollbarOnLeft"
-                >
-                    {!mili && <Hero />}
-                </ScrollArea>
-                <ScrollArea
-                    id="scroller-2"
-                    h="100vh"
-                    offsetScrollbars
-                >
-                    <ProjectsList />
-                </ScrollArea>
-            </SimpleGrid>
-            
-            {/* Mobile */}
-            <Box hiddenFrom="md">
-                <ScrollArea
-                    id="scroller-mobileglobal"
-                    h="100vh"
-                    offsetScrollbars
-                >
-                    {!mili && <Hero />}
-                    {mili && <Box h="100vh" />}
-                    <ProjectsList />
-                </ScrollArea>
             </Box>
         </Stack>
     )

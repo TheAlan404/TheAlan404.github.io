@@ -17,3 +17,7 @@ export type ProjectButton = { type: "website"; url: string; text?: string; } |
     { type: "docs"; url: string; } |
     { type: "repo"; repo: string; };
 
+export interface Coord {
+    x: number;
+    y: number;
+}

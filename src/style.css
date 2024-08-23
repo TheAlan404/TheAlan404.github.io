@@ -7,6 +7,10 @@ body[data-starry=true] {
         radial-gradient(circle at 50% -20%, #7d1f4b, transparent 30%);
 }
 
+.mantine-Tooltip-root {
+    overflow: clip;
+}
+
 @font-face {
     font-family: "Lexend-VariableFont";
     src:
@@ -23,6 +27,16 @@ body[data-starry=true] {
     height: 100vh;
     position: fixed;
     z-index: 999;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+}
+
+.starry-canvas {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: -999;
     left: 0;
     top: 0;
     pointer-events: none;
@@ -65,6 +79,13 @@ body[data-starry=true] {
     animation: rainbow 5s ease infinite;
 }
 
+.transText {
+    background-image: repeating-linear-gradient(to right, #26c6da, #f48fb1, #eeeeee, #f48fb1, #26c6da);
+    text-align: center;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 @keyframes rainbow {
     0% {
         background-position: 0% 50%
@@ -87,4 +108,8 @@ body[data-starry=true] {
     100% {
         top: "-300%",
     }
+}
+
+.mantine-Accordion-content {
+    padding: 0px;
 }

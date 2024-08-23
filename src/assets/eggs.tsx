@@ -1,6 +1,6 @@
 import { Box, Code, Group, Image, Loader, Text, Tooltip } from "@mantine/core";
-import { ImageWithLoader } from "../components/ImageWithLoader";
-import { Link } from "../components/Link";
+import { ImageWithLoader } from "../components/misc/ImageWithLoader";
+import { Link } from "../components/misc/Link";
 
 export const Eggs: React.FC[] = [
     () => (

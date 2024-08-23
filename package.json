@@ -1,9 +1,10 @@
 {
   "name": "deniz.blue",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "",
   "main": "index.js",
   "homepage": "https://deniz.blue",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -13,21 +14,26 @@
   "author": "github:TheAlan404",
   "license": "ISC",
   "dependencies": {
-    "@mantine/core": "^7.9.2",
-    "@mantine/form": "^7.9.2",
-    "@mantine/hooks": "^7.9.2",
+    "@alan404/enum": "^0.1.0",
+    "@mantine/carousel": "^7.12.1",
+    "@mantine/core": "^7.12.1",
+    "@mantine/form": "^7.12.1",
+    "@mantine/hooks": "^7.12.1",
     "@mantinex/mantine-logo": "^1.0.1",
+    "@mdx-js/rollup": "^3.0.1",
     "@tabler/icons-react": "^2.47.0",
+    "embla-carousel-react": "7.1.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "vite-tsconfig-paths": "^5.0.1"
   },
   "devDependencies": {
-    "@types/react": "^18.3.2",
-    "@vitejs/plugin-react": "^4.3.0",
-    "postcss": "^8.4.38",
-    "postcss-preset-mantine": "^1.15.0",
+    "@types/react": "^18.3.3",
+    "@vitejs/plugin-react": "^4.3.1",
+    "postcss": "^8.4.41",
+    "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
-    "vite": "^5.2.11"
+    "vite": "^5.4.0"
   },
   "browserslist": {
     "production": [
