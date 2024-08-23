@@ -5,7 +5,12 @@ const URL = "https://skyrina.dev";
 
 export const FriendSkyrina = () => {
     return (
-        <Tooltip label="skyrina.dev">
+        <Tooltip label={
+            <Stack align="center">
+                <img src="/img/other/skylar-yamero.gif" alt="skylar doing the internet yamero dance, drawn by kurbii" style={{ height: '160px', imageRendering: 'pixelated' }} />
+                <Text>skyrina.dev</Text>
+            </Stack>
+        }>
             <Box
                 w="100%"
                 h="100%"
