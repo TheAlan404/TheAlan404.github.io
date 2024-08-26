@@ -50,14 +50,13 @@ export const App = () => {
                     id="scroller-global"
                     h="100vh"
                     w="100vw"
-                    offsetScrollbars
+                    offsetScrollbars="y"
                 >
                     <Container size="sm">
                         {page == "mili" ? (
-                            <>
-                                <GodDrinksJava close={() => setPage("projects")} />
-                                <Box h="100vh" />
-                            </>
+                            <Box h="100vh">
+                                <GodDrinksJava close={() => setPage("about")} />
+                            </Box>
                         ) : (
                             <Stack>
                                 <Header />
@@ -70,6 +69,7 @@ export const App = () => {
                                             { value: "projects", label: "Projects" },
                                             { value: "blog", label: "Blog" },
                                         ]}
+                                        defaultValue={page}
                                         onChange={(v) => {
                                             startTransition(() => {
                                                 setPage(v as Page);

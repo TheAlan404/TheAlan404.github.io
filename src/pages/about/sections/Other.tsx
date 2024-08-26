@@ -9,6 +9,7 @@ import { FriendAthenya } from "../../../components/friends/ath";
 import { FriendAshley } from "../../../components/friends/ashley";
 import { FriendSophia } from "@/src/components/friends/sophia";
 import { Section } from "@/src/components/misc/Section";
+import { FriendSparkles } from "@/src/components/friends/sparkles";
 
 export const Other = () => {
     return (
@@ -38,6 +39,7 @@ export const Other = () => {
                                 <FriendAthenya />,
                                 <FriendAshley />,
                                 <FriendSophia />,
+                                <FriendSparkles />,
                             ].map((el, i) => (
                                 <Paper
                                     key={i}
