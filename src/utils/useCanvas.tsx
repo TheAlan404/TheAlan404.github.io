@@ -5,9 +5,10 @@ import { useRef } from "react";
 export const useCanvas = (
     render: (ctx: CanvasRenderingContext2D, dt: number) => void,
     deps: React.DependencyList,
+    fps: number = 60,
 ) => {
     let ref = useRef<HTMLCanvasElement>(null);
-    let lastDraw = useRef(Date.now());
+    let lastDraw = useRef(performance.now());
 
     useEffect(() => {
         if(!ref.current) return;
@@ -28,17 +29,17 @@ export const useCanvas = (
         let ctx = ref.current.getContext("2d");
         if (!ctx) return;
 
-        const perfectFrameTime = 1000 / 60;
+        const perfectFrameTime = 1000 / fps;
         const renderer: FrameRequestCallback = (timestamp) => {
-            frame = requestAnimationFrame(renderer);
             let deltaTime = (timestamp - lastDraw.current) / perfectFrameTime;
             lastDraw.current = timestamp;
-
+            
             ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-            render(ctx, Math.min(deltaTime, 5));
+            render(ctx, Math.min(deltaTime, perfectFrameTime * fps));
+            frame = requestAnimationFrame(renderer);
         }
 
-        requestAnimationFrame(renderer);
+        frame = requestAnimationFrame(renderer);
 
         return () => {
             cancelAnimationFrame(frame);

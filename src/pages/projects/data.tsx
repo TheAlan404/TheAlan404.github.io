@@ -199,7 +199,7 @@ const nbsjs: Project = {
 };
 
 const DSharpPlusPaginatedSelects: Project = {
-    name: "DSharpPlus.PaginatedSelects",
+    name: "PaginatedSelects",
     status: "abandoned",
     content: (
         <Stack>

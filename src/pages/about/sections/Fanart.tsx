@@ -4,6 +4,7 @@ import { Carousel, Embla } from "@mantine/carousel"
 import { Anchor, Group, Image, Paper, Stack, Text } from "@mantine/core"
 import { Link } from "@/src/components/misc/Link"
 import { useEffect, useState } from "react"
+import { Section } from "@/src/components/misc/Section"
 
 const arts: [string, JSX.Element][] = [
     ["/img/me/dennis_ka.png", (
@@ -103,7 +104,7 @@ export const Fanart = () => {
             title="Fanart"
             icon={<IconBrush />}
         >
-            <Paper p="sm">
+            <Section>
                 <Text ta="center">Here's some fanarts/commissions of my character</Text>
 
                 <Carousel
@@ -137,7 +138,7 @@ export const Fanart = () => {
                         </Carousel.Slide>
                     ))}
                 </Carousel>
-            </Paper>
+            </Section>
         </AboutSection>
     )
 }

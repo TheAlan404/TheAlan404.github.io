@@ -7,10 +7,6 @@ body[data-starry=true] {
         radial-gradient(circle at 50% -20%, #7d1f4b, transparent 30%);
 }
 
-.mantine-Tooltip-root {
-    overflow: clip;
-}
-
 @font-face {
     font-family: "Lexend-VariableFont";
     src:
@@ -18,8 +14,21 @@ body[data-starry=true] {
         url("/fonts/Lexend-VariableFont_wght.ttf");
 }
 
+.mantine-Tooltip-root {
+    overflow: clip;
+}
+
 .hoverable:hover {
-    background-color: var(--mantine-color-dark-6);
+    background-color: #25262b88;
+}
+
+.mantine-Accordion-content {
+    padding: 0px;
+}
+
+.mantine-Paper-root {
+    background-color: #1A1B1E88;
+    backdrop-filter: blur(1px);
 }
 
 .weatherCanvas {
@@ -108,8 +117,4 @@ body[data-starry=true] {
     100% {
         top: "-300%",
     }
-}
-
-.mantine-Accordion-content {
-    padding: 0px;
 }

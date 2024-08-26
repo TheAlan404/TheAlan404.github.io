@@ -32,8 +32,8 @@ export const DiscordSection = () => {
                     <Text c="dimmed" fz="xs">(custom implementation)</Text>
                 </Stack> */}
                 <Stack gap={0} ta="start">
-                    <Text c="dimmed" fs="italic">oneko is at the vet</Text>
-                    <Text c="dimmed" fz="xs">(she'll be back soon:tm:)</Text>
+                    <Text c="dimmed" fs="italic">oneko is on her way back</Text>
+                    <Text c="dimmed" fz="xs">(she'll be back VERY soon:tm:)</Text>
                 </Stack>
             </Group>
             <Group ta="end" justify="end" w={{ base: "100%", sm: "auto" }}>

@@ -7,6 +7,7 @@ import { IconBrandReact } from "@tabler/icons-react"
 import { IconBrandGithub } from "@tabler/icons-react"
 import { Link } from "@/src/components/misc/Link"
 import { MantineLogo } from "@mantinex/mantine-logo"
+import { Section } from "@/src/components/misc/Section"
 
 export const DeveloperBackground = () => {
     return (
@@ -16,14 +17,14 @@ export const DeveloperBackground = () => {
             icon={<IconDeviceDesktopCode />}
         >
             <Stack>
-                <Paper p="sm">
+                <Section>
                     <Text>
                         I've been writing code for about
                         {" "}
                         <Text span fw="bold">5 years</Text>.
                     </Text>
-                </Paper>
-                <Paper p="sm">
+                </Section>
+                <Section>
                     <Group grow align="start" gap={0} wrap="nowrap">
                         <Stack align="start" ta="start">
                             <Text span fw="bold">
@@ -48,9 +49,9 @@ export const DeveloperBackground = () => {
                             </List>
                         </Stack>
                     </Group>
-                </Paper>
+                </Section>
 
-                <Paper p="sm">
+                <Section>
                     <Stack>
                         <Text>
                             I am an open-source contributor and maintainer. This website and almost all my projects are free and open source
@@ -69,9 +70,9 @@ export const DeveloperBackground = () => {
                             <Text c="dimmed">(I can't live without it.)</Text>
                         </Stack>
                     </Stack>
-                </Paper>
+                </Section>
 
-                <Paper p="sm">
+                <Section>
                     <Stack>
                         <Text>
                             Here's my GitHub activity for some reason:
@@ -86,7 +87,7 @@ export const DeveloperBackground = () => {
                             I am open to work/freelance. please hire me
                         </Text>
                     </Stack>
-                </Paper>
+                </Section>
             </Stack>
         </AboutSection>
     )

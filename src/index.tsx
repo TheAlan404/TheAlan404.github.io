@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import { App } from './App';
 import { MantineProvider, createTheme } from '@mantine/core';
 import { WeatherProvider, WeatherRenderer } from "./features/effects/Weather";
 import { Oneko } from "./features/oneko/Oneko";
@@ -8,7 +8,7 @@ import { OnekoAPIProvider } from "./features/oneko/OnekoAPI";
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import './style.css';
-import { StarryBackground } from "./features/effects/Starry";
+import { StarryBackground } from "./features/effects/StarryBackground";
 
 const theme = createTheme({
     fontFamily: "Lexend-VariableFont",
@@ -45,9 +45,9 @@ root.render(
         <WeatherProvider>
             <OnekoAPIProvider>
                 <WeatherRenderer />
-                {/* <StarryBackground /> */}
+                <StarryBackground />
                 <App />
-                {/* <Oneko /> */}
+                <Oneko />
             </OnekoAPIProvider>
         </WeatherProvider>
     </MantineProvider>

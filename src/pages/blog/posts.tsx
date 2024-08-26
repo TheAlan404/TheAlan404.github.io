@@ -1,14 +1,8 @@
+import { BlogPost } from "./types";
+
 import * as Hello from "@/blog/Hello.mdx"
 import * as Internship from "@/blog/Internship.mdx"
 import * as LibraryEnum from "@/blog/LibraryEnum.mdx"
-
-export interface BlogPost {
-    id: string;
-    title: string;
-    desc: string;
-    date: string;
-    component: React.ComponentType<any>;
-};
 
 export const BlogPosts: BlogPost[] = [
     //LibraryEnum,

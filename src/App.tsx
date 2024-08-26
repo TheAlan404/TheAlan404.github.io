@@ -1,5 +1,5 @@
-import { Stack, Box, ScrollArea, Image, Tooltip, Text, Container, SegmentedControl, Space } from '@mantine/core'
-import { useEffect, useState } from 'react';
+import { Stack, Box, ScrollArea, Image, Tooltip, Text, Container, SegmentedControl, Space, Loader } from '@mantine/core'
+import React, { useEffect, useState, useTransition } from 'react';
 import { ProjectsList } from "./pages/projects/ProjectsList";
 import { GodDrinksJava } from "./features/events/GodDrinksJava";
 import { About } from "./pages/about/About";
@@ -8,8 +8,25 @@ import { BlogPage } from "./pages/blog/BlogPage";
 
 export type Page = "projects" | "mili" | "about" | "blog";
 
-const App = () => {
+export const PageWithLoader = ({ children }: React.PropsWithChildren) => {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => setLoading(false), []);
+
+    return (
+        loading ? (
+            <Stack align="center">
+                <Loader />
+            </Stack>
+        ) : (
+            children
+        )
+    )
+};
+
+export const App = () => {
     const [page, setPage] = useState<Page>("about");
+    const [isPending, startTransition] = useTransition();
 
     useEffect(() => {
         // @ts-ignore
@@ -53,23 +70,37 @@ const App = () => {
                                             { value: "projects", label: "Projects" },
                                             { value: "blog", label: "Blog" },
                                         ]}
-                                        onChange={(v) => setPage(v as Page)}
+                                        onChange={(v) => {
+                                            startTransition(() => {
+                                                setPage(v as Page);
+                                            });
+                                        }}
                                     />
                                 </Stack>
 
-                                {page == "projects" && (
-                                    <ProjectsList />
-                                )}
+                                {isPending ? (
+                                    <Stack align="center" pt="md">
+                                        <Loader />
+                                    </Stack>
+                                ) : (
+                                    <Stack>
+                                        {page == "projects" && (
+                                                <ProjectsList />
+                                        )}
 
-                                {page == "about" && (
-                                    <About />
-                                )}
+                                        {page == "about" && (
+                                                <About />
+                                        )}
 
-                                {page == "blog" && (
-                                    <BlogPage />
+                                        {page == "blog" && (
+                                                <BlogPage />
+                                        )}
+                                    </Stack>
                                 )}
                                 
-                                <Space h="30vh" />
+                                <Stack h="100vh" justify="end">
+                                    <Text>beautiful, isnt it?</Text>
+                                </Stack>
                             </Stack>
                         )}
                     </Container>
@@ -99,4 +130,3 @@ const App = () => {
     )
 }
 
-export default App

@@ -264,7 +264,10 @@ export const WeatherProvider = ({
 
     return (
         <WeatherContext.Provider
-            value={[weather, setWeather]}
+            value={(
+                // [weather, setWeather]
+                [Weather.Starry, () => {}]
+            )}
         >
             {children}
         </WeatherContext.Provider>
@@ -323,8 +326,7 @@ export const WeatherRenderer = () => {
                 <Stack align="end" gap={5}>
                     <Group gap="xs">
                         <MiniClock />
-                        <ActionIcon
-                            disabled={!hasAudio}
+                        {hasAudio && (<ActionIcon
                             onClick={() => setMuted(m => !m)}
                             size="sm"
                             color="dark"
@@ -332,17 +334,17 @@ export const WeatherRenderer = () => {
                         >
                             {muted && <IconVolumeOff />}
                             {!muted && <IconVolume />}
-                        </ActionIcon>
+                        </ActionIcon>)}
                     </Group>
                     <SegmentedControl
                         value={weather}
                         onChange={(v) => setWeather(v as Weather)}
                         data={[
-                            { label: "☀️", value: Weather.Sunny },
-                            { label: "🌧️", value: Weather.Rain },
-                            { label: "❄️", value: Weather.Snow },
-                            { label: "🌸", value: Weather.CherryBlossom },
-                            { label: "✨", value: Weather.Starry },
+                            //{ label: "☀️", value: Weather.Sunny },
+                            //{ label: "🌧️", value: Weather.Rain },
+                            //{ label: "❄️", value: Weather.Snow },
+                            //{ label: "🌸", value: Weather.CherryBlossom },
+                            //{ label: "✨", value: Weather.Starry },
                         ]}
                     />
                 </Stack>

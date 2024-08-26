@@ -8,6 +8,7 @@ import { FriendLiliana } from "../../../components/friends/liliana";
 import { FriendAthenya } from "../../../components/friends/ath";
 import { FriendAshley } from "../../../components/friends/ashley";
 import { FriendSophia } from "@/src/components/friends/sophia";
+import { Section } from "@/src/components/misc/Section";
 
 export const Other = () => {
     return (
@@ -17,7 +18,7 @@ export const Other = () => {
             icon={<IconApps />}
         >
             <Stack>
-                <Paper p="sm" >
+                <Section>
                     <Stack>
                         <Divider
                             w="100%"
@@ -55,9 +56,9 @@ export const Other = () => {
                             these are supposed to be custom elements made by them but uhhh
                         </Text>
                     </Stack>
-                </Paper>
+                </Section>
 
-                <Paper p="sm">
+                <Section>
                     <Stack>
                         <Divider
                             w="100%"
@@ -67,7 +68,7 @@ export const Other = () => {
 
                         <Text c="dimmed">todo!()</Text>
                     </Stack>
-                </Paper>
+                </Section>
             </Stack>
         </AboutSection>
     )

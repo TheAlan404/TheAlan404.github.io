@@ -15,6 +15,7 @@ import { IconBrandHtml5 } from "@tabler/icons-react";
 import { IconBrandCss3 } from "@tabler/icons-react";
 import { IconBrandRust } from "@tabler/icons-react";
 import { Decor } from "../../components/misc/Decor";
+import { Section } from "@/src/components/misc/Section";
 
 const ButtonRender = ({ btn, project }: {
     btn: ProjectButton,
@@ -124,7 +125,7 @@ const TechRenderers: Record<Tech, React.ReactNode> = {
 
 export const ProjectRender = ({ p }: { p: Project }) => {
     return (
-        <Paper
+        <Section
             p="md"
             my="xl"
             withBorder
@@ -145,7 +146,7 @@ export const ProjectRender = ({ p }: { p: Project }) => {
             <Stack>
                 <Group justify="space-between">
                     <Group>
-                        <Title order={3}>{p.name}</Title>
+                        <Title order={4}>{p.name}</Title>
                         <StatusRender status={p.status} />
                     </Group>
                     <Group>
@@ -181,6 +182,6 @@ export const ProjectRender = ({ p }: { p: Project }) => {
                     ))}
                 </Stack>
             </Stack>
-        </Paper>
+        </Section>
     );
 };
