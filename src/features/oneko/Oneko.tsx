@@ -106,7 +106,7 @@ export const Oneko = () => {
     const [speak, setSpeak] = useState("");
     const ref = useRef<HTMLDivElement>(null);
     let sayTimeoutRef = useRef<number | null>();
-    const backgroundImage = "url(/img/cats/oneko-classic.gif)";
+    const backgroundImage = "url(/assets/img/cats/oneko-classic.gif)";
 
     const say = (s: string, keep = false) => {
         setSpeak(s);
@@ -254,7 +254,7 @@ export const Oneko = () => {
 
         const onNekoRightClick = (e: MouseEvent) => {
             e.preventDefault();
-            new Audio(`/audio/meows/sophia/${randInt(3)}.mp3`).play();
+            new Audio(`/assets/audio/meows/sophia/${randInt(3)}.mp3`).play();
             say(randArr([
                 "meoww",
                 "mrow~!",

@@ -30,7 +30,7 @@ const KuirBlog: Project = {
 const NekoTube: Project = {
     name: "NekoTube",
     status: "wip",
-    img: "/img/proj/nekotube.png",
+    img: "/assets/img/proj/nekotube.png",
     desc: "an alternative YouTube video player",
     buttons: [
         { type: "website", url: Subdomain("tube") },
@@ -51,7 +51,7 @@ const ZilTek: Project = {
             <Text>
                 The school bell app with multilanguage support.
             </Text>
-            <Image src="/img/proj/ziltekscreenshot.png" />
+            <Image src="/assets/img/proj/ziltekscreenshot.png" />
         </Stack>
     ),
     tech: ["ts", "react", "vite", "nodejs"],
@@ -77,7 +77,7 @@ const OAALMUN: Project = {
         { type: "website", url: "https://mun.oaal.com.tr", text: "View OAALMUN" }
     ],
     desc: "MUN (Model United Nations) website for my school",
-    img: "/img/proj/oaalmun.png",
+    img: "/assets/img/proj/oaalmun.png",
     tech: ["js", "ts", "react", "vite"],
 };
 
@@ -91,7 +91,7 @@ const Carpanga: Project = {
     content: (
         <Stack>
             <Text>A short mathematical strategy game, now in multilanguage!</Text>
-            <Image src="/img/proj/carpanga.png" />
+            <Image src="/assets/img/proj/carpanga.png" />
         </Stack>
     ),
     tech: ["ts", "react", "vite"],
@@ -101,7 +101,7 @@ const WantYouGone: Project = {
     name: "Want You Gone",
     status: "done",
     desc: "Portal 2 ending credits song animation recreated using (very bad) HTML",
-    img: "/img/proj/wantyougone.png",
+    img: "/assets/img/proj/wantyougone.png",
     buttons: [
         { type: "website", url: Pages("want-you-gone") },
         { type: "repo", repo: "TheAlan404/want-you-gone" },
@@ -155,7 +155,7 @@ const DenVis: Project = {
             <Text>A simple Windows Audio Visualizer with some extra features such as snow.</Text>
 
             <Image
-                src="/img/proj/denvis.png"
+                src="/assets/img/proj/denvis.png"
                 bd="1px white"
             />
         </Stack>

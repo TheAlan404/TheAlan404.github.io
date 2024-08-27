@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 import { Section } from "@/src/components/misc/Section"
 
 const arts: [string, JSX.Element][] = [
-    ["/img/me/dennis_ka.png", (
+    ["/assets/img/me/dennis_ka.png", (
         <Group gap="sm">
             <Text>drawn by</Text>
             <Anchor
@@ -19,7 +19,7 @@ const arts: [string, JSX.Element][] = [
             <IconHeart color="var(--mantine-color-red-filled)" />
         </Group>
     )],
-    ["/img/me/dennis_annatony.png", (
+    ["/assets/img/me/dennis_annatony.png", (
         <Group gap="sm">
             <Text>drawn by</Text>
             <Anchor
@@ -31,7 +31,7 @@ const arts: [string, JSX.Element][] = [
             <IconHeart color="var(--mantine-color-red-filled)" />
         </Group>
     )],
-    ["/img/me/dennis_meka.png", (
+    ["/assets/img/me/dennis_meka.png", (
         <Group gap="sm">
             <Text>drawn by my friend</Text>
             <Anchor
@@ -43,7 +43,7 @@ const arts: [string, JSX.Element][] = [
             <IconSparkles color="var(--mantine-color-yellow-filled)" />
         </Group>
     )],
-    ["/img/me/dennis_sophia_ka.png", (
+    ["/assets/img/me/dennis_sophia_ka.png", (
         <Stack gap={0} ta="center" align="center">
             <Group gap={0}>
                 me and <Link text="Sophia" url="https://avigail.me" color="pink" />
@@ -59,7 +59,7 @@ const arts: [string, JSX.Element][] = [
             </Group>
         </Stack>
     )],
-    ["/img/me/warren_polycule.png", (
+    ["/assets/img/me/warren_polycule.png", (
         <Stack gap={0} ta="center" align="center">
             <Group>
                 <Text>
@@ -77,7 +77,7 @@ const arts: [string, JSX.Element][] = [
             </Group>
         </Stack>
     )],
-    ["/img/me/dennis_yk.png", (
+    ["/assets/img/me/dennis_yk.png", (
         <Group gap="sm">
             <Text>drawn by</Text>
             <Anchor

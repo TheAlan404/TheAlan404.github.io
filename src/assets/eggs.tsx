@@ -20,7 +20,7 @@ export const Eggs: React.FC[] = [
                     events={{ hover: true, focus: false, touch: true }}
                     label={(
                         <ImageWithLoader
-                            src={`/img/cuties/${qt}.png`}
+                            src={`/assets/img/cuties/${qt}.png`}
                             w="5em"
                             h="5em"
                             fallbackSrc="https://placehold.co/200x200?text=loading%20cutie"

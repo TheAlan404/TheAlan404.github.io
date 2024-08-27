@@ -7,7 +7,7 @@ const URL = "";
 export const FriendLiliana = () => {
     return (
         <StockFriendRenderer
-            image="/img/other/liliana.png"
+            image="/assets/img/other/liliana.png"
             tooltip="parlesgosa.design"
             url="https://parlesgosa.design"
         >

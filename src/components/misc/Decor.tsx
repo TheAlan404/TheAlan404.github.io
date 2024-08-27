@@ -21,7 +21,7 @@ export const Decor = ({
                         ...style,
                         position: "absolute"
                     }}
-                    src={`/img/cats/${img}`}
+                    src={`/assets/img/cats/${img}`}
                 />
             </Tooltip>
         </Box>

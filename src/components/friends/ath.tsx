@@ -5,7 +5,7 @@ import { StockFriendRenderer } from "./default";
 export const FriendAthenya = () => {
     return (
         <StockFriendRenderer
-            image="/img/other/ath.png"
+            image="/assets/img/other/ath.png"
             tooltip="^C/~ath"
             url="https://ctrl-c.club/~ath/"
         >

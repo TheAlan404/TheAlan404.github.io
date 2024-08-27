@@ -32,6 +32,11 @@ export const vecDiv = (a: Coord, b: Coord): Coord => ({
 
 export const vec = (x: number, y: number): Coord => ({ x, y });
 
+export const vecFloor = ({ x, y }: Coord): Coord => ({
+    x: Math.floor(x),
+    y: Math.floor(y),
+});
+
 export const vecIsZero = (v: Coord) => v.x == 0 && v.y == 0;
 export const vecTup = (v: number): Coord => ({ x: v, y: v });
 

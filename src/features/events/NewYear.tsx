@@ -13,7 +13,7 @@ export const NewYearEvent = ({
     let [hour, setHour] = useState("");
     let [min, setMin] = useState("");
     let [sec, setSec] = useState("");
-    let ref = useRef(new Audio("/audio/events/Opus.mp4"));
+    let ref = useRef(new Audio("/assets/audio/events/Opus.mp4"));
 
     useEffect(() => {
         let int = setInterval(() => {
@@ -21,11 +21,11 @@ export const NewYearEvent = ({
             setIsNewYear(past);
 
             let diff = Math.round((Math.abs(new Date().getTime() - playOn.getTime())) / 1000);
-            setHour(Math.round(diff / (60*60)));
-            setMin(Math.round(diff / 60) % 60);
-            setSec(diff % 60);
+            setHour(Math.round(diff / (60*60)).toString());
+            setMin((Math.round(diff / 60) % 60).toString());
+            setSec((diff % 60).toString());
             if(past) {
-                setHour(new Date().getHours());
+                setHour(new Date().getHours().toString());
             } else {
 
                 if((playOn.getTime()-(PLAY_OFFSET_SECONDS*1000)-1000) < new Date().getTime()) {
@@ -70,7 +70,7 @@ export const NewYearEvent = ({
 
                         let formatter = new Intl.RelativeTimeFormat();
                         let f = automaticRelativeDifference(d);
-                        return formatter.format(f.duration, f.unit);
+                        return formatter.format(f.duration, f.unit as any);
                     })()}</Text>
                 )}
                 <Space h="xl" />

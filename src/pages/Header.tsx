@@ -10,7 +10,7 @@ export const Header = () => {
                         "made by @kiwi_asli on Instagram"
                     )} position="left">
                         <Avatar
-                            src="/img/me/dennis_ka_pfp.png"
+                            src="/assets/img/me/dennis_ka_pfp.png"
                             size="lg"
                             draggable={false}
                             style={{ userSelect: "none" }}

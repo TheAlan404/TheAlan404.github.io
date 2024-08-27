@@ -54,7 +54,7 @@ const config: Record<Weather, WeatherSystem & Record<string, any>> = {
         opacity: 0.3,
         sprites: new Array(12).fill(1).map((_, i) => {
             let img = new Image();
-            img.src = `/img/detail/cherry/cherry_${i}.png`;
+            img.src = `/assets/img/detail/cherry/cherry_${i}.png`;
             return img;
         }),
 
@@ -135,7 +135,7 @@ const config: Record<Weather, WeatherSystem & Record<string, any>> = {
     snow: {
         amount: 0.1,
         opacity: 0.2,
-        //audio: "/audio/LittleDrummerGirl.mp3",
+        //audio: "/assets/audio/LittleDrummerGirl.mp3",
         colors: [
             "#AAAACC",
             "#DDDDFF",
@@ -192,7 +192,7 @@ const config: Record<Weather, WeatherSystem & Record<string, any>> = {
     },
     rain: {
         amount: 0.3,
-        audio: "/audio/weather/rain2.mp3",
+        audio: "/assets/audio/weather/rain2.mp3",
         opacity: 0.5,
         colors: [
             "#0000FF",
@@ -319,7 +319,7 @@ export const WeatherRenderer = () => {
     return (
         <Box className="weatherRoot">
             <canvas
-                className="weatherCanvas"
+                className="pageForeground"
                 ref={ref}
             />
             <Affix p="md" zIndex={300}>

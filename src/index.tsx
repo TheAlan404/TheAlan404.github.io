@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
-import { MantineProvider, createTheme } from '@mantine/core';
+import { DEFAULT_THEME, MantineProvider, createTheme } from '@mantine/core';
 import { WeatherProvider, WeatherRenderer } from "./features/effects/Weather";
 import { Oneko } from "./features/oneko/Oneko";
 import { OnekoAPIProvider } from "./features/oneko/OnekoAPI";
@@ -9,9 +9,10 @@ import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import './style.css';
 import { StarryBackground } from "./features/effects/StarryBackground";
+import { ParallaxMist } from "./features/effects/ParallaxMist";
 
 const theme = createTheme({
-    fontFamily: "Lexend-VariableFont",
+    fontFamily: "Lexend-VariableFont, " + DEFAULT_THEME.fontFamily,
     primaryColor: "violet",
     colors: {
         dark: [
@@ -44,7 +45,7 @@ root.render(
     <MantineProvider theme={theme} defaultColorScheme='dark'>
         <WeatherProvider>
             <OnekoAPIProvider>
-                <WeatherRenderer />
+                <ParallaxMist />
                 <StarryBackground />
                 <App />
                 <Oneko />

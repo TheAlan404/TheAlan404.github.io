@@ -6,7 +6,7 @@ export const FriendSkyrina = () => {
     return (
         <Tooltip label={
             <Stack align="center">
-                <img src="/img/other/skylar-yamero.gif" alt="skylar doing the internet yamero dance, drawn by kurbii" style={{ height: '160px', imageRendering: 'pixelated' }} />
+                <img src="/assets/img/other/skylar-yamero.gif" alt="skylar doing the internet yamero dance, drawn by kurbii" style={{ height: '160px', imageRendering: 'pixelated' }} />
                 <Text>skyrina.dev</Text>
             </Stack>
         }>
@@ -22,7 +22,7 @@ export const FriendSkyrina = () => {
                 <BackgroundImage
                     w="100%"
                     h="100%"
-                    src="/img/other/skylar.png"
+                    src="/assets/img/other/skylar.png"
                     className="hoverbgimg"
                 >
                     <Stack h="100%" align="center" justify="center">

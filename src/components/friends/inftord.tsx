@@ -5,7 +5,7 @@ import { StockFriendRenderer } from "./default";
 export const FriendInftord = () => {
     return (
         <StockFriendRenderer
-            image="/img/other/inftord.png"
+            image="/assets/img/other/inftord.png"
             tooltip="inftord.tech"
             url="https://inftord.tech"
         >

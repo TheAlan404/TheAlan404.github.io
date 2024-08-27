@@ -8,22 +8,6 @@ import { BlogPage } from "./pages/blog/BlogPage";
 
 export type Page = "projects" | "mili" | "about" | "blog";
 
-export const PageWithLoader = ({ children }: React.PropsWithChildren) => {
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => setLoading(false), []);
-
-    return (
-        loading ? (
-            <Stack align="center">
-                <Loader />
-            </Stack>
-        ) : (
-            children
-        )
-    )
-};
-
 export const App = () => {
     const [page, setPage] = useState<Page>("about");
     const [isPending, startTransition] = useTransition();
@@ -40,72 +24,66 @@ export const App = () => {
     }, []);
 
     return (
-        <Stack
-            align='center'
-            style={{ textAlign: "center" }}
-            className="app">
-            
-            <Box>
-                <ScrollArea
-                    id="scroller-global"
-                    h="100vh"
-                    w="100vw"
-                    offsetScrollbars="y"
-                >
-                    <Container size="sm">
-                        {page == "mili" ? (
-                            <Box h="100vh">
-                                <GodDrinksJava close={() => setPage("about")} />
-                            </Box>
+        <ScrollArea
+            id="scroller-global"
+            className="app"
+            h="100vh"
+            w="100vw"
+            offsetScrollbars="y"
+            ta="center"
+        >
+            <Container size="sm">
+                {page == "mili" ? (
+                    <Box h="100vh">
+                        <GodDrinksJava close={() => setPage("about")} />
+                    </Box>
+                ) : (
+                    <Stack>
+                        <Header />
+
+                        <Stack gap={0}>
+                            <SegmentedControl
+                                fullWidth
+                                data={[
+                                    { value: "about", label: "About" },
+                                    { value: "projects", label: "Projects" },
+                                    { value: "blog", label: "Blog" },
+                                ]}
+                                defaultValue={page}
+                                onChange={(v) => {
+                                    startTransition(() => {
+                                        setPage(v as Page);
+                                    });
+                                }}
+                            />
+                        </Stack>
+
+                        {isPending ? (
+                            <Stack align="center" pt="md">
+                                <Loader />
+                            </Stack>
                         ) : (
                             <Stack>
-                                <Header />
-
-                                <Stack gap={0}>
-                                    <SegmentedControl
-                                        fullWidth
-                                        data={[
-                                            { value: "about", label: "About" },
-                                            { value: "projects", label: "Projects" },
-                                            { value: "blog", label: "Blog" },
-                                        ]}
-                                        defaultValue={page}
-                                        onChange={(v) => {
-                                            startTransition(() => {
-                                                setPage(v as Page);
-                                            });
-                                        }}
-                                    />
-                                </Stack>
-
-                                {isPending ? (
-                                    <Stack align="center" pt="md">
-                                        <Loader />
-                                    </Stack>
-                                ) : (
-                                    <Stack>
-                                        {page == "projects" && (
-                                                <ProjectsList />
-                                        )}
-
-                                        {page == "about" && (
-                                                <About />
-                                        )}
-
-                                        {page == "blog" && (
-                                                <BlogPage />
-                                        )}
-                                    </Stack>
+                                {page == "projects" && (
+                                    <ProjectsList />
                                 )}
-                                
-                                <Stack h="100vh" justify="end">
-                                    <Text>beautiful, isnt it?</Text>
-                                </Stack>
+
+                                {page == "about" && (
+                                    <About />
+                                )}
+
+                                {page == "blog" && (
+                                    <BlogPage />
+                                )}
                             </Stack>
                         )}
-                    </Container>
-                </ScrollArea>
-            </Box>
+
+                        <Stack h="100vh" justify="end">
+                            <Text>beautiful, isnt it?</Text>
+                        </Stack>
+                    </Stack>
+                )}
+            </Container>
 
             <Box
                 style={{
@@ -121,12 +99,12 @@ export const App = () => {
                     <Text fz={10}>:3</Text>
                 )} withArrow>
                     <Image
-                        src="/img/cats/kuylars.png"
+                        src="/assets/img/cats/kuylars.png"
                         draggable={false}
                     />
                 </Tooltip>
             </Box>
-        </Stack>
+        </ScrollArea>
     )
 }
 

@@ -5,10 +5,12 @@ import { Weather, WeatherContext } from "./Weather";
 import { choose, clamp, lerp, randArr, randFloat, randInt, vec, vecAdd, vecDiv, vecMul, vecSafeNormalize, vecSub, vecTup } from "@/src/utils/utils";
 import { useHotkeys } from "@mantine/hooks";
 import { memoize, parseColor, toRgba } from "@mantine/core";
+import { useAppScroll } from "@/src/utils/useAppScroll";
+import { textureWithColor, useIsTextureStoreReady } from "@/src/utils/textureWithColor";
 
 const Textures: HTMLImageElement[] = (Array(4).fill(0).map((_, i) => {
     let img = new Image();
-    img.src = `/img/detail/starfield/0${i}.png`;
+    img.src = `/assets/img/detail/starfield/0${i}.png`;
     return img;
 }));
 
@@ -122,32 +124,8 @@ const renderStar = ({
 
     let { x, y } = position2;
     ctx.globalAlpha = star.Opacity;
-    ctx.drawImage(textureWithColor(star.Texture, color), x - 8, y - 8, 16, 16);
+    ctx.drawImage(textureWithColor(Textures, star.Texture, color), x - 8, y - 8, 16, 16);
 };
-
-const textureWithColor = memoize((index: number, color: string) => {
-    const texture = Textures[index];
-    let { r, g, b } = toRgba(color);
-
-    const offscreen = new OffscreenCanvas(texture.width, texture.height);
-    const ctx = offscreen.getContext("2d");
-
-    if(!ctx) return texture;
-
-    ctx.drawImage(texture, 0, 0);
-
-    const imageData = ctx.getImageData(0, 0, texture.width, texture.height);
-
-    for (let i = 0; i < imageData.data.length; i += 4) {
-        imageData.data[i + 0] *= r/255;
-        imageData.data[i + 1] *= g/255;
-        imageData.data[i + 2] *= b/255;
-    }
-
-    ctx.putImageData(imageData, 0, 0);
-
-    return offscreen;
-});
 
 const updateStar = (config: StarfieldConfig, star: Star, dt: number = 1) => {
     star.Sine += dt * config.flowSpeed;
@@ -198,33 +176,15 @@ const createStarfields = (x: Partial<StarfieldConfig>) => [
 
 export const StarryBackground = () => {
     let starfields = useRef<Starfield[]>([]);
-    let isLoaded = useRef(false);
-
-    Promise.all(Textures.map(img => new Promise<void>(res => {
-        if (img.complete) return res();
-        img.onload = () => res();
-    }))).then(() => {
-        isLoaded.current = true;
-    });
+    let isLoaded = useIsTextureStoreReady(Textures);
 
     useHotkeys([["s", () => starfields.current = []]]);
 
-    useEffect(() => {
-        let el = document.querySelector(".mantine-ScrollArea-viewport") as HTMLElement | null;
-        if(!el) return;
-
-        const onScroll = () => {
-            for(let starfield of starfields.current) {
-                starfield.config.position.y = el.scrollTop;
-            }
-        };
-
-        el.addEventListener("scroll", onScroll);
-        
-        return () => {
-            el.removeEventListener("scroll", onScroll);
-        };
-    }, []);
+    useAppScroll((scrollTop) => {
+        for(let starfield of starfields.current) {
+            starfield.config.position.y = scrollTop;
+        }
+    });
 
     let ref = useCanvas((ctx, dt) => {
         if(!ctx.canvas.width || !ctx.canvas.height) return console.log("wh zero");
@@ -265,7 +225,7 @@ export const StarryBackground = () => {
 
     return (
         <canvas
-            className="starry-canvas"
+            className="pageBackground"
             ref={ref}
         />
     )

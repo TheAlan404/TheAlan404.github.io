@@ -4,7 +4,7 @@ import { StockFriendRenderer } from "./default";
 export const FriendSparkles = () => {
     return (
         <StockFriendRenderer
-            image="/img/other/sparkles.jpg"
+            image="/assets/img/other/sparkles.jpg"
             tooltip="namsis.gayest.systems"
             url="https://namsis.gayest.systems/"
         >

@@ -5,7 +5,7 @@ import { StockFriendRenderer } from "./default";
 export const FriendKuylar = () => {
     return (
         <StockFriendRenderer
-            image="/img/other/kuylar.png"
+            image="/assets/img/other/kuylar.png"
             tooltip="kuylar.dev"
             url="https://kuylar.dev"
         >

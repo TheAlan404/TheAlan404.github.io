@@ -40,9 +40,9 @@ export const OnekoInitialPosition = () => {
                 userSelect: "none",
             }}
         >
-            {(weather == Weather.Rain || weather == Weather.Snow) && (
+            {/*(weather == Weather.Rain || weather == Weather.Snow) && (
                 <Image
-                    src="/img/cats/umbrella2.webp"
+                    src="/assets/img/cats/umbrella2.webp"
                     draggable={false}
                     style={{
                         left: "1em",
@@ -53,7 +53,7 @@ export const OnekoInitialPosition = () => {
                         userSelect: "none",
                     }}
                 />
-            )}
+            )*/}
         </span>
     )
 }

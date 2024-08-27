@@ -74,7 +74,7 @@ export const Hero = () => {
                             <Text>I'm from</Text>
                             {" "}
                             <Image
-                                src="/img/ico/flag_tr.svg"
+                                src="/assets/img/ico/flag_tr.svg"
                                 w="1.2em"
                                 h="1.2em"
                             />
