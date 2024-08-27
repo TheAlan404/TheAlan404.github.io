@@ -64,10 +64,10 @@ export const ParallaxMist = () => {
         if (!isLoaded.current) return;
 
         for (let mist of mists.current) {
-            updateMist(mist, dt);
+            updateMist(mist, dt * 0.05);
             renderMist(ctx, mist, { x: 0, y: scrollTop.current });
         }
-    }, [], 5);
+    }, []);
 
     useAppScroll((y) => {
         scrollTop.current = y;
