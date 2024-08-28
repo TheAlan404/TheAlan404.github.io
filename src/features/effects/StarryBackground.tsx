@@ -6,7 +6,7 @@ import { choose, clamp, lerp, randArr, randFloat, randInt, vec, vecAdd, vecDiv, 
 import { useHotkeys } from "@mantine/hooks";
 import { memoize, parseColor, toRgba } from "@mantine/core";
 import { useAppScroll } from "@/src/utils/useAppScroll";
-import { textureWithColor, useIsTextureStoreReady } from "@/src/utils/textureWithColor";
+import { allImagesReady, textureWithColor } from "@/src/utils/textureWithColor";
 
 const Textures: HTMLImageElement[] = (Array(4).fill(0).map((_, i) => {
     let img = new Image();
@@ -175,8 +175,11 @@ const createStarfields = (x: Partial<StarfieldConfig>) => [
 ];
 
 export const StarryBackground = () => {
-    let starfields = useRef<Starfield[]>([]);
-    let isLoaded = useIsTextureStoreReady(Textures);
+    const starfields = useRef<Starfield[]>([]);
+    const isReady = useRef(false);
+    allImagesReady(Textures).then(() => {
+        isReady.current = true;
+    });
 
     useHotkeys([["s", () => starfields.current = []]]);
 
@@ -188,7 +191,7 @@ export const StarryBackground = () => {
 
     let ref = useCanvas((ctx, dt) => {
         if(!ctx.canvas.width || !ctx.canvas.height) return console.log("wh zero");
-        if(!isLoaded.current) return;
+        if(!isReady.current) return;
 
         ctx.imageSmoothingEnabled = false;
 

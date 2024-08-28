@@ -1,82 +1,75 @@
 import { Coord } from "@/src/types";
-import { createTextureStore, textureWithColor, useIsTextureStoreReady } from "@/src/utils/textureWithColor";
+import { allImagesReady, createTextureStore, textureWithColorDataURL } from "@/src/utils/textureWithColor";
+import { useAnimationFrame } from "@/src/utils/useAnimationFrame";
 import { useAppScroll } from "@/src/utils/useAppScroll";
-import { useCanvas } from "@/src/utils/useCanvas";
 import { vec, vecAdd, vecFloor, vecMul, vecSub, vecTup } from "@/src/utils/utils";
-import { useEffect, useRef } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 
 const Textures = createTextureStore([
     "/assets/img/detail/mist.png",
-    "/assets/img/detail/sky.png",
 ]);
 
 interface Mist {
     color: string;
     speed: Coord;
     scroll: Coord;
-    pos: Coord;
 }
 
 const createMists = (): Mist[] => [
-    //{ color: "", speed: vec(0, 0), scroll: vec(0, 0), pos: vec(0, 0) },
-    { color: "#7e2168", speed: vec(2, 0), scroll: vec(0.15, 0.15), pos: vec(0, 0) },
-    { color: "#2f7f98", speed: vec(4, 0), scroll: vec(0.2, 0.2), pos: vec(0, 0) },
-    { color: "#000000", speed: vec(16, 8), scroll: vec(0.6, 0.6), pos: vec(0, 0) },
+    { color: "#7e2168", speed: vec(2, 0), scroll: vec(0.15, 0.15) },
+    { color: "#2f7f98", speed: vec(4, 0), scroll: vec(0.2, 0.2) },
+    { color: "#000000", speed: vec(16, 8), scroll: vec(0.6, 0.6) },
 ];
 
-const updateMist = (mist: Mist, dt: number) => {
-    mist.pos = vecAdd(mist.pos, vecMul(mist.speed, vecTup(dt)));
-};
-
-const renderMist = (
-    ctx: CanvasRenderingContext2D,
-    mist: Mist,
-    offset: Coord,
-) => {
-    let vector = vecFloor(vecSub(mist.pos, vecMul(vecFloor(offset), mist.scroll)));
-    let tex = !mist.color.length ? Textures[1] : textureWithColor(Textures, 0, mist.color);
-
-    while (vector.x < 0)
-        vector.x += tex.width;
-
-    while (vector.x > 0)
-        vector.x -= tex.width;
-
-    while (vector.y < 0)
-        vector.y += tex.height;
-
-    while (vector.y > 0)
-        vector.y -= tex.height;
-
-    for (let x = vector.x; x < ctx.canvas.width; x += tex.width) {
-        for (let y = vector.y; y < ctx.canvas.height; y += tex.height) {
-            ctx.drawImage(tex, x, y);
-        }
-    }
-};
-
 export const ParallaxMist = () => {
-    const mists = useRef(createMists());
     const scrollTop = useRef(0);
-    let isLoaded = useIsTextureStoreReady(Textures);
+    const [isReady, setIsReady] = useState(false);
 
-    const ref = useCanvas((ctx, dt) => {
-        if (!isLoaded.current) return;
-
-        for (let mist of mists.current) {
-            updateMist(mist, dt * 0.05);
-            renderMist(ctx, mist, { x: 0, y: scrollTop.current });
-        }
-    }, []);
+    if(!isReady) allImagesReady(Textures).then(() => setIsReady(true));
 
     useAppScroll((y) => {
         scrollTop.current = y;
     });
 
+    if(!isReady) return;
+
     return (
-        <canvas
-            className="pageBackground"
-            ref={ref}
-        />
+        createMists().map((mist, i) => (
+            <Mist
+                mist={mist}
+                scrollTop={scrollTop}
+                key={i}
+            />
+        ))
     )
+};
+
+const Mist = ({
+    mist,
+    scrollTop,
+}: {
+    mist: Mist;
+    scrollTop: MutableRefObject<number>;
+}) => {
+    const ref = useRef<HTMLDivElement | null>(null);
+    const pos = useRef<Coord>(vec(0, 0));
+
+    useAnimationFrame((dt) => {
+        if(!ref.current) return;
+
+        pos.current = vecAdd(pos.current, vecMul(mist.speed, vecTup(dt)));
+        ref.current.style.backgroundPosition = `${pos.current.x}px ${pos.current.y - scrollTop.current * mist.scroll.y}px`;
+    }, { fps: 5 });
+
+    let url = textureWithColorDataURL(Textures, 0, mist.color);
+
+    return (
+        <div
+            ref={ref}
+            className="pageBackground mist"
+            style={{
+                backgroundImage: `url("${url}")`,
+            }}
+        />
+    );
 };

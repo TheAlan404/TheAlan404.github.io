@@ -1,19 +1,24 @@
 import { useWindowEvent } from "@mantine/hooks";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { useAnimationFrame } from "./useAnimationFrame";
 
 export const useCanvas = (
     render: (ctx: CanvasRenderingContext2D, dt: number) => void,
     deps: React.DependencyList,
     fps: number = 60,
 ) => {
-    let ref = useRef<HTMLCanvasElement>(null);
-    let lastDraw = useRef(performance.now());
+    let ref = useRef<HTMLCanvasElement | null>(null);
+    let ctx = useRef<CanvasRenderingContext2D | null>(null);
 
     useEffect(() => {
         if(!ref.current) return;
         ref.current.width = ref.current.clientWidth;
         ref.current.height = ref.current.clientHeight;
+        ctx.current = ref.current.getContext("2d");
+        return () => {
+            ctx.current = null;
+        };
     }, [ref.current]);
 
     useWindowEvent("resize", () => {
@@ -22,29 +27,13 @@ export const useCanvas = (
         ref.current.height = ref.current.clientHeight;
     });
 
-    useEffect(() => {
-        if(!ref.current) return;
-        let frame = 0;
-
-        let ctx = ref.current.getContext("2d");
-        if (!ctx) return;
-
-        const perfectFrameTime = 1000 / fps;
-        const renderer: FrameRequestCallback = (timestamp) => {
-            let deltaTime = (timestamp - lastDraw.current) / perfectFrameTime;
-            lastDraw.current = timestamp;
-            
-            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-            render(ctx, Math.min(deltaTime, perfectFrameTime * fps));
-            frame = requestAnimationFrame(renderer);
-        }
-
-        frame = requestAnimationFrame(renderer);
-
-        return () => {
-            cancelAnimationFrame(frame);
-        };
-    }, [ref.current, render, ...deps]);
+    useAnimationFrame((dt) => {
+        if(!ctx.current) return;
+        ctx.current.clearRect(0, 0, ctx.current.canvas.width, ctx.current.canvas.height);
+        render(ctx.current, dt);
+    }, {
+        fps
+    });
 
     return ref;
 };
