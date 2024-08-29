@@ -8,6 +8,8 @@ import { memoize, parseColor, toRgba } from "@mantine/core";
 import { useAppScroll } from "@/src/utils/useAppScroll";
 import { allImagesReady, textureWithColor } from "@/src/utils/textureWithColor";
 
+const SCALE = 2;
+
 const Textures: HTMLImageElement[] = (Array(4).fill(0).map((_, i) => {
     let img = new Image();
     img.src = `/assets/img/detail/starfield/0${i}.png`;
@@ -118,13 +120,13 @@ const renderStar = ({
     color,
 }: StarfieldConfig, star: Star, ctx: CanvasRenderingContext2D) => {
     let vector = vec(0, 0);
-    vector.x = -64 + mod(star.Position.x - position.x * scroll.x, dim.width + 128);
-    vector.y = -16 + mod(star.Position.y - position.y * scroll.y, dim.height + 32);
+    vector.x = -64 + mod((star.Position.x - position.x * scroll.x), dim.width + 128);
+    vector.y = -16 + mod((star.Position.y - position.y * scroll.y), dim.height + 32);
     let position2 = vector;
 
     let { x, y } = position2;
     ctx.globalAlpha = star.Opacity;
-    ctx.drawImage(textureWithColor(Textures, star.Texture, color), x - 8, y - 8, 16, 16);
+    ctx.drawImage(textureWithColor(Textures, star.Texture, color), x*SCALE - 8*SCALE, y*SCALE - 8*SCALE, 16*SCALE, 16*SCALE);
 };
 
 const updateStar = (config: StarfieldConfig, star: Star, dt: number = 1) => {
@@ -151,7 +153,7 @@ const createStarfield = (partial: Partial<StarfieldConfig>): Starfield => {
         flowSpeed: 1,
         position: vec(0, 0),
         scroll: vec(1, 1),
-        steps: 15,
+        steps: 10,
         ...partial,
     };
 
@@ -185,7 +187,7 @@ export const StarryBackground = () => {
 
     useAppScroll((scrollTop) => {
         for(let starfield of starfields.current) {
-            starfield.config.position.y = scrollTop;
+            starfield.config.position.y = scrollTop / SCALE;
         }
     });
 
@@ -195,29 +197,22 @@ export const StarryBackground = () => {
 
         ctx.imageSmoothingEnabled = false;
 
+        let currentDim = {
+            width: ctx.canvas.width / SCALE,
+            height: ctx.canvas.height / SCALE,
+        };
+
         if (!starfields.current.length || starfields.current.some(({ config }) => (
-            config.dim.width !== ctx.canvas.width || config.dim.height !== ctx.canvas.height
+            config.dim.width !== currentDim.width || config.dim.height !== currentDim.height
         ))) {
             console.log("creating starfields");
             starfields.current = createStarfields({
-                dim: {
-                    width: ctx.canvas.width,
-                    height: ctx.canvas.height,
-                },
+                dim: currentDim,
             });
         };
 
         for (let i = 0; i < starfields.current.length; i++) {
             let starfield = starfields.current[i];
-
-            if (
-                starfield.config.dim.width !== ctx.canvas.width
-                || starfield.config.dim.height !== ctx.canvas.height
-            ) {
-                console.log("FUCK");
-            }
-
-            if(!starfield.stars.length) console.log("no stars");
 
             for (let star of starfield.stars) {
                 updateStar(starfield.config, star, dt);

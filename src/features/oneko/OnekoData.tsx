@@ -1,15 +1,27 @@
 export interface OnekoSkin {
+    id: string;
     name: string;
     spriteSet: string;
+    meows: string[];
 };
+
+const createMeowList = (prefix: string, amt: number, suffix: string) =>
+    Array(amt).fill(0).map((_, i) => `${prefix}${i}${suffix}`)
 
 export const OnekoSkins: OnekoSkin[] = [
     {
-        name: "default",
-        spriteSet: "url(/assets/img/cats/oneko-classic.gif)",
-    }
+        id: "default",
+        name: "Classic",
+        spriteSet: "url(/assets/oneko/default_oneko.gif)",
+        meows: createMeowList("/assets/oneko/sophia_meows/", 3, ".mp3"),
+    },
+    {
+        id: "crimew",
+        name: "maia arson crimew",
+        spriteSet: "url(/assets/oneko/maia_oneko.gif)",
+        meows: createMeowList("/assets/oneko/maia_meows/", 13, ".wav"),
+    },
 ];
-
 
 export const spriteSets = {
     idle: [[-3, -3]],

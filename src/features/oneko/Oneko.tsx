@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
-import { Text, Tooltip } from "@mantine/core";
+import { Box, Text, Tooltip } from "@mantine/core";
 import { useContext } from "react";
 import { OnekoContext } from "./OnekoAPI";
 import { randInt, randArr, eucDist, vec } from "../../utils/utils";
@@ -86,7 +86,10 @@ export const Oneko = () => {
         const onInputUp = () => {
             if (neko.type == "dragging") {
                 setNekoState({
-                    ...neko.data.previousState,
+                    ...(neko.data.previousState.type == "untouched" ? {
+                        type: "idle",
+                        data: {},
+                    } : neko.data.previousState),
                     position: neko.position,
                 });
             }
@@ -186,9 +189,31 @@ export const Oneko = () => {
             });
         };
 
+        const explodeHearts = () => {
+            if(!ref.current) return;
+            const parent = ref.current.parentElement;
+            if(!parent) return;
+        
+            for (let i = 0; i < 10; i++) {
+              const heart = document.createElement('div');
+              heart.className = 'heart';
+              heart.textContent = '❤';
+              const offsetX = (Math.random() - 0.5) * 50;
+              const offsetY = (Math.random() - 0.5) * 50;
+              heart.style.left = `${neko.position.x - offsetX - 16}px`;
+              heart.style.top = `${neko.position.y - offsetY - 16}px`;
+              parent.appendChild(heart);
+        
+              setTimeout(() => {
+                parent.removeChild(heart);
+              }, 1000);
+            }
+        }
+
         const onNekoRightClick = (e: MouseEvent) => {
             e.preventDefault();
-            new Audio(`/assets/audio/meows/sophia/${randInt(3)}.mp3`).play();
+            new Audio(randArr(OnekoSkins[0].meows)).play();
+            explodeHearts();
             say(randArr([
                 "meoww",
                 "mrow~!",
@@ -415,29 +440,31 @@ export const Oneko = () => {
     }, [ref.current]);
 
     return (
-        <Tooltip
-            label={(
-                <Text fz={10}>
-                    {speak}
-                </Text>
-            )}
-            disabled={!speak}
-            opened={!!speak}
-            withArrow
-        >
-            <div
-                id="oneko"
-                ref={ref}
-                style={{
-                    width: "32px",
-                    height: "32px",
-                    position: "relative",
-                    backgroundImage: OnekoSkins[0].spriteSet,
-                    imageRendering: "pixelated",
-                    overflow: "hidden",
-                    zIndex: 900,
-                }}
-            />
-        </Tooltip>
+        <Box w={0} h={0} pos="relative">
+            <Tooltip
+                label={(
+                    <Text fz={10}>
+                        {speak}
+                    </Text>
+                )}
+                disabled={!speak}
+                opened={!!speak}
+                withArrow
+            >
+                <div
+                    id="oneko"
+                    ref={ref}
+                    style={{
+                        width: "32px",
+                        height: "32px",
+                        position: "relative",
+                        backgroundImage: OnekoSkins[0].spriteSet,
+                        imageRendering: "pixelated",
+                        overflow: "hidden",
+                        zIndex: 900,
+                    }}
+                />
+            </Tooltip>
+        </Box>
     )
 }

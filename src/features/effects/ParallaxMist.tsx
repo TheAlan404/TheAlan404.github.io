@@ -5,6 +5,8 @@ import { useAppScroll } from "@/src/utils/useAppScroll";
 import { vec, vecAdd, vecFloor, vecMul, vecSub, vecTup } from "@/src/utils/utils";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 
+const SCALE = 2;
+
 const Textures = createTextureStore([
     "/assets/img/detail/mist.png",
 ]);
@@ -69,6 +71,7 @@ const Mist = ({
             className="pageBackground mist"
             style={{
                 backgroundImage: `url("${url}")`,
+                backgroundSize: `${600 * SCALE}px ${600 * SCALE}px`,
             }}
         />
     );
