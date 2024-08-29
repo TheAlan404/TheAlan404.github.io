@@ -130,7 +130,6 @@ export const ProjectRender = ({ p }: { p: Project }) => {
             my="xl"
             withBorder
             shadow="xl"
-            className="hoverable"
             ta="left">
             {p.name == "NekoTube" && (
                 <Decor

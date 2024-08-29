@@ -1,6 +1,5 @@
 body {
     background-image: url("/assets/img/detail/sky.png");
-    image-rendering: pixelated;
     background-repeat: repeat;
     background-color: #050505;
 }
@@ -26,16 +25,33 @@ body {
 }
 
 .hoverable:hover {
-    background-color: #25262b88;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .mantine-Accordion-content {
     padding: 0px;
 }
 
-.mantine-Paper-root {
-    background-color: #1A1B1E88;
-    backdrop-filter: blur(1px);
+.mantine-Accordion-control {
+    background-color: unset;
+}
+
+.frost {
+    background-color: rgba(255, 255, 255, 0.1); /*#1A1B1E88*/
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(3px);
+}
+
+.mantine-SegmentedControl-root {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+}
+
+
+.mantine-SegmentedControl-indicator {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
 .pageForeground {

@@ -1,10 +1,11 @@
 import { Group, Stack, Title, Text, Space, Tooltip, Image, List, Divider, Box, Avatar, Paper } from '@mantine/core';
 import { DiscordSection } from "@/src/pages/about/DiscordSection";
+import { Section } from "@/src/components/misc/Section";
 
 export const Hero = () => {
     return (
         <Stack w={{ base: "100%", xs: "80%" }}>
-            <Paper p="sm">
+            <Section>
                 <Stack align="center" ta="center" gap={0}>
                     <Text c="yellow" fw="bold" fz="sm">
                         WEBSITE UNDER RENOVATION
@@ -13,9 +14,9 @@ export const Hero = () => {
                         watch out for bugs!
                     </Text>
                 </Stack>
-            </Paper>
+            </Section>
 
-            <Paper p="sm">
+            <Section>
                 <Stack>
                     <Text span>
                         Hi! I'm
@@ -89,11 +90,11 @@ export const Hero = () => {
                         </Group>
                     </Stack>
                 </Stack>
-            </Paper>
+            </Section>
 
-            <Paper p="sm">
+            <Section>
                 <DiscordSection />
-            </Paper>
+            </Section>
         </Stack>
     );
 };

@@ -1,3 +1,4 @@
+import { Section } from "@/src/components/misc/Section";
 import { Accordion, Divider, Group, Paper, Stack, Title } from "@mantine/core";
 
 export const AboutSection = ({
@@ -12,8 +13,8 @@ export const AboutSection = ({
 } & React.PropsWithChildren) => {
     return (
         <Accordion.Item value={value} w="100%" style={{ borderBottom: "unset" }} py="sm">
-            <Paper withBorder>
-                <Accordion.Control>
+            <Section p={0} hoverable>
+                <Accordion.Control bg="unset">
                     <Group align="center">
                         {icon}
                         <Title order={3}>
@@ -21,7 +22,7 @@ export const AboutSection = ({
                         </Title>
                     </Group>
                 </Accordion.Control>
-            </Paper>
+            </Section>
             <Accordion.Panel>
                 <Stack w="100%" align="center" py="sm">
                     <Stack w={{

@@ -13,8 +13,7 @@ export const PostsListView = ({
                 <Section
                     key={id}
                     onClick={() => onSelect(id)}
-                    withBorder
-                    className="hoverable"
+                    hoverable
                     style={{ cursor: "pointer" }}
                     p="md"
                 >

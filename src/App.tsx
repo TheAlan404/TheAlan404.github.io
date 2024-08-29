@@ -49,6 +49,7 @@ export const App = () => {
                                     { value: "projects", label: "Projects" },
                                     { value: "blog", label: "Blog" },
                                 ]}
+                                withItemsBorders={false}
                                 defaultValue={page}
                                 onChange={(v) => {
                                     startTransition(() => {

@@ -1,8 +1,8 @@
 import { CollapsingButton } from "@/src/components/misc/CollapsingButton";
-import { Group, Stack, Text, Title } from "@mantine/core";
+import { Group, Stack, Text, Title, TypographyStylesProvider } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { BlogPost } from "./types";
-import { BlogRender } from "./BlogRender";
+import { Section } from "@/src/components/misc/Section";
 
 export const BlogPostView = ({
     post,
@@ -13,7 +13,7 @@ export const BlogPostView = ({
 }) => {
     return (
         <Stack>
-            <Stack bg="dark" p="sm" ta="start" justify="start">
+            <Section p="sm" ta="start">
                 <Title order={4} hiddenFrom="xs">{post.title}</Title>
                 <Group wrap="nowrap" justify="space-between">
                     <Group wrap="nowrap">
@@ -31,12 +31,26 @@ export const BlogPostView = ({
                         <Title order={4} visibleFrom="xs">{post.title}</Title>
                     </Group>
                     <Group>
-                        <Text c="dimmed">{post.date}</Text>
+                        <Text>{post.date}</Text>
                     </Group>
                 </Group>
-            </Stack>
+            </Section>
 
             <BlogRender {...post} />
         </Stack>
+    )
+};
+
+export const BlogRender = ({
+    component: Component,
+}: BlogPost) => {
+    return (
+        <Section>
+            <Stack ta="start" align="start">
+                <TypographyStylesProvider>
+                    <Component />
+                </TypographyStylesProvider>
+            </Stack>
+        </Section>
     )
 };
