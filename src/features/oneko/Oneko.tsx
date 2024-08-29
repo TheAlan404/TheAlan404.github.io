@@ -1,80 +1,14 @@
-import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
-import { clamp, useWindowEvent } from "@mantine/hooks";
 import { Text, Tooltip } from "@mantine/core";
 import { useContext } from "react";
 import { OnekoContext } from "./OnekoAPI";
-import { randInt, randArr, eucDist } from "../../utils/utils";
+import { randInt, randArr, eucDist, vec } from "../../utils/utils";
 import { Coord } from "@/src/types";
 import { Enum, match } from "@alan404/enum";
-
-const spriteSets = {
-    idle: [[-3, -3]],
-    alert: [[-7, -3]],
-    scratchSelf: [
-        [-5, 0],
-        [-6, 0],
-        [-7, 0],
-    ],
-    scratchWallN: [
-        [0, 0],
-        [0, -1],
-    ],
-    scratchWallS: [
-        [-7, -1],
-        [-6, -2],
-    ],
-    scratchWallE: [
-        [-2, -2],
-        [-2, -3],
-    ],
-    scratchWallW: [
-        [-4, 0],
-        [-4, -1],
-    ],
-    tired: [[-3, -2]],
-    sleeping: [
-        [-2, 0],
-        [-2, -1],
-    ],
-    N: [
-        [-1, -2],
-        [-1, -3],
-    ],
-    NE: [
-        [0, -2],
-        [0, -3],
-    ],
-    E: [
-        [-3, 0],
-        [-3, -1],
-    ],
-    SE: [
-        [-5, -1],
-        [-5, -2],
-    ],
-    S: [
-        [-6, -3],
-        [-7, -2],
-    ],
-    SW: [
-        [-5, -3],
-        [-6, -1],
-    ],
-    W: [
-        [-4, -2],
-        [-4, -3],
-    ],
-    NW: [
-        [-1, 0],
-        [-1, -1],
-    ],
-};
-
-type SpriteName = keyof typeof spriteSets;
-const getSprite = (name: SpriteName, frame: number) => spriteSets[name][frame % spriteSets[name].length];
+import { getSprite, OnekoSkins, SpriteName } from "./OnekoData";
+import { useAppScroll } from "@/src/utils/useAppScroll";
 
 type NekoStatus = Enum<{
     untouched: {};
@@ -96,17 +30,11 @@ type NekoStatus = Enum<{
 
 const nekoSpeed = 10;
 
-const coord = ({ clientX, clientY }: { clientX: number; clientY: number }) => ({
-    x: clientX,
-    y: clientY,
-});
-
 export const Oneko = () => {
-    const { initial, beds } = useContext(OnekoContext);
+    const { beds } = useContext(OnekoContext);
     const [speak, setSpeak] = useState("");
     const ref = useRef<HTMLDivElement>(null);
     let sayTimeoutRef = useRef<number | null>();
-    const backgroundImage = "url(/assets/img/cats/oneko-classic.gif)";
 
     const say = (s: string, keep = false) => {
         setSpeak(s);
@@ -118,14 +46,20 @@ export const Oneko = () => {
         }, 1500);
     };
 
+    const scrollY = useRef(0);
+    useAppScroll((y) => scrollY.current = y);
+
     useEffect(() => {
         if (!ref.current) return;
-        if (!initial.x || !initial.y) return;
+
+        const getInitialPosition = () => beds.current.find(x => x.id == "initial")?.pos
+            || beds.current.find(x => x.id == "fallback")?.pos
+            || vec(0, 0);
 
         let initialNekoState: NekoStatus = {
             type: "untouched",
             data: {},
-            position: initial,
+            position: getInitialPosition(),
         };
 
         let neko: NekoStatus = initialNekoState;
@@ -270,6 +204,9 @@ export const Oneko = () => {
 
         // Wrapper event handlers
 
+        const coord = ({ clientX, clientY }: { clientX: number; clientY: number }) =>
+            vec(clientX, clientY + scrollY.current);
+
         const onMouseMove = (e: MouseEvent) => onInputMove(coord(e));
         const onNekoMouseUp = (e: MouseEvent) => onInputUp();
         const onNekoTouchMove = (e: TouchEvent) => e.touches.length == 1 && onInputMove(coord(e.touches[0]));
@@ -320,12 +257,6 @@ export const Oneko = () => {
             ref.current!.style.top = `${y - positionTopOffset - 16}px`;
         };
 
-        const onScroll = (e: Event) => {
-            let el = e.currentTarget as HTMLElement;
-            positionTopOffset = el.scrollTop;
-            setNekoPos(neko.position);
-        };
-
         // Update
 
         let frame = 0;
@@ -341,7 +272,10 @@ export const Oneko = () => {
             match(neko)({
                 dragging: ({ direction }) => direction && setSprite("scratchWall"+direction as SpriteName),
                 
-                untouched: () => setSprite("sleeping"),
+                untouched: () => {
+                    setSprite("sleeping");
+                    setNekoPos(getInitialPosition());
+                },
                 sleeping: () => setSprite("sleeping"),
 
                 idle: () => setSprite("idle"),
@@ -379,13 +313,6 @@ export const Oneko = () => {
         // Loop
 
         let i = setInterval(() => update(), 100);
-
-
-
-        
-
-        
-
         
 
         const getIdleAnimations = (): SpriteName[] => {
@@ -474,9 +401,6 @@ export const Oneko = () => {
         ref.current.addEventListener("mouseup", onNekoMouseUp);
         ref.current.addEventListener("contextmenu", onNekoRightClick);
 
-        let scroller = document.querySelector(".mantine-ScrollArea-viewport") as HTMLElement | null;
-        scroller?.addEventListener("scroll", onScroll);
-
         return () => {
             window.removeEventListener("mousemove", onMouseMove);
             window.removeEventListener("resize", onWindowResize);
@@ -486,7 +410,6 @@ export const Oneko = () => {
             ref.current?.removeEventListener("dblclick", onNekoDoubleClick);
             ref.current?.removeEventListener("mousedown", onNekoMouseDown);
             ref.current?.removeEventListener("contextmenu", onNekoRightClick);
-            scroller?.removeEventListener("scroll", onScroll);
             clearInterval(i);
         };
     }, [ref.current]);
@@ -506,11 +429,10 @@ export const Oneko = () => {
                 id="oneko"
                 ref={ref}
                 style={{
-                    opacity: (!initial.x || !initial.y) ? "0" : "1",
                     width: "32px",
                     height: "32px",
-                    position: "fixed",
-                    backgroundImage,
+                    position: "relative",
+                    backgroundImage: OnekoSkins[0].spriteSet,
                     imageRendering: "pixelated",
                     overflow: "hidden",
                     zIndex: 900,

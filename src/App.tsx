@@ -5,6 +5,8 @@ import { GodDrinksJava } from "./features/events/GodDrinksJava";
 import { About } from "./pages/about/About";
 import { Header } from "./pages/Header";
 import { BlogPage } from "./pages/blog/BlogPage";
+import { OnekoBed } from "./features/oneko/OnekoBed";
+import { Oneko } from "./features/oneko/Oneko";
 
 export type Page = "projects" | "mili" | "about" | "blog";
 
@@ -32,6 +34,7 @@ export const App = () => {
             offsetScrollbars="y"
             ta="center"
         >
+            <Oneko />
             <Container size="sm">
                 {page == "mili" ? (
                     <Box h="100vh">
@@ -42,6 +45,7 @@ export const App = () => {
                         <Header />
 
                         <Stack gap={0}>
+                            <OnekoBed id="fallback" offset={{ x: 20, y: -28 }} />
                             <SegmentedControl
                                 fullWidth
                                 data={[

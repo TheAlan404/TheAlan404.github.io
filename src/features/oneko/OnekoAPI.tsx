@@ -1,5 +1,5 @@
 import { Coord } from "@/src/types";
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 
 export interface OnekoBed {
@@ -8,33 +8,34 @@ export interface OnekoBed {
 }
 
 export interface OnekoAPI {
-    initial: Coord;
-    setInitial: (c: Coord) => void,
-    beds: OnekoBed[];
+    beds: React.MutableRefObject<OnekoBed[]>;
     setBed: (id: string, coord: Coord) => void,
+    removeBed: (id: string) => void;
 }
 
 export const OnekoContext = React.createContext<OnekoAPI>({
-    initial: { x: 0, y: 0 },
-    beds: [],
-    setInitial: () => {},
+    beds: { current: [] },
     setBed: () => {},
+    removeBed: () => {},
 });
 
 export const OnekoAPIProvider = ({
     children
 }: React.PropsWithChildren) => {
-    const [initial, setInitial] = useState<Coord>({ x: 0, y: 0 });
-    const [beds, setBeds] = useState<OnekoBed[]>([]);
+    const beds = useRef<OnekoBed[]>([]);
 
     return (
         <OnekoContext.Provider
             value={{
-                initial,
-                setInitial,
                 beds,
                 setBed: (id, pos) => {
-                    setBeds((li) => li.some(x => x.id == id) ? li.map(x => x.id == id ? ({ id, pos}) : x) : [...li, { id, pos }])
+                    if (beds.current.find(x => x.id === id))
+                        beds.current = beds.current.map(x => x.id === id ? { id, pos } : x)
+                    else
+                        beds.current.push({ id, pos });
+                },
+                removeBed: (id) => {
+                    beds.current = beds.current.filter(x => x.id !== id);
                 },
             }}
         >

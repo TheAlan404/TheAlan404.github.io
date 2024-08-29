@@ -1,6 +1,8 @@
 import { Group, Stack, Title, Text, Space, Tooltip, Image, List, Divider, Box, Avatar, Paper } from '@mantine/core';
 import { DiscordSection } from "@/src/pages/about/DiscordSection";
 import { Section } from "@/src/components/misc/Section";
+import { OnekoBed } from "@/src/features/oneko/OnekoBed";
+import { OnekoSection } from "./OnekoSection";
 
 export const Hero = () => {
     return (
@@ -93,7 +95,10 @@ export const Hero = () => {
             </Section>
 
             <Section>
-                <DiscordSection />
+                <Group justify="space-between" w="100%" ta="end">
+                    <OnekoSection />
+                    <DiscordSection />
+                </Group>
             </Section>
         </Stack>
     );

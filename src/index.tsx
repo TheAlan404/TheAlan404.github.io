@@ -48,7 +48,6 @@ root.render(
                 <ParallaxMist />
                 <StarryBackground />
                 <App />
-                <Oneko />
             </OnekoAPIProvider>
         </WeatherProvider>
     </MantineProvider>
