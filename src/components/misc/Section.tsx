@@ -4,11 +4,12 @@ export interface SectionProps extends PolymorphicComponentProps<"div", PaperProp
     hoverable?: boolean;
 };
 
-export const Section = ({ hoverable, ...props }: SectionProps) => {
+export const Section = ({ hoverable, className, ...props }: SectionProps) => {
     return (
         <Paper
             p="xs"
-            className={`frost ${hoverable ? "hoverable" : ""} ${props.className}`}
+            className={`frost ${hoverable ? "hoverable" : ""} ${className}`}
+            withBorder
             {...props}
         />
     )

@@ -13,7 +13,7 @@ export const useAnimationFrame = (
             let deltaTime = (timestamp - lastDraw) / perfectFrameTime;
             lastDraw = timestamp;
             
-            let dt = Math.min(deltaTime, perfectFrameTime * fps);
+            let dt = Math.min(deltaTime, fps);
             cb(dt);
             frame = requestAnimationFrame(renderer);
         }

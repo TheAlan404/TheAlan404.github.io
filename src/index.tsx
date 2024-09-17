@@ -8,8 +8,7 @@ import { OnekoAPIProvider } from "./features/oneko/OnekoAPI";
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import './style.css';
-import { StarryBackground } from "./features/effects/StarryBackground";
-import { ParallaxMist } from "./features/effects/ParallaxMist";
+import { Effects } from "./features/effects/Effects";
 
 const theme = createTheme({
     fontFamily: "Lexend-VariableFont, " + DEFAULT_THEME.fontFamily,
@@ -42,11 +41,10 @@ const theme = createTheme({
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
-    <MantineProvider theme={theme} defaultColorScheme='dark'>
+    <MantineProvider theme={theme} forceColorScheme="dark">
         <WeatherProvider>
             <OnekoAPIProvider>
-                <ParallaxMist />
-                <StarryBackground />
+                <Effects />
                 <App />
             </OnekoAPIProvider>
         </WeatherProvider>

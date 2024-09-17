@@ -3,8 +3,8 @@ import { PersonalIcons } from "./projects/PersonalIcons";
 
 export const Header = () => {
     return (
-        <Stack align="center" pt="xl">
-            <Group wrap="nowrap" align="center" justify="center">
+        <Stack align="center" mt="sm">
+            <Group wrap="nowrap" align="center" justify="center" className="header" p="sm" px="lg">
                 <Stack align="center">
                     <Tooltip withArrow events={{ touch: true, focus: true, hover: true }} label={(
                         "made by @kiwi_asli on Instagram"
@@ -19,26 +19,20 @@ export const Header = () => {
                 </Stack>
                 <Stack align="center" gap={0}>
                     <Group align="center" wrap="nowrap" gap="xs">
-                        <Text span fz={22}>✨</Text>
+                        <Image
+                            src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2728.png"
+                            h="1.5rem"
+                            w="1.5rem"
+                        />
                         <Title>deniz.blue</Title>
-                        <Text span fz={22}>🌸</Text>
+                        <Image
+                            src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f338.png"
+                            h="1.5rem"
+                            w="1.5rem"
+                        />
                     </Group>
                     <PersonalIcons />
                 </Stack>
-            </Group>
-            <Group gap={5} align="center" className="transText">
-                {/* {["0.2em", "0.4em", "1em", null, "1em", "0.4em", "0.2em"].map((w, i) => (
-                    w ? (
-                        <Divider
-                            w={w}
-                            key={i}
-                        />
-                    ) : (
-                        <Text className="rainbowText" span key={i} fz="sm" style={{ top: "-0.05em", position: "relative" }}>
-                            ☆
-                        </Text>
-                    )
-                ))} */}
             </Group>
         </Stack>
     )

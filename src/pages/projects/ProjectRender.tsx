@@ -127,7 +127,6 @@ export const ProjectRender = ({ p }: { p: Project }) => {
     return (
         <Section
             p="md"
-            my="xl"
             withBorder
             shadow="xl"
             ta="left">

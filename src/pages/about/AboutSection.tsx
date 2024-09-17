@@ -13,11 +13,11 @@ export const AboutSection = ({
 } & React.PropsWithChildren) => {
     return (
         <Accordion.Item value={value} w="100%" style={{ borderBottom: "unset" }} py="sm">
-            <Section p={0} hoverable>
+            <Section p={0} hoverable className="flashable">
                 <Accordion.Control bg="unset">
-                    <Group align="center">
+                    <Group align="center" wrap="nowrap">
                         {icon}
-                        <Title order={3}>
+                        <Title order={4}>
                             {title}
                         </Title>
                     </Group>

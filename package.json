@@ -14,7 +14,7 @@
   "author": "github:TheAlan404",
   "license": "ISC",
   "dependencies": {
-    "@alan404/enum": "^0.1.0",
+    "@alan404/enum": "^0.2.0",
     "@mantine/carousel": "^7.12.1",
     "@mantine/core": "^7.12.1",
     "@mantine/form": "^7.12.1",

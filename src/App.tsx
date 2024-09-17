@@ -1,4 +1,4 @@
-import { Stack, Box, ScrollArea, Image, Tooltip, Text, Container, SegmentedControl, Space, Loader } from '@mantine/core'
+import { Stack, Box, ScrollArea, Image, Tooltip, Text, Container, SegmentedControl, Space, Loader, Paper } from '@mantine/core'
 import React, { useEffect, useState, useTransition } from 'react';
 import { ProjectsList } from "./pages/projects/ProjectsList";
 import { GodDrinksJava } from "./features/events/GodDrinksJava";
@@ -46,21 +46,23 @@ export const App = () => {
 
                         <Stack gap={0}>
                             <OnekoBed id="fallback" offset={{ x: 20, y: -28 }} />
-                            <SegmentedControl
-                                fullWidth
-                                data={[
-                                    { value: "about", label: "About" },
-                                    { value: "projects", label: "Projects" },
-                                    { value: "blog", label: "Blog" },
-                                ]}
-                                withItemsBorders={false}
-                                defaultValue={page}
-                                onChange={(v) => {
-                                    startTransition(() => {
-                                        setPage(v as Page);
-                                    });
-                                }}
-                            />
+                            <Paper withBorder style={{ background: "unset" }}>
+                                <SegmentedControl
+                                    fullWidth
+                                    data={[
+                                        { value: "about", label: "About" },
+                                        { value: "projects", label: "Projects" },
+                                        { value: "blog", label: "Blog" },
+                                    ]}
+                                    withItemsBorders={false}
+                                    defaultValue={page}
+                                    onChange={(v) => {
+                                        startTransition(() => {
+                                            setPage(v as Page);
+                                        });
+                                    }}
+                                />
+                            </Paper>
                         </Stack>
 
                         {isPending ? (

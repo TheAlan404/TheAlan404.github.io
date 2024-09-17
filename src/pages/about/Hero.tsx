@@ -7,39 +7,28 @@ import { OnekoSection } from "./OnekoSection";
 export const Hero = () => {
     return (
         <Stack w={{ base: "100%", xs: "80%" }}>
-            <Section>
-                <Stack align="center" ta="center" gap={0}>
-                    <Text c="yellow" fw="bold" fz="sm">
-                        WEBSITE UNDER RENOVATION
-                    </Text>
-                    <Text fz="xs" c="dimmed">
-                        watch out for bugs!
-                    </Text>
-                </Stack>
-            </Section>
-
-            <Section>
-                <Stack>
-                    <Text span>
-                        Hi! I'm
-                        {" "}
+            <Section ta="center">
+                <Stack gap="sm" align="center">
+                    <Group gap={6}>
+                        <Text inline>Hi! I'm</Text>
                         <Text
-                            span
+                            inline
                             fw={900}
-                            variant="gradient"
-                            gradient={{ from: 'blue.4', to: 'indigo.3', deg: 90 }}
+                            
                         >
-                            Gökçe
-                            {" "}
-                            <Tooltip label="turkish for sea">
-                                <Text span inherit>
-                                    Deniz
-                                </Text>
-                            </Tooltip>
+                            <Group wrap="nowrap" gap={4}>
+                                <Text inline inherit>Gökçe</Text>
+                                <Group wrap="nowrap" gap={0}>
+                                    <Tooltip label="turkish for sea">
+                                        <Text inline inherit>
+                                            Deniz
+                                        </Text>
+                                    </Tooltip>
+                                    <Text>,</Text>
+                                </Group>
+                            </Group>
                         </Text>
-                        {", "}
-                        known as
-                        {" "}
+                        <Text>I go by</Text>
                         <Text
                             span
                             fw={900}
@@ -56,39 +45,33 @@ export const Hero = () => {
                         <Tooltip label="mrow~" position="right" withArrow>
                             <Text
                                 span
-                                c="blue"
-                                fw="bolder"
+                                className="transText"
                             >
                                 :3
                             </Text>
                         </Tooltip>
-                    </Text>
+                    </Group>
 
-                    <Stack align="start" ta="start">
-                        <Text>
-                            I am a
-                            {" "}
-                            <Text span c="indigo">full stack developer</Text>.
-                        </Text>
-                    </Stack>
-
-                    <Stack align="start" gap={0}>
-                        <Group gap={5}>
-                            <Text>I'm from</Text>
-                            {" "}
-                            <Image
-                                src="/assets/img/ico/flag_tr.svg"
-                                w="1.2em"
-                                h="1.2em"
-                            />
-                            <Text span fw="bold">
-                                Istanbul, Turkey
-                            </Text>
-                            <Tooltip label="or, UTC+3" withArrow>
-                                <Text span c="dimmed">
-                                    (GMT+3)
+                    <Stack ta="center" align="center">
+                        <Group gap="xs">
+                            <Text inline>I am a</Text>
+                            <Text inline fw="bold" className="rainbowText">full stack developer</Text>
+                            <Text inline>from</Text>
+                            <Group gap={4}>
+                                <Text span fw="bold">
+                                    Istanbul, Turkey
                                 </Text>
-                            </Tooltip>
+                                <Image
+                                    src="/assets/img/ico/flag_tr.svg"
+                                    w="1.2em"
+                                    h="1.2em"
+                                />
+                                <Tooltip label="or, UTC+3" withArrow>
+                                    <Text span c="dimmed">
+                                        (GMT+3)
+                                    </Text>
+                                </Tooltip>
+                            </Group>
                         </Group>
                     </Stack>
                 </Stack>

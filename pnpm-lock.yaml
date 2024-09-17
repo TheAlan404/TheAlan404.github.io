@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@alan404/enum':
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.2.0
+        version: 0.2.0
       '@mantine/carousel':
         specifier: ^7.12.1
         version: 7.12.1(@mantine/core@7.12.1(@mantine/hooks@7.12.1(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.12.1(react@18.3.1))(embla-carousel-react@7.1.0(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -66,8 +66,8 @@ importers:
 
 packages:
 
-  '@alan404/enum@0.1.0':
-    resolution: {integrity: sha512-i+1ujShkFFMlAWix4BQxIxiurEykk9sP+R+k9vKNJuBsW02KO6+KvtttiVXoidUouhAOciFNdPGCtdsn7ORSfQ==}
+  '@alan404/enum@0.2.0':
+    resolution: {integrity: sha512-SFi3oeTvLixh8Qtsp8tPzIJUTeVnMwEewVwgIr3kPytNPWdESwbshlVuSRgTJD7z2Ywi4R7TzeNy5LmEoiQTkQ==}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -1299,7 +1299,7 @@ packages:
 
 snapshots:
 
-  '@alan404/enum@0.1.0': {}
+  '@alan404/enum@0.2.0': {}
 
   '@ampproject/remapping@2.3.0':
     dependencies:

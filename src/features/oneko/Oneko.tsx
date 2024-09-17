@@ -4,10 +4,10 @@ import { useRef } from "react";
 import { Box, Text, Tooltip } from "@mantine/core";
 import { useContext } from "react";
 import { OnekoContext } from "./OnekoAPI";
-import { randInt, randArr, eucDist, vec } from "../../utils/utils";
+import { randInt, randArr, eucDist, vec, vecSub, vecMul, vecTup, vecDiv } from "../../utils/utils";
 import { Coord } from "@/src/types";
-import { Enum, match } from "@alan404/enum";
-import { getSprite, OnekoSkins, SpriteName } from "./OnekoData";
+import { Enum, match, variant } from "@alan404/enum";
+import { getSprite, OnekoSkin, OnekoSkins, SpriteName } from "./OnekoData";
 import { useAppScroll } from "@/src/utils/useAppScroll";
 
 type NekoStatus = Enum<{
@@ -24,8 +24,23 @@ type NekoStatus = Enum<{
         startPosition: Coord;
         direction?: "N" | "S" | "E" | "W";
     };
-}> & {
+}>;
+
+type NekoOptions = {
+    speed: number;
+    minFollowDist: number;
+};
+
+const defaultOnekoOptions: NekoOptions = {
+    speed: 10,
+    minFollowDist: 48,
+};
+
+type Neko = {
+    skin: OnekoSkin;
+    state: NekoStatus;
     position: Coord;
+    options: NekoOptions;
 };
 
 const nekoSpeed = 10;
@@ -49,56 +64,75 @@ export const Oneko = () => {
     const scrollY = useRef(0);
     useAppScroll((y) => scrollY.current = y);
 
-    useEffect(() => {
-        if (!ref.current) return;
-
-        const getInitialPosition = () => beds.current.find(x => x.id == "initial")?.pos
+    const getInitialPosition = () => beds.current.find(x => x.id == "initial")?.pos
             || beds.current.find(x => x.id == "fallback")?.pos
             || vec(0, 0);
 
-        let initialNekoState: NekoStatus = {
-            type: "untouched",
-            data: {},
-            position: getInitialPosition(),
-        };
+    const onekoRef = useRef<Neko>({
+        skin: OnekoSkins[1],
+        options: defaultOnekoOptions,
+        position: getInitialPosition(),
+        state: variant<NekoStatus>("untouched", {}),
+    });
 
-        let neko: NekoStatus = initialNekoState;
+    useEffect(() => {
+        if (!ref.current) return;
 
-        const NekoMinFollowDistance = 48;
+        const { current: neko } = onekoRef;
 
         let setNekoState = (state: NekoStatus) => {
-            neko = state;
+            neko.state = state;
+        };
+
+        // Transitions
+
+        const onekoActions = {
+            wakeUp: () => {
+                setNekoState(variant<NekoStatus>("idle", {}));
+                //say("*yawn* car activated owo");
+            },
+            pet: () => {
+                new Audio(randArr(neko.skin.meows)).play();
+                explodeHearts();
+            },
+            sleep: () => {
+
+            },
+            sit: () => {
+                setNekoState(variant<NekoStatus>("sit", {}));
+                //say("oki i sit :3");
+            },
+            idle: () => {
+                setNekoState(variant<NekoStatus>("idle", {}));
+                
+            },
+        };
+
+        const onekoEventHandlers = {
+
         };
 
         // Events
 
         const onNekoInputDown = (initial: Coord) => {
-            setNekoState({
-                ...neko,
-                type: "dragging",
-                data: {
-                    previousState: neko,
-                    startPosition: initial,
-                },
-            });
+            setNekoState(variant<NekoStatus>("dragging", {
+                previousState: neko.state,
+                startPosition: initial,
+            }));
         }
 
         const onInputUp = () => {
-            if (neko.type == "dragging") {
-                setNekoState({
-                    ...(neko.data.previousState.type == "untouched" ? {
-                        type: "idle",
-                        data: {},
-                    } : neko.data.previousState),
-                    position: neko.position,
-                });
+            if (neko.state.type == "dragging") {
+                setNekoState(
+                    variant<NekoStatus>("idle", {})
+                );
             }
         }
 
         const onInputMove = (target: Coord) => {
-            if(neko.type == "dragging") {
+            if(neko.state.type == "dragging") {
                 let distFromStart = Math.sqrt(
-                    (target.x - neko.data.startPosition.x) ** 2 + (target.y - neko.data.startPosition.y) ** 2
+                    (target.x - neko.state.data.startPosition.x) ** 2 + (target.y - neko.state.data.startPosition.y) ** 2
                 );
 
                 const delta: Coord = {
@@ -112,7 +146,7 @@ export const Oneko = () => {
                 };
 
                 // Scratch in the opposite direction of the drag
-                let dir;
+                let dir: "N" | "S" | "E" | "W" | null = null;
                 if (absDelta.x > absDelta.y) {
                     dir = delta.x > 0 ? "W" : "E";
                 } else if (absDelta.y > absDelta.x) {
@@ -121,70 +155,40 @@ export const Oneko = () => {
 
                 setNekoPos(target);
 
-                if (neko.data.direction || distFromStart > 32) {
-                    if (dir) setNekoState({ ...neko, data: { ...neko.data, direction: dir } });
+                if (neko.state.data.direction || distFromStart > 32) {
+                    if (dir)
+                        setNekoState(variant<NekoStatus>("dragging", { ...neko.state.data, direction: dir }));
                 }
 
                 return;
             }
 
-            if ((["untouched", "sleeping", "sit"] as NekoStatus["type"][]).includes(neko.type)) return;
+            if ((["untouched", "sleeping", "sit"] as NekoStatus["type"][]).includes(neko.state.type)) return;
 
-            if(eucDist(neko.position.x - target.x, neko.position.y - target.y) < NekoMinFollowDistance) return;
+            if(eucDist(neko.position.x - target.x, neko.position.y - target.y) < neko.options.minFollowDist) return;
 
-            setNekoState({
-                ...neko,
-                type: "follow",
-                data: {
-                    target,
-                },
-            });
+            setNekoState(variant<NekoStatus>("follow", { target }));
         }
 
         const onWindowResize = () => {
-            if ((["follow"] as NekoStatus["type"][]).includes(neko.type)) return;
+            if ((["follow"] as NekoStatus["type"][]).includes(neko.state.type)) return;
 
             // If neko is outside the window and is forced to sleep, wake her up
             if (
                 neko.position.x - window.innerWidth > 32 ||
                 neko.position.y - window.innerHeight > 32
             ) {
-                setNekoState({
-                    ...neko,
-                    type: "idle",
-                });
+                setNekoState(variant<NekoStatus>("idle", {}));
             }
         };
 
         const onNekoDoubleClick = () => {
-            const wakeUp = () => {
-                setNekoState({ ...neko, type: "idle", data: {} });
-
-                say("*yawn* car activated owo");
-            };
-
-            const sitDown = () => {
-                setNekoState({ ...neko, type: "sit", data: {} });
-
-                say("oki i sit :3");
-            };
-
-            const sitUp = () => {
-                setNekoState({ ...neko, type: "idle", data: {} });
-
-                say(randArr([
-                    "its following time!",
-                    "mrow!",
-                    "mice?!",
-                ]));
-            };
-
-            match(neko)({
-                sit: () => sitUp(),
-                follow: () => sitDown(),
-                idle: () => sitDown(),
-                sleeping: () => wakeUp(),
-                untouched: () => wakeUp(),
+            match(neko.state)({
+                sit: () => onekoActions.idle(),
+                follow: () => onekoActions.sit(),
+                idle: () => onekoActions.sit(),
+                sleeping: () => onekoActions.wakeUp(),
+                untouched: () => onekoActions.wakeUp(),
                 _: () => {},
             });
         };
@@ -212,19 +216,7 @@ export const Oneko = () => {
 
         const onNekoRightClick = (e: MouseEvent) => {
             e.preventDefault();
-            new Audio(randArr(OnekoSkins[0].meows)).play();
-            explodeHearts();
-            say(randArr([
-                "meoww",
-                "mrow~!",
-                "i love pets :3",
-                "nya~",
-                "mrrow",
-                "mrrp~",
-                "miuw",
-                "mm yes pets uwu",
-                "miau :3",
-            ]));
+            onekoActions.pet();
         };
 
         // Wrapper event handlers
@@ -288,13 +280,17 @@ export const Oneko = () => {
         const update = () => {
             frame++;
 
+            if(ref.current) {
+                ref.current.style.opacity = (beds.current.length == 0) ? "0" : "1";
+            }
+
             const setSprite = (name: SpriteName) => {
                 const [x, y] = getSprite(name, name == "sleeping" ? Math.floor(frame/8) : frame);
                 if (!ref.current) return;
                 ref.current.style.backgroundPosition = `${x * 32}px ${y * 32}px`;
             }
 
-            match(neko)({
+            match(neko.state)({
                 dragging: ({ direction }) => direction && setSprite("scratchWall"+direction as SpriteName),
                 
                 untouched: () => {
@@ -314,8 +310,8 @@ export const Oneko = () => {
         
                     const distance = Math.sqrt(diff.x ** 2 + diff.y ** 2);
 
-                    if(distance < NekoMinFollowDistance) {
-                        setNekoState({ ...neko, type: "idle", data: {} });
+                    if(distance < neko.options.minFollowDist) {
+                        setNekoState(variant<NekoStatus>("idle", {}));
                         return;
                     }
 
@@ -325,96 +321,16 @@ export const Oneko = () => {
                     direction += diff.x / distance < -0.5 ? "E" : "";
                     if (direction) setSprite(direction as SpriteName);
 
-                    neko.position.x -= (diff.x / distance) * nekoSpeed;
-                    neko.position.y -= (diff.y / distance) * nekoSpeed;
+                    setNekoPos(vecSub(neko.position, vecMul(vecDiv(diff, vecTup(distance)), vecTup(neko.options.speed))));
                 },
 
                 _: () => {},
             });
-
-            setNekoPos(neko.position);
         };
 
         // Loop
 
         let i = setInterval(() => update(), 100);
-        
-
-        const getIdleAnimations = (): SpriteName[] => {
-            return [
-                "idle",
-                "scratchSelf",
-                (neko.position.x < 32) && "scratchWallW",
-                (neko.position.y < 32) && "scratchWallN",
-                (neko.position.x > window.innerWidth - 32) && "scratchWallE",
-                (neko.position.y > window.innerHeight - 32) && "scratchWallS",
-            ].filter(x => typeof x == "string") as SpriteName[];
-        };
-
-        /* const idle = () => {
-            idleTime += 1;
-
-            // every ~ 20 seconds
-            if (
-                idleTime > 10 &&
-                idleAnimation == null
-            ) {
-                idleAnimation = randArr(getIdleAnimations());
-                frameCounter = 0;
-            }
-
-            if ((!idleAnimation || idleAnimation == "idle") && idleTime > 100) {
-                setNekoState("sleep");
-                frameCounter = 0;
-            }
-
-            if (nekoState == "sleep") {
-                idleAnimation = "sleeping";
-            }
-
-            if (idleAnimation?.startsWith("scratch")) {
-                setSprite(idleAnimation);
-                if (idleAnimation == "scratchSelf" && frameCounter > 10) {
-                    idleAnimation = null;
-                }
-            } else if (idleAnimation == "sleeping") {
-                if (frameCounter < 24) {
-                    say("eepy...");
-                    setSprite("tired");
-                    return;
-                }
-                setSprite("sleeping", Math.floor(frameCounter / 4));
-                if (frameCounter > 192 && nekoState !== "sleep") {
-                    frameCounter = 0;
-                }
-            } else {
-                setSprite("idle");
-            }
-        }; */
-
-            // snapping to target
-           /*  if (
-                nekoState == "sleep" &&
-                Math.abs(diff.y) < nekoSpeed &&
-                Math.abs(diff.x) < nekoSpeed
-            ) {
-                setNekoPos(targetPos);
-            }
-
-            if (nekoState == "sleep") return idle();
-
-            if ((distance < nekoSpeed || distance < 48) && nekoState == "follow") {
-                idle();
-                return;
-            }
-
-            if (idleTime > 1) {
-                setSprite("alert");
-                // count down after being alerted before moving
-                idleTime = Math.min(idleTime, 7);
-                idleTime -= 1;
-                return;
-            } */
 
         window.addEventListener("mousemove", onMouseMove);
         window.addEventListener("resize", onWindowResize);
@@ -462,6 +378,7 @@ export const Oneko = () => {
                         imageRendering: "pixelated",
                         overflow: "hidden",
                         zIndex: 900,
+                        opacity: "0",
                     }}
                 />
             </Tooltip>

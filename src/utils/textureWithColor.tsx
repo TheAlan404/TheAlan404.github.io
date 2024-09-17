@@ -13,11 +13,12 @@ export const allImagesReady = (Textures: HTMLImageElement[]): Promise<void[]> =>
 })));
 
 export const multiplyColor = (color: string, imageData: ImageData) => {
-    let { r, g, b } = toRgba(color);
+    let { r, g, b, a } = toRgba(color);
     for (let i = 0; i < imageData.data.length; i += 4) {
         imageData.data[i + 0] *= r/255;
         imageData.data[i + 1] *= g/255;
         imageData.data[i + 2] *= b/255;
+        imageData.data[i + 3] *= a;
     }
 };
 
@@ -40,10 +41,11 @@ export const textureWithColorDataURL = memoize((store: HTMLImageElement[], index
     const texture = store[index];
 
     const canvas = document.createElement("canvas");
-    canvas.width = texture.width;
-    canvas.height = texture.height;
     const ctx = canvas.getContext("2d");
     if(!ctx) return texture.src;
+    
+    ctx.canvas.width = texture.width;
+    ctx.canvas.height = texture.height;
 
     ctx.drawImage(texture, 0, 0);
     const imageData = ctx.getImageData(0, 0, texture.width, texture.height);

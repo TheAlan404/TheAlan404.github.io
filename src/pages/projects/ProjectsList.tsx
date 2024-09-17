@@ -7,7 +7,7 @@ import { Decor } from "../../components/misc/Decor";
 
 export const ProjectsList = () => {
     return (
-        <Stack py="md" w="100%">
+        <Stack w="100%" gap="xl">
             {Projects.map((p, i) => (
                 <ProjectRender
                     p={p}
