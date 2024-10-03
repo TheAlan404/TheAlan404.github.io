@@ -1,14 +1,16 @@
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
 import { DEFAULT_THEME, MantineProvider, createTheme } from '@mantine/core';
-import { WeatherProvider, WeatherRenderer } from "./features/effects/Weather";
-import { Oneko } from "./features/oneko/Oneko";
+import { WeatherProvider } from "./features/effects/Weather";
 import { OnekoAPIProvider } from "./features/oneko/OnekoAPI";
+import { Effects } from "./features/effects/Effects";
 
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
+import 'mantine-flagpack/styles.css';
 import './style.css';
-import { Effects } from "./features/effects/Effects";
+import { I18nextProvider } from "react-i18next";
+import i18next from "./i18n";
 
 const theme = createTheme({
     fontFamily: "Lexend-VariableFont, " + DEFAULT_THEME.fontFamily,
@@ -42,11 +44,13 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
     <MantineProvider theme={theme} forceColorScheme="dark">
-        <WeatherProvider>
-            <OnekoAPIProvider>
-                <Effects />
-                <App />
-            </OnekoAPIProvider>
-        </WeatherProvider>
+        <I18nextProvider i18n={i18next} defaultNS={"translation"}>
+            <WeatherProvider>
+                <OnekoAPIProvider>
+                    <Effects />
+                    <App />
+                </OnekoAPIProvider>
+            </WeatherProvider>
+        </I18nextProvider>
     </MantineProvider>
 );

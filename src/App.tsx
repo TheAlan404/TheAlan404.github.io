@@ -7,12 +7,20 @@ import { Header } from "./pages/Header";
 import { BlogPage } from "./pages/blog/BlogPage";
 import { OnekoBed } from "./features/oneko/OnekoBed";
 import { Oneko } from "./features/oneko/Oneko";
+import { useTranslation } from "react-i18next";
+import { useHotkeys } from "@mantine/hooks";
 
 export type Page = "projects" | "mili" | "about" | "blog";
 
 export const App = () => {
     const [page, setPage] = useState<Page>("about");
     const [isPending, startTransition] = useTransition();
+    const { i18n } = useTranslation();
+
+    useHotkeys([
+        ["1", () => i18n.changeLanguage("en")],
+        ["2", () => i18n.changeLanguage("tr")],
+    ])
 
     useEffect(() => {
         // @ts-ignore
@@ -42,27 +50,29 @@ export const App = () => {
                     </Box>
                 ) : (
                     <Stack>
-                        <Header />
-
                         <Stack gap={0}>
-                            <OnekoBed id="fallback" offset={{ x: 20, y: -28 }} />
-                            <Paper withBorder style={{ background: "unset" }}>
-                                <SegmentedControl
-                                    fullWidth
-                                    data={[
-                                        { value: "about", label: "About" },
-                                        { value: "projects", label: "Projects" },
-                                        { value: "blog", label: "Blog" },
-                                    ]}
-                                    withItemsBorders={false}
-                                    defaultValue={page}
-                                    onChange={(v) => {
-                                        startTransition(() => {
-                                            setPage(v as Page);
-                                        });
-                                    }}
-                                />
-                            </Paper>
+                            <Header />
+
+                            <Stack gap={0}>
+                                <OnekoBed id="fallback" offset={{ x: 20, y: -28 }} />
+                                <Paper withBorder style={{ background: "unset" }}>
+                                    <SegmentedControl
+                                        fullWidth
+                                        data={[
+                                            { value: "about", label: "About" },
+                                            { value: "projects", label: "Projects" },
+                                            { value: "blog", label: "Blog" },
+                                        ]}
+                                        withItemsBorders={false}
+                                        defaultValue={page}
+                                        onChange={(v) => {
+                                            startTransition(() => {
+                                                setPage(v as Page);
+                                            });
+                                        }}
+                                    />
+                                </Paper>
+                            </Stack>
                         </Stack>
 
                         {isPending ? (
@@ -86,7 +96,6 @@ export const App = () => {
                         )}
 
                         <Stack h="100vh" justify="end">
-                            <Text>beautiful, isnt it?</Text>
                         </Stack>
                     </Stack>
                 )}

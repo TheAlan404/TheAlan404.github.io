@@ -8,7 +8,7 @@ import { memoize, parseColor, toRgba } from "@mantine/core";
 import { useAppScroll } from "@/src/utils/useAppScroll";
 import { allImagesReady, textureWithColor } from "@/src/utils/textureWithColor";
 
-export const STARFIELD_SCALE = 2;
+export const STARFIELD_SCALE = 1;
 
 export const StarfieldTextures: HTMLImageElement[] = (Array(4).fill(0).map((_, i) => {
     let img = new Image();
@@ -78,12 +78,32 @@ const targetOfStar = ({
     yNodes,
 }: StarfieldConfig, star: IncompleteStar) => {
     let StepSize = dim.width / (steps(dim) - 2);
-    let vector = vec(star.NodeIndex * StepSize, yNodes[star.NodeIndex]);
-    let vector2 = vec((star.NodeIndex + 1) * StepSize, yNodes[star.NodeIndex + 1]);
+    let vector = {
+        x: star.NodeIndex * StepSize,
+        y: yNodes[star.NodeIndex],
+    };
+    let vector2 = {
+        x: (star.NodeIndex + 1) * StepSize,
+        y: yNodes[star.NodeIndex + 1],
+    };
     let vector3 = vecAdd(vector, vecMul(vecSub(vector2, vector), vecTup(star.NodePercent)));
     let vector4 = vecSafeNormalize(vecSub(vector2, vector));
-    let vector5 = vec(0.0 - vector4.y, vector4.x);
-    return vecAdd(vector3, vecMul(vecMul(vector5, vecTup(star.Distance)), vecTup(Math.sin(star.Sine))));
+    //let vector5 = vec(0.0 - vector4.y, vector4.x);
+    /* return vecAdd(vector3, vecMul(vecMul(vector5, vecTup(star.Distance)), vecTup(Math.sin(star.Sine))));
+
+    let vec3 = {
+        x: vector.x + (((vector2.x)-(vector.x))*(star.NodePercent)),
+        y: vector.y + (((vector2.y)-(vector.y))*(star.NodePercent)),
+    };
+
+    let vec35 = {
+
+    }; */
+
+    return {
+        x: (vector3.x) + (((-vector4.x)*(star.Distance))*(Math.sin(star.Sine))),
+        y: (vector3.y) + (((vector4.y)*(star.Distance))*(Math.sin(star.Sine))),
+    };
 }
 
 const createStars = (config: StarfieldConfig) => {
@@ -119,18 +139,39 @@ export const renderStar = ({
     color,
 }: StarfieldConfig, star: Star, ctx: CanvasRenderingContext2D) => {
     let vector = vec(0, 0);
-    vector.x = -64 + mod((star.Position.x - position.x * scroll.x), dim.width + 128);
-    vector.y = -16 + mod((star.Position.y - position.y * scroll.y), dim.height + 32);
+    vector.x = -64 + mod(Math.floor(star.Position.x - position.x * scroll.x), dim.width + 128);
+    vector.y = -16 + mod(Math.floor(star.Position.y - position.y * scroll.y), dim.height + 32);
     let position2 = vector;
 
     let { x, y } = position2;
     let opacity = Math.round(star.Opacity * 255).toString(16).padStart(2, "0");
     let c = color + opacity;
-    ctx.drawImage(textureWithColor(
+
+    if(star.Texture == 0) {
+        ctx.fillStyle = "#"+c;
+        ctx.fillRect(x, y, 1, 1);
+        return;
+    } else if(star.Texture == 1) {
+        ctx.fillStyle = "#"+c;
+        ctx.fillRect(x+1, y, 1, 1);
+        ctx.fillRect(x-1, y, 1, 1);
+        ctx.fillRect(x, y+1, 1, 1);
+        ctx.fillRect(x, y-1, 1, 1);
+        return;
+    }
+
+    let tex = textureWithColor(
+        "starfield",
         StarfieldTextures,
         star.Texture,
         c,
-    ), x*STARFIELD_SCALE - 8*STARFIELD_SCALE, y*STARFIELD_SCALE - 8*STARFIELD_SCALE, 16*STARFIELD_SCALE, 16*STARFIELD_SCALE);
+        STARFIELD_SCALE,
+    );
+    ctx.drawImage(
+        tex,
+        x*STARFIELD_SCALE - 8*STARFIELD_SCALE,
+        y*STARFIELD_SCALE - 8*STARFIELD_SCALE,
+    );
 };
 
 export const updateStar = (config: StarfieldConfig, star: Star, dt: number = 1) => {

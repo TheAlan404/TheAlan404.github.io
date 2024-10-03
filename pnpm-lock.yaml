@@ -35,12 +35,24 @@ importers:
       embla-carousel-react:
         specifier: 7.1.0
         version: 7.1.0(react@18.3.1)
+      i18next:
+        specifier: ^23.15.1
+        version: 23.15.1
+      i18next-browser-languagedetector:
+        specifier: ^8.0.0
+        version: 8.0.0
+      mantine-flagpack:
+        specifier: ^4.0.1
+        version: 4.0.1(@mantine/core@7.12.1(@mantine/hooks@7.12.1(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.12.1(react@18.3.1))(clsx@2.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+      react-i18next:
+        specifier: ^15.0.2
+        version: 15.0.2(i18next@23.15.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       vite-tsconfig-paths:
         specifier: ^5.0.1
         version: 5.0.1(vite@5.4.0(sugarss@4.0.1(postcss@8.4.41)))
@@ -753,6 +765,15 @@ packages:
   hast-util-whitespace@3.0.0:
     resolution: {integrity: sha512-88JUN06ipLwsnv+dVn+OIYOvAuvBMy/Qoi6O7mQHxdPXpjy+Cd6xRkWwux7DKO+4sYILtLBRIKgsdpS2gQc7qw==}
 
+  html-parse-stringify@3.0.1:
+    resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
+
+  i18next-browser-languagedetector@8.0.0:
+    resolution: {integrity: sha512-zhXdJXTTCoG39QsrOCiOabnWj2jecouOqbchu3EfhtSHxIB5Uugnm9JaizenOy39h7ne3+fLikIjeW88+rgszw==}
+
+  i18next@23.15.1:
+    resolution: {integrity: sha512-wB4abZ3uK7EWodYisHl/asf8UYEhrI/vj/8aoSsrj/ZDxj4/UXPOa1KvFt1Fq5hkUHquNqwFlDprmjZ8iySgYA==}
+
   inline-style-parser@0.1.1:
     resolution: {integrity: sha512-7NXolsK4CAS5+xvdj5OMMbI962hU/wvwoxk+LWR9Ek9bVtyuuYScDN6eS0rUm6TxApFpw7CX1o4uJzcd4AyD3Q==}
 
@@ -819,6 +840,15 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+
+  mantine-flagpack@4.0.1:
+    resolution: {integrity: sha512-8kIk0mzCByNngNqvs1uXQlpgJOG8tTC5J8c29TE5F7ZymOCr0K4lb49MMcwQ+jX0Pu5AfeRyx24jqI/ZwaVrhw==}
+    peerDependencies:
+      '@mantine/core': '>=7.0.0'
+      '@mantine/hooks': '>=7.0.0'
+      clsx: ^2.1.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
 
   markdown-extensions@2.0.0:
     resolution: {integrity: sha512-o5vL7aDWatOTX8LzaS1WMoaoxIiLRQJuIKKe2wAw6IeULDHaqbiqiggmx+pKvZDb1Sj+pE46Sn1T7lCqfFtg1Q==}
@@ -1021,6 +1051,19 @@ packages:
     resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
     peerDependencies:
       react: ^18.3.1
+
+  react-i18next@15.0.2:
+    resolution: {integrity: sha512-z0W3/RES9Idv3MmJUcf0mDNeeMOUXe+xoL0kPfQPbDoZHmni/XsIoq5zgT2MCFUiau283GuBUK578uD/mkAbLQ==}
+    peerDependencies:
+      i18next: '>= 23.2.3'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -1290,6 +1333,10 @@ packages:
         optional: true
       terser:
         optional: true
+
+  void-elements@3.1.0:
+    resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
+    engines: {node: '>=0.10.0'}
 
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
@@ -1999,6 +2046,18 @@ snapshots:
     dependencies:
       '@types/hast': 3.0.4
 
+  html-parse-stringify@3.0.1:
+    dependencies:
+      void-elements: 3.1.0
+
+  i18next-browser-languagedetector@8.0.0:
+    dependencies:
+      '@babel/runtime': 7.25.0
+
+  i18next@23.15.1:
+    dependencies:
+      '@babel/runtime': 7.25.0
+
   inline-style-parser@0.1.1: {}
 
   inline-style-parser@0.2.3: {}
@@ -2049,6 +2108,14 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  mantine-flagpack@4.0.1(@mantine/core@7.12.1(@mantine/hooks@7.12.1(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.12.1(react@18.3.1))(clsx@2.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@mantine/core': 7.12.1(@mantine/hooks@7.12.1(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mantine/hooks': 7.12.1(react@18.3.1)
+      clsx: 2.1.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   markdown-extensions@2.0.0: {}
 
@@ -2448,6 +2515,15 @@ snapshots:
       react: 18.3.1
       scheduler: 0.23.2
 
+  react-i18next@15.0.2(i18next@23.15.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@babel/runtime': 7.25.0
+      html-parse-stringify: 3.0.1
+      i18next: 23.15.1
+      react: 18.3.1
+    optionalDependencies:
+      react-dom: 18.3.1(react@18.3.1)
+
   react-is@16.13.1: {}
 
   react-number-format@5.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
@@ -2716,6 +2792,8 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
       sugarss: 4.0.1(postcss@8.4.41)
+
+  void-elements@3.1.0: {}
 
   yallist@3.1.1: {}
 

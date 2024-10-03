@@ -2,14 +2,12 @@ import { ProjectStatus } from "@/src/types";
 import { Badge, Tooltip } from '@mantine/core';
 
 const Renderers: Record<ProjectStatus, React.ReactNode> = {
-    done: <></>,
+    up: <></>,
+    ok: <></>,
     wip: <Tooltip label="Work in progress">
-        <Badge variant="light" color="yellow">WIP</Badge>
+        <Badge variant="light" color="gray">WIP</Badge>
     </Tooltip>,
-    forgor: <Badge variant="light" color="gray">forgor</Badge>,
-    abandoned: <Tooltip label="Abandoned project">
-        <Badge variant="light" color="red">dead</Badge>
-    </Tooltip>,
+    archive: <Badge variant="light" color="yellow">ARCHIVED</Badge>,
 };
 
 export const StatusRender = ({ status }: { status: ProjectStatus }) => {

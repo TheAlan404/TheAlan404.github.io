@@ -1,5 +1,6 @@
 import { memoize, toRgba } from "@mantine/core";
-import { useRef } from "react";
+
+export type Color = { r: number, g: number, b: number, a?: number };
 
 export const createTextureStore = (textures: string[]) => textures.map(src => {
     let img = new Image();
@@ -22,20 +23,35 @@ export const multiplyColor = (color: string, imageData: ImageData) => {
     }
 };
 
-export const textureWithColor = memoize((store: HTMLImageElement[], index: number, color: string) => {
+const texCache = new Map<string, CanvasImageSource>();
+
+export const textureWithColor = (
+    ident: string,
+    store: HTMLImageElement[],
+    index: number,
+    color: string,
+    scale: number = 1,
+): CanvasImageSource => {
+    let key = `${ident}-${index}-${color}`;
+    if(texCache.has(key)) return texCache.get(key)!;
+    
     const texture = store[index];
 
-    const offscreen = new OffscreenCanvas(texture.width, texture.height);
+    const offscreen = new OffscreenCanvas(texture.width * scale, texture.height * scale);
     const ctx = offscreen.getContext("2d");
-    if(!ctx) return texture;
+    if(!ctx) throw new Error("offscreenctx2d not found");
 
-    ctx.drawImage(texture, 0, 0);
-    const imageData = ctx.getImageData(0, 0, texture.width, texture.height);
+    ctx.imageSmoothingEnabled = false;
+
+    ctx.drawImage(texture, 0, 0, texture.width * scale, texture.height * scale);
+    const imageData = ctx.getImageData(0, 0, texture.width * scale, texture.height * scale);
     multiplyColor(color, imageData);
     ctx.putImageData(imageData, 0, 0);
 
+    texCache.set(key, offscreen);
+
     return offscreen;
-});
+};
 
 export const textureWithColorDataURL = memoize((store: HTMLImageElement[], index: number, color: string, dl = false) => {
     const texture = store[index];

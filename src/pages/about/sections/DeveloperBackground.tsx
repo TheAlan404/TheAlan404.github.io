@@ -8,27 +8,30 @@ import { IconBrandGithub } from "@tabler/icons-react"
 import { Link } from "@/src/components/misc/Link"
 import { MantineLogo } from "@mantinex/mantine-logo"
 import { Section } from "@/src/components/misc/Section"
+import { useTranslation } from "react-i18next"
 
 export const DeveloperBackground = () => {
+    const [t] = useTranslation();
+
     return (
         <AboutSection
             value="dev"
-            title="Developer Background"
+            title={t("dev.title")}
             icon={<IconDeviceDesktopCode />}
         >
             <Stack>
                 <Section>
-                    <Text>
-                        I've been writing code for about
-                        {" "}
-                        <Text span fw="bold">5 years</Text>.
-                    </Text>
+                    <Group gap="xs" ta="center" justify="center">
+                        <Text span>{t("dev.yearsPrefix")}</Text>
+                        <Text span fw="bold">{t("dev.years")}</Text>
+                        <Text span>{t("dev.yearsSuffix")}</Text>
+                    </Group>
                 </Section>
                 <Section>
                     <Group grow align="start" gap={0} wrap="nowrap">
                         <Stack align="start" ta="start">
                             <Text span fw="bold">
-                                Languages I'm best at:
+                                {t("dev.languages")}
                             </Text>
                             <List center>
                                 <List.Item icon={<IconBrandJavascript />}>JavaScript</List.Item>
@@ -39,7 +42,7 @@ export const DeveloperBackground = () => {
                         </Stack>
                         <Stack align="end" ta="end">
                             <Text span fw="bold">
-                                And the technologies I use:
+                                {t("dev.tools")}
                             </Text>
                             <List center className="listAlignEnd">
                                 <List.Item icon={<IconBrandReact />}>React</List.Item>
@@ -79,7 +82,7 @@ export const DeveloperBackground = () => {
                         </Text>
 
                         <Image
-                            src="https://ghchart.rshah.org/7048e8/thealan404"
+                            src="" //"https://ghchart.rshah.org/7048e8/thealan404"
                             w="100%"
                         />
 

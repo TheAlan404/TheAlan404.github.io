@@ -34,7 +34,7 @@ export const OnekoBed = ({
         set();
 
         return () => removeBed(id);
-    }, [ref]);
+    }, []);
 
     return (
         <div

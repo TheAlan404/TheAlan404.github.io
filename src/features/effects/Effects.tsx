@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createMists, MIST_SCALE, MistTextures } from "./ParallaxMist";
-import { createStarfields, renderStar, Starfield, STARFIELD_SCALE, StarfieldTextures, updateStar } from "./StarryBackground";
+import { createStarfields, renderStar, Starfield, STARFIELD_SCALE, StarfieldTextures, updateStar } from "./starfields";
 import { allImagesReady, textureWithColorDataURL } from "@/src/utils/textureWithColor";
 import { useAppScroll } from "@/src/utils/useAppScroll";
 import { vec, vecAdd, vecMul, vecTup } from "@/src/utils/utils";
@@ -9,12 +9,15 @@ import { Coord } from "@/src/types";
 
 export const Effects = () => {
     const [isReady, setIsReady] = useState(false);
-    if (!isReady) allImagesReady([
-        ...MistTextures,
-        ...StarfieldTextures,
-    ]).then(() => {
-        setIsReady(true);
-    });
+
+    useEffect(() => {
+        if (!isReady) allImagesReady([
+            ...MistTextures,
+            ...StarfieldTextures,
+        ]).then(() => {
+            setIsReady(true);
+        });
+    }, [isReady]);
 
     const scrollTop = useRef(0);
     useAppScroll((y) => {
@@ -42,7 +45,6 @@ export const Effects = () => {
 
         // Starfields
         if (!isReady) return;
-        ctx.imageSmoothingEnabled = false;
 
         let currentDim = {
             width: ctx.canvas.width / STARFIELD_SCALE,
@@ -73,6 +75,13 @@ export const Effects = () => {
         <div>
             <canvas
                 className="pageBackground"
+                style={{
+                    width: "50vw",
+                    height: "50vh",
+                    transformOrigin: "0 0",
+                    transform: `scale(2)`,
+                    imageRendering: "crisp-edges",
+                }}
                 ref={canvasRef}
             />
 

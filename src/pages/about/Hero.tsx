@@ -1,34 +1,74 @@
 import { Group, Stack, Title, Text, Space, Tooltip, Image, List, Divider, Box, Avatar, Paper } from '@mantine/core';
 import { DiscordSection } from "@/src/pages/about/DiscordSection";
 import { Section } from "@/src/components/misc/Section";
-import { OnekoBed } from "@/src/features/oneko/OnekoBed";
 import { OnekoSection } from "./OnekoSection";
+import { useTranslation } from "react-i18next";
+import { TRFlag } from "mantine-flagpack";
 
 export const Hero = () => {
+    const { t, i18n: { resolvedLanguage } } = useTranslation();
+
+    const devSection = (
+        <>
+            <Text inline>
+                {t("hero.devprefix")}
+            </Text>
+            <Text inline fw="bold" className="rainbowText">
+                {t("hero.dev")}
+            </Text>
+            <Text inline>
+                {t("hero.devsuffix")}
+            </Text>
+        </>
+    )
+
+    const location = (
+        <Group gap={4}>
+            <Text span fw="bold">
+                {t("hero.location")}
+            </Text>
+            {resolvedLanguage !== "tr" && (
+                <TRFlag w="lg" />
+            )}
+            {resolvedLanguage !== "tr" && (
+                <Tooltip label="or, UTC+3" withArrow>
+                    <Text span c="dimmed">
+                        (GMT+3)
+                    </Text>
+                </Tooltip>  
+            )}
+        </Group>
+    )
+
     return (
         <Stack w={{ base: "100%", xs: "80%" }}>
             <Section ta="center">
                 <Stack gap="sm" align="center">
-                    <Group gap={6}>
-                        <Text inline>Hi! I'm</Text>
+                    <Group gap={6} ta="center" justify="center">
+                        <Text inline>
+                            {t("hero.hi")}
+                        </Text>
                         <Text
                             inline
                             fw={900}
-                            
                         >
                             <Group wrap="nowrap" gap={4}>
-                                <Text inline inherit>Gökçe</Text>
+                                <Text inline span inherit>
+                                    Gökçe
+                                </Text>
                                 <Group wrap="nowrap" gap={0}>
                                     <Tooltip label="turkish for sea">
-                                        <Text inline inherit>
+                                        <Text inline span inherit>
                                             Deniz
                                         </Text>
                                     </Tooltip>
-                                    <Text>,</Text>
+                                    <Text span>,</Text>
                                 </Group>
                             </Group>
                         </Text>
-                        <Text>I go by</Text>
+                        <Text span>
+                            {t("hero.goby")}
+                        </Text>
                         <Text
                             span
                             fw={900}
@@ -39,39 +79,15 @@ export const Hero = () => {
                         </Text>
                         {" "}
                         <Text span>
-                            online.
+                            {t("hero.online")}
                         </Text>
-                        {" "}
-                        <Tooltip label="mrow~" position="right" withArrow>
-                            <Text
-                                span
-                                className="transText"
-                            >
-                                :3
-                            </Text>
-                        </Tooltip>
                     </Group>
 
                     <Stack ta="center" align="center">
-                        <Group gap="xs">
-                            <Text inline>I am a</Text>
-                            <Text inline fw="bold" className="rainbowText">full stack developer</Text>
-                            <Text inline>from</Text>
-                            <Group gap={4}>
-                                <Text span fw="bold">
-                                    Istanbul, Turkey
-                                </Text>
-                                <Image
-                                    src="/assets/img/ico/flag_tr.svg"
-                                    w="1.2em"
-                                    h="1.2em"
-                                />
-                                <Tooltip label="or, UTC+3" withArrow>
-                                    <Text span c="dimmed">
-                                        (GMT+3)
-                                    </Text>
-                                </Tooltip>
-                            </Group>
+                        <Group gap="xs" justify="center" ta="center">
+                            {resolvedLanguage == "en" && devSection}
+                            {location}
+                            {resolvedLanguage != "en" && devSection}
                         </Group>
                     </Stack>
                 </Stack>

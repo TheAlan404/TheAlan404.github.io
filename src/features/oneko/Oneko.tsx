@@ -6,11 +6,12 @@ import { useContext } from "react";
 import { OnekoContext } from "./OnekoAPI";
 import { randInt, randArr, eucDist, vec, vecSub, vecMul, vecTup, vecDiv } from "../../utils/utils";
 import { Coord } from "@/src/types";
-import { Enum, match, variant } from "@alan404/enum";
+import { createFactory, Enum, match, variant } from "@alan404/enum";
 import { getSprite, OnekoSkin, OnekoSkins, SpriteName } from "./OnekoData";
 import { useAppScroll } from "@/src/utils/useAppScroll";
 
-type NekoStatus = Enum<{
+const NekoState = createFactory<NekoState>();
+type NekoState = Enum<{
     untouched: {};
     sleeping: {};
     idle: {};
@@ -20,7 +21,7 @@ type NekoStatus = Enum<{
         afterTargetReached?: "sleep" | "sit";
     };
     dragging: {
-        previousState: NekoStatus;
+        previousState: NekoState;
         startPosition: Coord;
         direction?: "N" | "S" | "E" | "W";
     };
@@ -38,7 +39,7 @@ const defaultOnekoOptions: NekoOptions = {
 
 type Neko = {
     skin: OnekoSkin;
-    state: NekoStatus;
+    state: NekoState;
     position: Coord;
     options: NekoOptions;
 };
@@ -72,7 +73,7 @@ export const Oneko = () => {
         skin: OnekoSkins[1],
         options: defaultOnekoOptions,
         position: getInitialPosition(),
-        state: variant<NekoStatus>("untouched", {}),
+        state: NekoState.untouched({}),
     });
 
     useEffect(() => {
@@ -80,7 +81,7 @@ export const Oneko = () => {
 
         const { current: neko } = onekoRef;
 
-        let setNekoState = (state: NekoStatus) => {
+        let setNekoState = (state: NekoState) => {
             neko.state = state;
         };
 
@@ -88,7 +89,7 @@ export const Oneko = () => {
 
         const onekoActions = {
             wakeUp: () => {
-                setNekoState(variant<NekoStatus>("idle", {}));
+                setNekoState(NekoState.idle({}));
                 //say("*yawn* car activated owo");
             },
             pet: () => {
@@ -99,12 +100,12 @@ export const Oneko = () => {
 
             },
             sit: () => {
-                setNekoState(variant<NekoStatus>("sit", {}));
-                //say("oki i sit :3");
+                setNekoState(NekoState.sit({}));
+                say("oki i sit :3");
             },
-            idle: () => {
-                setNekoState(variant<NekoStatus>("idle", {}));
-                
+            standUp: () => {
+                setNekoState(NekoState.idle({}));
+                say("mice following mode");
             },
         };
 
@@ -115,17 +116,19 @@ export const Oneko = () => {
         // Events
 
         const onNekoInputDown = (initial: Coord) => {
-            setNekoState(variant<NekoStatus>("dragging", {
+            setNekoState(variant<NekoState>("dragging", {
                 previousState: neko.state,
                 startPosition: initial,
             }));
         }
 
-        const onInputUp = () => {
+        const onNekoInputUp = () => {
             if (neko.state.type == "dragging") {
-                setNekoState(
-                    variant<NekoStatus>("idle", {})
-                );
+                setNekoState(match<NekoState, NekoState>(neko.state.data.previousState)({
+                    dragging: () => NekoState.idle({}),
+                    follow: () => NekoState.idle({}),
+                    _: (v) => v,
+                }));
             }
         }
 
@@ -156,35 +159,35 @@ export const Oneko = () => {
                 setNekoPos(target);
 
                 if (neko.state.data.direction || distFromStart > 32) {
-                    if (dir)
-                        setNekoState(variant<NekoStatus>("dragging", { ...neko.state.data, direction: dir }));
+                    if (dir) neko.state.data.direction = dir;
                 }
 
                 return;
             }
 
-            if ((["untouched", "sleeping", "sit"] as NekoStatus["type"][]).includes(neko.state.type)) return;
+            if ((["untouched", "sleeping", "sit"] as NekoState["type"][]).includes(neko.state.type)) return;
 
             if(eucDist(neko.position.x - target.x, neko.position.y - target.y) < neko.options.minFollowDist) return;
 
-            setNekoState(variant<NekoStatus>("follow", { target }));
+            if(neko.state.type == "follow" || neko.state.type == "idle")
+                setNekoState(NekoState.follow({ target }));
         }
 
         const onWindowResize = () => {
-            if ((["follow"] as NekoStatus["type"][]).includes(neko.state.type)) return;
+            if ((["follow"] as NekoState["type"][]).includes(neko.state.type)) return;
 
             // If neko is outside the window and is forced to sleep, wake her up
             if (
                 neko.position.x - window.innerWidth > 32 ||
                 neko.position.y - window.innerHeight > 32
             ) {
-                setNekoState(variant<NekoStatus>("idle", {}));
+                setNekoState(NekoState.idle({}));
             }
         };
 
         const onNekoDoubleClick = () => {
-            match(neko.state)({
-                sit: () => onekoActions.idle(),
+            match((neko.state.type == "dragging") ? (neko.state.data.previousState) : (neko.state))({
+                sit: () => onekoActions.standUp(),
                 follow: () => onekoActions.sit(),
                 idle: () => onekoActions.sit(),
                 sleeping: () => onekoActions.wakeUp(),
@@ -225,12 +228,12 @@ export const Oneko = () => {
             vec(clientX, clientY + scrollY.current);
 
         const onMouseMove = (e: MouseEvent) => onInputMove(coord(e));
-        const onNekoMouseUp = (e: MouseEvent) => onInputUp();
+        const onNekoMouseUp = (e: MouseEvent) => onNekoInputUp();
         const onNekoTouchMove = (e: TouchEvent) => e.touches.length == 1 && onInputMove(coord(e.touches[0]));
         const onNekoTouchEnd = (e: TouchEvent) => {
             if(e.touches.length !== 1) return;
             onInputMove(coord(e.touches[0]));
-            onInputUp();
+            onNekoInputUp();
         };
 
         const onNekoMouseDown = (e: MouseEvent) => {
@@ -311,7 +314,7 @@ export const Oneko = () => {
                     const distance = Math.sqrt(diff.x ** 2 + diff.y ** 2);
 
                     if(distance < neko.options.minFollowDist) {
-                        setNekoState(variant<NekoStatus>("idle", {}));
+                        setNekoState(NekoState.idle({}));
                         return;
                     }
 

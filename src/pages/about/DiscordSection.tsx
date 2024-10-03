@@ -3,11 +3,14 @@ import { useFetch } from "@mantine/hooks";
 import { Link } from "../../components/misc/Link";
 import { IconBrandDiscord } from "@tabler/icons-react";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const GUILD_ID = "1197520507617153064";
 const API_URL = `https://discord.com/api/guilds/${GUILD_ID}/widget.json`;
 
 export const DiscordSection = () => {
+    const [t] = useTranslation();
+
     const {
         data,
         loading,
@@ -24,7 +27,7 @@ export const DiscordSection = () => {
     return (
         <Group ta="end" justify="end" w={{ base: "100%", sm: "auto" }}>
                 <Text c="dimmed">
-                    {data && `${data.presence_count} online`}
+                    {data && t("discord.online", { count: data.presence_count })}
                 </Text>
                 <Link
                     text="Discord"

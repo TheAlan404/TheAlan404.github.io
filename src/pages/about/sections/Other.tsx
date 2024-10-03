@@ -10,12 +10,15 @@ import { FriendAshley } from "../../../components/friends/ashley";
 import { FriendSophia } from "@/src/components/friends/sophia";
 import { Section } from "@/src/components/misc/Section";
 import { FriendSparkles } from "@/src/components/friends/sparkles";
+import { useTranslation } from "react-i18next";
 
 export const Other = () => {
+    const [t] = useTranslation();
+
     return (
         <AboutSection
             value="other"
-            title="Other"
+            title={t("other.title")}
             icon={<IconApps />}
         >
             <Stack>
@@ -24,7 +27,7 @@ export const Other = () => {
                         <Divider
                             w="100%"
                             labelPosition="left"
-                            label={"Friends' Websites"}
+                            label={t("other.friendsTitle")}
                         />
 
                         <SimpleGrid cols={{
@@ -55,7 +58,7 @@ export const Other = () => {
                         </SimpleGrid>
 
                         <Text>
-                            these are supposed to be custom elements made by them but uhhh
+                            {t("other.bruh")}
                         </Text>
                     </Stack>
                 </Section>
