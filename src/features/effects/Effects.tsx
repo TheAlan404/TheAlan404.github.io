@@ -80,7 +80,7 @@ export const Effects = () => {
                     height: "50vh",
                     transformOrigin: "0 0",
                     transform: `scale(2)`,
-                    imageRendering: "crisp-edges",
+                    imageRendering: "pixelated",
                 }}
                 ref={canvasRef}
             />
