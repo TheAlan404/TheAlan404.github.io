@@ -11,7 +11,13 @@ import { IconAlertTriangle } from "@tabler/icons-react";
 export const ProjectsList = () => {
     const filteredProjects = Projects;
 
-    const categories = (Object.entries(Object.groupBy(filteredProjects, (p) => p.year)) as [string, Project[]][])
+    const categories = (Object.entries(
+        filteredProjects.reduce((acc, cur) => {
+            if(!acc[cur.year]) acc[cur.year] = [];
+            acc[cur.year].push(cur);
+            return acc;
+        }, {})
+    ) as [string, Project[]][])
         .toSorted(([a], [b]) => Number(b) - Number(a));
 
     return (
