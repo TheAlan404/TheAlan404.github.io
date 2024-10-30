@@ -96,7 +96,7 @@ export const App = () => {
                 )}
             </Container>
 
-            <Box
+            {/* <Box
                 style={{
                     position: "absolute",
                     bottom: 0,
@@ -114,7 +114,7 @@ export const App = () => {
                         draggable={false}
                     />
                 </Tooltip>
-            </Box>
+            </Box> */}
         </Box>
     )
 }

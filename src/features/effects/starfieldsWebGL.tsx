@@ -35,7 +35,7 @@ const vertexShaderSrc = `
         //float x = mod(a_position.x - u_position.x * u_scroll.x + u_dim.x, u_dim.x + 128.0) - 64.0;
         //float y = mod(a_position.y - u_position.y * u_scroll.y + u_dim.y, u_dim.y + 32.0) - 16.0;
 
-        vec2 position = mod(a_position - u_scrollPosition * u_scroll + u_dim, u_dim + vec2(128.0, 32.0)) - vec2(64.0, 16.0);
+        vec2 position = mod(a_position - u_scrollPosition * u_scroll, u_dim);
 
         vec2 clipSpace = ((position / u_resolution) * 2.0) - 1.0;
         gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);

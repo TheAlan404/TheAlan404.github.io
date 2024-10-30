@@ -93,10 +93,10 @@ export const Effects = () => {
             <canvas
                 className="pageBackground"
                 style={{
-                    width: "50vw",
-                    height: "50vh",
+                    width: `${100/STARFIELD_SCALE}vw`,
+                    height: `${100/STARFIELD_SCALE}vh`,
                     transformOrigin: "0 0",
-                    transform: `scale(2)`,
+                    transform: `scale(${STARFIELD_SCALE})`,
                     imageRendering: "pixelated",
                 }}
                 ref={canvasRef}

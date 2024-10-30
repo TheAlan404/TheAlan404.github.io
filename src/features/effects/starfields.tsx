@@ -1,20 +1,7 @@
 import { Coord } from "@/src/types";
-import { useCanvas } from "@/src/utils/useCanvas";
-import { useContext, useEffect, useRef } from "react";
-import { Weather, WeatherContext } from "./Weather";
-import { choose, clamp, lerp, randArr, randFloat, randInt, vec, vecAdd, vecDiv, vecMul, vecSafeNormalize, vecSub, vecTup } from "@/src/utils/utils";
-import { useHotkeys } from "@mantine/hooks";
-import { memoize, parseColor, toRgba } from "@mantine/core";
-import { useAppScroll } from "@/src/utils/useAppScroll";
-import { allImagesReady, textureWithColor } from "@/src/utils/textureWithColor";
+import { choose, clamp, lerp, randFloat, randInt, vec, vecAdd, vecDiv, vecMul, vecSafeNormalize, vecSub, vecTup } from "@/src/utils/utils";
 
-export const STARFIELD_SCALE = 1;
-
-export const StarfieldTextures: HTMLImageElement[] = (Array(4).fill(0).map((_, i) => {
-    let img = new Image();
-    img.src = `/assets/img/detail/starfield/0${i}.png`;
-    return img;
-}));
+export const STARFIELD_SCALE = 2;
 
 export interface Starfield {
     config: StarfieldConfig;
@@ -118,7 +105,7 @@ const createStars = (config: StarfieldConfig) => {
             Sine: randFloat(Math.PI * 2.0),
         };
 
-        let index = Math.floor(clamp(0.0, Math.pow(1.0 - num3, 3) * StarfieldTextures.length, StarfieldTextures.length - 1));
+        let index = Math.floor(clamp(0.0, Math.pow(1.0 - num3, 3) * 4, 4 - 1));
 
         return {
             ...incomplete,
@@ -169,12 +156,12 @@ const createStarfield = (partial: Partial<StarfieldConfig>): Starfield => {
 };
 
 export const createStarfields = (x: Partial<StarfieldConfig>) => [
-    createStarfield({ color: "ffffff", scroll: vec(0.1, 0.1), flowSpeed: 1, ...x }),
+    //createStarfield({ color: "ffffff", scroll: vec(0.1, 0.1), flowSpeed: 1, ...x }),
     createStarfield({ color: "ab6ffa", scroll: vec(0.3, 0.3), ...x }),
     createStarfield({ color: "71d5ff", scroll: vec(0.3, 0.3), flowSpeed: 2.5, ...x }),
-    createStarfield({ color: "f8ffb0", scroll: vec(0.3, 0.3), flowSpeed: 3, ...x }),
+    //createStarfield({ color: "f8ffb0", scroll: vec(0.3, 0.3), flowSpeed: 3, ...x }),
     createStarfield({ color: "53f3dd", scroll: vec(0.5, 0.5), ...x }),
-    createStarfield({ color: "46fffd", scroll: vec(0.5, 0.5), flowSpeed: 2.75, ...x }),
+    //createStarfield({ color: "46fffd", scroll: vec(0.5, 0.5), flowSpeed: 2.75, ...x }),
     createStarfield({ color: "cefdff", scroll: vec(0.5, 0.5), flowSpeed: 3, ...x }),
 ];
 

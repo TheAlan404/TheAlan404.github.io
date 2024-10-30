@@ -8,7 +8,7 @@ export const About = () => {
     return (
         <Stack w="100%" align="center">
             <Hero />
-            <Accordion defaultValue={["other"]} multiple w="100%">
+            <Accordion defaultValue={[]} multiple w="100%">
                 <DeveloperBackground />
                 <Fanart />
                 <Other />
