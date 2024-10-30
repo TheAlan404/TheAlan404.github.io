@@ -47,6 +47,7 @@ root.render(
         <I18nextProvider i18n={i18next} defaultNS={"translation"}>
             <WeatherProvider>
                 <OnekoAPIProvider>
+                    <div id="pagetop" />
                     <Effects />
                     <App />
                 </OnekoAPIProvider>

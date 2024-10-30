@@ -28,6 +28,7 @@ export interface StarfieldConfig {
     dim: Dim;
     scroll: Coord;
     position: Coord;
+    flash: number;
 };
 
 export interface Star {
@@ -130,50 +131,6 @@ const createStars = (config: StarfieldConfig) => {
     return stars;
 };
 
-const mod = (x: number, m: number) => (x % m + m) % m;
-
-export const renderStar = ({
-    position,
-    scroll,
-    dim,
-    color,
-}: StarfieldConfig, star: Star, ctx: CanvasRenderingContext2D) => {
-    let vector = vec(0, 0);
-    vector.x = -64 + mod(Math.floor(star.Position.x - position.x * scroll.x), dim.width + 128);
-    vector.y = -16 + mod(Math.floor(star.Position.y - position.y * scroll.y), dim.height + 32);
-    let position2 = vector;
-
-    let { x, y } = position2;
-    let opacity = Math.round(star.Opacity * 255).toString(16).padStart(2, "0");
-    let c = color + opacity;
-
-    if(star.Texture == 0) {
-        ctx.fillStyle = "#"+c;
-        ctx.fillRect(x, y, 1, 1);
-        return;
-    } else if(star.Texture == 1) {
-        ctx.fillStyle = "#"+c;
-        ctx.fillRect(x+1, y, 1, 1);
-        ctx.fillRect(x-1, y, 1, 1);
-        ctx.fillRect(x, y+1, 1, 1);
-        ctx.fillRect(x, y-1, 1, 1);
-        return;
-    }
-
-    let tex = textureWithColor(
-        "starfield",
-        StarfieldTextures,
-        star.Texture,
-        c,
-        STARFIELD_SCALE,
-    );
-    ctx.drawImage(
-        tex,
-        x*STARFIELD_SCALE - 8*STARFIELD_SCALE,
-        y*STARFIELD_SCALE - 8*STARFIELD_SCALE,
-    );
-};
-
 export const updateStar = (config: StarfieldConfig, star: Star, dt: number = 1) => {
     star.Sine += dt * config.flowSpeed;
     star.NodePercent += dt * 0.25 * config.flowSpeed;
@@ -198,6 +155,7 @@ const createStarfield = (partial: Partial<StarfieldConfig>): Starfield => {
         flowSpeed: 1,
         position: vec(0, 0),
         scroll: vec(1, 1),
+        flash: 1,
         ...partial,
     };
 
@@ -211,12 +169,12 @@ const createStarfield = (partial: Partial<StarfieldConfig>): Starfield => {
 };
 
 export const createStarfields = (x: Partial<StarfieldConfig>) => [
-    createStarfield({ color: "ab6ffa", scroll: vec(0.3, 0.3), ...x }),
-    createStarfield({ color: "53f3dd", scroll: vec(0.5, 0.5), ...x }),
-    //createStarfield({ color: "71d5ff", scroll: vec(0.3, 0.3), flowSpeed: 2.5, ...x }),
-    createStarfield({ color: "46fffd", scroll: vec(0.5, 0.5), flowSpeed: 2.75, ...x }),
-    //createStarfield({ color: "f8ffb0", scroll: vec(0.3, 0.3), flowSpeed: 3, ...x }),
-    //createStarfield({ color: "cefdff", scroll: vec(0.5, 0.5), flowSpeed: 3, ...x }),
     createStarfield({ color: "ffffff", scroll: vec(0.1, 0.1), flowSpeed: 1, ...x }),
+    createStarfield({ color: "ab6ffa", scroll: vec(0.3, 0.3), ...x }),
+    createStarfield({ color: "71d5ff", scroll: vec(0.3, 0.3), flowSpeed: 2.5, ...x }),
+    createStarfield({ color: "f8ffb0", scroll: vec(0.3, 0.3), flowSpeed: 3, ...x }),
+    createStarfield({ color: "53f3dd", scroll: vec(0.5, 0.5), ...x }),
+    createStarfield({ color: "46fffd", scroll: vec(0.5, 0.5), flowSpeed: 2.75, ...x }),
+    createStarfield({ color: "cefdff", scroll: vec(0.5, 0.5), flowSpeed: 3, ...x }),
 ];
 

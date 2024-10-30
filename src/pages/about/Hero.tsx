@@ -48,24 +48,19 @@ export const Hero = () => {
                         <Text inline>
                             {t("hero.hi")}
                         </Text>
-                        <Text
-                            inline
-                            fw={900}
-                        >
-                            <Group wrap="nowrap" gap={4}>
-                                <Text inline span inherit>
-                                    Gökçe
-                                </Text>
-                                <Group wrap="nowrap" gap={0}>
-                                    <Tooltip label="turkish for sea">
-                                        <Text inline span inherit>
-                                            Deniz
-                                        </Text>
-                                    </Tooltip>
-                                    <Text span>,</Text>
-                                </Group>
+                        <Group fw={900} wrap="nowrap" gap={4}>
+                            <Text inline span inherit>
+                                Gökçe
+                            </Text>
+                            <Group wrap="nowrap" gap={0}>
+                                <Tooltip label="turkish for sea">
+                                    <Text inline span inherit>
+                                        Deniz
+                                    </Text>
+                                </Tooltip>
+                                <Text span>,</Text>
                             </Group>
-                        </Text>
+                        </Group>
                         <Text span>
                             {t("hero.goby")}
                         </Text>

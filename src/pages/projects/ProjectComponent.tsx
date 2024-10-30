@@ -33,47 +33,56 @@ export const ProjectComponent = ({ p }: { p: Project }) => {
             withBorder
             ta="left"
         >
-            
-                <Accordion.Item value={p.name} style={{ borderBottom: "unset" }}>
-                    <Accordion.Control className="hoverable">
-                        <Stack gap={0}>
-                            <Group justify="space-between">
-                                <Group>
-                                    <Title order={4}>{p.name}</Title>
+            <Accordion.Item value={p.name} style={{ borderBottom: "unset" }}>
+                <Accordion.Control className="hoverable">
+                    <Stack gap={0}>
+                        <Group justify="space-between">
+                            <Group>
+                                <Title order={4}>{p.name}</Title>
 
+                                <Group visibleFrom="sm">
                                     <StatusRender status={p.status || "ok"} />
 
                                     {p.types.map(type => (
                                         <ProjectTypePart type={type} key={type} />
                                     ))}
                                 </Group>
-                                <Group gap="xs">
-                                    {p.tech?.map((l, i) => (
-                                        <TechPart tech={l} key={i} />
-                                    ))}
-                                </Group>
                             </Group>
+                            <Group gap="0.1em">
+                                {p.tech?.map((l, i) => (
+                                    <TechPart tech={l} key={i} />
+                                ))}
+                            </Group>
+                        </Group>
 
-                            <Text c="dimmed">
-                                {p.shortDesc}
-                            </Text>
-                        </Stack>
-                    </Accordion.Control>
-                    <Accordion.Panel>
-                        <Stack p="md">
-                            <Render />
+                        <Group hiddenFrom="sm">
+                            <StatusRender status={p.status || "ok"} />
 
-                            {p.img && <ImageWithLoader
-                                src={p.img}
-                                radius="md"
-                            />}
+                            {p.types.map(type => (
+                                <ProjectTypePart type={type} key={type} />
+                            ))}
+                        </Group>
 
-                            {p.content}
+                        <Text c="dimmed">
+                            {p.shortDesc}
+                        </Text>
+                    </Stack>
+                </Accordion.Control>
+                <Accordion.Panel>
+                    <Stack p="md">
+                        <Render />
 
-                            {projectButtonsSection}
-                        </Stack>
-                    </Accordion.Panel>
-                </Accordion.Item>
+                        {p.img && <ImageWithLoader
+                            src={p.img}
+                            radius="md"
+                        />}
+
+                        {p.content}
+
+                        {projectButtonsSection}
+                    </Stack>
+                </Accordion.Panel>
+            </Accordion.Item>
         </Section>
     );
 };

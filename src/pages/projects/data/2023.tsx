@@ -33,30 +33,7 @@ const OAALMUN: Project = {
     tech: ["js", "ts", "react", "vite"],
 };
 
-const ZilTek: Project = {
-    name: "ZilTek",
-    status: "up",
-    types: ["website", "desktop"],
-    tech: ["ts", "react", "vite", "nodejs"],
-    shortDesc: "The school bell app with multilanguage support.",
-    year: "2023",
-    buttons: [
-        ProjectButton.website(Subdomain("ziltek")),
-    ],
-    Render() {
-        return (
-            <Stack>
-                <Text>
-                    The school bell app with multilanguage support.
-                </Text>
-                <ImageWithLoader src="/assets/img/proj/ziltekscreenshot.png" />
-            </Stack>
-        )
-    },
-};
-
 export default [
     mcman,
     OAALMUN,
-    ZilTek,
 ];

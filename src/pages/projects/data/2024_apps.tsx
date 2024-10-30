@@ -1,3 +1,4 @@
+import { ImageWithLoader } from "@/src/components/misc/ImageWithLoader";
 import { Pages, Project, ProjectButton, Subdomain } from "@/src/types";
 import { Image, Stack, Text } from "@mantine/core";
 
@@ -62,9 +63,33 @@ const alphamath: Project = {
     tech: ["ts", "react", "vite"],
 };
 
+const ZilTek: Project = {
+    name: "ZilTek",
+    status: "up",
+    types: ["website", "desktop"],
+    tech: ["ts", "react", "vite", "nodejs"],
+    shortDesc: "A school bell app.",
+    year: "2024",
+    buttons: [
+        ProjectButton.repo("TheAlan404/ZilTek"),
+        ProjectButton.website(Subdomain("ziltek")),
+    ],
+    Render() {
+        return (
+            <Stack>
+                <Text>
+                    The school bell app with multilanguage support.
+                </Text>
+                <ImageWithLoader src="/assets/img/proj/ziltekscreenshot.png" />
+            </Stack>
+        )
+    },
+};
+
 export default [
     Istanbus,
-    NekoTube,
+    ZilTek,
     Carpanga,
+    NekoTube,
     alphamath,
 ];

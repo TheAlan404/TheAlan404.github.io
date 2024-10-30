@@ -34,13 +34,8 @@ export const App = () => {
     }, []);
 
     return (
-        <ScrollArea
-            id="scroller-global"
+        <Box
             className="app"
-            h="100vh"
-            w="100vw"
-            offsetScrollbars="y"
-            ta="center"
         >
             <Oneko />
             <Container size="sm">
@@ -120,7 +115,7 @@ export const App = () => {
                     />
                 </Tooltip>
             </Box>
-        </ScrollArea>
+        </Box>
     )
 }
 

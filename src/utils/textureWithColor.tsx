@@ -1,4 +1,5 @@
 import { memoize, toRgba } from "@mantine/core";
+import { useEffect, useState } from "react";
 
 export type Color = { r: number, g: number, b: number, a?: number };
 
@@ -12,6 +13,16 @@ export const allImagesReady = (Textures: HTMLImageElement[]): Promise<void[]> =>
     if (img.complete) return res();
     img.onload = () => res();
 })));
+
+export const useImagesReady = (textures: HTMLImageElement[]) => {
+    const [isReady, setIsReady] = useState(false);
+    useEffect(() => {
+        if (!isReady) allImagesReady(textures).then(() => {
+            setIsReady(true);
+        });
+    }, [isReady]);
+    return isReady;
+};
 
 export const multiplyColor = (color: string, imageData: ImageData) => {
     let { r, g, b, a } = toRgba(color);

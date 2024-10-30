@@ -9,11 +9,6 @@ body[data-starry] {
     background-repeat: repeat;
 }
 
-body, .app {
-    overflow: hidden;
-    pointer-events: auto;
-}
-
 @font-face {
     font-family: "Lexend-VariableFont";
     src:

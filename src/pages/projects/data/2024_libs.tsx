@@ -12,6 +12,18 @@ const NbtTS: Project = {
     ],
 };
 
+const ReactWorkspace: Project = {
+    name: "@alan404/react-workspace",
+    shortDesc: "Infinitely pannable, accessible map-like workspace for React",
+    types: ["library"],
+    tech: ["ts", "react"],
+    year: "2024",
+    buttons: [
+        ProjectButton.npm("@alan404/nbt"),
+        ProjectButton.repo("TheAlan404/react-workspace"),
+    ],
+};
+
 const MinecraftAssets: Project = {
     name: "@alan404/minecraft-assets",
     shortDesc: "TypeScript library providing minecraft assets (block states, models and textures)",
