@@ -8,7 +8,10 @@ export const OnekoSection = () => {
     return (
         <Group align="center">
             <Stack w="32px" h="32px" justify="center">
-                <OnekoBed id="initial" key={resolvedLanguage} />
+                <OnekoBed id="initial" offset={{
+                    x: 12,
+                    y: 0,
+                }} key={resolvedLanguage} />
             </Stack>
             <Stack gap={0} ta="start">
                 <Text c="dimmed">← {t("oneko.doubleClick")}</Text>

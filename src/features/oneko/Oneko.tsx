@@ -65,8 +65,9 @@ export const Oneko = () => {
     const scrollY = useRef(0);
     useAppScroll((y) => scrollY.current = y);
 
-    const getInitialPosition = () => beds.current.find(x => x.id == "initial")?.pos
-            || beds.current.find(x => x.id == "fallback")?.pos
+    const elementPos = (e?: HTMLElement) => e && e.getBoundingClientRect();
+    const getInitialPosition = () => elementPos(beds.current.find(x => x.id == "initial")?.element)
+            || elementPos(beds.current.find(x => x.id == "fallback")?.element)
             || vec(0, 0);
 
     const onekoRef = useRef<Neko>({
@@ -82,6 +83,7 @@ export const Oneko = () => {
         const { current: neko } = onekoRef;
 
         let setNekoState = (state: NekoState) => {
+            console.debug("setNekoState", state);
             neko.state = state;
         };
 
@@ -116,19 +118,23 @@ export const Oneko = () => {
         // Events
 
         const onNekoInputDown = (initial: Coord) => {
-            setNekoState(variant<NekoState>("dragging", {
+            console.log("onNekoInputDown", structuredClone(neko));
+            if(neko.state.type == "dragging") return;
+            setNekoState(NekoState.dragging({
                 previousState: neko.state,
                 startPosition: initial,
             }));
         }
 
         const onNekoInputUp = () => {
+            console.log("onNekoInputUp", structuredClone(neko));
             if (neko.state.type == "dragging") {
-                setNekoState(match<NekoState, NekoState>(neko.state.data.previousState)({
+                let to = match<NekoState, NekoState>(neko.state.data.previousState)({
                     dragging: () => NekoState.idle({}),
                     follow: () => NekoState.idle({}),
                     _: (v) => v,
-                }));
+                });
+                setNekoState(to || neko.state.data.previousState || NekoState.idle({}));
             }
         }
 
@@ -186,7 +192,7 @@ export const Oneko = () => {
         };
 
         const onNekoDoubleClick = () => {
-            match((neko.state.type == "dragging") ? (neko.state.data.previousState) : (neko.state))({
+            match((neko.state.type == "dragging") ? (neko.state.data.previousState || NekoState.idle({})) : (neko.state))({
                 sit: () => onekoActions.standUp(),
                 follow: () => onekoActions.sit(),
                 idle: () => onekoActions.sit(),
@@ -298,7 +304,11 @@ export const Oneko = () => {
                 
                 untouched: () => {
                     setSprite("sleeping");
-                    setNekoPos(getInitialPosition());
+                    let { x, y } = getInitialPosition();
+                    setNekoPos({
+                        x,
+                        y: y + scrollY.current,
+                    });
                 },
                 sleeping: () => setSprite("sleeping"),
 

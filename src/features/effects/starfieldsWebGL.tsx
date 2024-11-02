@@ -73,7 +73,7 @@ const fragmentShaderSrc = `
             textureColor = vec4(1.0, 0.0, 0.0, 1.0);
         }
 
-        gl_FragColor = vec4((textureColor.rgb * u_color + (textureColor.a * u_flash * vec3(1.0,1.0,1.0))), textureColor.a * v_opacity);
+        gl_FragColor = vec4((textureColor.rgb * u_color + (textureColor.a * u_flash * vec3(1.0,1.0,1.0))), textureColor.a * v_opacity + ((textureColor.a * u_flash) / 3.0));
     }
 `;
 
@@ -103,8 +103,9 @@ export type ProgramBuffers = {
 }
 
 export const initializeWebGL = (gl: WebGL2RenderingContext): ProgramStore => {
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    gl.blendEquation(gl.FUNC_ADD);
     gl.enable(gl.BLEND);
-    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
     
     const program = createProgram(gl, [
         compileShader(gl, gl.VERTEX_SHADER, vertexShaderSrc)!,
@@ -224,6 +225,11 @@ export const renderProgramBuffers = ({
 
     // Draw points (stars)
     gl.drawArrays(gl.POINTS, 0, stars.length);
+
+    // Cleanup
+    gl.deleteBuffer(buffers.opacity);
+    gl.deleteBuffer(buffers.position);
+    gl.deleteBuffer(buffers.texture);
 };
 
 

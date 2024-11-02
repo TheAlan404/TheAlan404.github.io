@@ -9,6 +9,7 @@ import { OnekoBed } from "./features/oneko/OnekoBed";
 import { Oneko } from "./features/oneko/Oneko";
 import { useTranslation } from "react-i18next";
 import { useHotkeys } from "@mantine/hooks";
+import { BirthdayEvent } from "./features/events/BirthdayEvent";
 
 export type Page = "projects" | "mili" | "about" | "blog";
 
@@ -46,10 +47,12 @@ export const App = () => {
                 ) : (
                     <Stack>
                         <Stack gap={0}>
+                            {new Date().getTime() < new Date(2024, 10, 4).getTime() && <BirthdayEvent />}
+
                             <Header />
 
                             <Stack gap={0}>
-                                <OnekoBed id="fallback" offset={{ x: 20, y: -28 }} />
+                                <OnekoBed id="fallback" offset={{ x: 20, y: -12 }} />
                                 <Paper withBorder style={{ background: "unset" }}>
                                     <SegmentedControl
                                         fullWidth

@@ -1,5 +1,5 @@
 import { vec } from "@/src/utils/utils";
-import { Star, STARFIELD_SCALE, StarfieldConfig, StarfieldTextures } from "./starfields";
+import { Star, STARFIELD_SCALE, StarfieldConfig } from "./starfields";
 import { textureWithColor } from "@/src/utils/textureWithColor";
 
 const mod = (x: number, m: number) => (x % m + m) % m;

@@ -33,7 +33,7 @@ export interface Dim {
     height: number;
 };
 
-const steps = ({ width }: Dim) => Math.ceil(width/50);
+const steps = ({ width }: Dim) => Math.ceil(width/20);
 
 const createYNodes = ({
     dim
@@ -110,7 +110,7 @@ const createStars = (config: StarfieldConfig) => {
         return {
             ...incomplete,
             Position: targetOfStar(config, incomplete),
-            Opacity: lerp(1, 0, num3 * 0.5),
+            Opacity: lerp(0.6, 0, num3 * 0.5),
             Texture: index,
         };
     });

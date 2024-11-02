@@ -11,30 +11,17 @@ export const OnekoBed = ({
     offset?: Coord;
 }) => {
     const ref = useRef<HTMLDivElement>(null);
-    const { setBed, removeBed } = useContext(OnekoContext);
+    const { setBed } = useContext(OnekoContext);
 
     const set = () => {
-        if (!ref.current || !ref.current.parentElement) return;
-
-        let rect = ref.current.parentElement.getBoundingClientRect();
-        // still no clue why we need to do this
-        if(!rect.x || !rect.y) return;
-
-        setBed(id, {
-            x: rect.x + 16 + (offset?.x || 0),
-            y: rect.y + 16 + (offset?.y || 0),
-        });
+        if (!ref.current) return;
+        setBed(id, ref.current);
     }
-
-    useWindowEvent("resize", () => {
-        set();
-    });
 
     useEffect(() => {
         set();
-
-        return () => removeBed(id);
-    }, []);
+        return () => setBed(id);
+    }, [ref]);
 
     return (
         <div
@@ -42,6 +29,8 @@ export const OnekoBed = ({
             style={{
                 position: "relative",
                 userSelect: "none",
+                top: `${offset?.y || 0}px`,
+                left: `${offset?.x || 0}px`,
             }}
         />
     )

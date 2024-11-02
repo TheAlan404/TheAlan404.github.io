@@ -8,15 +8,22 @@ import { useCanvasWebGL } from "@/src/utils/useCanvasWebGL";
 import { createProgramBuffers, initializeWebGL, renderProgramBuffers } from "./starfieldsWebGL";
 import { useHotkeys } from "@mantine/hooks";
 
+declare global {
+    interface Window {
+        _lastFlash?: number;
+    }
+}
+
 export const Effects = () => {
     const isReady = useImagesReady(MistTextures);
 
     const opacityBurstRef = useRef<number>(Date.now());
-    const speedMultiplierRef = useRef<number>(0);
+    const speedBurstRef = useRef<number>(0);
 
     useHotkeys([
         ["w", () => {
             opacityBurstRef.current = Date.now();
+            speedBurstRef.current = Date.now();
         }],
     ]);
 
@@ -68,14 +75,21 @@ export const Effects = () => {
 
                 starfield.config.position.y = window.scrollY / STARFIELD_SCALE;
 
-                const decay = 200;
-                let elapsed = Date.now() - opacityBurstRef.current;
-                elapsed = elapsed ** 1/2;
-                elapsed = clamp(0, elapsed, decay);
-                starfield.config.flash = 1 - (elapsed / decay);
+                const burst = (d: number, decay = 200) => {
+                    let elapsed = Date.now() - d;
+                    elapsed = clamp(0, elapsed, decay);
+                    let i = elapsed / decay;
+                    return 1 - (i ** 2);
+                };
+                
+                starfield.config.flash = burst(Math.max(...[
+                    opacityBurstRef.current,
+                    window._lastFlash || 0,
+                ]), 500);
 
+                let speedF = burst(speedBurstRef.current, 500);
                 for (let star of starfield.stars) {
-                    updateStar(starfield.config, star, dt + (dt * speedMultiplierRef.current));
+                    updateStar(starfield.config, star, dt + (dt * speedF * 5));
                 }
 
                 const buffers = createProgramBuffers(gl, starfield.stars);
@@ -116,6 +130,7 @@ export const Effects = () => {
                             style={{
                                 backgroundImage: `url("${textureWithColorDataURL(MistTextures, 0, mist.color)}")`,
                                 backgroundSize: `${600 * MIST_SCALE}px ${600 * MIST_SCALE}px`,
+                                opacity: "0.5",
                             }}
                         />
                     ))}
