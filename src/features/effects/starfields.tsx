@@ -45,7 +45,7 @@ const createYNodes = ({
     while (num2 < steps(dim)) {
         yNodes.push(num);
         num2++;
-        num += choose(-1, 1) * (16 * 2 + randFloat(24 * 2));
+        num += choose(-1, 1) * (16 * 2 + randFloat((24 * (dim.height/360)) * 2));
     }
 
     for (let i = 0; i < 4; i++) {
@@ -65,7 +65,7 @@ const targetOfStar = ({
     dim,
     yNodes,
 }: StarfieldConfig, star: IncompleteStar) => {
-    let StepSize = dim.width / (steps(dim) - 2);
+    let StepSize = dim.width / (steps(dim) - 1);
     let vector = {
         x: star.NodeIndex * StepSize,
         y: yNodes[star.NodeIndex],

@@ -49,16 +49,18 @@ export const Effects = () => {
             // Starfields
 
             let currentDim = {
-                width: gl.canvas.width / STARFIELD_SCALE,
-                height: gl.canvas.height / STARFIELD_SCALE,
+                width: (gl.canvas as HTMLCanvasElement).clientWidth / STARFIELD_SCALE,
+                height: (gl.canvas as HTMLCanvasElement).clientHeight / STARFIELD_SCALE,
             };
 
             if (!starfields.current.length || starfields.current.some(({ config }) => (
                 config.dim.width !== currentDim.width || config.dim.height !== currentDim.height
             ))) {
+                console.debug("Starfields recreated");
                 starfields.current = createStarfields({
                     dim: currentDim,
                 });
+                gl.viewport(0, 0, currentDim.width * STARFIELD_SCALE, currentDim.height * STARFIELD_SCALE);
             };
 
             for (let i = 0; i < starfields.current.length; i++) {

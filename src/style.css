@@ -67,8 +67,6 @@ body[data-starry=true] .mantine-SegmentedControl-indicator {
 }
 
 .pageBackground {
-    width: 100vw;
-    height: 100vh;
     position: fixed;
     z-index: -999;
     left: 0;
