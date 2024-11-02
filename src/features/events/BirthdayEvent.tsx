@@ -2,6 +2,16 @@ import { Section } from "@/src/components/misc/Section";
 import { Collapse, Stack, Text, Title } from "@mantine/core";
 import { relativeString, useBeatdrop } from "./useBeatdrop";
 
+/*
+
+YOU WILL BE SPOILED
+
+do not read contents of the message
+
+please
+
+*/
+
 export const BirthdayEvent = () => {
     const {
         beatDidDrop,
@@ -40,15 +50,17 @@ export const BirthdayEvent = () => {
                         Thank you for listening in to my silly beat drop count down thingy.
                         I want to dedicate this section to my friends and everyone I love.
                         To Deniz, Kardelen, Emek, Amy, Nazlı, Miraç, Kuylar, Sylvia, Cosmo,
-                        Tina, River, Kiwi Aslı, Nokia, Mozaic&, Takip, Sophia, Armağan,
+                        Tina, River, Kiwi Aslı, Nokia, Takip, Sophia, Armağan,
                         Multiple Emir's, Güz, tway&, Cyan, Candaş, Skyrina, Hannah, Azra,
                         Ekin, Bulut, Irmak, Anna, Kartal, Neptune... okay this is getting out of hand.
+                        I'm sorry if your name isnt here, im not good at remembering people ;w;
                         I LOVE YOU GUYS thanks for always being with me ilysm
                         <br />
                         <br />
                         On another note, there will be an event that I will be organizing sometime soon;
                         a hybrid IRL (Istanbul) and Online (Discord) event! If you dont already,
-                        follow me on my instagram for updates (or discord maybe idk)
+                        follow me on my instagram for updates (or discord maybe idk) -- this event
+                        is only for my friends etc though
                     </Text>
                 </Collapse>
             </Section>
