@@ -2,6 +2,7 @@ import { Group, Stack, Title, Text, Space, Tooltip, Image, List, Divider, Box, A
 import { PersonalIcons } from "./projects/PersonalIcons";
 import { useTranslation } from "react-i18next";
 import { useDisclosure } from "@mantine/hooks";
+import { Christmas } from "../features/events/Christmas";
 
 export const Header = () => {
     const [t] = useTranslation();
@@ -12,12 +13,15 @@ export const Header = () => {
             align="center"
             justify="center"
             gap={0}
-            my={preview ? "calc((100vh / 2) - 36px)" : "md"}
+            //my={preview ? "calc((100vh / 2) - 36px)" : "md"}
+            mt="10rem"
+            mb="7rem"
             style={{
-                //height: preview ? "100vh" : "auto",
                 transition: "all .5s ease-in-out",
             }}
         >
+            <Christmas />
+
             <Group wrap="nowrap" align="center" justify="center" className="header" p="sm" px="lg">
                 <Stack align="center">
                     <Tooltip

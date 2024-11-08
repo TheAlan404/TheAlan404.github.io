@@ -47,8 +47,6 @@ export const App = () => {
                 ) : (
                     <Stack>
                         <Stack gap={0}>
-                            {new Date().getTime() < new Date(2024, 10, 4).getTime() && <BirthdayEvent />}
-
                             <Header />
 
                             <Stack gap={0}>

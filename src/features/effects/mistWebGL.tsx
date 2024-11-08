@@ -11,21 +11,16 @@ const textureData = [
 // Vertex Shader Code
 const vertexShaderSrc = `
     attribute vec2 a_position;
-    attribute float a_textureIndex;
-    attribute float a_opacity;
+    uniform vec2 u_resolution;
     uniform vec2 u_scroll;
     uniform vec2 u_dim;
     uniform vec2 u_scrollPosition;
-    varying float v_opacity;
-    varying float v_textureIndex;
     
     void main() {
-        // Set the size of each point (e.g., 16.0 for 16x16 textures)
-        gl_PointSize = 16.0;
-
+        gl_PointSize = 600.0;
         vec2 position = mod(a_position - u_scrollPosition * u_scroll, u_dim);
 
-        vec2 clipSpace = ((position / u_dim) * 2.0) - 1.0;
+        vec2 clipSpace = ((position / u_resolution) * 2.0) - 1.0;
         gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);
 
         // Pass attributes to the fragment shader
@@ -65,31 +60,31 @@ const fragmentShaderSrc = `
     }
 `;
 
-export type StarfieldProgramStore = {
+export type ProgramStore = {
     program: WebGLProgram;
-    bindings: StarfieldProgramBindings;
+    bindings: ProgramBindings;
     textures: WebGLTexture[];
 }
 
-export type StarfieldProgramBindings = {
+export type ProgramBindings = {
     position: number;
     opacity: number;
     textureIndex: number;
 
-    flash: WebGLUniformLocation;
     color: WebGLUniformLocation;
     scrollPosition: WebGLUniformLocation;
+    resolution: WebGLUniformLocation;
     scroll: WebGLUniformLocation;
     dim: WebGLUniformLocation;
 }
 
-export type StarfieldProgramBuffers = {
+export type ProgramBuffers = {
     position: WebGLBuffer;
     opacity: WebGLBuffer;
     texture: WebGLBuffer;
 }
 
-export const initializeWebGL = (gl: WebGL2RenderingContext): StarfieldProgramStore => {
+export const initializeWebGL = (gl: WebGL2RenderingContext): ProgramStore => {
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     gl.blendEquation(gl.FUNC_ADD);
     gl.enable(gl.BLEND);
@@ -101,16 +96,13 @@ export const initializeWebGL = (gl: WebGL2RenderingContext): StarfieldProgramSto
 
     const bindings = Object.fromEntries([
         "a_position",
-        "a_textureIndex",
-        "a_opacity",
         "u_scroll",
         "u_dim",
         "u_color",
         "u_scrollPosition",
-        "u_flash",
     ].map((v) => [v.split("_")[1], (
         v[0] == "a" ? gl.getAttribLocation(program, v) : gl.getUniformLocation(program, v)
-    )])) as StarfieldProgramBindings;
+    )])) as ProgramBindings;
 
     const textures = Array(4).fill(0).map((_,i) => (
         createGLTexture(gl, textureData[i])
@@ -126,7 +118,7 @@ export const initializeWebGL = (gl: WebGL2RenderingContext): StarfieldProgramSto
 export const createProgramBuffers = (
     gl: WebGL2RenderingContext,
     stars: Star[],
-): StarfieldProgramBuffers => {
+): ProgramBuffers => {
     const starPositions: number[] = [];
     const starOpacities: number[] = [];
     const starTextures: number[] = [];
@@ -168,15 +160,14 @@ export const renderProgramBuffers = ({
     stars,
 }: {
     gl: WebGL2RenderingContext;
-    store: StarfieldProgramStore;
-    buffers: StarfieldProgramBuffers;
+    store: ProgramStore;
+    buffers: ProgramBuffers;
     config: StarfieldConfig;
     stars: Star[];
 }) => {
     gl.useProgram(program);
     
     // Set up resolution and scroll uniforms
-    gl.uniform1f(bindings.flash, config.flash);
     gl.uniform2f(bindings.scroll, config.scroll.x, config.scroll.y);
     gl.uniform2f(bindings.scrollPosition, config.position.x, config.position.y);
     gl.uniform2f(bindings.dim, config.dim.width, config.dim.height);

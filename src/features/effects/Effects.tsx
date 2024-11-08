@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { createMists, MIST_SCALE, MistTextures } from "./ParallaxMist";
+import { createMists, MIST_SCALE, MistTextures } from "./mists";
 import { createStarfields, Starfield, STARFIELD_SCALE, updateStar } from "./starfields";
 import { allImagesReady, textureWithColorDataURL, useImagesReady } from "@/src/utils/textureWithColor";
 import { clamp, vec, vecAdd, vecMul, vecTup } from "@/src/utils/utils";
@@ -49,8 +49,13 @@ export const Effects = () => {
                 const mist = mists[i];
                 mistPositions.current[i] = vecAdd(mistPositions.current[i], vecMul(mist.speed, vecTup(dt * 100)));
                 let ref = mistRefs.current[i];
+                let x = mistPositions.current[i].x;
+                let y = mistPositions.current[i].y - window.scrollY * mist.scroll.y;
+                //x = x % window.innerWidth;
+                //y = y % window.innerHeight;
                 if (ref)
-                    ref.style.backgroundPosition = `${mistPositions.current[i].x}px ${mistPositions.current[i].y - window.scrollY * mist.scroll.y}px`;
+                    //ref.style.transform = transform;
+                    ref.style.backgroundPosition = `${Math.round(x)}px ${Math.round(y)}px`;
             }
 
             // Starfields
@@ -130,6 +135,7 @@ export const Effects = () => {
                             style={{
                                 backgroundImage: `url("${textureWithColorDataURL(MistTextures, 0, mist.color)}")`,
                                 backgroundSize: `${600 * MIST_SCALE}px ${600 * MIST_SCALE}px`,
+                                backgroundRepeat: "repeat",
                                 opacity: "0.5",
                             }}
                         />
