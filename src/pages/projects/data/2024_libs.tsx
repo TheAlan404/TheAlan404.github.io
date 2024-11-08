@@ -1,7 +1,8 @@
 import { Project, ProjectButton } from "@/src/types";
+import { Stack, Text } from "@mantine/core";
 
 const NbtTS: Project = {
-    name: "@alan404/nbt",
+    name: "nbt",
     shortDesc: "TypeScript library for serializing and deserializing NBT",
     types: ["library"],
     tech: ["ts"],
@@ -10,22 +11,36 @@ const NbtTS: Project = {
         ProjectButton.npm("@alan404/nbt"),
         ProjectButton.repo("TheAlan404/nbt-ts"),
     ],
+    Render() {
+        return (
+            <Stack>
+                
+            </Stack>
+        )
+    },
 };
 
 const ReactWorkspace: Project = {
-    name: "@alan404/react-workspace",
+    name: "react-workspace",
     shortDesc: "Infinitely pannable, accessible map-like workspace for React",
     types: ["library"],
     tech: ["ts", "react"],
     year: "2024",
     buttons: [
-        ProjectButton.npm("@alan404/nbt"),
+        ProjectButton.npm("@alan404/react-workspace"),
         ProjectButton.repo("TheAlan404/react-workspace"),
     ],
+    Render() {
+        return (
+            <Text>
+                Other projects such as alphamath and polycules use this library. Still WIP
+            </Text>
+        )
+    },
 };
 
 const MinecraftAssets: Project = {
-    name: "@alan404/minecraft-assets",
+    name: "minecraft-assets",
     shortDesc: "TypeScript library providing minecraft assets (block states, models and textures)",
     types: ["library"],
     tech: ["ts"],
@@ -49,6 +64,7 @@ const discordjsx: Project = {
 };
 
 export default [
+    ReactWorkspace,
     NbtTS,
     MinecraftAssets,
     discordjsx,

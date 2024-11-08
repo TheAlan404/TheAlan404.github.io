@@ -86,7 +86,41 @@ const ZilTek: Project = {
     },
 };
 
+const Polycules: Project = {
+    new: true,
+    name: "Polycules",
+    status: "up",
+    types: ["website"],
+    tech: ["ts", "react", "vite", "nodejs"],
+    shortDesc: "A website to graph 'polycules'",
+    year: "2024",
+    buttons: [
+        ProjectButton.repo("TheAlan404/polycules"),
+        ProjectButton.website("https://poly-deniz.nyaa.bar"),
+    ],
+    Render() {
+        return (
+            <Stack>
+                <Text>
+                    Here's the example polycule.
+                    It has mobile accessible map-like drag/pan actions!
+                    Supports systems too (DID etc.)
+                </Text>
+
+                <iframe
+                    src="https://poly-deniz.nyaa.bar/default"
+                    style={{
+                        border: "0px",
+                        height: "20rem",
+                    }}
+                />
+            </Stack>
+        )
+    },
+};
+
 export default [
+    Polycules,
     Istanbus,
     ZilTek,
     Carpanga,

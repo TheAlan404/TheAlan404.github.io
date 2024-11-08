@@ -6,10 +6,10 @@ import React from "react";
 const Map: Record<ProjectType, [color: MantineColor, text: string, icon: React.ComponentType<TablerIconsProps>]> = {
     library: ["violet", "library", IconBooks],
     cli: ["violet", "cli", IconTerminal2],
-    desktop: ["gray", "desktop app", IconDeviceDesktop],
-    mobile: ["gray", "mobile app", IconDeviceMobile],
-    restapi: ["green", "rest api", IconApi],
-    website: ["blue", "web app", IconWorldWww],
+    desktop: ["gray", "desktop", IconDeviceDesktop],
+    mobile: ["gray", "mobile", IconDeviceMobile],
+    restapi: ["green", "api", IconApi],
+    website: ["blue", "web", IconWorldWww],
 };
 
 export const ProjectTypePart = ({ type }: { type: ProjectType }) => {
@@ -19,7 +19,7 @@ export const ProjectTypePart = ({ type }: { type: ProjectType }) => {
         <Badge
             color={color}
             leftSection={<Icon style={{ width: rem(16), height: rem(16) }} />}
-            variant="light"
+            variant="transparent"
         >
             {label}
         </Badge>

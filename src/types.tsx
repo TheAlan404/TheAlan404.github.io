@@ -13,6 +13,7 @@ export interface Project {
     status?: ProjectStatus;
     Render?: React.ComponentType<any>;
     shortDesc: string;
+    new?: boolean;
     
     img?: string;
     content?: JSX.Element;

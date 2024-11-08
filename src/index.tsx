@@ -8,6 +8,7 @@ import { Effects } from "./features/effects/Effects";
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import 'mantine-flagpack/styles.css';
+import '@mantine/code-highlight/styles.css';
 import './style.css';
 import { I18nextProvider } from "react-i18next";
 import i18next from "./i18n";

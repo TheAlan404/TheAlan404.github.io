@@ -1,4 +1,4 @@
-import { Group, Box, Stack, Title, Text, SimpleGrid, AccordionChevron, Accordion } from '@mantine/core';
+import { Group, Box, Stack, Title, Text, SimpleGrid, AccordionChevron, Accordion, Badge } from '@mantine/core';
 import { StatusRender } from "./StatusRender";
 import { Project } from "../../types";
 import { ImageWithLoader } from "../../components/misc/ImageWithLoader";
@@ -40,13 +40,14 @@ export const ProjectComponent = ({ p }: { p: Project }) => {
                             <Group>
                                 <Title order={4}>{p.name}</Title>
 
-                                <Group visibleFrom="sm">
-                                    <StatusRender status={p.status || "ok"} />
-
-                                    {p.types.map(type => (
-                                        <ProjectTypePart type={type} key={type} />
-                                    ))}
-                                </Group>
+                                {p.new && (
+                                    <Badge
+                                        variant="light"
+                                        color="green"
+                                    >
+                                        NEW
+                                    </Badge>
+                                )}
                             </Group>
                             <Group gap="0.1em">
                                 {p.tech?.map((l, i) => (
@@ -55,17 +56,17 @@ export const ProjectComponent = ({ p }: { p: Project }) => {
                             </Group>
                         </Group>
 
-                        <Group hiddenFrom="sm">
+                        <Text c="dimmed">
+                            {p.shortDesc}
+                        </Text>
+
+                        <Group>
                             <StatusRender status={p.status || "ok"} />
 
                             {p.types.map(type => (
                                 <ProjectTypePart type={type} key={type} />
                             ))}
                         </Group>
-
-                        <Text c="dimmed">
-                            {p.shortDesc}
-                        </Text>
                     </Stack>
                 </Accordion.Control>
                 <Accordion.Panel>
