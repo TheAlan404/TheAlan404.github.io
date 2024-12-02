@@ -87,13 +87,6 @@ export const Hero = () => {
                     </Stack>
                 </Stack>
             </Section>
-
-            <Section>
-                <Group justify="space-between" w="100%" ta="end">
-                    <OnekoSection />
-                    <DiscordSection />
-                </Group>
-            </Section>
         </Stack>
     );
 };

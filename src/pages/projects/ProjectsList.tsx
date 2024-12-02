@@ -13,7 +13,7 @@ export const ProjectsList = () => {
 
     const categories = (Object.entries(
         filteredProjects.reduce((acc, cur) => {
-            if(!acc[cur.year]) acc[cur.year] = [];
+            if (!acc[cur.year]) acc[cur.year] = [];
             acc[cur.year].push(cur);
             return acc;
         }, {})
@@ -23,37 +23,37 @@ export const ProjectsList = () => {
     return (
         <Stack>
             <Section ta="center" py="xl">
-                <Stack gap={0} c="yellow" align="center">
-                    <IconAlertTriangle />
-
-                    <Text fw="bold">
-                        PROJECTS LIST OVERHAUL WORK IN PROGRESS
-                    </Text>
-                </Stack>
+                filters
             </Section>
 
-            <Accordion chevronPosition="left">
-                {categories.map(([year, list]) => (
-                    <Stack key={year}>
-                        <Divider
-                            label={(
-                                <Title order={4}>
-                                    {year}
-                                </Title>
-                            )}
-                            my="md"
-                        />
+            <Accordion chevron={false}>
+                <Stack>
+                    {categories.map(([year, list]) => (
+                        <Stack key={year}>
+                            <Divider
+                                label={(
+                                    <Title order={4}>
+                                        {year}
+                                    </Title>
+                                )}
+                            />
 
-                        <Stack w="100%" gap="xl">
-                            {list.map((p) => (
-                                <ProjectComponent
-                                    p={p}
-                                    key={p.name}
-                                />
-                            ))}
+                            <Stack w="100%" align="center">
+                                <Stack w={{
+                                    base: "100%",
+                                    xs: "80%",
+                                }}>
+                                    {list.map((p) => (
+                                        <ProjectComponent
+                                            p={p}
+                                            key={p.name}
+                                        />
+                                    ))}
+                                </Stack>
+                            </Stack>
                         </Stack>
-                    </Stack>
-                ))}
+                    ))}
+                </Stack>
             </Accordion>
         </Stack>
     );

@@ -8,6 +8,7 @@ import { TechPart } from "./parts/TechPart";
 import { ProjectButtonPart } from "./parts/ProjectButtonPart";
 import { ProjectDecorations } from "./parts/ProjectDecorations";
 import { ProjectTypePart } from "./parts/ProjectTypePart";
+import { IconChevronDown } from "@tabler/icons-react";
 
 export const ProjectComponent = ({ p }: { p: Project }) => {
     const projectButtons = p.buttons.map((button, i) => (
@@ -38,6 +39,11 @@ export const ProjectComponent = ({ p }: { p: Project }) => {
                     <Stack gap={0}>
                         <Group justify="space-between">
                             <Group>
+                                <IconChevronDown
+                                    size="1em"
+                                    className="mantine-Accordion-chevron chevron"
+                                />
+
                                 <Title order={4}>{p.name}</Title>
 
                                 {p.new && (
@@ -48,6 +54,14 @@ export const ProjectComponent = ({ p }: { p: Project }) => {
                                         NEW
                                     </Badge>
                                 )}
+
+                                <StatusRender status={p.status || "ok"} />
+                                
+                                <Group gap={0}>
+                                    {p.types.map(type => (
+                                        <ProjectTypePart type={type} key={type} />
+                                    ))}
+                                </Group>
                             </Group>
                             <Group gap="0.1em">
                                 {p.tech?.map((l, i) => (
@@ -59,14 +73,6 @@ export const ProjectComponent = ({ p }: { p: Project }) => {
                         <Text c="dimmed">
                             {p.shortDesc}
                         </Text>
-
-                        <Group>
-                            <StatusRender status={p.status || "ok"} />
-
-                            {p.types.map(type => (
-                                <ProjectTypePart type={type} key={type} />
-                            ))}
-                        </Group>
                     </Stack>
                 </Accordion.Control>
                 <Accordion.Panel>

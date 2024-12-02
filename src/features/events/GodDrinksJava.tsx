@@ -4,6 +4,21 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { IconPlayerStop } from "@tabler/icons-react";
 import { IconVolume } from "@tabler/icons-react";
 
+export const WorldExecuteMe = () => {
+
+
+    useEffect(() => {
+        // @ts-ignore
+        window.me = "@me";
+        // @ts-ignore
+        window.world = {
+            execute() {
+                //setPage("mili");
+            }
+        };
+    }, []);
+};
+
 export const GodDrinksJava = ({
     close
 }: {

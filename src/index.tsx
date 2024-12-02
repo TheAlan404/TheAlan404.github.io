@@ -1,12 +1,14 @@
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
 import { DEFAULT_THEME, MantineProvider, createTheme } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import { WeatherProvider } from "./features/effects/Weather";
 import { OnekoAPIProvider } from "./features/oneko/OnekoAPI";
 import { Effects } from "./features/effects/Effects";
 
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
+import '@mantine/notifications/styles.css';
 import 'mantine-flagpack/styles.css';
 import '@mantine/code-highlight/styles.css';
 import './style.css';
@@ -45,11 +47,10 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
     <MantineProvider theme={theme} forceColorScheme="dark">
+        <Notifications />
         <I18nextProvider i18n={i18next} defaultNS={"translation"}>
             <WeatherProvider>
                 <OnekoAPIProvider>
-                    <div id="pagetop" />
-                    <Effects />
                     <App />
                 </OnekoAPIProvider>
             </WeatherProvider>
