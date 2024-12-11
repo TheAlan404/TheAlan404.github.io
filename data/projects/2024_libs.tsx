@@ -1,4 +1,4 @@
-import { Project, ProjectButton } from "@/src/types";
+import { Project, ProjectButton } from "~/types";
 import { Stack, Text } from "@mantine/core";
 
 const NbtTS: Project = {

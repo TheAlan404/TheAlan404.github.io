@@ -1,6 +1,7 @@
-import { ImageWithLoader } from "@/src/components/misc/ImageWithLoader";
-import { Pages, Project, ProjectButton, Subdomain } from "@/src/types";
+import { Project, ProjectButton } from "~/types";
 import { Image, Stack, Text } from "@mantine/core";
+import { Pages, Subdomain } from "~/config";
+import { ImageWithLoader } from "~/components/ui/ImageWithLoader";
 
 const Istanbus: Project = {
     id: "istanbus",
@@ -21,7 +22,7 @@ const NekoTube: Project = {
     name: "NekoTube",
     status: "wip",
     year: "2024",
-    img: "/assets/img/proj/nekotube.png",
+    // img: "/assets/img/proj/nekotube.png",
     shortDesc: "an alternative YouTube video player",
     types: ["website"],
     tech: ["js", "react", "vite"],

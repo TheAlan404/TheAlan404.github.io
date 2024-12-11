@@ -7,7 +7,7 @@ import { Suspense } from "react";
 import { IconBrush, IconClipboard, IconFileText, IconHome } from "@tabler/icons-react";
 import { NavItem, NavItemList } from "./NavItemList";
 import { DataBlogPosts } from "../data/DataBlogPosts";
-import { DataProjects } from "../data/projects";
+import { DataProjects } from "../../data/projects";
 import { ProjectHeader, ProjectHeaderCompact } from "../pages/projects/ProjectHeader";
 
 const mainMenu: NavItem[] = [

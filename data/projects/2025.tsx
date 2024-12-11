@@ -1,4 +1,4 @@
-import { Project } from "@/src/types";
+import { Project } from "~/types";
 
 const Events: Project = {
     id: "events",

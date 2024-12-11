@@ -2,7 +2,7 @@ import { Stack, Title, Text, Space, TextInput, em, Group, Divider, Accordion } f
 import { useMediaQuery } from '@mantine/hooks';
 import { useState } from 'react';
 import { ProjectComponent } from "./ProjectComponent";
-import { DataProjects } from "../../data/projects";
+import { DataProjects } from "../../../data/projects";
 import { Decor } from "../../components/misc/Decor";
 import { Project } from "@/src/types";
 import { Section } from "@/src/components/misc/Section";

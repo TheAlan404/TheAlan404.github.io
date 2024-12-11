@@ -14,7 +14,7 @@ import '@mantine/code-highlight/styles.css';
 import './style.css';
 import './mixins.css';
 import { I18nextProvider } from "react-i18next";
-import i18next from "./i18n";
+import i18next from "../app/i18n/i18n";
 
 const theme = createTheme({
     fontFamily: "Lexend-VariableFont, " + DEFAULT_THEME.fontFamily,

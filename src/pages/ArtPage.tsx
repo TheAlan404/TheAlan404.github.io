@@ -2,7 +2,7 @@ import { Carousel, Embla } from "@mantine/carousel"
 import { Anchor, AspectRatio, Group, Image, Paper, Stack, Text } from "@mantine/core"
 import { useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Arts } from "../data/Arts"
+import { Arts } from "../../data/Arts"
 import { EmblaCarouselType } from "embla-carousel-react"
 
 export const ArtPage = () => {

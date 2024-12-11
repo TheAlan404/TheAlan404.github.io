@@ -1,8 +1,13 @@
 import { createFactory, Enum } from "@alan404/enum";
+import { ReactNode } from "react";
 
-export const Domain = "deniz.blue";
-export const Pages = (s: string) => `https://${Domain}/${s}/`;
-export const Subdomain = (s: string) => `https://${s}.${Domain}/`;
+export type NavItem = {
+    path: string;
+    label: ReactNode;
+    icon?: ReactNode;
+    description?: ReactNode;
+    children?: NavItem[];
+};
 
 export interface Project {
     id: string;
@@ -18,9 +23,7 @@ export interface Project {
 }
 
 export type ProjectStatus = "up" | "ok" | "wip" | "archive";
-
 export type Tech = "rust" | "react" | "cs" | "js" | "ts" | "html" | "css" | "vite" | "nextjs" | "nodejs" | "mongodb" | "prisma";
-
 export type ProjectType = "library" | "website" | "restapi" | "desktop" | "cli" | "mobile";
 
 export const ProjectButton = createFactory<ProjectButton>();
@@ -31,7 +34,3 @@ export type ProjectButton = Enum<{
     npm: string;
 }>;
 
-export interface Coord {
-    x: number;
-    y: number;
-}

@@ -1,5 +1,5 @@
-import { Link } from "@/src/components/misc/Link";
-import { Project, ProjectButton } from "@/src/types";
+import { ExternalLink } from "~/components/ui/ExternalLink";
+import { Project, ProjectButton } from "~/types";
 import { Stack, Text } from "@mantine/core";
 
 const nbsjs: Project = {
@@ -12,7 +12,7 @@ const nbsjs: Project = {
         return (
             <Stack>
                 <Text>
-                    <Link text="NBS (note block song)" url="https://opennbs.org/nbs" size="compact-sm" /> parser in Javascript
+                    <ExternalLink text="NBS (note block song)" url="https://opennbs.org/nbs" size="compact-sm" /> parser in Javascript
                 </Text>
             </Stack>
         )

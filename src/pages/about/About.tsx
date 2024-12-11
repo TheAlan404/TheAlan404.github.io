@@ -1,5 +1,5 @@
 import { Accordion, Space, Stack } from "@mantine/core";
-import { Hero } from "./Hero";
+import { Hero } from "../../../app/components/page/Hero";
 import { DeveloperBackground } from "./sections/DeveloperBackground";
 
 export const About = () => {

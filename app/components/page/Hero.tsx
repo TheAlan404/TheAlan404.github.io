@@ -1,9 +1,7 @@
 import { Group, Stack, Title, Text, Space, Tooltip, Image, List, Divider, Box, Avatar, Paper } from '@mantine/core';
-import { DiscordSection } from "@/src/pages/about/DiscordSection";
-import { Section } from "@/src/components/misc/Section";
-import { OnekoSection } from "./OnekoSection";
 import { useTranslation } from "react-i18next";
 import { TRFlag } from "mantine-flagpack";
+import { Section } from "../ui/Section";
 
 export const Hero = () => {
     const { t, i18n: { resolvedLanguage } } = useTranslation();

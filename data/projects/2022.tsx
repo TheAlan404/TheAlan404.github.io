@@ -1,6 +1,8 @@
-import { Link } from "@/src/components/misc/Link";
-import { Pages, Project, ProjectButton } from "@/src/types";
+
 import { Image, Stack, Text } from "@mantine/core";
+import { ExternalLink } from "~/components/ui/ExternalLink";
+import { Pages } from "~/config";
+import { Project, ProjectButton } from "~/types";
 
 const DenVis: Project = {
     id: "denvis",
@@ -42,7 +44,7 @@ const DSharpPlusPaginatedSelects: Project = {
         return (
             <Stack>
                 <Text>
-                    A <Link text="DSharpPlus" url="https://dsharpplus.github.io/DSharpPlus/" size="compact-sm" /> extension that adds paginated select components.
+                    A <ExternalLink text="DSharpPlus" url="https://dsharpplus.github.io/DSharpPlus/" size="compact-sm" /> extension that adds paginated select components.
                 </Text>
             </Stack>
         )
@@ -62,7 +64,7 @@ const WantYouGone: Project = {
     tech: ["html", "css", "js"],
     year: "2022",
     shortDesc: "Portal 2 ending credits song animation recreated using (very bad) HTML",
-    img: "/assets/img/proj/wantyougone.png",
+    // img: "/assets/img/proj/wantyougone.png",
     buttons: [
         ProjectButton.website(Pages("want-you-gone")),
         ProjectButton.repo("TheAlan404/want-you-gone"),

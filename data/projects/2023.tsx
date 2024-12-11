@@ -1,6 +1,7 @@
-import { ImageWithLoader } from "@/src/components/misc/ImageWithLoader";
-import { Project, ProjectButton, Subdomain } from "@/src/types";
 import { Image, Stack, Text } from "@mantine/core";
+import { ImageWithLoader } from "~/components/ui/ImageWithLoader";
+import { Subdomain } from "~/config";
+import { Project, ProjectButton } from "~/types";
 
 const mcman: Project = {
     id: "mcman",
@@ -31,7 +32,7 @@ const OAALMUN: Project = {
     ],
     types: [],
     shortDesc: "MUN (Model United Nations) website for my school",
-    img: "/assets/img/proj/oaalmun.png",
+    // img: "/assets/img/proj/oaalmun.png",
     tech: ["js", "ts", "react", "vite"],
 };
 

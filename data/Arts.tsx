@@ -1,6 +1,6 @@
 import { Group, Text } from "@mantine/core";
 import { IconHeart, IconSparkles } from "@tabler/icons-react";
-import { Link } from "../components/misc/Link";
+import { Link } from "../src/components/misc/Link";
 
 export type Art = {
     src: string;

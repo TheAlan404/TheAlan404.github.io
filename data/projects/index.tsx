@@ -1,4 +1,4 @@
-import { Project } from "@/src/types";
+import { Project } from "~/types";
 import p2021 from "./2021";
 import p2022 from "./2022";
 import p2023 from "./2023";
