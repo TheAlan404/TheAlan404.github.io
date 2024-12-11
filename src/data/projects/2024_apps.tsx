@@ -3,6 +3,7 @@ import { Pages, Project, ProjectButton, Subdomain } from "@/src/types";
 import { Image, Stack, Text } from "@mantine/core";
 
 const Istanbus: Project = {
+    id: "istanbus",
     name: "Istanbus",
     status: "up",
     year: "2024",
@@ -16,6 +17,7 @@ const Istanbus: Project = {
 };
 
 const NekoTube: Project = {
+    id: "nekotube",
     name: "NekoTube",
     status: "wip",
     year: "2024",
@@ -30,6 +32,7 @@ const NekoTube: Project = {
 };
 
 const Carpanga: Project = {
+    id: "carpanga",
     name: "Çarpanga",
     status: "up",
     year: "2024",
@@ -51,6 +54,7 @@ const Carpanga: Project = {
 };
 
 const alphamath: Project = {
+    id: "alphamath",
     name: "alphamath",
     status: "wip",
     shortDesc: "An experimental interactive math engine/solver",
@@ -64,6 +68,7 @@ const alphamath: Project = {
 };
 
 const ZilTek: Project = {
+    id: "ziltek",
     name: "ZilTek",
     status: "up",
     types: ["website", "desktop"],
@@ -87,7 +92,7 @@ const ZilTek: Project = {
 };
 
 const Polycules: Project = {
-    new: true,
+    id: "polycules",
     name: "Polycules",
     status: "up",
     types: ["website"],

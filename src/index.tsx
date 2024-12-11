@@ -12,6 +12,7 @@ import '@mantine/notifications/styles.css';
 import 'mantine-flagpack/styles.css';
 import '@mantine/code-highlight/styles.css';
 import './style.css';
+import './mixins.css';
 import { I18nextProvider } from "react-i18next";
 import i18next from "./i18n";
 

@@ -5,6 +5,7 @@ export const Pages = (s: string) => `https://${Domain}/${s}/`;
 export const Subdomain = (s: string) => `https://${s}.${Domain}/`;
 
 export interface Project {
+    id: string;
     name: string;
     types: ProjectType[];
     tech: Tech[];
@@ -21,7 +22,7 @@ export interface Project {
 
 export type ProjectStatus = "up" | "ok" | "wip" | "archive";
 
-export type Tech = "rust" | "react" | "cs" | "js" | "ts" | "html" | "css" | "vite" | "nextjs" | "nodejs";
+export type Tech = "rust" | "react" | "cs" | "js" | "ts" | "html" | "css" | "vite" | "nextjs" | "nodejs" | "mongodb" | "prisma";
 
 export type ProjectType = "library" | "website" | "restapi" | "desktop" | "cli" | "mobile";
 

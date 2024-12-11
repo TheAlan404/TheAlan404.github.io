@@ -3,6 +3,7 @@ import { Pages, Project, ProjectButton } from "@/src/types";
 import { Image, Stack, Text } from "@mantine/core";
 
 const DenVis: Project = {
+    id: "denvis",
     name: "DenVis",
     status: "wip",
     year: "2022",
@@ -32,6 +33,7 @@ const DenVis: Project = {
 };
 
 const DSharpPlusPaginatedSelects: Project = {
+    id: "paginated-selects",
     name: "PaginatedSelects",
     status: "archive",
     year: "2022",
@@ -53,6 +55,7 @@ const DSharpPlusPaginatedSelects: Project = {
 };
 
 const WantYouGone: Project = {
+    id: "want-you-gone",
     name: "Want You Gone",
     status: "archive",
     types: ["website"],

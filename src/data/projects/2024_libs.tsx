@@ -2,6 +2,7 @@ import { Project, ProjectButton } from "@/src/types";
 import { Stack, Text } from "@mantine/core";
 
 const NbtTS: Project = {
+    id: "nbt-ts",
     name: "nbt",
     shortDesc: "TypeScript library for serializing and deserializing NBT",
     types: ["library"],
@@ -21,6 +22,7 @@ const NbtTS: Project = {
 };
 
 const ReactWorkspace: Project = {
+    id: "react-workspace",
     name: "react-workspace",
     shortDesc: "Infinitely pannable, accessible map-like workspace for React",
     types: ["library"],
@@ -40,6 +42,7 @@ const ReactWorkspace: Project = {
 };
 
 const MinecraftAssets: Project = {
+    id: "minecraft-assets",
     name: "minecraft-assets",
     shortDesc: "TypeScript library providing minecraft assets (block states, models and textures)",
     types: ["library"],
@@ -52,6 +55,7 @@ const MinecraftAssets: Project = {
 };
 
 const discordjsx: Project = {
+    id: "discord-jsx",
     name: "discord-jsx",
     year: "2024",
     buttons: [

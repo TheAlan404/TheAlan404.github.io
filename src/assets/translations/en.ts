@@ -1,6 +1,14 @@
 export default {
     header: {
         avatarTooltip: "made by @kiwi_asli on Instagram",
+        hint: "Click the big button",
+    },
+    navbar: {
+        home: "Home",
+        projects: "Projects",
+        art: "Art",
+        blog: "Blog",
+        other: "Other",
     },
     hero: {
         hi: "Hi! I'm",

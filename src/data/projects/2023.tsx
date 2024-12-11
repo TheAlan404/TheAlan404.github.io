@@ -3,6 +3,7 @@ import { Project, ProjectButton, Subdomain } from "@/src/types";
 import { Image, Stack, Text } from "@mantine/core";
 
 const mcman: Project = {
+    id: "mcman",
     name: "mcman",
     types: ["cli", "library"],
     tech: ["rust"],
@@ -22,6 +23,7 @@ const mcman: Project = {
 };
 
 const OAALMUN: Project = {
+    id: "oaalmun",
     name: "OAALMUN",
     year: "2023",
     buttons: [

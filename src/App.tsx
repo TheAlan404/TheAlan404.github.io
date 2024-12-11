@@ -3,7 +3,7 @@ import React, { useEffect, useState, useTransition } from 'react';
 import { ProjectsList } from "./pages/projects/ProjectsList";
 import { GodDrinksJava } from "./features/events/GodDrinksJava";
 import { About } from "./pages/about/About";
-import { BigButton } from "./pages/BigButton";
+import { BigButton } from "./layout/BigButton";
 import { BlogPage } from "./pages/blog/BlogPage";
 import { OnekoBed } from "./features/oneko/OnekoBed";
 import { Oneko } from "./features/oneko/Oneko";

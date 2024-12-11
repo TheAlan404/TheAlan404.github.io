@@ -3,6 +3,7 @@ import { Project, ProjectButton } from "@/src/types";
 import { Stack, Text } from "@mantine/core";
 
 const nbsjs: Project = {
+    id: "nbs-js",
     name: "nbs.js",
     status: "archive",
     year: "2021",
