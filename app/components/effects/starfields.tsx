@@ -1,5 +1,5 @@
-import { Coord } from "@/src/types";
-import { choose, clamp, lerp, randFloat, randInt, vec, vecAdd, vecDiv, vecMul, vecSafeNormalize, vecSub, vecTup } from "@/src/utils/utils";
+import { vec2, Vec2, vec2add, vec2div, vec2mul, vec2normalize, vec2sub } from "@alan404/vec2";
+import { choose, clamp, lerp, randFloat, randInt } from "~/utils/math";
 
 export const STARFIELD_SCALE = 2;
 
@@ -13,14 +13,14 @@ export interface StarfieldConfig {
     flowSpeed: number;
     color: string;
     dim: Dim;
-    scroll: Coord;
-    position: Coord;
+    scroll: Vec2;
+    position: Vec2;
     flash: number;
 };
 
 export interface Star {
     Texture: number;
-    Position: Coord;
+    Position: Vec2;
     Opacity: number;
     NodeIndex: number;
     NodePercent: number;
@@ -33,18 +33,19 @@ export interface Dim {
     height: number;
 };
 
-const steps = ({ width }: Dim) => 15;
+const stepsH = ({ width }: Dim) => 15;
+const stepsW = ({ width }: Dim) => 5;
 
 const createYNodes = ({
     dim
 }: Pick<StarfieldConfig, "dim">): number[] => {
     let yNodes: number[] = [];
     let num = randFloat(dim.height);
-    let num2 = 0;
-
-    while (num2 < steps(dim)) {
+    
+    let i = 0;
+    while (stepsH(dim) > i) {
+        i++;
         yNodes.push(num);
-        num2++;
         num += choose(-1, 1) * (16 * 2 + randFloat((24 * (dim.height/360)) * 2));
     }
 
@@ -65,7 +66,7 @@ const targetOfStar = ({
     dim,
     yNodes,
 }: StarfieldConfig, star: IncompleteStar) => {
-    let StepSize = dim.width / (steps(dim) - 1);
+    let StepSize = dim.width / (stepsW(dim) - 1);
     let vector = {
         x: star.NodeIndex * StepSize,
         y: yNodes[star.NodeIndex],
@@ -74,8 +75,8 @@ const targetOfStar = ({
         x: (star.NodeIndex + 1) * StepSize,
         y: yNodes[star.NodeIndex + 1],
     };
-    let vector3 = vecAdd(vector, vecMul(vecSub(vector2, vector), vecTup(star.NodePercent)));
-    let vector4 = vecSafeNormalize(vecSub(vector2, vector));
+    let vector3 = vec2add(vector, vec2mul(vec2sub(vector2, vector), vec2(star.NodePercent)));
+    let vector4 = vec2normalize(vec2sub(vector2, vector));
     //let vector5 = vec(0.0 - vector4.y, vector4.x);
     /* return vecAdd(vector3, vecMul(vecMul(vector5, vecTup(star.Distance)), vecTup(Math.sin(star.Sine))));
 
@@ -119,6 +120,7 @@ const createStars = (config: StarfieldConfig) => {
 };
 
 export const updateStar = (config: StarfieldConfig, star: Star, dt: number = 1) => {
+    // return
     star.Sine += dt * config.flowSpeed;
     star.NodePercent += dt * 0.25 * config.flowSpeed;
     if (star.NodePercent >= 1) {
@@ -129,7 +131,7 @@ export const updateStar = (config: StarfieldConfig, star: Star, dt: number = 1) 
             star.Position.x = 0;
         }
     }
-    star.Position = vecAdd(star.Position, vecDiv(vecSub(targetOfStar(config, star), star.Position), vecTup(50)));
+    star.Position = vec2add(star.Position, vec2div(vec2sub(targetOfStar(config, star), star.Position), vec2(50, 50)));
 };
 
 
@@ -140,8 +142,8 @@ const createStarfield = (partial: Partial<StarfieldConfig>): Starfield => {
         yNodes: [],
         color: "ffffff",
         flowSpeed: 1,
-        position: vec(0, 0),
-        scroll: vec(1, 1),
+        position: vec2(0),
+        scroll: vec2(1),
         flash: 1,
         ...partial,
     };
@@ -157,11 +159,11 @@ const createStarfield = (partial: Partial<StarfieldConfig>): Starfield => {
 
 export const createStarfields = (x: Partial<StarfieldConfig>) => [
     //createStarfield({ color: "ffffff", scroll: vec(0.1, 0.1), flowSpeed: 1, ...x }),
-    createStarfield({ color: "ab6ffa", scroll: vec(0.3, 0.3), ...x }),
-    createStarfield({ color: "71d5ff", scroll: vec(0.3, 0.3), flowSpeed: 2.5, ...x }),
+    createStarfield({ color: "ab6ffa", scroll: vec2(0.3, 0.3), ...x }),
+    createStarfield({ color: "71d5ff", scroll: vec2(0.3, 0.3), flowSpeed: 2.5, ...x }),
     //createStarfield({ color: "f8ffb0", scroll: vec(0.3, 0.3), flowSpeed: 3, ...x }),
-    createStarfield({ color: "53f3dd", scroll: vec(0.5, 0.5), ...x }),
+    createStarfield({ color: "53f3dd", scroll: vec2(0.5, 0.5), ...x }),
     //createStarfield({ color: "46fffd", scroll: vec(0.5, 0.5), flowSpeed: 2.75, ...x }),
-    createStarfield({ color: "cefdff", scroll: vec(0.5, 0.5), flowSpeed: 3, ...x }),
+    createStarfield({ color: "cefdff", scroll: vec2(0.5, 0.5), flowSpeed: 3, ...x }),
 ];
 

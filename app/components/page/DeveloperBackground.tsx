@@ -1,5 +1,5 @@
-import { IconBrandCSharp, IconBrandDocker, IconBrandGit, IconBrandJavascript, IconDeviceDesktopCode } from "@tabler/icons-react"
-import { Group, Image, List, Paper, Stack, Text } from "@mantine/core"
+import { IconBrandCSharp, IconBrandDocker, IconBrandGit, IconBrandHtml5, IconBrandJavascript, IconBrandMongodb, IconBrandNodejs, IconBrandPrisma, IconBrandVite, IconDeviceDesktopCode } from "@tabler/icons-react"
+import { Group, Image, List, Paper, SimpleGrid, Stack, Text } from "@mantine/core"
 import { IconBrandTypescript } from "@tabler/icons-react"
 import { IconBrandRust } from "@tabler/icons-react"
 import { IconBrandReact } from "@tabler/icons-react"
@@ -8,6 +8,7 @@ import { MantineLogo } from "@mantinex/mantine-logo"
 import { useTranslation } from "react-i18next"
 import { Section } from "../ui/Section"
 import { AboutSection } from "./AboutSection"
+import { ComponentType } from "react"
 
 export const DeveloperBackground = () => {
     const [t] = useTranslation();
@@ -20,36 +21,39 @@ export const DeveloperBackground = () => {
         >
             <Stack>
                 <Section>
+                    <Stack>
+                        <Text ta="center" fw="bold">
+                            {t("dev.tech")}
+                        </Text>
+                        <SimpleGrid cols={{ base: 2, md: 3 }} spacing="xs">
+                            {([
+                                [IconBrandTypescript, "TypeScript"],
+                                [IconBrandJavascript, "JavaScript"],
+                                [IconBrandReact, "React"],
+								[IconBrandNodejs, "NodeJS"],
+								[IconBrandVite, "Vite"],
+								[IconBrandRust, "Rust"],
+								[IconBrandHtml5, "HTML/CSS"],
+								[IconBrandCSharp, ".NET 5-8"],
+                                [IconBrandGit, "Git"],
+                                [IconBrandGithub, "Github Actions"],
+                                [IconBrandGithub, "Github"],
+                                [IconBrandDocker, "Docker"],
+                            ] as [ComponentType<any>, string][]).map(([Icon, name]) => (
+                                <Group gap={4} flex="1" wrap="nowrap">
+                                    <Icon />
+                                    <Text>{name}</Text>
+                                </Group>
+                            ))}
+                        </SimpleGrid>
+                    </Stack>
+                </Section>
+
+                <Section>
                     <Group gap="xs" ta="center" justify="center">
                         <Text span>{t("dev.yearsPrefix")}</Text>
                         <Text span fw="bold">{t("dev.years")}</Text>
                         <Text span>{t("dev.yearsSuffix")}</Text>
-                    </Group>
-                </Section>
-                <Section>
-                    <Group grow align="start" gap={0} wrap="nowrap">
-                        <Stack align="start" ta="start">
-                            <Text span fw="bold">
-                                {t("dev.languages")}
-                            </Text>
-                            <List center>
-                                <List.Item icon={<IconBrandJavascript />}>JavaScript</List.Item>
-                                <List.Item icon={<IconBrandTypescript />}>TypeScript</List.Item>
-                                <List.Item icon={<IconBrandCSharp />}>C#</List.Item>
-                                <List.Item icon={<IconBrandRust />}>Rust</List.Item>
-                            </List>
-                        </Stack>
-                        <Stack align="end" ta="end">
-                            <Text span fw="bold">
-                                {t("dev.tools")}
-                            </Text>
-                            <List center className="listAlignEnd">
-                                <List.Item icon={<IconBrandReact />}>React</List.Item>
-                                <List.Item icon={<IconBrandGit />}>Git</List.Item>
-                                <List.Item icon={<IconBrandGithub />}>GitHub</List.Item>
-                                <List.Item icon={<IconBrandDocker />}>Docker</List.Item>
-                            </List>
-                        </Stack>
                     </Group>
                 </Section>
 

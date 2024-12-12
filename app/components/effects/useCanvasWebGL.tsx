@@ -22,7 +22,12 @@ export const useCanvasWebGL = <T,>({
         if(!ref.current) return;
         ref.current.width = ref.current.clientWidth;
         ref.current.height = ref.current.clientHeight;
-        gl.current = ref.current.getContext("webgl2", { antialias: false });
+        gl.current = ref.current.getContext("webgl2", {
+            antialias: false,
+            powerPreference: "low-power",
+            desynchronized: true,
+            failIfMajorPerformanceCaveat: true,
+        });
         store.current = initializeStore(gl.current!);
         return () => {
             if(store.current) disposeStore?.(gl.current!, store.current);

@@ -189,6 +189,7 @@ export const renderProgramBuffers = ({
     // Bind textures to texture units
     for (let i = 0; i < textures.length; i++) {
         const tex = textures[i];
+        // @ts-ignore
         gl.activeTexture(gl["TEXTURE"+i]);
         gl.bindTexture(gl.TEXTURE_2D, tex);
         gl.uniform1i(gl.getUniformLocation(program, `u_textures[${i}]`), i);

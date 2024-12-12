@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@alan404/enum": "^0.2.0",
-    "@alan404/vec2": "^0.0.2",
+    "@alan404/vec2": "^0.0.4",
     "@mantine/carousel": "^7.15.0",
     "@mantine/code-highlight": "^7.15.0",
     "@mantine/core": "^7.15.0",

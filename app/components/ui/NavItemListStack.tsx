@@ -6,29 +6,32 @@ import { NavItemList } from "./NavItemList";
 export const NavItemListStack = ({
     items,
     width,
+    forceCollapse,
 }: {
     items: NavItem[];
     width: number;
+    forceCollapse?: boolean;
 }) => {
     const location = useLocation();
     const path = location.pathname.split("/");
-    
-    const sub1 = items.find(x => x.path.split("/")[1] == path[1]);
-    const stack = [
-        items,
-        sub1?.children || [],
-    ];
+    const atIndex = path.length == 2;
+
+    const main = items;
+    const submenu = main.find(x => x.path.split("/")[1] == path[1])?.children || [];
+
+    const collapsedWidth = 48;
+    const hiddenWidth = 0;
 
     return (
-        <Group gap={0}>
-            {stack.map((v, i, arr) => (
-                <NavItemList
-                    items={v}
-                    hidden={!v.length}
-                    collapsed={i != arr.length-2}
-                    fullWidth={width - (48 * i)}
-                />
-            ))}
+        <Group gap={0} wrap="nowrap" h="100%">
+            <NavItemList
+                items={main}
+                width={(submenu.length || forceCollapse) ? collapsedWidth : width}
+            />
+            <NavItemList
+                items={submenu}
+                width={((forceCollapse ? (submenu.length && atIndex) : submenu.length)) ? (width - collapsedWidth) : hiddenWidth}
+            />
         </Group>
     )
 };

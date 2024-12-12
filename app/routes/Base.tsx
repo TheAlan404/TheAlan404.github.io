@@ -1,16 +1,10 @@
-import { Box, Grid, Group, NavLink, Paper, ScrollArea, Stack, Transition } from "@mantine/core";
+import { Box, Stack, Transition } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { BigButton } from "~/components/base/BigButton";
-import { Outlet, useLocation } from "react-router";
-import { Suspense } from "react";
-import { IconBrush, IconClipboard, IconFileText, IconHome } from "@tabler/icons-react";
-// import { NavItem, NavItemList } from "./NavItemList";
-// import { DataBlogPosts } from "../data/DataBlogPosts";
-// import { DataProjects } from "../data/projects";
-// import { ProjectHeader, ProjectHeaderCompact } from "../pages/projects/ProjectHeader";
+import { useLocation } from "react-router";
 import { Section } from "~/components/ui/Section";
-import { NavItem } from "~/types";
 import { PopoutContent } from "~/components/base/PopoutContent";
+import { Effects } from "~/components/effects/Effects";
 
 export default function Layout() {
     const location = useLocation();
@@ -18,6 +12,8 @@ export default function Layout() {
 
     return (
         <Box h="100vh">
+            <Effects />
+
             <Stack
                 style={{ position: "absolute" }}
                 w="100%"

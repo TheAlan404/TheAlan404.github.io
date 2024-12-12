@@ -1,16 +1,7 @@
 import { Group, Text } from "@mantine/core";
 import { IconHeart, IconSparkles } from "@tabler/icons-react";
 import { Link } from "../src/components/misc/Link";
-
-export type Art = {
-    src: string;
-    author: {
-        name: string;
-        link: string;
-    };
-    subtitle?: React.ReactNode;
-    heart?: React.ReactNode;
-};
+import { Art } from "~/types";
 
 const KiwiAsli = {
     name: "@kiwi_asli",

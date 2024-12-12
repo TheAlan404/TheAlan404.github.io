@@ -10,6 +10,9 @@ export const ImageWithLoader = (imageProps: ImageProps) => {
             <Image
                 onLoad={() => setLoaded(true)}
                 onError={() => setLoaded(true)}
+                ref={el => {
+                    if(el?.complete) setLoaded(true);
+                }}
                 {...imageProps}
             />
         </Box>

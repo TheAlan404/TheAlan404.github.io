@@ -1,6 +1,22 @@
 import { Project } from "~/types";
-import { Group, Stack } from "@mantine/core";
+import { Code, Group, Stack, TypographyStylesProvider } from "@mantine/core";
 import { ProjectButtonComponent } from "./ProjectButtonComponent";
+import { CodeHighlight } from "@mantine/code-highlight";
+import { ImageWithLoader } from "../ui/ImageWithLoader";
+
+const components = {
+    pre: ({ children }: any) => children,
+    code: (props: any) => (
+        <CodeHighlight
+            styles={{
+                code: { width: "100%" },
+            }}
+            code={props.children}
+            language={props.className.split("-")[1]}
+        />
+    ),
+    img: ImageWithLoader,
+};
 
 export const ProjectContent = ({
     p,
@@ -22,13 +38,13 @@ export const ProjectContent = ({
         </>
     );
 
-    const Render = p.Render || (() => <></>);
-
     return (
         <Stack>
             {projectButtonsSection}
 
-            <Render />
+            <TypographyStylesProvider>
+                <p.default components={components} />
+            </TypographyStylesProvider>
         </Stack>
     );
 };

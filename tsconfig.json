@@ -5,6 +5,9 @@
         "**/.client/**/*",
         ".react-router/types/**/*"
     ],
+    "exclude": [
+        "./src/**"
+    ],
     "compilerOptions": {
         "lib": [
             "DOM",
@@ -26,16 +29,21 @@
         "paths": {
             "~/*": [
                 "./app/*"
-            ]
+            ],
+            "@/*": [
+                "./data/*"  
+            ],
         },
         "esModuleInterop": true,
         "noEmit": true,
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "allowArbitraryExtensions": true,
+        "isolatedModules": true,
+        
         "allowSyntheticDefaultImports": true,
         "allowImportingTsExtensions": true,
-
+        "allowJs": true,
         "strict": true
     }
 }

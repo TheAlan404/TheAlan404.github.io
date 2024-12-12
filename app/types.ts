@@ -1,6 +1,23 @@
 import { createFactory, Enum } from "@alan404/enum";
 import { ReactNode } from "react";
 
+export type BlogPost = {
+    title: string;
+    desc: string;
+    date: string;
+    default: React.ComponentType<any>;
+};
+
+export type Art = {
+    src: string;
+    author: {
+        name: string;
+        link: string;
+    };
+    subtitle?: React.ReactNode;
+    heart?: React.ReactNode;
+};
+
 export type NavItem = {
     path: string;
     label: ReactNode;
@@ -10,7 +27,7 @@ export type NavItem = {
 };
 
 export interface Project {
-    id: string;
+    default: React.ComponentType<any>;
     name: string;
     types: ProjectType[];
     tech: Tech[];

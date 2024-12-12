@@ -5,13 +5,9 @@ import { NavItem } from "~/types";
 
 export const NavItemList = ({
     items,
-    collapsed,
-    hidden,
-    fullWidth = 240,
+    width = 240,
 }: {
-    collapsed?: boolean;
-    hidden?: boolean;
-    fullWidth?: number;
+    width?: number;
     items: NavItem[];
 }) => {
     const [rootRef, setRootRef] = useState<HTMLDivElement | null>(null);
@@ -31,7 +27,7 @@ export const NavItemList = ({
         <ScrollArea.Autosize h="100%">
             <Stack
                 gap={0}
-                w={hidden ? 0 : (collapsed ? 48 : fullWidth)}
+                w={width}
                 style={{
                     transition: "width 200ms linear",
                 }}
@@ -41,7 +37,7 @@ export const NavItemList = ({
                 {items.map((item, i) => {
                     return (
                         <NavLink
-                            key={i}
+                            key={item.path}
                             active={item.path == activePath}
                             label={item.label}
                             description={item.description}

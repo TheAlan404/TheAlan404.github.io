@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { createMists, MIST_SCALE, MistTextures } from "./mists";
+import { createMists } from "./mists";
 import { createStarfields, Starfield, STARFIELD_SCALE, updateStar } from "./starfields";
-import { clamp, vec, vecAdd, vecMul, vecTup } from "@alan404/vec2";
+import { vec2, vec2add, vec2mul, Vec2 } from "@alan404/vec2";
 import { useCanvasWebGL } from "./useCanvasWebGL";
 import { createProgramBuffers, initializeWebGL, renderProgramBuffers } from "./starfieldsWebGL";
-import { useHotkeys } from "@mantine/hooks";
+import { clamp, useHotkeys } from "@mantine/hooks";
+import { textureWithColorDataURL } from "./textureWithColor";
 
 declare global {
     interface Window {
@@ -13,7 +14,7 @@ declare global {
 }
 
 export const Effects = () => {
-    const isReady = useImagesReady(MistTextures);
+    const isReady = false //useImagesReady(MistTextures);
 
     const opacityBurstRef = useRef<number>(Date.now());
     const speedBurstRef = useRef<number>(0);
@@ -28,7 +29,7 @@ export const Effects = () => {
     // Mist
     const mists = createMists();
     const mistRefs = useRef<(HTMLDivElement | null)[]>(mists.map(() => null));
-    const mistPositions = useRef<Coord[]>(mists.map(_ => vec(0, 0)));
+    const mistPositions = useRef<Vec2[]>(mists.map(_ => vec2(0, 0)));
 
     // Starfield
     //const starfieldRef = useRef<HTMLCanvasElement>(null);
@@ -43,18 +44,18 @@ export const Effects = () => {
         },
         render(gl, store, dt) {
             // Mist
-            for (let i = 0; i < mists.length; i++) {
-                const mist = mists[i];
-                mistPositions.current[i] = vecAdd(mistPositions.current[i], vecMul(mist.speed, vecTup(dt * 100)));
-                let ref = mistRefs.current[i];
-                let x = mistPositions.current[i].x;
-                let y = mistPositions.current[i].y - window.scrollY * mist.scroll.y;
-                //x = x % window.innerWidth;
-                //y = y % window.innerHeight;
-                if (ref)
-                    //ref.style.transform = transform;
-                    ref.style.backgroundPosition = `${Math.round(x)}px ${Math.round(y)}px`;
-            }
+            // for (let i = 0; i < mists.length; i++) {
+            //     const mist = mists[i];
+            //     mistPositions.current[i] = vec2add(mistPositions.current[i], vec2mul(mist.speed, vec2(dt * 100)));
+            //     let ref = mistRefs.current[i];
+            //     let x = mistPositions.current[i].x;
+            //     let y = mistPositions.current[i].y - window.scrollY * mist.scroll.y;
+            //     //x = x % window.innerWidth;
+            //     //y = y % window.innerHeight;
+            //     if (ref)
+            //         //ref.style.transform = transform;
+            //         ref.style.backgroundPosition = `${Math.round(x)}px ${Math.round(y)}px`;
+            // }
 
             // Starfields
 
@@ -78,18 +79,19 @@ export const Effects = () => {
 
                 starfield.config.position.y = window.scrollY / STARFIELD_SCALE;
 
-                const easer = (x) => x === 0 ? 0 : Math.pow(2, 10 * x - 10);
+                const easer = (x: number) => x === 0 ? 0 : Math.pow(2, 10 * x - 10);
                 const burst = (d: number, decay = 200) => {
                     let elapsed = Date.now() - d;
-                    elapsed = clamp(0, elapsed, decay);
+                    elapsed = clamp(elapsed, 0, decay);
                     let i = elapsed / decay;
                     return easer(1-i);
                 };
                 
-                starfield.config.flash = burst(Math.max(...[
-                    opacityBurstRef.current,
-                    window._lastFlash || 0,
-                ]), 500);
+                starfield.config.flash = 0;
+                // starfield.config.flash = burst(Math.max(...[
+                //     opacityBurstRef.current,
+                //     window._lastFlash || 0,
+                // ]), 500);
 
                 let speedF = burst(speedBurstRef.current, 500);
                 for (let star of starfield.stars) {
@@ -122,7 +124,7 @@ export const Effects = () => {
                 ref={canvasRef}
             />
 
-            {isReady && (
+            {/* {isReady && (
                 <div className="mist-container">
                     {mists.map((mist, i) => (
                         <div
@@ -132,7 +134,7 @@ export const Effects = () => {
                             }}
                             className="pageBackground mist"
                             style={{
-                                backgroundImage: `url("${textureWithColorDataURL(MistTextures, 0, mist.color)}")`,
+                                // backgroundImage: `url("${textureWithColorDataURL(MistTextures, 0, mist.color)}")`,
                                 backgroundSize: `${600 * MIST_SCALE}px ${600 * MIST_SCALE}px`,
                                 backgroundRepeat: "repeat",
                                 opacity: "0.5",
@@ -140,7 +142,7 @@ export const Effects = () => {
                         />
                     ))}
                 </div>
-            )}
+            )} */}
         </div>
     )
 };
