@@ -31,7 +31,7 @@
     "i18next": "^23.16.8",
     "i18next-browser-languagedetector": "^8.0.2",
     "isbot": "^5",
-    "mantine-flagpack": "^4.0.1",
+    "mantine-flagpack": "^4.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^15.1.4",
