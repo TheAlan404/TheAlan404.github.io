@@ -36,3 +36,8 @@ export const navItems: NavItem[] = [
         )),
     },
 ];
+
+const routesOf = (x: NavItem): string[] => [x.path, ...(x.children || []).flatMap(routesOf)];
+export const allPaths = navItems.flatMap(routesOf);
+if(false)
+    console.log(allPaths);

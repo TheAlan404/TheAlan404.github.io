@@ -85,3 +85,7 @@ export default function App() {
         </MantineProvider>
     )
 }
+
+export function HydrateFallback() {
+    return <p>Loading...</p>;
+}

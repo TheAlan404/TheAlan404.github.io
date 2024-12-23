@@ -1,4 +1,4 @@
-import { IconBrandCSharp, IconBrandDocker, IconBrandGit, IconBrandHtml5, IconBrandJavascript, IconBrandMongodb, IconBrandNodejs, IconBrandPrisma, IconBrandVite, IconDeviceDesktopCode } from "@tabler/icons-react"
+import { IconBrandAuth0, IconBrandCSharp, IconBrandDocker, IconBrandGit, IconBrandHtml5, IconBrandJavascript, IconBrandMongodb, IconBrandNodejs, IconBrandPrisma, IconBrandVite, IconDeviceDesktopCode } from "@tabler/icons-react"
 import { Group, Image, List, Paper, SimpleGrid, Stack, Text } from "@mantine/core"
 import { IconBrandTypescript } from "@tabler/icons-react"
 import { IconBrandRust } from "@tabler/icons-react"
@@ -39,6 +39,9 @@ export const DeveloperBackground = () => {
                                 [IconBrandGithub, "Github Actions"],
                                 [IconBrandGithub, "Github"],
                                 [IconBrandDocker, "Docker"],
+                                [IconBrandMongodb, "MongoDB"],
+                                [IconBrandPrisma, "Prisma ORM"],
+                                [IconBrandAuth0, "Auth0"],
                             ] as [ComponentType<any>, string][]).map(([Icon, name]) => (
                                 <Group gap={4} flex="1" wrap="nowrap">
                                     <Icon />

@@ -5,6 +5,7 @@ import { useLocation } from "react-router";
 import { Section } from "~/components/ui/Section";
 import { PopoutContent } from "~/components/base/PopoutContent";
 import { Effects } from "~/components/effects/Effects";
+import { NewYearEvent } from "~/components/events/NewYear";
 
 export default function Layout() {
     const location = useLocation();
@@ -13,6 +14,15 @@ export default function Layout() {
     return (
         <Box h="100vh">
             <Effects />
+
+            <Stack
+                style={{ position: "absolute" }}
+                w="100%"
+                h="60vh"
+                justify="center"
+            >
+                <NewYearEvent />
+            </Stack>
 
             <Stack
                 style={{ position: "absolute" }}

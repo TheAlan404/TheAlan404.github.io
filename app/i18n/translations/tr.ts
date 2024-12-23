@@ -25,8 +25,7 @@ export default {
         years: "6 yıldır",
         yearsSuffix: "kod yazıyorum.",
 
-        languages: "İyi olduğum diller:",
-        tools: "Kullandığım araçlar:",
+        tech: "İyi olduğum teknolojiler:",
     },
     art: {
         title: "Fanart",

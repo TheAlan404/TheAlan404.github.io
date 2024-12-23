@@ -33,8 +33,7 @@ export default {
         years: "6 years",
         yearsSuffix: "",
 
-        languages: "Languages I'm good at:",
-        tools: "Tools I use:",
+        tech: "Technologies I'm good at:",
     },
     art: {
         title: "Fanart",
