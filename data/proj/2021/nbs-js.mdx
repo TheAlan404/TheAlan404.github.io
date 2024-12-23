@@ -1,0 +1,22 @@
+import { ProjectButton } from "~/types";
+export const id = "nbs-js";
+export const name = "nbs.js";
+export const shortDesc = "NBS parser in Javascript";
+export const year = "2021";
+export const status = "archive";
+export const tech = ["js"];
+export const types = ["library"];
+export const buttons = [
+	ProjectButton.repo("TheAlan404/nbs.js"),
+	ProjectButton.npm("nbs.js"),
+];
+
+This is REALLY old
+
+```js
+const NBS = require("nbs.js")
+
+let song = NBS.loadSong("./song.nbs")
+
+console.log(song)
+```

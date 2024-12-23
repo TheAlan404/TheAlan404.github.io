@@ -1,3 +1,6 @@
+.react-router/
+build/
+
 # Logs
 logs
 *.log
