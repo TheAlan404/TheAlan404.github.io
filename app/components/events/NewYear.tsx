@@ -21,8 +21,8 @@ export const NewYearEvent = () => {
         setVolume,
         err,
     } = useBeatdrop({
-        beatDropOn: new Date("2024-12-30T22:02"),
-        // beatDropOn: new Date("2025-01-01T00:00"),
+        // beatDropOn: new Date("2024-12-30T22:02"),
+        beatDropOn: new Date("2025-01-01T00:00"),
         audioSrc: "/assets/audio/events/Opus.mp4",
         beatDropPosition: 3*60+42,
     });
