@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@alan404/enum':
-        specifier: ^0.2.0
-        version: 0.2.0
+        specifier: ^0.2.3
+        version: 0.2.3
       '@alan404/vec2':
-        specifier: ^0.0.4
-        version: 0.0.4
+        specifier: ^0.0.5
+        version: 0.0.5
       '@mantine/carousel':
         specifier: ^7.15.0
         version: 7.15.0(@mantine/core@7.15.0(@mantine/hooks@7.15.0(react@19.0.0))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@mantine/hooks@7.15.0(react@19.0.0))(embla-carousel-react@7.1.0(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -63,8 +63,8 @@ importers:
         specifier: ^5
         version: 5.1.17
       mantine-flagpack:
-        specifier: ^4.1.0
-        version: 4.1.0(@mantine/core@7.15.0(@mantine/hooks@7.15.0(react@19.0.0))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@mantine/hooks@7.15.0(react@19.0.0))(clsx@2.1.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: 4.0.1
+        version: 4.0.1(@mantine/core@7.15.0(@mantine/hooks@7.15.0(react@19.0.0))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@mantine/hooks@7.15.0(react@19.0.0))(clsx@2.1.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -111,11 +111,11 @@ importers:
 
 packages:
 
-  '@alan404/enum@0.2.0':
-    resolution: {integrity: sha512-SFi3oeTvLixh8Qtsp8tPzIJUTeVnMwEewVwgIr3kPytNPWdESwbshlVuSRgTJD7z2Ywi4R7TzeNy5LmEoiQTkQ==}
+  '@alan404/enum@0.2.3':
+    resolution: {integrity: sha512-vLb0wVUaWqvGLoIPQauRMoylZ1psGCfv9GFNii5cJ6VyIFb0wgUp0Viw5ewpUz054YYj30FQc5NdNlTGw65PSQ==}
 
-  '@alan404/vec2@0.0.4':
-    resolution: {integrity: sha512-mNWTm17Vbxx+yBK0DGI/vZP0AuSPQqukHU68r0JUPOfWn8DG5p5P1kqWLb6lmA4RzurwzDvEEgopcMW45DOnmw==}
+  '@alan404/vec2@0.0.5':
+    resolution: {integrity: sha512-0wXXU/5X0oIgtlSmmnbJH+nr4UX8IRid30wd2B033nfn+Z36KFxU49IvtUVm64jd8zrC3VM0ouOBgDzxjEWmTw==}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -1374,14 +1374,14 @@ packages:
     resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
     engines: {node: '>=12'}
 
-  mantine-flagpack@4.1.0:
-    resolution: {integrity: sha512-O2hptAoNB7VN1yeGT0OxPPp40bv+CW0igDLfAt9Q8Mzd7rhdZj/XG1I+O8B/w5DCpCmmlArs7Tz9Avm+YV3JtA==}
+  mantine-flagpack@4.0.1:
+    resolution: {integrity: sha512-8kIk0mzCByNngNqvs1uXQlpgJOG8tTC5J8c29TE5F7ZymOCr0K4lb49MMcwQ+jX0Pu5AfeRyx24jqI/ZwaVrhw==}
     peerDependencies:
       '@mantine/core': '>=7.0.0'
       '@mantine/hooks': '>=7.0.0'
-      clsx: '>=2.1.0'
-      react: '>=18.2.0'
-      react-dom: '>=18.2.0'
+      clsx: ^2.1.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
 
   markdown-extensions@2.0.0:
     resolution: {integrity: sha512-o5vL7aDWatOTX8LzaS1WMoaoxIiLRQJuIKKe2wAw6IeULDHaqbiqiggmx+pKvZDb1Sj+pE46Sn1T7lCqfFtg1Q==}
@@ -2261,9 +2261,9 @@ packages:
 
 snapshots:
 
-  '@alan404/enum@0.2.0': {}
+  '@alan404/enum@0.2.3': {}
 
-  '@alan404/vec2@0.0.4': {}
+  '@alan404/vec2@0.0.5': {}
 
   '@ampproject/remapping@2.3.0':
     dependencies:
@@ -3624,7 +3624,7 @@ snapshots:
 
   lru-cache@7.18.3: {}
 
-  mantine-flagpack@4.1.0(@mantine/core@7.15.0(@mantine/hooks@7.15.0(react@19.0.0))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@mantine/hooks@7.15.0(react@19.0.0))(clsx@2.1.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  mantine-flagpack@4.0.1(@mantine/core@7.15.0(@mantine/hooks@7.15.0(react@19.0.0))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@mantine/hooks@7.15.0(react@19.0.0))(clsx@2.1.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@mantine/core': 7.15.0(@mantine/hooks@7.15.0(react@19.0.0))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@mantine/hooks': 7.15.0(react@19.0.0)
