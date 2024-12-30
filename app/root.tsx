@@ -88,8 +88,10 @@ export default function App() {
 
 export function HydrateFallback() {
     return (
-        <Center my="xl">
-            <Loader />
-        </Center>
+        <MantineProvider theme={theme} forceColorScheme="dark">
+            <Center my="xl" h="90vh">
+                <Loader />
+            </Center>
+        </MantineProvider>
     );
 }
