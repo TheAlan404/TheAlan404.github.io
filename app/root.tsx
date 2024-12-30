@@ -1,4 +1,4 @@
-import { createTheme, DEFAULT_THEME, MantineProvider } from "@mantine/core";
+import { Center, createTheme, DEFAULT_THEME, Loader, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { PropsWithChildren } from "react";
 import { I18nextProvider } from "react-i18next";
@@ -87,5 +87,9 @@ export default function App() {
 }
 
 export function HydrateFallback() {
-    return <p>Loading...</p>;
+    return (
+        <Center my="xl">
+            <Loader />
+        </Center>
+    );
 }

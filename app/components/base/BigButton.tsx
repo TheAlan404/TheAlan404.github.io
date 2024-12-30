@@ -1,4 +1,4 @@
-import { Group, Stack, Title, Text, Image, Transition } from '@mantine/core';
+import { Group, Stack, Title, Text, Image, Transition, UnstyledButton } from '@mantine/core';
 import { useTranslation } from "react-i18next";
 
 export const BigButton = ({
@@ -31,30 +31,31 @@ export const BigButton = ({
                     )}
                 </Transition>
 
-                <Group
-                    wrap="nowrap"
-                    align="center"
-                    justify="center"
-                    className="bigButton"
-                    p="sm"
-                    px="lg"
-                    gap="xs"
-                    onClick={onClick}
-                >
-                    <Image
-                        src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2728.png"
-                        h="1.5rem"
-                        w="1.5rem"
-                    />
-                    <Title order={3}>
-                        deniz.blue
-                    </Title>
-                    <Image
-                        src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f338.png"
-                        h="1.5rem"
-                        w="1.5rem"
-                    />
-                </Group>
+                <UnstyledButton onClick={onClick}>
+                    <Group
+                        wrap="nowrap"
+                        align="center"
+                        justify="center"
+                        className="bigButton"
+                        p="sm"
+                        px="lg"
+                        gap="xs"
+                    >
+                        <Image
+                            src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2728.png"
+                            h="1.5rem"
+                            w="1.5rem"
+                        />
+                        <Title order={3}>
+                            deniz.blue
+                        </Title>
+                        <Image
+                            src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f338.png"
+                            h="1.5rem"
+                            w="1.5rem"
+                        />
+                    </Group>
+                </UnstyledButton>
             </Stack>
         </Stack>
     )
