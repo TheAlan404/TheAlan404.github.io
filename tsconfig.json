@@ -1,19 +1,49 @@
 {
-    "compilerOptions": {
-        "module": "ESNext",
-        "moduleResolution": "Bundler",
-        "target": "ES2020",
-        "lib": ["ESNext", "DOM"],
-        "jsx": "react-jsx",
-        "allowSyntheticDefaultImports": true,
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "paths": {
-            "@/*": ["./*"]
-        }
-    },
+    "include": [
+        "**/*",
+        "**/.server/**/*",
+        "**/.client/**/*",
+        ".react-router/types/**/*"
+    ],
     "exclude": [
-        "node_modules",
-        "**/node_modules/*"
-    ]
+        "./src/**"
+    ],
+    "compilerOptions": {
+        "lib": [
+            "DOM",
+            "DOM.Iterable",
+            "ES2022"
+        ],
+        "types": [
+            "vite/client"
+        ],
+        "target": "ES2022",
+        "module": "ES2022",
+        "moduleResolution": "bundler",
+        "jsx": "react-jsx",
+        "rootDirs": [
+            ".",
+            "./.react-router/types"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "~/*": [
+                "./app/*"
+            ],
+            "@/*": [
+                "./data/*"  
+            ],
+        },
+        "esModuleInterop": true,
+        "noEmit": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "allowArbitraryExtensions": true,
+        "isolatedModules": true,
+        
+        "allowSyntheticDefaultImports": true,
+        "allowImportingTsExtensions": true,
+        "allowJs": true,
+        "strict": true
+    }
 }

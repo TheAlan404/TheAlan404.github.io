@@ -33,7 +33,7 @@ export interface Dim {
     height: number;
 };
 
-const steps = ({ width }: Dim) => Math.ceil(width/20);
+const steps = ({ width }: Dim) => 15;
 
 const createYNodes = ({
     dim

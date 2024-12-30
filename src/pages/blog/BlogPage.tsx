@@ -1,28 +1,36 @@
-import { Stack } from "@mantine/core";
-import { useState } from "react";
-import { BlogPosts } from "./posts";
-import { PostsListView } from "./PostsListView";
-import { BlogPostView } from "./BlogPostView";
+import { CollapsingButton } from "@/src/components/misc/CollapsingButton";
+import { Divider, Group, Stack, Text, Title, TypographyStylesProvider } from "@mantine/core";
+import { IconArrowLeft } from "@tabler/icons-react";
+import { Section } from "@/src/components/misc/Section";
+import { useParams } from "react-router-dom";
+import { BlogPost, DataBlogPosts } from "@/src/data/DataBlogPosts";
 
 export const BlogPage = () => {
-    const [currentPost, setCurrentPost] = useState<string | null>(null);
+    const { id } = useParams();
 
-    let post = BlogPosts.find(x => x.id === currentPost);
+    const post = DataBlogPosts.find(x => x.id == id);
+
+    if(!post) return (
+        <Text c="yellow">
+            404
+        </Text>
+    );
+
+    const { component: Component } = post;
 
     return (
         <Stack>
-            {post ? (
-                <BlogPostView
-                    post={post}
-                    onBack={() => setCurrentPost(null)}
-                />
-            ) : (
-                <PostsListView
-                    onSelect={setCurrentPost}
-                />
-            )}
+            <Group wrap="nowrap" justify="space-between">
+                <Title order={4} visibleFrom="xs">{post.title}</Title>
+                <Text>{post.date}</Text>
+            </Group>
+
+            <Divider
+            />
+
+            <TypographyStylesProvider>
+                    <Component />
+            </TypographyStylesProvider>
         </Stack>
     )
 };
-
-

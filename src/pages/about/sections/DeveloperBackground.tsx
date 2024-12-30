@@ -57,21 +57,8 @@ export const DeveloperBackground = () => {
                 <Section>
                     <Stack>
                         <Text>
-                            I am an open-source contributor and maintainer. This website and almost all my projects are free and open source
+                            I am an open-source contributor and maintainer. This website and almost all my projects are free and open source.
                         </Text>
-                        <Stack gap={0}>
-                            <Text>
-                                My favorite UI library is
-                                {" "}
-                                <Link
-                                    text="Mantine"
-                                    url="https://mantine.dev"
-                                    icon={<MantineLogo size={"1em"} type="mark" />}
-                                    size="compact-sm"
-                                />
-                            </Text>
-                            <Text c="dimmed">(I can't live without it.)</Text>
-                        </Stack>
                     </Stack>
                 </Section>
 
@@ -82,13 +69,9 @@ export const DeveloperBackground = () => {
                         </Text>
 
                         <Image
-                            src="" //"https://ghchart.rshah.org/7048e8/thealan404"
+                            src="https://ghchart.rshah.org/7048e8/thealan404"
                             w="100%"
                         />
-
-                        <Text>
-                            I am open to work/freelance. please hire me
-                        </Text>
                     </Stack>
                 </Section>
             </Stack>

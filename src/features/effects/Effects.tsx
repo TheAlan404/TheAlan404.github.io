@@ -80,11 +80,12 @@ export const Effects = () => {
 
                 starfield.config.position.y = window.scrollY / STARFIELD_SCALE;
 
+                const easer = (x) => x === 0 ? 0 : Math.pow(2, 10 * x - 10);
                 const burst = (d: number, decay = 200) => {
                     let elapsed = Date.now() - d;
                     elapsed = clamp(0, elapsed, decay);
                     let i = elapsed / decay;
-                    return 1 - (i ** 2);
+                    return easer(1-i);
                 };
                 
                 starfield.config.flash = burst(Math.max(...[

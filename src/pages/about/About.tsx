@@ -1,18 +1,14 @@
-import { Accordion, Stack } from "@mantine/core";
-import { Hero } from "./Hero";
+import { Accordion, Space, Stack } from "@mantine/core";
+import { Hero } from "../../../app/components/page/Hero";
 import { DeveloperBackground } from "./sections/DeveloperBackground";
-import { Fanart } from "./sections/Fanart";
-import { Other } from "./sections/Other";
 
 export const About = () => {
     return (
         <Stack w="100%" align="center">
+            <Space />
             <Hero />
-            <Accordion defaultValue={[]} multiple w="100%">
-                <DeveloperBackground />
-                <Fanart />
-                <Other />
-            </Accordion>
+            <DeveloperBackground />
+            <Space h="xl" />
         </Stack>
     );
 };
