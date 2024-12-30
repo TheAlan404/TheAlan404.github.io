@@ -1,5 +1,5 @@
-import { IconBrandAuth0, IconBrandCSharp, IconBrandDocker, IconBrandGit, IconBrandHtml5, IconBrandJavascript, IconBrandMongodb, IconBrandNodejs, IconBrandPrisma, IconBrandVite, IconDeviceDesktopCode } from "@tabler/icons-react"
-import { Group, Image, List, Paper, SimpleGrid, Stack, Text } from "@mantine/core"
+import { IconBrandAuth0, IconBrandCSharp, IconBrandDocker, IconBrandGit, IconBrandHtml5, IconBrandJavascript, IconBrandMongodb, IconBrandNodejs, IconBrandPrisma, IconBrandVite, IconDeviceDesktopCode, IconExternalLink } from "@tabler/icons-react"
+import { Button, Group, Image, List, Paper, SimpleGrid, Stack, Text } from "@mantine/core"
 import { IconBrandTypescript } from "@tabler/icons-react"
 import { IconBrandRust } from "@tabler/icons-react"
 import { IconBrandReact } from "@tabler/icons-react"
@@ -20,6 +20,16 @@ export const DeveloperBackground = () => {
             icon={<IconDeviceDesktopCode />}
         >
             <Stack>
+                <Button
+                    fullWidth
+                    variant="light"
+                    justify="space-between"
+                    leftSection={<IconBrandGithub />}
+                    rightSection={<IconExternalLink />}
+                >
+                    Go to my GitHub page
+                </Button>
+
                 <Section>
                     <Stack>
                         <Text ta="center" fw="bold">
@@ -43,7 +53,7 @@ export const DeveloperBackground = () => {
                                 [IconBrandPrisma, "Prisma ORM"],
                                 [IconBrandAuth0, "Auth0"],
                             ] as [ComponentType<any>, string][]).map(([Icon, name]) => (
-                                <Group gap={4} flex="1" wrap="nowrap">
+                                <Group gap={4} flex="1" wrap="nowrap" key={name}>
                                     <Icon />
                                     <Text>{name}</Text>
                                 </Group>

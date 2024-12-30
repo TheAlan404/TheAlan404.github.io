@@ -32,12 +32,17 @@ export const useBeatdrop = ({
     audioSrc: string;
     maxDelay?: number;
 }) => {
+    const DEFAULT_VOLUME = 0.5;
     const ref = useRef<HTMLAudioElement | null>(null);
     const [timer, setTimer] = useState("--:--:--");
     const [beatDidDrop, setBeatDidDrop] = useState(false);
+    const [volume, _setVolume] = useState(DEFAULT_VOLUME);
+    const [err, setErr] = useState<any>(null);
 
     useEffect(() => {
         ref.current = new Audio(audioSrc);
+        ref.current.volume = DEFAULT_VOLUME;
+        _setVolume(ref.current.volume);
     }, [audioSrc]);
 
     const startPlaybackOn = useMemo(() => (
@@ -58,30 +63,42 @@ export const useBeatdrop = ({
         const m = Math.floor(diff / 60) % 60;
         const s = diff % 60;
 
-        // const rel = (diff > (60*60*24)) ? relativeString(beatDropOn) : "";
-
         setTimer([
             h ? h.toString().padStart(2, "0") : null,
-            m.toString().padStart(2, "0"),
-            s.toString().padStart(2, "0"),
+            (h && m) ? m.toString().padStart(2, "0") : null,
+            (h && m) ? s.toString().padStart(2, "0") : s.toString(),
         ].filter(x => x).join(":"));
 
         if(!ref.current) return;
 
-        if(!passed
-            && ref.current.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
+        if(!ref.current.paused) setErr(null);
+
+        const endPlaybackOn = startPlaybackOn + ((ref.current.duration + 2)*1000);
+
+        if(
+            ref.current.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
             && startPlaybackOn < date.getTime()
+            && endPlaybackOn > date.getTime()
         ) {
             let approxTime = (date.getTime() - startPlaybackOn) / 1000;
 
-            if (ref.current.paused) {
-                ref.current.play();
-                ref.current.currentTime = approxTime;
-            };
-            
-            let { currentTime } = ref.current;
-            if(Math.abs(currentTime - approxTime) >= maxDelay) {
-                ref.current.currentTime = approxTime;
+            try {
+                if (ref.current.paused) {
+                    ref.current.play()
+                        .catch(e => {
+                            console.log("play() error", e);
+                            setErr(e);
+                        });
+                    ref.current.currentTime = approxTime;
+                };
+
+                let { currentTime } = ref.current;
+                if(Math.abs(currentTime - approxTime) >= maxDelay) {
+                    ref.current.currentTime = approxTime;
+                }
+            } catch(e: any) {
+                console.log("setter currentTime error", e);
+                setErr(e);
             }
         }
     };
@@ -95,10 +112,18 @@ export const useBeatdrop = ({
         };
     }, []);
 
+    const isPlaying = ref.current && !ref.current?.paused;
+
     return {
         startPlaybackOn,
-        isPlaying: !ref.current?.paused,
+        isPlaying,
         beatDidDrop,
         timer,
+        volume,
+        setVolume: (v: number) => {
+            if(ref.current) ref.current.volume = v;
+            _setVolume(v);
+        },
+        err,
     };
 };

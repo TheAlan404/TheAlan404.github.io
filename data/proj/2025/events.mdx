@@ -1,9 +1,16 @@
+import { Subdomain } from "~/config";
 import { ProjectButton } from "~/types";
 export const id = "events";
-export const name = "Events (?)";
-export const shortDesc = "An event tracker/listing";
+export const name = "deniz'in Etkinlik Listesi";
+export const shortDesc = "A website for finding out about events";
 export const year = "2025";
 export const status = "wip";
 export const tech = ["ts","vite","react","mongodb","prisma"];
 export const types = ["website","restapi","mobile"];
-export const buttons = [];
+export const buttons = [
+    ProjectButton.website(Subdomain("events")),
+];
+
+# Events
+
+A website im making so people can find events and such
