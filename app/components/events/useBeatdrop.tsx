@@ -64,9 +64,9 @@ export const useBeatdrop = ({
         const s = diff % 60;
 
         setTimer([
-            h ? h.toString().padStart(2, "0") : null,
-            (h && m) ? m.toString().padStart(2, "0") : null,
-            (h && m) ? s.toString().padStart(2, "0") : s.toString(),
+            h.toString().padStart(2, "0"),
+            (true) ? m.toString().padStart(2, "0") : null,
+            (true) ? s.toString().padStart(2, "0") : s.toString(),
         ].filter(x => x).join(":"));
 
         if(!ref.current) return;
