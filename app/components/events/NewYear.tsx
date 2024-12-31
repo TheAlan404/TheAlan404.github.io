@@ -43,9 +43,9 @@ export const NewYearEvent = () => {
                 duration={700}
             >
                 {(styles) => (
-                    <Group style={styles}>
+                    <Group style={styles} justify="center" ta="center">
                         <Section>
-                            <Text fz={36} w="8rem">
+                            <Text fz={36} w="12rem" ta="center">
                                 {timer}
                             </Text>
                         </Section>

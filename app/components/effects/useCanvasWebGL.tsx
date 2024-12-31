@@ -43,6 +43,8 @@ export const useCanvasWebGL = <T,>({
 
     useAnimationFrame((dt) => {
         if(!gl.current || !store.current) return;
+        gl.current.clearColor(0,0,0,0);
+        gl.current.clear(gl.current.COLOR_BUFFER_BIT);
         render(gl.current, store.current, dt);
     }, {
         fps
