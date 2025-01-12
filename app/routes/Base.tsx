@@ -1,4 +1,4 @@
-import { Box, Stack, Transition } from "@mantine/core";
+import { Affix, Box, Stack, Transition } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { BigButton } from "~/components/base/BigButton";
 import { useLocation } from "react-router";
@@ -6,13 +6,17 @@ import { Section } from "~/components/ui/Section";
 import { PopoutContent } from "~/components/base/PopoutContent";
 import { Effects } from "~/components/effects/Effects";
 import { NewYearEvent } from "~/components/events/NewYear";
+import { SplashText } from "~/components/features/SplashText";
+import { LimboPlayer } from "~/components/events/Limbo";
 
 export default function Layout() {
     const location = useLocation();
-    const [opened, { toggle }] = useDisclosure(location.pathname.length > 1);
+    const [opened, { toggle }] = useDisclosure(/* location.pathname.length > 1 */);
+
+    const limbo = location.hash.includes("limbo");
 
     return (
-        <Box h="100vh">
+        <Box h="100dvh">
             <Effects />
 
             <Stack
@@ -20,25 +24,22 @@ export default function Layout() {
                 w="100%"
                 h="60vh"
                 justify="center"
+                align="center"
             >
-                <NewYearEvent />
+                {limbo && <LimboPlayer />}
             </Stack>
 
-            <Stack
-                style={{ position: "absolute" }}
-                w="100%"
-                h="100vh"
-                justify="end"
-                pb={{ base: "xs", sm: "md" }}
-            >
+            <Affix w="100%" position={{
+                bottom: 20,
+            }}>
                 <BigButton
                     withHint={!opened}
                     onClick={toggle}
                 />
-            </Stack>
+            </Affix>
 
             <Stack
-                style={{ position: "absolute" }}
+                style={{ position: "absolute", zIndex: -10 }}
                 pt={{ base: "0px", sm: "xl" }}
                 align="center"
                 className="asdf"
@@ -52,7 +53,10 @@ export default function Layout() {
                 >
                     {(styles) => (
                         <Box
-                            style={styles}
+                            style={{
+                                ...styles,
+                                zIndex: 1,
+                            }}
                             w={{ base: "100%", sm: "70%" }}
                             h={{ base: "90%", sm: "80%" }}
                             className="meow"

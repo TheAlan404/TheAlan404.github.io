@@ -1,3 +1,9 @@
+export const setupWebGL = (gl: WebGL2RenderingContext) => {
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    gl.blendEquation(gl.FUNC_ADD);
+    gl.enable(gl.BLEND);
+};
+
 export const compileShader = (gl: WebGL2RenderingContext, type: GLenum, source: string) => {
     const shader = gl.createShader(type);
     if(!shader) return null;

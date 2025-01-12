@@ -1,4 +1,4 @@
-import { FloatingIndicator, NavLink, ScrollArea, Stack } from "@mantine/core";
+import { Box, Divider, FloatingIndicator, Group, NavLink, ScrollArea, Space, Stack, Text, Title, Tooltip } from "@mantine/core";
 import { ReactNode, useState } from "react";
 import { useLocation, Link as RouterLink } from "react-router";
 import { NavItem } from "~/types";
@@ -6,12 +6,15 @@ import { NavItem } from "~/types";
 export const NavItemList = ({
     items,
     width = 240,
+    showTooltips,
 }: {
     width?: number;
     items: NavItem[];
+    showTooltips?: boolean;
 }) => {
     const [rootRef, setRootRef] = useState<HTMLDivElement | null>(null);
     const [controlsRefs, setControlsRefs] = useState<Record<string, HTMLAnchorElement | null>>({});
+    const [hoveredPath, setHoveredPath] = useState<string | null>(null);
     const setControlRef = (val: string) => (node: HTMLAnchorElement) => {
         controlsRefs[val] = node;
         setControlsRefs(controlsRefs);
@@ -19,7 +22,7 @@ export const NavItemList = ({
 
     const location = useLocation();
     const allItems = items;
-    const activePath = allItems.find(x => (
+    const activePath = allItems.filter(x => x.type == "link").find(x => (
         x.path.split("/").every((x, i) => location.pathname.split("/")[i] == x)
     ))?.path;
 
@@ -31,23 +34,50 @@ export const NavItemList = ({
                 style={{
                     transition: "width 200ms linear",
                 }}
+                className="NavItemList"
                 ref={setRootRef}
                 pos="relative"
+                onMouseLeave={() => setHoveredPath(null)}
             >
                 {items.map((item, i) => {
-                    return (
-                        <NavLink
-                            key={item.path}
-                            active={item.path == activePath}
-                            label={item.label}
-                            description={item.description}
-                            leftSection={item.icon}
-                            variant="subtle"
-                            component={RouterLink}
-                            to={item.path}
-                            ref={setControlRef(item.path)}
-                        />
-                    )
+                    if(item.type == "link") {
+                        return (
+                            <Tooltip key={item.path} label={item.label} disabled={!showTooltips} position="right" withArrow>
+                                <Box>
+                                    <NavLink
+                                        active={item.path == activePath}
+                                        label={item.label}
+                                        description={item.description}
+                                        leftSection={item.icon}
+                                        variant="subtle"
+                                        component={RouterLink}
+                                        to={item.path}
+                                        ref={setControlRef(item.path)}
+                                        onMouseEnter={() => setHoveredPath(item.path)}
+                                    />
+                                </Box>
+                            </Tooltip>
+                        );
+                    } else if(item.type == "divider") {
+                        return (
+                            <Divider
+                                key={i}
+                                label={item.text}
+                            />
+                        );
+                    } else if(item.type == "title") {
+                        return (
+                            <Group
+                                pl="xs"
+                                py="xs" 
+                                key={i}
+                            >
+                                <Title order={6}>
+                                    {item.title}
+                                </Title>
+                            </Group>
+                        )
+                    }
                 })}
 
                 <FloatingIndicator
@@ -58,6 +88,18 @@ export const NavItemList = ({
                         zIndex: -2,
                     }}
                 />
+
+                <FloatingIndicator
+                    target={hoveredPath ? controlsRefs[hoveredPath] : null}
+                    parent={rootRef}
+                    transitionDuration={200}
+                    className="hoverIndicator"
+                    style={{
+                        zIndex: -3,
+                    }}
+                />
+
+                <Space h="xl" />
             </Stack>
         </ScrollArea.Autosize>
     )

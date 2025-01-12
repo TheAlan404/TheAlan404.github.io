@@ -35,7 +35,7 @@ export const useBeatdrop = ({
     const DEFAULT_VOLUME = 0.5;
     const ref = useRef<HTMLAudioElement | null>(null);
     const [timer, setTimer] = useState("--:--:--");
-    const [beatDidDrop, setBeatDidDrop] = useState(false);
+    const [beatDidDrop, setBeatDidDrop] = useState(new Date() > beatDropOn);
     const [volume, _setVolume] = useState(DEFAULT_VOLUME);
     const [err, setErr] = useState<any>(null);
 

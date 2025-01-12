@@ -9,12 +9,6 @@ body[data-starry=true] .mantine-SegmentedControl-indicator {
     box-shadow: inset 0 0 10px rgba(0,0,0, 0.4);
 }
 
-.indicator {
-    background-color: rgba(0,0,0,0.4);  /* rgba(255, 255, 255, 0.1); */ /*#1A1B1E88*/
-    box-shadow: inset 0 0 10px rgba(0,0,0, 0.4);
-    /* border-radius: var(--mantine-radius-md); */
-}
-
 .scrollbarOnLeft .mantine-ScrollArea-scrollbar {
     inset-inline-start: unset !important;
     right: unset !important;
@@ -40,5 +34,15 @@ body[data-starry=true] .mantine-SegmentedControl-indicator {
 }
 
 .mantine-NavLink-root:hover {
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0);
 }
+
+.chevron {
+    transition: transform 200ms ease;
+    transform: rotate(0deg);
+}
+
+.mantine-Accordion-item[data-active="true"] .chevron {
+    transform: rotate(180deg);
+}
+

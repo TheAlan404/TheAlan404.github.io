@@ -19,11 +19,18 @@ export type Art = {
 };
 
 export type NavItem = {
+    type: "link";
     path: string;
     label: ReactNode;
     icon?: ReactNode;
     description?: ReactNode;
     children?: NavItem[];
+} | {
+    type: "title";
+    title: string;
+} | {
+    type: "divider";
+    text: string;
 };
 
 export interface Project {

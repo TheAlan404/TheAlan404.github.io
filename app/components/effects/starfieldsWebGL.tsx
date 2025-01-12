@@ -1,4 +1,5 @@
 import { Star, StarfieldConfig } from "./starfields";
+import { WebGLEffect } from "./types";
 import { compileShader, createGLTexture, createProgram } from "./webglHelpers";
 
 const textureData = [
@@ -64,6 +65,38 @@ const fragmentShaderSrc = `
         gl_FragColor = vec4((textureColor.rgb * u_color + (textureColor.a * u_flash * vec3(1.0,1.0,1.0))), textureColor.a * v_opacity + ((textureColor.a * u_flash) / 3.0));
     }
 `;
+
+
+export class StarfieldsEffect extends WebGLEffect {
+    textures: WebGLTexture[];
+    bindings: StarfieldProgramBindings;
+
+    constructor(gl: WebGL2RenderingContext) {
+        super(gl);
+
+        this.program = createProgram(gl, [
+            compileShader(gl, gl.VERTEX_SHADER, vertexShaderSrc)!,
+            compileShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSrc)!,
+        ])!;
+
+        this.textures = Array(4).fill(0).map((_,i) => (
+            createGLTexture(gl, textureData[i])
+        ));
+
+        this.bindings = {
+            color: this.binding("u", "color"),
+            dim: this.binding("u", "dim"),
+            flash: this.binding("u", "flash"),
+            opacity: this.binding("a", "opacity"),
+            position: this.binding("a", "opacity"),
+            textureIndex: this.binding("a", "textureIndex"),
+            scroll: this.binding("u", "scroll"),
+            scrollPosition: this.binding("u", "scrollPosition"),
+        };
+    }
+}
+
+
 
 export type StarfieldProgramStore = {
     program: WebGLProgram;

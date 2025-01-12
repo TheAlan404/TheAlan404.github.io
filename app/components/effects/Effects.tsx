@@ -14,6 +14,9 @@ declare global {
 }
 
 export const Effects = () => {
+    const disable = false;
+
+
     const isReady = false //useImagesReady(MistTextures);
 
     const opacityBurstRef = useRef<number>(Date.now());
@@ -37,12 +40,17 @@ export const Effects = () => {
 
     const canvasRef = useCanvasWebGL({
         fps: 0.2,
-        initializeStore: (gl) => initializeWebGL(gl),
+        initializeStore: (gl) => ({
+            ...initializeWebGL(gl),
+            
+        }),
         disposeStore: (gl, store) => {
             gl.deleteProgram(store.program);
             for(let tex of store.textures) gl.deleteTexture(tex);
         },
         render(gl, store, dt) {
+            if(disable) return;
+
             // Mist
             // for (let i = 0; i < mists.length; i++) {
             //     const mist = mists[i];
@@ -79,21 +87,21 @@ export const Effects = () => {
 
                 starfield.config.position.y = window.scrollY / STARFIELD_SCALE;
 
-                const easer = (x: number) => x === 0 ? 0 : Math.pow(2, 10 * x - 10);
+                const easer = (x: number) => x === 0 ? 0 : x;
                 const burst = (d: number, decay = 200) => {
                     let elapsed = Date.now() - d;
                     elapsed = clamp(elapsed, 0, decay);
-                    let i = elapsed / decay;
-                    return easer(1-i);
+                    let percentage = elapsed / decay;
+                    return percentage;
                 };
                 
                 starfield.config.flash = 0;
-                // starfield.config.flash = burst(Math.max(...[
-                //     opacityBurstRef.current,
-                //     window._lastFlash || 0,
-                // ]), 500);
+                starfield.config.flash = 1-burst(Math.max(...[
+                    opacityBurstRef.current,
+                    window._lastFlash || 0,
+                ]), 300);
 
-                let speedF = burst(speedBurstRef.current, 500);
+                let speedF = 1-burst(speedBurstRef.current, 500);
                 for (let star of starfield.stars) {
                     updateStar(starfield.config, star, dt + (dt * speedF * 5));
                 }
@@ -107,6 +115,8 @@ export const Effects = () => {
                     stars: starfield.stars,
                 });
             }
+
+
         },
     });
 
