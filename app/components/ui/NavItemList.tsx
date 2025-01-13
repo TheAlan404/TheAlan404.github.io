@@ -31,9 +31,6 @@ export const NavItemList = ({
             <Stack
                 gap={0}
                 w={width}
-                style={{
-                    transition: "width 200ms linear",
-                }}
                 className="NavItemList"
                 ref={setRootRef}
                 pos="relative"

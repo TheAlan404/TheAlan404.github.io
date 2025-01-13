@@ -23,9 +23,7 @@ export default function BlogPage({ loaderData }: Route.ComponentProps) {
             <Divider
             />
 
-            <TypographyStylesProvider>
-                <loaderData.default />
-            </TypographyStylesProvider>
+            <loaderData.default />
         </Stack>
     );
 }

@@ -152,6 +152,10 @@ body[data-flash] :is(
     }
 }
 
+.NavItemList {
+    transition: width 500ms ease;
+}
+
 .NavItemListStack > div:nth-child(2) {
     box-shadow: inset 5em 0 5em -5em rgba(0,0,0,1);
 }
@@ -166,7 +170,4 @@ body[data-flash] :is(
     background-color: rgba(0,0,0,0.2);  /* rgba(255, 255, 255, 0.1); */ /*#1A1B1E88*/
     box-shadow: inset 0 0 10px rgba(0,0,0, 0.4);
     /* border-radius: var(--mantine-radius-md); */
-}
-
-.LimboKey {
 }

@@ -1,7 +1,7 @@
 import { Affix, Box, Stack, Transition } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { BigButton } from "~/components/base/BigButton";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { Section } from "~/components/ui/Section";
 import { PopoutContent } from "~/components/base/PopoutContent";
 import { Effects } from "~/components/effects/Effects";
@@ -11,9 +11,16 @@ import { LimboPlayer } from "~/components/events/Limbo";
 
 export default function Layout() {
     const location = useLocation();
-    const [opened, { toggle }] = useDisclosure(/* location.pathname.length > 1 */);
+    const navigate = useNavigate();
 
-    const limbo = location.hash.includes("limbo");
+    const opened = !location.hash && location.pathname.length > 1;
+    const toggle = () => {
+        if(opened) {
+            navigate("/#"+location.pathname)
+        } else {
+            navigate(location.hash.slice(1) || "/home")
+        }
+    };
 
     return (
         <Box h="100dvh">
@@ -26,7 +33,7 @@ export default function Layout() {
                 justify="center"
                 align="center"
             >
-                {limbo && <LimboPlayer />}
+                <SplashText />
             </Stack>
 
             <Affix w="100%" position={{
@@ -39,7 +46,7 @@ export default function Layout() {
             </Affix>
 
             <Stack
-                style={{ position: "absolute", zIndex: -10 }}
+                style={{ position: "absolute", pointerEvents: "none" }}
                 pt={{ base: "0px", sm: "xl" }}
                 align="center"
                 className="asdf"
@@ -55,7 +62,7 @@ export default function Layout() {
                         <Box
                             style={{
                                 ...styles,
-                                zIndex: 1,
+                                pointerEvents: "auto",
                             }}
                             w={{ base: "100%", sm: "70%" }}
                             h={{ base: "90%", sm: "80%" }}

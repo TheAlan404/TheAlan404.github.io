@@ -3,6 +3,7 @@ import { Badge, Group, Stack, Text, Title } from "@mantine/core";
 import { StatusRender } from "./StatusRender";
 import { ProjectTypePart } from "./ProjectTypePart";
 import { TechPart } from "./TechPart";
+import { memo } from "react";
 
 export const ProjectHeader = ({
     p,
@@ -48,7 +49,7 @@ export const ProjectHeader = ({
     )
 };
 
-export const ProjectHeaderCompact = ({
+export const ProjectHeaderCompact = memo(({
     p,
 }: {
     p: Project;
@@ -70,4 +71,4 @@ export const ProjectHeaderCompact = ({
             </Text>
         </Stack>
     )
-};
+});

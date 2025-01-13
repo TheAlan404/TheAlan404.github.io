@@ -29,7 +29,7 @@ export const navItems: NavItem[] = [
     {
         type: "link",
         icon: <IconHome />,
-        path: "/",
+        path: "/home",
         label: "Home",
     },
     {

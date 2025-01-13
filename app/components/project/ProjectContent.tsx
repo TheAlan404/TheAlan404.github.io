@@ -1,21 +1,31 @@
 import { Project } from "~/types";
-import { Code, Group, Stack, TypographyStylesProvider } from "@mantine/core";
+import { Alert, Code, Group, Stack, Text, TypographyStylesProvider } from "@mantine/core";
 import { ProjectButtonComponent } from "./ProjectButtonComponent";
-import { CodeHighlight } from "@mantine/code-highlight";
+import { CodeHighlight, InlineCodeHighlight } from "@mantine/code-highlight";
 import { ImageWithLoader } from "../ui/ImageWithLoader";
+import { Link } from "react-router";
 
 const components = {
-    pre: ({ children }: any) => children,
-    code: (props: any) => (
-        <CodeHighlight
-            styles={{
-                code: { width: "100%" },
-            }}
-            code={props.children}
-            language={props.className.split("-")[1]}
-        />
-    ),
+    p: Text,
+    a: (props: any) => <Link {...props} to={props.href} target={props.href.startsWith("/") ? undefined : "_blank"} />,
+    code: (props: any) => {
+        return (
+            props.className ? (
+                <CodeHighlight
+                    code={props.children}
+                    language={props.className.split("-")[1]}
+                />
+            ) : (
+                <InlineCodeHighlight
+                    code={props.children}
+                />
+            )
+        )
+    },
     img: ImageWithLoader,
+    Alert,
+    Group,
+    Stack,
 };
 
 export const ProjectContent = ({
@@ -42,9 +52,9 @@ export const ProjectContent = ({
         <Stack>
             {projectButtonsSection}
 
-            <TypographyStylesProvider>
+            <Stack gap="sm">
                 <p.default components={components} />
-            </TypographyStylesProvider>
+            </Stack>
         </Stack>
     );
 };

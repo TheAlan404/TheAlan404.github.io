@@ -26,6 +26,9 @@ export const DeveloperBackground = () => {
                     justify="space-between"
                     leftSection={<IconBrandGithub />}
                     rightSection={<IconExternalLink />}
+                    component="a"
+                    href="https://github.com/thealan404"
+                    target="_blank"
                 >
                     Go to my GitHub page
                 </Button>

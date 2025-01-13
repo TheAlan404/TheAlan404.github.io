@@ -10,3 +10,38 @@ export const buttons = [
 	ProjectButton.npm("@alan404/nbt"),
 	ProjectButton.repo("TheAlan404/nbt-ts"),
 ];
+
+[Named Binary Tag (NBT)](https://minecraft.wiki/w/NBT_format) is a data format used
+by **Minecraft** - this is a TypeScript library that provides serialization and deserialization for it. 
+
+```ts
+let tag = NBTTag.Compound({
+    name: NBTTag.String("Sophia"),
+    age: NBTTag.Byte(19),
+});
+```
+
+This library uses the native javascript [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) API. (Browser compatible)
+
+```ts
+import { NBTCompound, serializeNBT, deserializeNBT } from "@alan404/nbt";
+
+let buffer: ArrayBuffer = serializeNBT(tag);
+let anotherTag: NBTCompound = deserializeNBT(buffer);
+```
+
+This library also provides some support for serde-like functionality:
+
+```ts
+import { NBTDocument, Field } from "@alan404/nbt";
+
+class Person extends NBTDocument {
+    @Field("String")
+    name: string = "";
+
+    @Field("Byte")
+    age: number = 0;
+}
+```
+
+See README for more details.
