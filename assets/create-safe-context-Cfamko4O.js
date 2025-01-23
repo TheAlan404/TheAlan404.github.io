@@ -1,1 +1,0 @@
-import{j as s}from"./jsx-runtime-C-_spy54.js";import{r}from"./chunk-K6AXKMTT-XnI-zAlO.js";function i(o){const e=r.createContext(null);return[({children:t,value:n})=>s.jsx(e.Provider,{value:n,children:t}),()=>{const t=r.useContext(e);if(t===null)throw new Error(o);return t}]}export{i as c};
