@@ -1,0 +1,1 @@
+import{w as o}from"./with-props-BnC7pqZd.js";import{j as t}from"./jsx-runtime-BjG_zV1W.js";import{T as r}from"./Text-DmGpyiwB.js";import"./chunk-HA7DTUK3-D0iNKU8r.js";import"./polymorphic-factory-DsnDfI5i.js";const u=o(function(){return t.jsx(r,{c:"yellow",children:"404 - not found... oopsies :3"})});export{u as default};
