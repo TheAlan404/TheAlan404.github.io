@@ -1,7 +1,7 @@
 import { Center, Code, Collapse, Group, Slider, Space, Stack, Text, Title, Transition } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import { useBeatdrop } from "./useBeatdrop";
-import { Section } from "../ui/Section";
+import { Section } from "../../ui/Section";
 import { IconVolume } from "@tabler/icons-react";
 
 const explode = {

@@ -17,7 +17,12 @@ export const BigButton = ({
             gap={0}
             style={{ zIndex: 2 }}
         >
-            <Stack
+            <Group>
+                
+            </Group>
+
+
+            {/* <Stack
                 className="bigButtonContainer"
                 align="center"
                 gap="xs"
@@ -56,7 +61,7 @@ export const BigButton = ({
                         />
                     </Group>
                 </UnstyledButton>
-            </Stack>
+            </Stack> */}
         </Stack>
     )
 }

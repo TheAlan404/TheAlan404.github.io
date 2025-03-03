@@ -1,7 +1,7 @@
 import { vec2, Vec2, vec2add, vec2div, vec2mul } from "@alan404/vec2";
 import { clamp } from "@mantine/hooks";
 import { lerp, randInt, randIntBetween } from "~/utils/math";
-import { Star } from "./starfields";
+import { Star } from "./farewell/starfields";
 
 const minDuration = 300;
 const maxDuration = 1000;

@@ -5,19 +5,21 @@ import { Section } from "~/components/ui/Section";
 import { PopoutContent } from "~/components/base/PopoutContent";
 import { PageBackground } from "~/components/effects/PageBackground";
 import { SplashText } from "~/components/fun/features/SplashText";
+import { PageButtons } from "./PageButtons";
 
 export default function Layout() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const opened = !location.hash && location.pathname.length > 1;
-    const toggle = () => {
-        if(opened) {
-            navigate("/#"+location.pathname)
-        } else {
-            navigate(location.hash.slice(1) || "/home")
-        }
-    };
+    const opened = location.pathname.length > 1;
+    // const opened = !location.hash && location.pathname.length > 1;
+    // const toggle = () => {
+    //     if(opened) {
+    //         navigate("/#"+location.pathname)
+    //     } else {
+    //         navigate(location.hash.slice(1) || "/home")
+    //     }
+    // };
 
     return (
         <Box h="100dvh">
@@ -36,17 +38,15 @@ export default function Layout() {
             <Affix w="100%" position={{
                 bottom: 20,
             }}>
-                <BigButton
-                    withHint={!opened}
-                    onClick={toggle}
-                />
+                <Stack ta="center" align="center">
+                    <PageButtons />
+                </Stack>
             </Affix>
 
             <Stack
                 style={{ position: "absolute", pointerEvents: "none" }}
                 pt={{ base: "0px", sm: "xl" }}
                 align="center"
-                className="asdf"
                 w="100%"
                 h="100%"
             >

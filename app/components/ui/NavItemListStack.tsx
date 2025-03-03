@@ -24,14 +24,15 @@ export const NavItemListStack = ({
 
     return (
         <Group gap={0} wrap="nowrap" h="100%" className="NavItemListStack">
-            <NavItemList
+            {/* <NavItemList
                 items={main}
                 width={(submenu.length || forceCollapse) ? collapsedWidth : width}
                 showTooltips={!!(submenu.length || forceCollapse)}
-            />
+            /> */}
             <NavItemList
                 items={submenu}
-                width={((forceCollapse ? (submenu.length && atIndex) : submenu.length)) ? (width - collapsedWidth) : hiddenWidth}
+                width={submenu ? width : hiddenWidth}
+                // width={((forceCollapse ? (submenu.length && atIndex) : submenu.length)) ? (width - collapsedWidth) : hiddenWidth}
             />
         </Group>
     )
