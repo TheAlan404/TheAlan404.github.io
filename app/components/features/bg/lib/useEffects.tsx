@@ -45,7 +45,7 @@ export const useEffects = () => {
     //             // new MistBackgroundEffect(gl.current),
     //             new FarewellBackgroundEffect(gl.current),
     //         ];
-            
+
     //         updateDimensions({
     //             x: gl.current.canvas.width,
     //             y: gl.current.canvas.height,
@@ -55,21 +55,24 @@ export const useEffects = () => {
 
     useRequestAnimationFrame({
         render: () => {
-            for(let effect of store.current)
+            gl.current?.clearColor(0, 0, 0, 0);
+            gl.current?.clear(gl.current.COLOR_BUFFER_BIT);
+
+            for (let effect of store.current)
                 effect.render();
         },
     });
 
     useUpdateInterval({
-        fps: 15,
+        fps: 30,
         update: () => {
-            for(let effect of store.current)
-                effect.update(1);
+            for (let effect of store.current)
+                effect.update(0.5);
         },
     });
 
     useWindowEvent("mousemove", (e) => {
-        for(let effect of store.current)
+        for (let effect of store.current)
             effect.onMouseMove(vec2(e.clientX, e.clientY));
     });
 

@@ -25,7 +25,7 @@ export const PopoutContent = () => {
                     width={submenu.length ? 300 : 0}
                 />
             </Group>
-            <Group
+            {/* <Group
                 h="100%"
                 className="frost"
                 wrap="nowrap"
@@ -37,7 +37,7 @@ export const PopoutContent = () => {
                     width={300}
                     forceCollapse
                 />
-            </Group>
+            </Group> */}
             <Box h="100%" w="100%">
                 <ScrollArea.Autosize mah={"100%"} h="100%" w="100%" scrollbars={"y"}>
                     <Box p="sm" h="100%">

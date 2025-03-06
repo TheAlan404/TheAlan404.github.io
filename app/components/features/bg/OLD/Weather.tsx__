@@ -8,7 +8,7 @@ import { clamp, randInt, toRadians } from "../../utils/utils";
 import { MiniClock } from "../../components/misc/MiniClock";
 import { IconVolumeOff } from "@tabler/icons-react";
 import { IconVolume } from "@tabler/icons-react";
-import { Coord } from "../../types";
+import { Coord } from "../../../types";
 import { useScrollDelta } from "@/src/utils/useScrollDelta";
 
 export enum Weather {

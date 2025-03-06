@@ -14,7 +14,7 @@ export const NavItemList = ({
 }) => {
     const [rootRef, setRootRef] = useState<HTMLDivElement | null>(null);
     const [controlsRefs, setControlsRefs] = useState<Record<string, HTMLAnchorElement | null>>({});
-    const [hoveredPath, setHoveredPath] = useState<string | null>(null);
+    // const [hoveredPath, setHoveredPath] = useState<string | null>(null);
     const setControlRef = (val: string) => (node: HTMLAnchorElement) => {
         controlsRefs[val] = node;
         setControlsRefs(controlsRefs);
@@ -34,7 +34,7 @@ export const NavItemList = ({
                 className="NavItemList"
                 ref={setRootRef}
                 pos="relative"
-                onMouseLeave={() => setHoveredPath(null)}
+                // onMouseLeave={() => setHoveredPath(null)}
             >
                 {items.map((item, i) => {
                     if(item.type == "link") {
@@ -50,7 +50,7 @@ export const NavItemList = ({
                                         component={RouterLink}
                                         to={item.path}
                                         ref={setControlRef(item.path)}
-                                        onMouseEnter={() => setHoveredPath(item.path)}
+                                        // onMouseEnter={() => setHoveredPath(item.path)}
                                     />
                                 </Box>
                             </Tooltip>
@@ -86,7 +86,7 @@ export const NavItemList = ({
                     }}
                 />
 
-                <FloatingIndicator
+                {/* <FloatingIndicator
                     target={hoveredPath ? controlsRefs[hoveredPath] : null}
                     parent={rootRef}
                     transitionDuration={200}
@@ -94,7 +94,7 @@ export const NavItemList = ({
                     style={{
                         zIndex: -3,
                     }}
-                />
+                /> */}
 
                 <Space h="xl" />
             </Stack>
