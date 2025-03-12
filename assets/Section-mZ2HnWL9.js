@@ -1,0 +1,1 @@
+import{j as t}from"./jsx-runtime-BjG_zV1W.js";import{P as e}from"./Paper-C-yUIHXB.js";const p=({hoverable:r,className:o,...s})=>t.jsx(e,{p:"xs",className:`frost ${r?"hoverable":""} ${o}`,withBorder:!0,...s});export{p as S};
