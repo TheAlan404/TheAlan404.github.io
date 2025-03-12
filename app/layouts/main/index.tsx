@@ -1,10 +1,8 @@
 import { Affix, Box, Stack, Transition } from "@mantine/core";
-import { BigButton } from "~/components/base/BigButton";
 import { useLocation, useNavigate } from "react-router";
 import { Section } from "~/components/ui/Section";
 import { PopoutContent } from "~/components/base/PopoutContent";
 import { PageBackground } from "~/components/features/bg/PageBackground";
-import { SplashText } from "~/components/fun/features/SplashText";
 import { PageButtons } from "./PageButtons";
 
 export default function Layout() {
@@ -12,14 +10,6 @@ export default function Layout() {
     const navigate = useNavigate();
 
     const opened = location.pathname.length > 1;
-    // const opened = !location.hash && location.pathname.length > 1;
-    // const toggle = () => {
-    //     if(opened) {
-    //         navigate("/#"+location.pathname)
-    //     } else {
-    //         navigate(location.hash.slice(1) || "/home")
-    //     }
-    // };
 
     return (
         <Box h="100dvh">
@@ -54,6 +44,7 @@ export default function Layout() {
                     mounted={opened}
                     transition={"fade-up"}
                     keepMounted
+                    duration={200}
                 >
                     {(styles) => (
                         <Box

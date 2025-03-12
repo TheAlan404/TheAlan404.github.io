@@ -1,15 +1,21 @@
+import { ComponentType } from "react";
 import { BlogPost, Project } from "~/types";
 
-const prettify = <T,>(o: Record<string, T>): Record<string, T> => {
+export type MdxModule<ExtraExports> = {
+    default: ComponentType<{ components?: {} }>;
+} & ExtraExports;
+
+const prettify = <T extends { data: { id: string } }>(o: Record<string, T>): Record<string, T> => {
     return Object.fromEntries(Object.entries(o).map(([k, v]) => {
-        const sp = k.split("/");
-        const id = sp[sp.length - 1]
-            .replace(".mdx", "")
-            .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
-            .toLowerCase();
-        return [id, v] as [string, T];
+        // console.log([k, v]);
+        return [v.data.id, v] as [string, T];
     }).filter(([k]) => k[0] !== "_"));
 };
 
-export const DataBlogPosts = prettify(import.meta.glob<BlogPost>("./blog/*.mdx", { eager: true }));
-export const DataProjects = prettify(import.meta.glob<Project>("./proj/**/*.mdx", { eager: true }));
+export const DataBlogPosts = prettify(import.meta.glob<MdxModule<{
+    data: BlogPost;
+}>>("./blog/*.mdx", { eager: true }));
+
+export const DataProjects = prettify(import.meta.glob<MdxModule<{
+    data: Project;
+}>>("./proj/**/*.mdx", { eager: true }));

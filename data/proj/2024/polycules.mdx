@@ -1,15 +1,18 @@
-import { ProjectButton } from "~/types";
-export const id = "polycules";
-export const name = "Polycules";
-export const shortDesc = "A website to graph 'polycules'";
-export const year = "2024";
-export const status = "up";
-export const tech = ["ts","react","vite","nodejs"];
-export const types = ["website"];
-export const buttons = [
-	ProjectButton.website("https://poly.deniz.blue"),
-	ProjectButton.repo("TheAlan404/polycules"),
-];
+import { project, ProjectButton } from "~/types";
+export const data = project({
+	id: "polycules",
+	name: "Polycules",
+	shortDesc: "A website to graph 'polycules'",
+	year: "2024",
+	status: "up",
+	buttons: [
+		ProjectButton.website("https://poly.deniz.blue"),
+		ProjectButton.repo("TheAlan404/polycules"),
+	],
+	tech: ["ts","react","vite","nodejs"],
+	types: ["website"],
+	primaryImage: "/assets/img/proj/polycules.png",
+});
 
 <iframe
 	src="https://poly.deniz.blue/default"

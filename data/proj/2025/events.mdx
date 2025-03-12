@@ -1,15 +1,17 @@
 import { Subdomain } from "~/config";
-import { ProjectButton } from "~/types";
-export const id = "events";
-export const name = "deniz'in Etkinlik Listesi";
-export const shortDesc = "A website for finding out about events";
-export const year = "2025";
-export const status = "wip";
-export const tech = ["ts","vite","react","mongodb","prisma"];
-export const types = ["website","restapi","mobile"];
-export const buttons = [
-    ProjectButton.website(Subdomain("events")),
-];
+import { project, ProjectButton } from "~/types";
+export const data = project({
+	id: "events",
+	name: "Deniz'in Etkinlik Sitesi",
+	shortDesc: "A website for finding out about events",
+	year: "2025",
+	status: "wip",
+	buttons: [
+        ProjectButton.website(Subdomain("events")),
+	],
+	tech: ["ts","vite","react","mongodb","prisma","nodejs"],
+	types: ["website", "restapi"],
+});
 
 A website im making so people can find events and such
 
@@ -21,7 +23,7 @@ Here's an event I went to, displayed by my site:
     <iframe
         src="https://events.deniz.blue/embed/events/675423692476197849d7f5f8"
         width="400"
-        height="450"
+        height="400"
         loading="lazy"
         style={{
             border: "0",

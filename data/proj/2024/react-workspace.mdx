@@ -1,14 +1,16 @@
-import { ProjectButton } from "~/types";
-export const id = "react-workspace";
-export const name = "react-workspace";
-export const shortDesc = "Infinitely pannable, accessible map-like workspace for React";
-export const year = "2024";
-export const status = undefined;
-export const tech = ["ts","react"];
-export const types = ["library"];
-export const buttons = [
-	ProjectButton.npm("@alan404/react-workspace"),
-	ProjectButton.repo("TheAlan404/react-workspace"),
-];
+import { project, ProjectButton } from "~/types";
+export const data = project({
+	id: "react-workspace",
+	name: "react-workspace",
+	shortDesc: "Infinitely pannable, accessible map-like workspace for React",
+	year: "2024",
+	status: "ok",
+	buttons: [
+		ProjectButton.npm("@alan404/react-workspace"),
+		ProjectButton.repo("TheAlan404/react-workspace"),
+	],
+	tech: ["ts","react"],
+	types: ["website"],
+});
 
 Used by [alphamath](/projects/alphamath) and [Polycules](/projects/polycules)

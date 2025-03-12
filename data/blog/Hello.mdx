@@ -1,7 +1,10 @@
-export const title = "Hello";
-export const description = "First blog post";
-export const date = "14.08.2024";
-export const slug = "hello";
+import { blog } from "~/types";
+export const data = blog({
+    id: "hello",
+    title: "Hello",
+    description: "First blog post",
+    date: "14.08.2024",
+});
 
 # Hello!
 

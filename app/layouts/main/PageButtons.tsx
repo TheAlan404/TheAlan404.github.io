@@ -1,6 +1,5 @@
 import { Group, Paper, Stack, Text } from "@mantine/core";
 import { ReactNode } from "react";
-import { navItems } from "~/navItems";
 import { useLocation, Link as RouterLink, To } from "react-router";
 import { IconBrush, IconClipboard, IconFileText, IconSparkles } from "@tabler/icons-react";
 
@@ -21,11 +20,11 @@ export const PageButtons = () => {
             path: "art",
             label: "Art",
         },
-        {
-            icon: <IconFileText />,
-            label: "Blog",
-            path: "blog",
-        },
+        // {
+        //     icon: <IconFileText />,
+        //     label: "Blog",
+        //     path: "blog",
+        // },
     ];
 
     return (

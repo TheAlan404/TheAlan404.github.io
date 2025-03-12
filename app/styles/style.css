@@ -168,3 +168,54 @@ body[data-flash] :is(
     box-shadow: inset 0 0 10px rgba(0,0,0, 0.4);
     /* border-radius: var(--mantine-radius-md); */
 }
+
+.card.dimmedBg {
+    --dim: 0.8;
+    --shadow-size: 1000px;
+    --shadow-color: rgba(0, 0, 0, var(--dim));
+    background-image: linear-gradient(rgba(0, 0, 0, var(--dim)), rgba(0, 0, 0, var(--dim))), var(--bg);
+    background-blend-mode: multiply, normal;
+    background-size: cover;
+    background-position: center;
+    box-shadow: inset 0 0 var(--shadow-size) var(--shadow-color);
+}
+
+.grow.card.dimmedBg:hover {
+    --dim: 0.75;
+}
+
+.card.noBg {
+    background-color: var(--mantine-color-dark-8);
+}
+
+.grow {
+    transition: all ease 100ms;
+}
+
+.grow:hover {
+    scale: 102%;
+}
+
+.grow.card.noBg:hover {
+    background-color: var(--mantine-color-dark-7);
+}
+
+.subtlelink {
+    cursor: pointer;
+}
+
+.subtlelink:hover {
+    text-decoration: underline;
+}
+
+.colored-paper::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 6px;
+    top: var(--mantine-radius-md);
+    bottom: var(--mantine-radius-md);
+    inset-inline-start: 6px;
+    border-radius: var(--mantine-radius-md);
+    background-color: var(--color);
+}

@@ -2,25 +2,29 @@ import { useTranslation } from "react-i18next";
 import { Route } from "./+types/Art";
 import { Arts } from "@/Arts";
 import { ImageWithLoader } from "~/components/ui/ImageWithLoader";
-import { Carousel } from "@mantine/carousel";
+import { Carousel, useAnimationOffsetEffect } from "@mantine/carousel";
 import { useCallback, useEffect, useState } from "react";
 import { EmblaCarouselType } from "embla-carousel-react";
-import { Anchor, Group, Stack, Text } from "@mantine/core";
+import { Anchor, Box, Group, Stack, Text } from "@mantine/core";
 
-export default function Art({}: Route.ComponentProps) {
+export default function Art({ }: Route.ComponentProps) {
     const [t] = useTranslation();
     const [embla, setEmbla] = useState<EmblaCarouselType | null>(null);
     const [index, setIndex] = useState(0);
 
     const height = 320;
 
+    useAnimationOffsetEffect(embla, 200);
+
     const slides = Arts.map((art, i) => (
-        <Carousel.Slide key={i} h={height}>
-            <ImageWithLoader
-                src={art.src}
-                fit="contain"
-                h={height}
-            />
+        <Carousel.Slide key={i}>
+            <Box mb="xl">
+                <ImageWithLoader
+                    src={art.src}
+                    fit="contain"
+                    h={height}
+                />
+            </Box>
         </Carousel.Slide>
     ));
 
@@ -40,14 +44,10 @@ export default function Art({}: Route.ComponentProps) {
     const art = Arts[index];
 
     return (
-        <Stack h="100%">
-            <Text ta="center">
-                {t("art.p")}
-            </Text>
-
+        <Stack h="100%" justify="center">
             <Carousel
                 withIndicators
-                height={height}
+                height={height+40}
                 slideGap={0}
                 align="center"
                 getEmblaApi={(embla) => setEmbla(embla)}

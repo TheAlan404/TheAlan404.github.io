@@ -1,14 +1,16 @@
-import { ProjectButton } from "~/types";
-export const id = "istanbus";
-export const name = "Istanbus";
-export const shortDesc = "Istanbul Bus Information website (IETT)";
-export const year = "2024";
-export const status = "up";
-export const tech = ["ts","react","nodejs"];
-export const types = ["website","restapi"];
-export const buttons = [
-	ProjectButton.website("https://istanbus.deniz.blue/"),
-	ProjectButton.repo("TheAlan404/istanbus"),
-];
+import { project, ProjectButton } from "~/types";
+export const data = project({
+	id: "istanbus",
+	name: "Istanbus",
+	shortDesc: "Istanbul Bus Information website (IETT)",
+	year: "2024",
+	status: "up",
+	buttons: [
+		ProjectButton.website("https://istanbus.deniz.blue/"),
+		ProjectButton.repo("TheAlan404/istanbus"),
+	],
+	tech: ["ts","react","nodejs"],
+	types: ["website","restapi"],
+});
 
 IETT but better idk

@@ -2,8 +2,9 @@ import { createFactory, Enum } from "@alan404/enum";
 import { ReactNode } from "react";
 
 export type BlogPost = {
+    id: string;
     title: string;
-    desc: string;
+    description: string;
     date: string;
     default: React.ComponentType<any>;
 };
@@ -34,16 +35,17 @@ export type NavItem = {
 };
 
 export interface Project {
-    default: React.ComponentType<any>;
+    id: string;
+    primaryImage?: string;
     name: string;
+    shortDesc: string;
+    year: string;
     types: ProjectType[];
     tech: Tech[];
     buttons: ProjectButton[];
-    year: string;
     status?: ProjectStatus;
-    Render?: React.ComponentType<any>;
-    shortDesc: string;
-    new?: boolean;
+    default: React.ComponentType<any>;
+    hide?: boolean;
 }
 
 export type ProjectStatus = "up" | "ok" | "wip" | "archive";
@@ -58,3 +60,5 @@ export type ProjectButton = Enum<{
     npm: string;
 }>;
 
+export const project = (p: Omit<Project, "default">) => p;
+export const blog = (b: Omit<BlogPost, "default">) => b;

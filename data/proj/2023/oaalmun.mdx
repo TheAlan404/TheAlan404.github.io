@@ -1,14 +1,17 @@
-import { ProjectButton } from "~/types";
-export const id = "oaalmun";
-export const name = "OAALMUN";
-export const shortDesc = "MUN (Model United Nations) website for my school";
-export const year = "2023";
-export const status = undefined;
-export const tech = ["js","ts","react","vite"];
-export const types = [];
-export const buttons = [
+import { project, ProjectButton } from "~/types";
+export const data = project({
+	id: "oaalmun",
+	name: "OAALMUN",
+	shortDesc: "MUN (Model United Nations) website for my school (commission)",
+	year: "2023",
+	status: "ok",
+	buttons: [
 	ProjectButton.website("https://mun.oaal.com.tr"),
-];
+	],
+	tech: ["js","ts","react","vite"],
+	types: ["website"],
+	primaryImage: "/assets/img/proj/oaalmun.png",
+});
 
 I still haven't got my payment of 2 toasts at the canteen for this
 

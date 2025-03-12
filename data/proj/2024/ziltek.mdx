@@ -1,15 +1,18 @@
-import { ProjectButton } from "~/types";
-export const id = "ziltek";
-export const name = "ZilTek";
-export const shortDesc = "A school bell app.";
-export const year = "2024";
-export const status = "up";
-export const tech = ["ts","react","vite","nodejs"];
-export const types = ["website","desktop"];
-export const buttons = [
-	ProjectButton.website("https://ziltek.deniz.blue/"),
-	ProjectButton.repo("TheAlan404/ZilTek"),
-];
+import { project, ProjectButton } from "~/types";
+export const data = project({
+	id: "ziltek",
+	name: "ZilTek",
+	shortDesc: "A school bell app for schools",
+	year: "2024",
+	status: "up",
+	buttons: [
+		ProjectButton.website("https://ziltek.deniz.blue/"),
+		ProjectButton.repo("TheAlan404/ZilTek"),
+	],
+	tech: ["ts","react","vite","nodejs"],
+	types: ["website", "desktop"],
+	primaryImage: "/assets/img/proj/ziltekscreenshot.png",
+});
 
 ZilTek plays school bells.
 
