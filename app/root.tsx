@@ -75,12 +75,6 @@ export default function App() {
             <Notifications />
             <I18nextProvider i18n={i18next} defaultNS={"translation"}>
                 <Outlet />
-                
-                {/* <WeatherProvider>
-                    <OnekoAPIProvider>
-                        
-                    </OnekoAPIProvider>
-                </WeatherProvider> */}
             </I18nextProvider>
         </MantineProvider>
     )

@@ -3,12 +3,15 @@ import { Project } from "~/types";
 import { SubtleLink } from "../ui/SubtleLink";
 import { Link } from "react-router";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
+import { TechPart } from "./TechPart";
 
 export const ProjectCard = ({
     value,
 }: {
     value: Project;
 }) => {
+    const primaryButton = value.buttons.find(x => x.type == "website");
+
     return (
         <Paper
             withBorder
@@ -77,9 +80,26 @@ export const ProjectCard = ({
                     {/* <EventOrganizersInline value={value?.organizers || []} /> */}
 
                     <Group justify="space-between" wrap="nowrap" gap={4}>
-                        <Box />
+                        <Group gap={0}>
+                            {value.tech?.map((id) => (
+                                <TechPart tech={id} key={id} />
+                            ))}
+                        </Group>
 
                         <Group gap="xs" wrap="nowrap" justify="end">
+                            {primaryButton && (
+                                <Button
+                                    color="gray"
+                                    variant="light"
+                                    size="compact-sm"
+                                    component="a"
+                                    href={primaryButton.data}
+                                    target="_blank"
+                                >
+                                    Website
+                                </Button>
+                            )}
+
                             <Button
                                 color="gray"
                                 variant="light"

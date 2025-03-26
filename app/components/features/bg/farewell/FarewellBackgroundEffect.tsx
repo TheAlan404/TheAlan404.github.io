@@ -27,9 +27,9 @@ const vertexShaderSrc = `
     void main() {
         gl_PointSize = 32.0;
 
-        vec2 position = mod(a_position, u_dim);
+        vec2 position = mod(a_position - u_scrollPosition, u_dim);
 
-        float mouseDistance = sqrt(pow(position.x - u_mousePosition.x, 2.0) + pow(position.y - u_mousePosition.y, 2.0));
+        //float mouseDistance = sqrt(pow(position.x - u_mousePosition.x, 2.0) + pow(position.y - u_mousePosition.y, 2.0));
         // float threshold = 50.0;
         // float moveDistance = max(0.0, threshold - mouseDistance);
         // vec2 directionToMouse = normalize(position - u_mousePosition);
@@ -138,7 +138,7 @@ export class FarewellBackgroundEffect extends WebGLEffect<StarfieldProgramBindin
     globalFlash: number = 0;
     scale = 1;
 
-    deltaTimeMultiplier = 0.02;
+    deltaTimeMultiplier = 0.002;
 
     constructor(gl: WebGL2RenderingContext) {
         super(gl);
@@ -305,7 +305,7 @@ export class FarewellBackgroundEffect extends WebGLEffect<StarfieldProgramBindin
         this.gl.uniform1f(this.bindings.flash, 0);
 
         this.uniformVec2("dim", this.dimensions);
-        this.uniformVec2("scrollPosition", this.globalPosition);
+        this.uniformVec2("scrollPosition", this.scrollPosition);
         this.uniformVec2("mousePosition", this.mousePosition || vec2(-1, -1));
 
         // Bind textures to texture units

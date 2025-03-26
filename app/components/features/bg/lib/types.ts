@@ -4,6 +4,7 @@ export class Effect {
     id: string = "";
     dimensions: Vec2 = vec2();
     mousePosition: Vec2 | null = null;
+    scrollPosition: Vec2 = vec2();
 
     constructor() {
 
@@ -12,6 +13,10 @@ export class Effect {
     onDimensionsChange(newDims: Vec2) {
         this.dimensions = newDims;
     };
+
+    onScrollPositionChange(newScrollPos: Vec2) {
+        this.scrollPosition = newScrollPos;
+    }
 
     onMouseMove(pos: Vec2 | null) {
         this.mousePosition = pos;

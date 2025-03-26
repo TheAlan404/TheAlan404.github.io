@@ -5,6 +5,7 @@ export const data = project({
 	shortDesc: "TypeScript library for serializing and deserializing NBT",
 	year: "2024",
 	status: "ok",
+	primaryImage: "/assets/img/proj/nbt-ts.png",
 	buttons: [
         ProjectButton.npm("@alan404/nbt"),
         ProjectButton.repo("TheAlan404/nbt-ts"),
@@ -16,25 +17,21 @@ export const data = project({
 [Named Binary Tag (NBT)](https://minecraft.wiki/w/NBT_format) is a data format used
 by **Minecraft** - this is a TypeScript library that provides serialization and deserialization for it. 
 
-```ts
-let tag = NBTTag.Compound({
-    name: NBTTag.String("Sophia"),
-    age: NBTTag.Byte(19),
-});
-```
-
 This library uses the native javascript [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) API. (Browser compatible)
 
 ```ts
 import { NBTCompound, serializeNBT, deserializeNBT } from "@alan404/nbt";
 
+let tag = NBTTag.Compound({
+    name: NBTTag.String("Rust"),
+    age: NBTTag.Byte(19),
+});
+
 let buffer: ArrayBuffer = serializeNBT(tag);
 let anotherTag: NBTCompound = deserializeNBT(buffer);
-```
 
-This library also provides some support for serde-like functionality:
+// Serde-like functionality	
 
-```ts
 import { NBTDocument, Field } from "@alan404/nbt";
 
 class Person extends NBTDocument {

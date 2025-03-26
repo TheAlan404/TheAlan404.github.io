@@ -7,9 +7,13 @@ import { useRequestAnimationFrame } from "./useRequestAnimationFrame";
 import { useUpdateInterval } from "./useUpdateInterval";
 import { useWindowEvent } from "@mantine/hooks";
 import { MistBackgroundEffect } from "../farewell/MistBackgroundEffect";
+import { useMusicFFT } from "../../music/useMusicFFT";
+import { magicFunction, useAmplitude } from "../../music/temp";
 
 export const useEffects = () => {
     const store = useRef<Effect[]>([]);
+
+    const fft = useMusicFFT();
 
     const updateDimensions = (dim: Vec2) => {
         for (let effect of store.current) {
@@ -58,16 +62,21 @@ export const useEffects = () => {
             gl.current?.clearColor(0, 0, 0, 0);
             gl.current?.clear(gl.current.COLOR_BUFFER_BIT);
 
-            for (let effect of store.current)
+            for (let effect of store.current) {
+                // effect.scrollPosition = {
+                //     x: 0,
+                //     y: document.documentElement.scrollTop,
+                // };
                 effect.render();
+            }
         },
     });
 
     useUpdateInterval({
         fps: 30,
-        update: () => {
+        update: (dt) => {
             for (let effect of store.current)
-                effect.update(0.5);
+                effect.update(1 * dt);
         },
     });
 

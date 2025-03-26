@@ -1,5 +1,5 @@
-import { IconBrandAuth0, IconBrandCSharp, IconBrandDocker, IconBrandGit, IconBrandHtml5, IconBrandJavascript, IconBrandMongodb, IconBrandNodejs, IconBrandPrisma, IconBrandVite, IconDeviceDesktopCode, IconExternalLink } from "@tabler/icons-react"
-import { Button, Group, Image, List, Paper, SimpleGrid, Stack, Text } from "@mantine/core"
+import { IconBrandAuth0, IconBrandCSharp, IconBrandDocker, IconBrandGit, IconBrandHtml5, IconBrandJavascript, IconBrandMongodb, IconBrandNodejs, IconBrandPrisma, IconBrandVite, IconDeviceDesktopCode, IconExternalLink, IconSql, TablerIcon } from "@tabler/icons-react"
+import { Anchor, Box, Button, Divider, Group, Image, List, Paper, SimpleGrid, Stack, Text, Tooltip } from "@mantine/core"
 import { IconBrandTypescript } from "@tabler/icons-react"
 import { IconBrandRust } from "@tabler/icons-react"
 import { IconBrandReact } from "@tabler/icons-react"
@@ -14,86 +14,64 @@ export const DeveloperBackground = () => {
     const [t] = useTranslation();
 
     return (
-        <AboutSection
-            value="dev"
-            title={t("dev.title")}
-            icon={<IconDeviceDesktopCode />}
-        >
-            <Stack>
-                <Button
-                    fullWidth
-                    variant="light"
-                    justify="space-between"
-                    leftSection={<IconBrandGithub />}
-                    rightSection={<IconExternalLink />}
-                    component="a"
-                    href="https://github.com/thealan404"
-                    target="_blank"
-                >
-                    Go to my GitHub page
-                </Button>
+        <Stack align="center" gap="xs">
+            <Divider
+                label="Stuff I use"
+                w="80%"
+            />
 
-                <Section>
-                    <Stack>
-                        <Text ta="center" fw="bold">
-                            {t("dev.tech")}
-                        </Text>
-                        <SimpleGrid cols={{ base: 2, md: 3 }} spacing="xs">
-                            {([
-                                [IconBrandTypescript, "TypeScript"],
-                                [IconBrandJavascript, "JavaScript"],
-                                [IconBrandReact, "React"],
-								[IconBrandNodejs, "NodeJS"],
-								[IconBrandVite, "Vite"],
-								[IconBrandRust, "Rust"],
-								[IconBrandHtml5, "HTML/CSS"],
-								[IconBrandCSharp, ".NET 5-8"],
-                                [IconBrandGit, "Git"],
-                                [IconBrandGithub, "Github Actions"],
-                                [IconBrandGithub, "Github"],
-                                [IconBrandDocker, "Docker"],
-                                [IconBrandMongodb, "MongoDB"],
-                                [IconBrandPrisma, "Prisma ORM"],
-                                [IconBrandAuth0, "Auth0"],
-                            ] as [ComponentType<any>, string][]).map(([Icon, name]) => (
-                                <Group gap={4} flex="1" wrap="nowrap" key={name}>
-                                    <Icon />
-                                    <Text>{name}</Text>
-                                </Group>
-                            ))}
-                        </SimpleGrid>
-                    </Stack>
-                </Section>
+            <IconsGroup
+                data={[
+                    [IconBrandTypescript, "TypeScript"],
+                    [IconBrandJavascript, "JavaScript"],
+                    [IconBrandCSharp, ".NET 5-8"],
+                    [IconBrandRust, "Rust"],
+                    [IconBrandHtml5, "HTML/CSS"],
+                    [IconBrandReact, "React"],
+                    [IconBrandNodejs, "NodeJS"],
+                    [IconBrandVite, "Vite"],
+                    [IconBrandMongodb, "MongoDB"],
+                    [IconBrandPrisma, "Prisma ORM"],
+                    [IconBrandGit, "Git"],
+                    [IconBrandGithub, "Github Actions"],
+                    [IconBrandGithub, "Github"],
+                    [IconBrandDocker, "Docker"],
+                    [IconBrandAuth0, "Auth0"],
+                ]}
+            />
 
-                <Section>
-                    <Group gap="xs" ta="center" justify="center">
-                        <Text span>{t("dev.yearsPrefix")}</Text>
-                        <Text span fw="bold">{t("dev.years")}</Text>
-                        <Text span>{t("dev.yearsSuffix")}</Text>
-                    </Group>
-                </Section>
+            <Divider
+                w="80%"
+            />
 
-                <Section>
-                    <Stack>
-                        <Text>
-                            I am an open-source contributor and maintainer. This website and almost all my projects are free and open source.
-                        </Text>
-                    </Stack>
-                </Section>
+            <Text ta="center">
+                I like writing code. Been doing it for like 6 years. Open-source ftw.
+            </Text>
 
-                <Section>
-                    <Stack>
-                        <Text>
-                            Here's my GitHub activity for some reason:
-                        </Text>
-
-                        <Image
-                            src="https://ghchart.rshah.org/7048e8/thealan404"
-                            w="100%"
-                        />
-                    </Stack>
-                </Section>
-            </Stack>
-        </AboutSection>
-    )
+            {/* <Image
+                src="https://github-readme-activity-graph.vercel.app/graph?username=TheAlan404&theme=react-dark"
+                w="100%"
+            /> */}
+        </Stack>
+    );
 }
+
+
+export const IconsGroup = ({
+    data,
+}: {
+    data: [TablerIcon, string][];
+}) => {
+    return (
+        <Group justify="center" gap={0} w="100%">
+            {data.map(([Icon, tooltip], i) => (
+                <Tooltip label={tooltip} disabled={!tooltip}>
+                    <Box>
+                        <Icon />
+                    </Box>
+                </Tooltip>
+            ))}
+        </Group>
+    );
+};
+

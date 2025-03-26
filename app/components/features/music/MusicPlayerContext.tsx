@@ -1,11 +1,28 @@
-import { createContext, Ref, useContext } from "react";
+import { createContext, Ref, RefObject, useContext } from "react";
+
+export type Song = {
+    title: string;
+    artist: string;
+    cover: string;
+    file: string;
+};
 
 export interface IMusicPlayer {
-    ref: Ref<HTMLAudioElement | null>;
+    ref: RefObject<HTMLAudioElement | null>;
+    audioContext: RefObject<AudioContext | null>;
+    analyser: RefObject<AnalyserNode | null>;
+    currentSong: Song | null;
+    playing: boolean;
+    loading: boolean;
 };
 
 export const MusicPlayerContext = createContext<IMusicPlayer>({
     ref: { current: null },
+    analyser: { current: null },
+    audioContext: { current: null },
+    currentSong: null,
+    loading: true,
+    playing: false,
 });
 
 export const useMusicPlayer = () => useContext(MusicPlayerContext);
