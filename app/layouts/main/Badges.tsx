@@ -19,6 +19,7 @@ export const Badges = () => {
                 height="31"
             />
             <Badge src="https://oat.zone/badges/tidalwave.gif" href={null} />
+            <Badge src="https://s.mew.gay/88x31/crouton.gif" href="https://crouton.net" />
         </SimpleGrid>
     )
 };

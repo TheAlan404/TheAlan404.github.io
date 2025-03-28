@@ -1,4 +1,4 @@
-import { Affix, Anchor, Avatar, Box, Divider, Group, Paper, Stack, Text, Title, Tooltip, Transition } from "@mantine/core";
+import { Affix, Anchor, Avatar, Box, Button, Divider, Group, Paper, SimpleGrid, Stack, Table, Text, Title, Tooltip, Transition } from "@mantine/core";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import { Section } from "~/components/ui/Section";
 import { PopoutContent } from "~/layouts/main/PopoutContent";
@@ -6,7 +6,7 @@ import { PageBackground } from "~/components/features/bg/PageBackground";
 import { PageButtons } from "./PageButtons";
 import { PagePopout } from "./PagePopout";
 import { Socials } from "./Socials";
-import { IconHeart, TablerIcon } from "@tabler/icons-react";
+import { IconAlertTriangle, IconExclamationMark, IconExternalLink, IconHeart, IconInfoCircle, TablerIcon } from "@tabler/icons-react";
 import { DeveloperBackground } from "~/components/page/DeveloperBackground";
 import { TRFlag } from "mantine-flagpack";
 import { TRFlagSvg } from "./TRFlagSvg";
@@ -75,9 +75,15 @@ export const Pamphlet = () => {
                 borderRadius: "0 0 16px 16px",
             }} className="frost" px="sm" pb="sm">
                 <Stack align="center">
+                    <Divider
+                        label="Stuff I use"
+                        w="80%"
+                    />
+
                     <DeveloperBackground />
 
                     <Divider
+                        label="About me!"
                         w="80%"
                     />
 
@@ -85,11 +91,11 @@ export const Pamphlet = () => {
                         <Group gap={4}>
                             <Text span>I'm from</Text>
                             <TRFlagSvg height="1.5rem" />
-                            <Text span fw="bold">Turkey</Text>
+                            <Text span fw="bold">Turkey / Türkiye</Text>
                             <Text span c="dimmed">(UTC+3)</Text>
                         </Group>
 
-                        <Group gap="xs" wrap="nowrap" align="center">
+                        <Group gap="xs" ta="center" justify="center" align="center">
                             <Text span>I use</Text>
                             <Anchor
                                 href="https://mantine.dev"
@@ -100,6 +106,41 @@ export const Pamphlet = () => {
                             </Anchor>
                             <Text span>- a really good UI library</Text>
                         </Group>
+
+                        <Text>
+                            I like 🐈 cats, 🍓 strawberries and ☔ rain.
+                        </Text>
+                    </Stack>
+
+                    <Divider
+                        label="Featured Project"
+                        w="80%"
+                    />
+
+                    <Stack px="xl" w="100%" gap={4}>
+                        <Button
+                            fullWidth
+                            variant="light"
+                            h="auto"
+                            rightSection={<IconExternalLink />}
+                            component="a"
+                            href="https://events.deniz.blue"
+                            target="_blank"
+                        >
+                            <Stack gap={0} style={{ textWrap: "wrap" }} py={4}>
+                                <Text>Deniz's Events List</Text>
+                                <Text fz="xs">A website to list geeky events in Turkey</Text>
+                            </Stack>
+                        </Button>
+
+                        <Group justify="end" ta="end" c="yellow" gap={4}>
+                            <Text fz="xs">Most events are postponed</Text>
+                            <IconAlertTriangle size={18} />
+                        </Group>
+                        <Group justify="end" ta="end" c="dimmed" gap={4}>
+                            <Text fz="xs">...not to mention it's still in beta</Text>
+                            <IconInfoCircle size={18} />
+                        </Group>
                     </Stack>
 
                     <Divider
@@ -107,7 +148,41 @@ export const Pamphlet = () => {
                         w="80%"
                     />
 
-                    <Badges />
+                    <Stack gap={4}>
+                        <Badges />
+
+                        <Group justify="start" ta="start" c="dimmed" gap={4}>
+                            <Text fz="xs">I need more. Give. me. more. 88x31's!!</Text>
+                        </Group>
+                    </Stack>
+
+                    <Divider
+                        label="neofetch"
+                        w="80%"
+                    />
+
+                    <Box px="md" ff="monospace">
+                        <Table
+                            withRowBorders={false}
+                            verticalSpacing={0}
+                            data={{
+                                body: [
+                                    [
+                                        <Text fw="bold">CPU</Text>,
+                                        <Text>Intel Core i5 M480 @ 2.67GHz</Text>,
+                                    ],
+                                    [
+                                        <Text fw="bold">RAM</Text>,
+                                        <Text>4 GB DDR3</Text>,
+                                    ],
+                                    [
+                                        <Text fw="bold">GPU</Text>,
+                                        <Text>NVIDIA GeForce GT 420M</Text>,
+                                    ],
+                                ],
+                            }}
+                        />
+                    </Box>
 
                     <Divider
                         w="80%"

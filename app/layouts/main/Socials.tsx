@@ -13,20 +13,20 @@ export const Socials = () => {
             url: "https://github.com/TheAlan404",
         },
         {
-            icon: IconBrandX,
-            url: "https://x.com/gokcedenizblue",
-        },
-        {
             icon: IconBrandDiscord,
             url: "https://discord.com/users/258638629839175681",
         },
         {
-            icon: IconBrandSteam,
-            url: "https://steamcommunity.com/id/denizblue",
-        },
-        {
             icon: IconBrandTelegram,
             url: "https://t.me/TheDennis",
+        },
+        {
+            icon: IconBrandX,
+            url: "https://x.com/gokcedenizblue",
+        },
+        {
+            icon: IconBrandSteam,
+            url: "https://steamcommunity.com/id/denizblue",
         },
         {
             icon: IconMail,
