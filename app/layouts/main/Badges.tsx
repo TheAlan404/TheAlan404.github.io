@@ -13,13 +13,14 @@ export const Badges = () => {
             <Badge src="https://badge.les.bi/88x31/pan/trans/75-degree/outset.svg" />
             <iframe
                 src="https://incr.easrng.net/badge?key=deniz.blue"
-                style={{ background: "url(//incr.easrng.net/bg.gif)", border: "unset" }}
+                style={{ background: "url(https://incr.easrng.net/bg.gif)", border: "unset" }}
                 title="increment badge"
                 width="88"
                 height="31"
             />
             <Badge src="https://oat.zone/badges/tidalwave.gif" href={null} />
             <Badge src="https://s.mew.gay/88x31/crouton.gif" href="https://crouton.net" />
+            <Badge src="https://ruby.gay/88x31/gif.gif" />
         </SimpleGrid>
     )
 };

@@ -102,18 +102,6 @@ body[data-starry=true] .frost {
 
 
 
-.rainbowText {
-    background-image: repeating-linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
-    text-align: center;
-    background-size: 800% 800%;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation-timing-function: linear;
-    animation-name: rainbow;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-    animation-fill-mode: forwards;
-}
 
 .transText {
     background-image: repeating-linear-gradient(to right, #26c6da, #f48fb1, #eeeeee, #f48fb1, #26c6da);
@@ -122,13 +110,33 @@ body[data-starry=true] .frost {
     -webkit-text-fill-color: transparent;
 }
 
-@keyframes rainbow {
+@keyframes color-rainbow {
     0% {
-        background-position: 0% 0%
+        color: #ff6978
     }
 
-    100% {
-        background-position: 110% 0%
+    16.66% {
+        color: #ee803c
+    }
+
+    33.33% {
+        color: #f5e26b
+    }
+
+    50% {
+        color: #89ce94
+    }
+
+    66.66% {
+        color: #008dd5
+    }
+
+    83.33% {
+        color: #6f73d2
+    }
+
+    to {
+        color: #ff6978
     }
 }
 
@@ -139,22 +147,6 @@ body[data-starry=true] .frost {
 
     100% {
         top: "-300%",
-    }
-}
-
-body[data-flash] :is(.mantine-Button-root,
-    .mantine-ActionIcon-root,
-    .flashable) {
-    animation: flash 500ms forwards ease-out;
-}
-
-@keyframes flash {
-    0% {
-        box-shadow: inset 5em 5em #ffffff66;
-    }
-
-    100% {
-        box-shadow: inset 5em 5em #ffffff00;
     }
 }
 
@@ -293,7 +285,35 @@ body[data-flash] :is(.mantine-Button-root,
     transition-duration: 250ms;
 }
 
-.badges-container > a, .badges-container > img {
+.badges-container>a,
+.badges-container>img {
     width: 88px;
     height: 31px;
+}
+
+.name-letter {
+    animation: bounce 10s linear calc(var(--i) * 0.5s) infinite,
+        color-rainbow 8s linear calc(var(--i) * -0.3s) infinite;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translate(0)
+    }
+
+    2% {
+        transform: translateY(-0.15rem)
+    }
+
+    4% {
+        transform: translateY(-0.2rem)
+    }
+
+    6% {
+        transform: translateY(-0.15rem)
+    }
+
+    8% {
+        transform: translate(0)
+    }
 }

@@ -55,9 +55,7 @@ export const Pamphlet = () => {
                                 }}
                             />
                             <Stack gap={0}>
-                                <Title order={3}>
-                                    hi, i'm Gökçe
-                                </Title>
+                                <CoolName />
                                 <Text c="dimmed">
                                     fullstack software developer
                                 </Text>
@@ -185,11 +183,45 @@ export const Pamphlet = () => {
                     </Box>
 
                     <Divider
+                        label="Friends!"
+                        w="80%"
+                    />
+
+                    <Stack>
+                        <SimpleGrid cols={3} ta="center" spacing="xs" verticalSpacing="xs">
+                            <Anchor href="https://me.devrals.xyz/">
+                                DevRalsei <Text component="sup" c="dimmed" fz="xs">1</Text>
+                            </Anchor>
+                            <Anchor href="https://kuylar.dev/">
+                                kuylar
+                            </Anchor>
+                            <Anchor href="https://skyrina.dev/">
+                                Sky
+                            </Anchor>
+                            <Anchor href="https://www.dsezer.dev/">
+                                dsezer
+                            </Anchor>
+                            <Anchor href="https://ctrl-c.club/~ath/">
+                                staphyle
+                            </Anchor>
+                        </SimpleGrid>
+
+                        <Text fz="sm" c="dimmed">
+                            <Text inherit component="sup" fz="xs">1</Text>
+                            <Text inherit span>: Check their website just before 11th of April!</Text>
+                        </Text>
+                    </Stack>
+
+                    <Divider
                         w="80%"
                     />
 
                     <Text>
                         New layout 'inspired' from <Anchor href="https://split.pet" target="_blank">split.pet</Anchor>
+                    </Text>
+
+                    <Text c="dimmed">
+                        Hak, Hukuk, Adalet!
                     </Text>
 
                     <Group justify="space-between" w="100%" px="sm">
@@ -208,3 +240,31 @@ export const Pamphlet = () => {
         </Box>
     );
 };
+
+export const CoolName = () => {
+    return (
+        <Title order={3}>
+            <Group gap={8} align="center">
+                <Text span inherit>
+                    hi, i'm
+                </Text>
+
+                <Group gap={0} align="end" className="rainbowText">
+                    {"Gökçe Deniz".split("").map((letter, i) => (
+                        <Text
+                            inherit
+                            span
+                            key={i}
+                            className="name-letter"
+                            style={{ "--i": i }}
+                            w={letter == " " ? "8px" : undefined}
+                        >
+                            {letter}
+                        </Text>
+                    ))}
+                </Group>
+            </Group>
+        </Title>
+    );
+};
+
