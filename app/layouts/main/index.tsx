@@ -34,15 +34,7 @@ export default function Layout() {
             </PagePopout>
 
             <Box className="pamphlet_container">
-                <Transition
-                    mounted={!(location.pathname.length > 1)}
-                >
-                    {(styles) => (
-                        <Box style={styles}>
-                            <Pamphlet />
-                        </Box>
-                    )}
-                </Transition>
+                {!(location.pathname.length > 1) && <Pamphlet />}
             </Box>
         </Box>
     )
