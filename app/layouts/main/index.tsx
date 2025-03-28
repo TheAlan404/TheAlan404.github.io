@@ -8,14 +8,16 @@ import { PagePopout } from "./PagePopout";
 import { Socials } from "./Socials";
 import { IconHeart, TablerIcon } from "@tabler/icons-react";
 import { DeveloperBackground } from "~/components/page/DeveloperBackground";
+import { TRFlag } from "mantine-flagpack";
+import { TRFlagSvg } from "./TRFlagSvg";
+import { Badges } from "./Badges";
+import { MantineLogo } from "@mantinex/mantine-logo";
 
 export default function Layout() {
     const location = useLocation();
 
     return (
         <Box>
-            <PageBackground />
-
             <Affix position={{
                 bottom: 16,
                 left: 16,
@@ -32,9 +34,15 @@ export default function Layout() {
             </PagePopout>
 
             <Box className="pamphlet_container">
-                {!(location.pathname.length > 1) && (
-                    <Pamphlet />
-                )}
+                <Transition
+                    mounted={!(location.pathname.length > 1)}
+                >
+                    {(styles) => (
+                        <Box style={styles}>
+                            <Pamphlet />
+                        </Box>
+                    )}
+                </Transition>
             </Box>
         </Box>
     )
@@ -59,7 +67,7 @@ export const Pamphlet = () => {
                                     hi, i'm Gökçe
                                 </Title>
                                 <Text c="dimmed">
-                                    a software developer
+                                    fullstack software developer
                                 </Text>
                             </Stack>
                         </Group>
@@ -81,18 +89,52 @@ export const Pamphlet = () => {
                         w="80%"
                     />
 
+                    <Stack gap={0} align="center">
+                        <Group gap={4}>
+                            <Text span>I'm from</Text>
+                            <TRFlagSvg height="1.5rem" />
+                            <Text span fw="bold">Turkey</Text>
+                            <Text span c="dimmed">(UTC+3)</Text>
+                        </Group>
+
+                        <Group gap="xs" wrap="nowrap" align="center">
+                            <Text span>I use</Text>
+                            <Anchor
+                                href="https://mantine.dev"
+                                c="blue"
+                                h="1.5rem"
+                            >
+                                <MantineLogo height="1.5rem" />
+                            </Anchor>
+                            <Text span>- a really good UI library</Text>
+                        </Group>
+                    </Stack>
+
+                    <Divider
+                        label="Buttons!"
+                        w="80%"
+                    />
+
+                    <Badges />
+
+                    <Divider
+                        w="80%"
+                    />
+
                     <Text>
-                        New layout 'inspired' from <Anchor href="split.pet" target="_blank">split.pet</Anchor>
+                        New layout 'inspired' from <Anchor href="https://split.pet" target="_blank">split.pet</Anchor>
                     </Text>
 
-                    <Group gap={4} c="blue">
-                        <Text fw="bold">Y</Text>
-                        <IconHeart />
+                    <Group justify="space-between" w="100%" px="sm">
+                        <Text ta="center" c="yellow" fw="bold">
+                            WORK IN PROGRESS
+                        </Text>
+
+                        <Group gap={4} c="blue">
+                            <Text fw="bold">Y</Text>
+                            <IconHeart />
+                        </Group>
                     </Group>
-
-                    <Text ta="center" c="yellow" fw="bold">
-                        WORK IN PROGRESS
-                    </Text>
                 </Stack>
             </Paper>
             <Box h="40vh" />

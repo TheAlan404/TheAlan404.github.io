@@ -292,3 +292,8 @@ body[data-flash] :is(.mantine-Button-root,
     width: 100%;
     transition-duration: 250ms;
 }
+
+.badges-container > a, .badges-container > img {
+    width: 88px;
+    height: 31px;
+}

@@ -16,6 +16,8 @@ export default [
             // route("blog", "./routes/BlogIndex.tsx"),
             // route("blog/:id", "./routes/BlogPage.tsx"),
             route("*", "./routes/NotFound.tsx"),
-        ])
-    ])
+        ]),
+
+        route("badge", "./routes/Badge.tsx"),
+    ]),
 ] satisfies RouteConfig;

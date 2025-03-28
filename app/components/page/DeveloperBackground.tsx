@@ -1,4 +1,4 @@
-import { IconBrandAuth0, IconBrandCSharp, IconBrandDocker, IconBrandGit, IconBrandHtml5, IconBrandJavascript, IconBrandMongodb, IconBrandNodejs, IconBrandPrisma, IconBrandVite, IconDeviceDesktopCode, IconExternalLink, IconSql, TablerIcon } from "@tabler/icons-react"
+import { IconBrandAuth0, IconBrandCSharp, IconBrandCss3, IconBrandDocker, IconBrandFirefox, IconBrandGit, IconBrandHtml5, IconBrandJavascript, IconBrandMongodb, IconBrandNodejs, IconBrandPrisma, IconBrandVite, IconBrandVscode, IconDeviceDesktopCode, IconDots, IconExternalLink, IconSql, TablerIcon } from "@tabler/icons-react"
 import { Anchor, Box, Button, Divider, Group, Image, List, Paper, SimpleGrid, Stack, Text, Tooltip } from "@mantine/core"
 import { IconBrandTypescript } from "@tabler/icons-react"
 import { IconBrandRust } from "@tabler/icons-react"
@@ -20,25 +20,48 @@ export const DeveloperBackground = () => {
                 w="80%"
             />
 
-            <IconsGroup
-                data={[
-                    [IconBrandTypescript, "TypeScript"],
-                    [IconBrandJavascript, "JavaScript"],
-                    [IconBrandCSharp, ".NET 5-8"],
-                    [IconBrandRust, "Rust"],
-                    [IconBrandHtml5, "HTML/CSS"],
-                    [IconBrandReact, "React"],
-                    [IconBrandNodejs, "NodeJS"],
-                    [IconBrandVite, "Vite"],
-                    [IconBrandMongodb, "MongoDB"],
-                    [IconBrandPrisma, "Prisma ORM"],
-                    [IconBrandGit, "Git"],
-                    [IconBrandGithub, "Github Actions"],
-                    [IconBrandGithub, "Github"],
-                    [IconBrandDocker, "Docker"],
-                    [IconBrandAuth0, "Auth0"],
-                ]}
-            />
+            <Stack gap={0}>
+                <IconsGroup
+                    data={[
+                        [IconBrandTypescript, "TypeScript"],
+                        [IconBrandReact, "React"],
+                        [IconBrandCSharp, ".NET 5-8"],
+                        [IconBrandHtml5, "HTML"],
+                        [IconBrandCss3, "CSS"],
+                        [IconBrandJavascript, "JavaScript"],
+                        [IconBrandRust, "Rust"],
+                    ]}
+                />
+
+                <Group align="center" gap={8}>
+                    <IconsGroup
+                        data={[
+                            [IconBrandVite, "Vite"],
+                            [IconBrandMongodb, "MongoDB"],
+                            [IconBrandPrisma, "Prisma ORM"],
+                            [IconBrandAuth0, "Auth0"],
+                            [IconBrandNodejs, "NodeJS"],
+                        ]}
+                    />
+
+                    <Text inline span h={24} c="dimmed">•</Text>
+
+                    <IconsGroup
+                        data={[
+                            [IconBrandFirefox, "Firefox"],
+                            [IconBrandVscode, "vscode"],
+                            [IconBrandGit, "Git"],
+                            [IconBrandGithub, "Github"],
+                            [IconBrandDocker, "Docker"],
+                        ]}
+                    />
+                </Group>
+            </Stack>
+
+            {/* <Divider
+                label="Stuff I want to learn"
+                w="80%"
+            /> */}
 
             <Divider
                 w="80%"
@@ -63,7 +86,7 @@ export const IconsGroup = ({
     data: [TablerIcon, string][];
 }) => {
     return (
-        <Group justify="center" gap={0} w="100%">
+        <Group justify="center" gap={0}>
             {data.map(([Icon, tooltip], i) => (
                 <Tooltip label={tooltip} disabled={!tooltip}>
                     <Box>

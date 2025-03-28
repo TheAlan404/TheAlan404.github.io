@@ -12,6 +12,12 @@ import css_mantine_highlight from "@mantine/code-highlight/styles.css?url";
 import css_custom_styles from "./styles/style.css?url";
 import css_custom_mixins from "./styles/mixins.css?url";
 
+export const meta: Route.MetaFunction = () => [
+    { title: "deniz.blue 🌸🎀" },
+    { property: "og:title", content: "deniz.blue 🌸🎀" },
+    { property: "og:description", content: "hi, i'm Gökçe" },
+];
+
 export const links: Route.LinksFunction = () => [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
     { rel: "stylesheet", href: css_mantine_core },
