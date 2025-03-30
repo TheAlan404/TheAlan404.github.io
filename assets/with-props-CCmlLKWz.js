@@ -1,1 +1,0 @@
-import{w as p,x as r,y as e,z as s,r as o}from"./chunk-GNGMS2XR-D0nGIQkJ.js";function u(a){return function(){const t={params:s(),loaderData:e(),actionData:r(),matches:p()};return o.createElement(a,t)}}function i(a){return function(){const t={params:s(),loaderData:e(),actionData:r()};return o.createElement(a,t)}}export{i as a,u as w};

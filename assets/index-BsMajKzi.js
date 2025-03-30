@@ -1,0 +1,68 @@
+var B=Object.defineProperty;var N=(t,o,e)=>o in t?B(t,o,{enumerable:!0,configurable:!0,writable:!0,value:e}):t[o]=e;var f=(t,o,e)=>N(t,typeof o!="symbol"?o+"":o,e);import{w as U}from"./with-props-BKSFP__z.js";import{j as A}from"./jsx-runtime-BjG_zV1W.js";import{r as l,O as M}from"./chunk-XJI4KG32-BUsIIvMu.js";import{U as D}from"./UIContext-BVrCSmyT.js";import{c as _}from"./clamp-DTmYCdls.js";import{a as E}from"./notifications.store-c8HVNHbJ.js";import"./random-id-CQPYUG5g.js";function y(t,o,e){l.useEffect(()=>(window.addEventListener(t,o,e),()=>window.removeEventListener(t,o,e)),[t,o])}const b={farewellBackground:!0},L=l.createContext({...b,enable:()=>{},disable:()=>{},toggle:()=>{}}),O=({children:t})=>{const[o,e]=l.useState(b),r=s=>e(i=>({...i,[s]:!0})),n=s=>e(i=>({...i,[s]:!1})),a=s=>e(i=>({...i,[s]:!i[s]}));return A.jsx(L.Provider,{value:{...o,enable:r,disable:n,toggle:a},children:t})},F=t=>c(t,t),c=(t,o)=>typeof t=="object"&&t!==null?{x:t.x||0,y:t.y||0}:{x:t||0,y:o||0},x=t=>typeof t=="object"&&t?c(t):F(t),G=(t,o)=>t.x==o.x&&t.y==o.y,S=(...t)=>t.map(x).reduce((o,e)=>c(o.x+e.x,o.y+e.y)),R=(...t)=>t.map(x).reduce((o,e)=>c(o.x*e.x,o.y*e.y)),v=(t,o)=>S(t,R(o,-1)),T=(t,o)=>{let e=x(t),r=x(o);return c(e.x/r.x,e.y/r.y)},V=t=>{let o=x(t);return Math.sqrt(o.x**2+o.y**2)},j=t=>T(t,V(t));c(0,0);c(1,1);class Y{constructor(){f(this,"id","");f(this,"dimensions",c());f(this,"mousePosition",null);f(this,"scrollPosition",c())}onDimensionsChange(o){this.dimensions=o}onScrollPositionChange(o){this.scrollPosition=o}onMouseMove(o){this.mousePosition=o}update(o){}render(){}}class Q extends Y{constructor(e){super();f(this,"gl");f(this,"program");f(this,"bindings",{});f(this,"scale",1);this.gl=e,this.program=e.createProgram()}onDimensionsChange(e){this.dimensions=e}updateViewport(){this.gl.viewport(0,0,this.dimensions.x*this.scale,this.dimensions.y*this.scale)}binding(e,r){return e=="a"?this.gl.getAttribLocation(this.program,`${e}_${r}`):this.gl.getUniformLocation(this.program,`${e}_${r}`)}createBuffer(e){const r=this.gl.createBuffer();return this.gl.bindBuffer(this.gl.ARRAY_BUFFER,r),this.gl.bufferData(this.gl.ARRAY_BUFFER,new Float32Array(e),this.gl.STATIC_DRAW),r}bindBuffer(e,r,n=1){this.gl.bindBuffer(this.gl.ARRAY_BUFFER,r),this.gl.enableVertexAttribArray(this.bindings[e]),this.gl.vertexAttribPointer(this.bindings[e],n,this.gl.FLOAT,!1,0,0)}uniformVec2(e,r){this.gl.uniform2f(this.bindings[e],r.x,r.y)}}const P=(t,o,e)=>{const r=t.createShader(o);return r?(t.shaderSource(r,e),t.compileShader(r),t.getShaderParameter(r,t.COMPILE_STATUS)?r:(console.error("SHADER COMPILATION ERROR",e),console.error(t.getShaderInfoLog(r)),t.deleteShader(r),null)):null},k=(t,o)=>{const e=t.createProgram();for(let r of o)t.attachShader(e,r);return t.linkProgram(e),t.getProgramParameter(e,t.LINK_STATUS)?e:(console.error(t.getProgramInfoLog(e)),t.deleteProgram(e),null)},H=(t,o)=>{const e=t.createTexture();t.bindTexture(t.TEXTURE_2D,e),t.texImage2D(t.TEXTURE_2D,0,t.RGBA,1,1,0,t.RGBA,t.UNSIGNED_BYTE,new Uint8Array([0,0,0,0]));const r=new Image;return r.onload=()=>{t.bindTexture(t.TEXTURE_2D,e),t.texImage2D(t.TEXTURE_2D,0,t.RGBA,t.RGBA,t.UNSIGNED_BYTE,r),t.texParameteri(t.TEXTURE_2D,t.TEXTURE_MIN_FILTER,t.NEAREST),t.texParameteri(t.TEXTURE_2D,t.TEXTURE_MAG_FILTER,t.NEAREST)},r.src=o,e},X=(t=1)=>Math.round(Math.random()*t),p=(t=1)=>Math.random()*t,W=(t,o)=>Math.random()>.5?t:o,w=(t,o,e)=>t+(o-t)*e,q=["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHUlEQVR4Ae3OAQ0AAAABMP1Lo4UxT3Dg1tGqwhcjpd4D/epMC1wAAAAASUVORK5CYII=","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIklEQVR4Ae3MsQ0AAAzCMP5/uuUHGBDCewJMuCM5tkym3gOLZg/xodIpmQAAAABJRU5ErkJggg==","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMklEQVR4Ae3PSwoAAAQEUNz/zlgrn5KymLc2MyGCW+q6G9mO8HSZ3bgglmTh9oUqCJ8YQAgMB0rhaRAAAAAASUVORK5CYII=","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAQElEQVR4Ae2RSw4AMAREjfvfuZV01/hNbL0140FkSTlGVYNOMwwqwJschYBW/oLA7O1ZjFfQ7vEiM610sw8sjwsTECAKHmlhcAAAAABJRU5ErkJggg=="],K=`
+    attribute vec2 a_position;
+    attribute float a_textureIndex;
+    attribute float a_opacity;
+    uniform float u_pointSize;
+    uniform vec2 u_scroll;
+    uniform vec2 u_dim;
+    uniform vec2 u_scrollPosition;
+    varying float v_opacity;
+    varying float v_flash;
+    varying float v_textureIndex;
+    uniform vec2 u_mousePosition;
+    
+    void main() {
+        gl_PointSize = u_pointSize;
+
+        vec2 position = mod(a_position - u_scrollPosition, u_dim);
+
+        //float mouseDistance = sqrt(pow(position.x - u_mousePosition.x, 2.0) + pow(position.y - u_mousePosition.y, 2.0));
+        // float threshold = 50.0;
+        // float moveDistance = max(0.0, threshold - mouseDistance);
+        // vec2 directionToMouse = normalize(position - u_mousePosition);
+        // vec2 moveAway = directionToMouse * moveDistance * 1.0;
+        // position += moveAway;
+
+        vec2 clipSpace = ((position / u_dim) * 2.0) - 1.0;
+        gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);
+
+        // Pass attributes to the fragment shader
+        v_opacity = a_opacity;
+        v_textureIndex = a_textureIndex;
+        // v_flash = mouseDistance / 50.0;
+    }
+`,J=`
+    precision mediump float;
+    uniform sampler2D u_textures[4];
+    uniform vec3 u_color;
+    uniform float u_flash;
+    varying float v_flash;
+    varying float v_opacity;
+    varying float v_textureIndex;
+
+    void main() {
+        vec4 textureColor;
+
+        int texIndex = int(floor(v_textureIndex + 0.5));
+
+        if (texIndex == 0) {
+            textureColor = texture2D(u_textures[0], gl_PointCoord);
+        } else if (texIndex == 1) {
+            textureColor = texture2D(u_textures[1], gl_PointCoord);
+        } else if (texIndex == 2) {
+            textureColor = texture2D(u_textures[2], gl_PointCoord);
+        }  else if (texIndex == 3) {
+            textureColor = texture2D(u_textures[3], gl_PointCoord);
+        } else {
+            // Fallback
+            textureColor = vec4(1.0, 0.0, 0.0, 1.0);
+        }
+
+        gl_FragColor = vec4(
+            (textureColor.rgb * u_color + (
+                textureColor.a * u_flash * v_flash * vec3(1.0,1.0,1.0)
+            )),
+            textureColor.a * v_opacity + ((textureColor.a * u_flash) / 3.0)
+        );
+    }
+`,$=[{color:"ab6ffa",scroll:c(.3,.3)},{color:"71d5ff",scroll:c(.3,.3),flowSpeed:2.5},{color:"53f3dd",scroll:c(.5,.5)},{color:"cefdff",scroll:c(.5,.5),flowSpeed:3}];class Z extends Q{constructor(e){super(e);f(this,"id","farewell");f(this,"textures");f(this,"starfields",[]);f(this,"globalPosition",c());f(this,"globalFlash",0);f(this,"scale",1);f(this,"deltaTimeMultiplier",.002);this.program=k(e,[P(e,e.VERTEX_SHADER,K),P(e,e.FRAGMENT_SHADER,J)]),this.textures=Array(4).fill(0).map((r,n)=>H(e,q[n])),this.bindings={color:this.binding("u","color"),dim:this.binding("u","dim"),flash:this.binding("u","flash"),opacity:this.binding("a","opacity"),position:this.binding("a","position"),textureIndex:this.binding("a","textureIndex"),scroll:this.binding("u","scroll"),scrollPosition:this.binding("u","scrollPosition"),mousePosition:this.binding("u","mousePosition"),pointSize:this.binding("u","pointSize")},this.createStarfields()}onDimensionsChange(e){this.dimensions=e,this.createStarfields()}isSmallDims(){return this.dimensions.x<100||this.dimensions.y<100}update(e){for(let r of this.starfields)for(let n of r.stars)this.updateStar(r.config,n,e)}createStarfields(){this.starfields=$.map(e=>this.createStarfield(e))}createStarfield(e){let r={yNodes:[],color:"ffffff",flowSpeed:1,scroll:c(1),...e};r.yNodes=this.createYNodes();let n=this.createStars(r);return{config:r,stars:n}}stepsH(){return 100}stepsW(){return 100}stepSize(){return this.stepsW()}createYNodes(){let e=[],r=p(this.dimensions.y),n=0;for(;this.stepsH()>n;)n++,e.push(r),r+=W(-1,1)*(16*2+p(24*(this.dimensions.y/360)*2));for(let a=0;a<4;a++)e[e.length-1-a]=w(e[e.length-1-a],e[0],_(0,1-a/4,1));return e}createStars(e){let r=this.isSmallDims()?16:128;return new Array(r).fill(0).map(()=>{let a=p(1),s={NodeIndex:X(e.yNodes.length-1),NodePercent:p(1),Distance:4+a*20,Sine:p(Math.PI*2)},i=Math.floor(_(0,Math.pow(1-a,3)*4,3));return{...s,Position:this.targetOfStar(e,s),Opacity:w(.6,0,a*.5),Texture:i}})}targetOfStar({yNodes:e},r){let n=this.stepSize(),a={x:r.NodeIndex*n,y:e[r.NodeIndex]},s={x:(r.NodeIndex+1)*n,y:e[r.NodeIndex+1]},i=S(a,R(v(s,a),c(r.NodePercent))),u=j(v(s,a));return{x:i.x+-u.x*r.Distance*Math.sin(r.Sine),y:i.y+u.y*r.Distance*Math.sin(r.Sine)}}updateStar(e,r,n=1){r.Sine+=n*e.flowSpeed*this.deltaTimeMultiplier,r.NodePercent+=n*.25*e.flowSpeed*this.deltaTimeMultiplier,r.NodePercent>=1&&(r.NodePercent-=1,r.NodeIndex++,r.NodeIndex>=e.yNodes.length-1&&(r.NodeIndex=0,r.Position.x=0)),r.Position=S(r.Position,T(v(this.targetOfStar(e,r),r.Position),c(50,50)))}render(){this.gl.blendFunc(this.gl.SRC_ALPHA,this.gl.ONE_MINUS_SRC_ALPHA),this.gl.blendEquation(this.gl.FUNC_ADD),this.gl.enable(this.gl.BLEND),this.gl.useProgram(this.program),this.gl.uniform1f(this.bindings.flash,0),this.uniformVec2("dim",this.dimensions),this.uniformVec2("scrollPosition",this.scrollPosition),this.uniformVec2("mousePosition",this.mousePosition||c(-1,-1)),this.gl.uniform1f(this.bindings.pointSize,this.isSmallDims()?16:32);for(let e=0;e<this.textures.length;e++){const r=this.textures[e];this.gl.activeTexture(this.gl["TEXTURE"+e]),this.gl.bindTexture(this.gl.TEXTURE_2D,r),this.gl.uniform1i(this.gl.getUniformLocation(this.program,`u_textures[${e}]`),e)}for(let e of this.starfields)this.renderDrawStarfield(e)}renderDrawStarfield(e){this.uniformVec2("scroll",e.config.scroll);const r=parseInt(e.config.color.slice(0,2),16)/255,n=parseInt(e.config.color.slice(2,4),16)/255,a=parseInt(e.config.color.slice(4,6),16)/255;this.gl.uniform3f(this.bindings.color,r,n,a);const s=[],i=[],u=[];e.stars.forEach(d=>{s.push(d.Position.x,d.Position.y),i.push(d.Opacity),u.push(d.Texture)});const m=this.createBuffer(new Float32Array(s)),g=this.createBuffer(new Float32Array(i)),h=this.createBuffer(new Float32Array(u));this.bindBuffer("position",m,2),this.bindBuffer("opacity",g),this.bindBuffer("textureIndex",h),this.gl.drawArrays(this.gl.POINTS,0,e.stars.length),this.gl.deleteBuffer(g),this.gl.deleteBuffer(m),this.gl.deleteBuffer(h)}}const z=({onInitialize:t,onInitializeFail:o,onDestroy:e,onResize:r}={})=>{let n=l.useRef(null),a=l.useRef(null);return l.useEffect(()=>{if(!n.current)return;n.current.width=n.current.clientWidth,n.current.height=n.current.clientHeight;const s=n.current.getContext("webgl2",{antialias:!1,powerPreference:"low-power",desynchronized:!0,failIfMajorPerformanceCaveat:!0});if(!s){console.log("WebGL2RenderingContext initialize failed"),o==null||o();return}return a.current=s,t==null||t(s),s.viewport(0,0,n.current.width,n.current.height),r==null||r(c(n.current.width,n.current.height),n.current),()=>{e==null||e(),a.current=null}},[n.current]),y("resize",()=>{var s;n.current&&(n.current.width=n.current.clientWidth,n.current.height=n.current.clientHeight,(s=a.current)==null||s.viewport(0,0,n.current.width,n.current.height),r==null||r(c(n.current.width,n.current.height),n.current))}),{ref:n,gl:a}},C=({update:t,fps:o=30})=>{l.useEffect(()=>{let e=performance.now();const r=setInterval(()=>{let n=performance.now();t((n-e)/o,n-e),e=n},1e3/o);return()=>clearInterval(r)},[t,o])},ee=({render:t,deltaTimeFPS:o=30})=>{C({fps:o,update:(e,r)=>{t(e)}})},te=({effects:t,onDimensionsChange:o,onInitialized:e})=>{const r=l.useRef([]),n=i=>{for(let u of r.current)G(i,u.dimensions)||u.onDimensionsChange(i);o==null||o(i)},{ref:a,gl:s}=z({onInitialize:i=>{r.current=t.map(([u])=>new u(i)),n({x:i.canvas.width,y:i.canvas.height}),e==null||e()},onDestroy:()=>{r.current=[]},onResize:i=>{n(i)}});return ee({render:()=>{var i,u;(i=s.current)==null||i.clearColor(0,0,0,0),(u=s.current)==null||u.clear(s.current.COLOR_BUFFER_BIT);for(let m of r.current)m.render()}}),C({fps:30,update:i=>{for(let u of r.current)u.update(1*i)}}),y("mousemove",i=>{for(let u of r.current)u.onMouseMove(c(i.clientX,i.clientY))}),{ref:a,gl:s,store:r}},re=()=>{const{ref:t}=te({effects:[[Z]]});return A.jsx("canvas",{className:"pageBackground",style:{width:"100vw",height:"100vh",imageRendering:"pixelated"},ref:t})},oe=l.createContext({ref:{current:null},analyser:{current:null},audioContext:{current:null},currentSong:null,loading:!0,playing:!1}),ne=({children:t})=>{const o=l.useRef(null),e=l.useRef(null),r=l.useRef(null),[n,a]=l.useState(null),[s,i]=l.useState(!1),[u,m]=l.useState(!1);l.useEffect(()=>{let h=new Audio;return o.current=h,h.loop=!0,()=>{var d;(d=e.current)==null||d.close(),h.pause(),h.remove(),o.current=null}},[]),l.useEffect(()=>{o.current&&(o.current.onplaying=()=>{E.hide("music")})},[o.current]);const g=()=>{var h;(h=o.current)==null||h.play().then(()=>{e.current=new AudioContext;let d=e.current.createMediaElementSource(o.current);r.current=e.current.createAnalyser(),d.connect(r.current),d.connect(e.current.destination)}).catch(d=>{if(d instanceof DOMException&&d.name=="NotAllowedError"){E.show({id:"music",message:"Can't play music, please click anywhere",autoClose:!1});const I=()=>g();window.addEventListener("click",I,{once:!0})}})};return l.useEffect(()=>{o.current&&(o.current.src=(n==null?void 0:n.file)||"",n&&g())},[n]),A.jsx(oe.Provider,{value:{ref:o,loading:s,playing:u,currentSong:n,analyser:r,audioContext:e},children:t})},he=U(function(){return A.jsx(O,{children:A.jsx(D,{children:A.jsxs(ne,{children:[A.jsx(re,{}),A.jsx(M,{})]})})})});export{he as default};
