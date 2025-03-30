@@ -16,6 +16,7 @@ const vertexShaderSrc = `
     attribute vec2 a_position;
     attribute float a_textureIndex;
     attribute float a_opacity;
+    uniform float u_pointSize;
     uniform vec2 u_scroll;
     uniform vec2 u_dim;
     uniform vec2 u_scrollPosition;
@@ -25,7 +26,7 @@ const vertexShaderSrc = `
     uniform vec2 u_mousePosition;
     
     void main() {
-        gl_PointSize = 32.0;
+        gl_PointSize = u_pointSize;
 
         vec2 position = mod(a_position - u_scrollPosition, u_dim);
 
@@ -94,6 +95,7 @@ export type StarfieldProgramBindings = {
     scroll: WebGLUniformLocation;
     dim: WebGLUniformLocation;
     mousePosition: WebGLUniformLocation;
+    pointSize: WebGLUniformLocation;
 }
 
 export interface Starfield {
@@ -162,6 +164,7 @@ export class FarewellBackgroundEffect extends WebGLEffect<StarfieldProgramBindin
             scroll: this.binding("u", "scroll"),
             scrollPosition: this.binding("u", "scrollPosition"),
             mousePosition: this.binding("u", "mousePosition"),
+            pointSize: this.binding("u", "pointSize"),
         };
 
         this.createStarfields();
@@ -170,6 +173,10 @@ export class FarewellBackgroundEffect extends WebGLEffect<StarfieldProgramBindin
     onDimensionsChange(newDims: Vec2): void {
         this.dimensions = newDims;
         this.createStarfields();
+    }
+
+    isSmallDims() {
+        return this.dimensions.x < 100 || this.dimensions.y < 100;
     }
 
     update(dt: number): void {
@@ -239,7 +246,9 @@ export class FarewellBackgroundEffect extends WebGLEffect<StarfieldProgramBindin
     };
 
     createStars(config: StarfieldConfig) {
-        let stars = new Array(128).fill(0).map((): Star => {
+        let amount = this.isSmallDims() ? 16 : 128;
+
+        let stars = new Array(amount).fill(0).map((): Star => {
             let num3 = randFloat(1.0);
 
             let incomplete: IncompleteStar = {
@@ -307,6 +316,7 @@ export class FarewellBackgroundEffect extends WebGLEffect<StarfieldProgramBindin
         this.uniformVec2("dim", this.dimensions);
         this.uniformVec2("scrollPosition", this.scrollPosition);
         this.uniformVec2("mousePosition", this.mousePosition || vec2(-1, -1));
+        this.gl.uniform1f(this.bindings.pointSize, this.isSmallDims() ? 16 : 32);
 
         // Bind textures to texture units
         for (let i = 0; i < this.textures.length; i++) {

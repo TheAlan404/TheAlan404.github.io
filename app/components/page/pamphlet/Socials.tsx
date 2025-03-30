@@ -1,8 +1,9 @@
 import { ActionIcon, Box, Group } from "@mantine/core";
-import { IconBrandDiscord, IconBrandGithub, IconBrandSteam, IconBrandTelegram, IconBrandX, IconMail, TablerIcon } from "@tabler/icons-react";
+import { IconBrandDiscord, IconBrandGithub, IconBrandMinecraft, IconBrandSteam, IconBrandTelegram, IconBrandX, IconMail, TablerIcon } from "@tabler/icons-react";
+import { ComponentType } from "react";
 
 type Social = {
-    icon: TablerIcon;
+    icon: ComponentType;
     url: string;
 };
 
@@ -23,6 +24,14 @@ export const Socials = () => {
         {
             icon: IconBrandX,
             url: "https://x.com/gokcedenizblue",
+        },
+        {
+            icon: IconBrandMinecraft,
+            url: "https://namemc.com/profile/Alan404",
+        },
+        {
+            icon: OsuLogo,
+            url: "https://osu.ppy.sh/users/19238315",
         },
         {
             icon: IconBrandSteam,
@@ -49,5 +58,16 @@ export const Socials = () => {
                 </ActionIcon>
             ))}
         </Group>
+    );
+};
+
+export const OsuLogo = () => {
+    return (
+        <img
+            src="/assets/img/ico/osuflat.svg"
+            width={22}
+            height={22}
+            style={{ filter: "invert(1)", imageRendering: "auto" }}
+        />
     );
 };

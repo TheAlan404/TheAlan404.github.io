@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useUpdateInterval } from "./useUpdateInterval";
 
 export const useRequestAnimationFrame = ({
     render,
@@ -7,6 +8,16 @@ export const useRequestAnimationFrame = ({
     render: (dt: number) => void;
     deltaTimeFPS?: number;
 }) => {
+
+    useUpdateInterval({
+        fps: deltaTimeFPS,
+        update: (dt, elapsed) => {
+            render(dt);
+        },
+    });
+
+    return;
+
     useEffect(() => {
         let frame = 0;
         let lastDraw = performance.now();

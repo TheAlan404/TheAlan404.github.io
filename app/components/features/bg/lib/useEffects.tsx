@@ -1,19 +1,23 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useWebGL } from "./useWebGL";
 import { Effect } from "./types";
-import { FarewellBackgroundEffect } from "../farewell/FarewellBackgroundEffect";
 import { vec2, Vec2, vec2eq } from "@alan404/vec2";
 import { useRequestAnimationFrame } from "./useRequestAnimationFrame";
 import { useUpdateInterval } from "./useUpdateInterval";
 import { useWindowEvent } from "@mantine/hooks";
-import { MistBackgroundEffect } from "../farewell/MistBackgroundEffect";
-import { useMusicFFT } from "../../music/useMusicFFT";
-import { magicFunction, useAmplitude } from "../../music/temp";
 
-export const useEffects = () => {
+type EffectConstructor = new (gl: WebGL2RenderingContext) => Effect;
+
+export const useEffects = ({
+    effects,
+    onDimensionsChange,
+    onInitialized,
+}: {
+    effects: [EffectConstructor][];
+    onDimensionsChange?: (dims: Vec2) => void;
+    onInitialized?: () => void;
+}) => {
     const store = useRef<Effect[]>([]);
-
-    const fft = useMusicFFT();
 
     const updateDimensions = (dim: Vec2) => {
         for (let effect of store.current) {
@@ -21,19 +25,22 @@ export const useEffects = () => {
                 effect.onDimensionsChange(dim);
             }
         }
+
+        onDimensionsChange?.(dim);
     };
 
     const { ref, gl } = useWebGL({
         onInitialize: (gl) => {
-            store.current = [
-                // new MistBackgroundEffect(gl),
-                new FarewellBackgroundEffect(gl),
-            ];
+            store.current = effects.map(([ctor]) => (
+                new ctor(gl)
+            ));
 
             updateDimensions({
                 x: gl.canvas.width,
                 y: gl.canvas.height,
             });
+
+            onInitialized?.();
         },
         onDestroy: () => {
             store.current = [];
@@ -43,30 +50,12 @@ export const useEffects = () => {
         },
     });
 
-    // useEffect(() => {
-    //     if(gl.current) {
-    //         store.current = [
-    //             // new MistBackgroundEffect(gl.current),
-    //             new FarewellBackgroundEffect(gl.current),
-    //         ];
-
-    //         updateDimensions({
-    //             x: gl.current.canvas.width,
-    //             y: gl.current.canvas.height,
-    //         });
-    //     }
-    // }, [FarewellBackgroundEffect]);
-
     useRequestAnimationFrame({
         render: () => {
             gl.current?.clearColor(0, 0, 0, 0);
             gl.current?.clear(gl.current.COLOR_BUFFER_BIT);
 
             for (let effect of store.current) {
-                // effect.scrollPosition = {
-                //     x: 0,
-                //     y: document.documentElement.scrollTop,
-                // };
                 effect.render();
             }
         },

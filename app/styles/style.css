@@ -317,3 +317,9 @@ body[data-starry=true] .frost {
         transform: translate(0)
     }
 }
+
+.variant-light-children > * {
+    background: var(--mantine-color-violet-light);
+    border-radius: var(--mantine-radius-sm);
+    padding: 2px;
+}

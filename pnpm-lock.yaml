@@ -74,6 +74,9 @@ importers:
       react-i18next:
         specifier: ^15.1.4
         version: 15.1.4(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-rewards:
+        specifier: ^2.1.0
+        version: 2.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       vite-tsconfig-paths:
         specifier: ^5.1.4
         version: 5.1.4(vite@5.4.11(sugarss@4.0.1(postcss@8.4.49)))
@@ -1794,6 +1797,12 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  react-rewards@2.1.0:
+    resolution: {integrity: sha512-99EgPVXWWA7qphBnFAGxEh74HJIkskChdxUuaiCuYjdsOSUmsIzB3xwaaXCHr6dr9l7locYFPFiqelZ5gCLpew==}
+    peerDependencies:
+      react: '>=15'
+      react-dom: '>=15'
 
   react-router@7.1.0:
     resolution: {integrity: sha512-VcFhWqkNIcojDRYaUO8qV0Jib52s9ULpCp3nkBbmrvtoCVFRp6tmk3tJ2w9BZauVctA1YRnJlFYDn9iJRuCpGA==}
@@ -4209,6 +4218,11 @@ snapshots:
       use-sidecar: 1.1.2(@types/react@19.0.1)(react@19.0.0)
     optionalDependencies:
       '@types/react': 19.0.1
+
+  react-rewards@2.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   react-router@7.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:

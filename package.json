@@ -35,6 +35,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^15.1.4",
+    "react-rewards": "^2.1.0",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {

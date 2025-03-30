@@ -1,4 +1,23 @@
-import { SimpleGrid } from "@mantine/core";
+import { Box, Divider, Group, SimpleGrid, Stack, Table, Text } from "@mantine/core";
+
+export const ButtonsSection = () => {
+    return (
+        <Stack align="center" w="100%">
+            <Divider
+                label="Buttons!"
+                w="80%"
+            />
+
+            <Stack gap={4}>
+                <Badges />
+
+                <Group justify="start" ta="start" c="dimmed" gap={4}>
+                    <Text fz="xs">I need more. Give. me. more. 88x31's!!</Text>
+                </Group>
+            </Stack>
+        </Stack>
+    )
+};
 
 export const Badges = () => {
     return (
@@ -21,6 +40,17 @@ export const Badges = () => {
             <Badge src="https://oat.zone/badges/tidalwave.gif" href={null} />
             <Badge src="https://s.mew.gay/88x31/crouton.gif" href="https://crouton.net" />
             <Badge src="https://ruby.gay/88x31/gif.gif" />
+            <Badge src="https://badges.easrng.net/easrng.gif" href="https://easrng.net" />
+            <Badge src="https://lily.pet/assets/badges/lily_pet.gif" />
+            <Badge src="https://zptr.cc/88x31/webring/zeroptr.png" />
+            <Badge src="https://palaiologos.rocks/static/8831/-1.gif" href={null} />
+            {/* <iframe
+                src="/badge"
+                style={{ border: "unset" }}
+                title="deniz.blue"
+                width="88"
+                height="31"
+            /> */}
         </SimpleGrid>
     )
 };
@@ -40,10 +70,11 @@ export const Badge = ({
         <img
             src={src}
             title={href ? hostname : undefined}
+            loading="lazy"
         />
     );
 
-    if(href === null) return img;
+    if (href === null) return img;
 
     return (
         <a

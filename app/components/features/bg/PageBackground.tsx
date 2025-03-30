@@ -1,7 +1,12 @@
+import { FarewellBackgroundEffect } from "./farewell/FarewellBackgroundEffect";
 import { useEffects } from "./lib/useEffects";
 
 export const PageBackground = () => {
-    const { ref } = useEffects();
+    const { ref } = useEffects({
+        effects: [
+            [FarewellBackgroundEffect]
+        ],
+    });
 
     return (
         <canvas
