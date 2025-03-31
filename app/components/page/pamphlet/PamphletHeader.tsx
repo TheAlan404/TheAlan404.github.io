@@ -1,21 +1,45 @@
-import { Stack, Group, Avatar, Title, Text } from "@mantine/core";
+import { Stack, Group, Avatar, Title, Text, Space, Box, Paper } from "@mantine/core";
 import { Socials } from "~/components/page/pamphlet/Socials";
 
 export const PamphletHeader = () => {
     return (
-        <Stack p="sm" gap="sm">
-            <Group wrap="nowrap" gap="xs" justify="center">
+        <Stack px="xs" pb="xs" gap="sm">
+            <Box style={{
+                position: "absolute",
+                top: "-2.1rem",
+                left: "0.5rem",
+            }}>
+                <Paper
+                    className="frost"
+                    withBorder
+                    w="6rem"
+                    h="6rem"
+                    pos="absolute"
+                    style={{
+                        top: 0,
+                        borderRadius: "50%",
+                        clipPath: "rect(0% 100% 2.09rem 0%)",
+                    }}
+                />
                 <Avatar
-                    size="lg"
+                    pos="absolute"
+                    size="5rem"
                     src="/assets/img/me/dennis_yagiz_rust_pfp.jpg"
                     style={{
+                        top: "0.5rem",
+                        left: "0.5rem",
                         imageRendering: "auto",
                     }}
                 />
-                <Stack gap={0}>
+            </Box>
+
+
+            <Group wrap="nowrap" gap="xs" justify="start">
+                <Space w="5.5rem" />
+                <Stack gap={0} pt="xs">
                     <CoolName />
-                    <Text c="dimmed">
-                        fullstack software developer
+                    <Text c="dimmed" inline span>
+                        developer & cosplayer
                     </Text>
                 </Stack>
             </Group>

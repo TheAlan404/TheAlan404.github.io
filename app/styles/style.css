@@ -318,7 +318,7 @@ body[data-starry=true] .frost {
     }
 }
 
-.variant-light-children > * {
+.friend {
     background: var(--mantine-color-violet-light);
     border-radius: var(--mantine-radius-sm);
     padding: 2px;

@@ -38,31 +38,50 @@ export const AboutMe = () => {
                     <Text span>
                         I mostly play
                     </Text>
-                    <Image
-                        src="/assets/img/ico/osu.png"
-                        h="1.5rem"
-                        w="1.5rem"
-                        display="inline"
-                        style={{ imageRendering: "auto" }}
-                    />
+                    <Anchor
+                        inherit
+                        href="https://osu.ppy.sh/users/19238315"
+                        target="_blank"
+                        c="unset"
+                    >
+                        <Group gap={4} align="center">
+                            <Image
+                                src="/assets/img/ico/osu.png"
+                                h="1.5rem"
+                                w="1.5rem"
+                                display="inline"
+                                style={{ imageRendering: "auto" }}
+                            />
+                            <Text span>
+                                osu!
+                            </Text>
+                        </Group>
+                    </Anchor>
                     <Text span>
-                        osu! and
+                        and
                     </Text>
-                    <Image
-                        src="/assets/img/ico/minecraft.webp"
-                        h="1.2rem"
-                        w="1.2rem"
-                        display="inline"
-                        style={{ imageRendering: "auto" }}
-                    />
-                    <Text span>
-                        Minecraft.
-                    </Text>
+                    <Anchor
+                        inherit
+                        href="https://namemc.com/profile/Alan404"
+                        target="_blank"
+                        c="unset"
+                    >
+                        <Group gap={4} align="center">
+                            <Image
+                                src="/assets/img/ico/minecraft.webp"
+                                h="1.2rem"
+                                w="1.2rem"
+                                display="inline"
+                                style={{ imageRendering: "auto" }}
+                            />
+                            <Text span>
+                            Minecraft.
+                            </Text>
+                        </Group>
+                    </Anchor>
                 </Group>
 
                 {/* im 19 */}
-
-                {/* osu mc */}
             </Stack>
         </Stack>
     );

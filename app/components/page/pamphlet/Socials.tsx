@@ -1,5 +1,5 @@
 import { ActionIcon, Box, Group } from "@mantine/core";
-import { IconBrandDiscord, IconBrandGithub, IconBrandMinecraft, IconBrandSteam, IconBrandTelegram, IconBrandX, IconMail, TablerIcon } from "@tabler/icons-react";
+import { IconBrandDiscord, IconBrandGithub, IconBrandMinecraft, IconBrandReddit, IconBrandSteam, IconBrandTelegram, IconBrandX, IconMail, TablerIcon } from "@tabler/icons-react";
 import { ComponentType } from "react";
 
 type Social = {
@@ -26,8 +26,8 @@ export const Socials = () => {
             url: "https://x.com/gokcedenizblue",
         },
         {
-            icon: IconBrandMinecraft,
-            url: "https://namemc.com/profile/Alan404",
+            icon: IconBrandReddit,
+            url: "https://reddit.com/u/TheAlan404",
         },
         {
             icon: OsuLogo,
@@ -39,7 +39,7 @@ export const Socials = () => {
         },
         {
             icon: IconMail,
-            url: "mailto:gokce@deniz.blue",
+            url: "mailto:deniz@deniz.blue",
         },
     ];
 

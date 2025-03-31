@@ -29,6 +29,8 @@ export const PamphletContent = () => {
                 Hak, Hukuk, Adalet!
             </Text>
 
+            {/* <Experiments /> */}
+
             <Group justify="space-between" w="100%" px="sm">
                 <Text ta="center" c="yellow" fw="bold">
                     WORK IN PROGRESS
