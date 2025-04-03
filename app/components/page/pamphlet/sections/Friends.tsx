@@ -1,4 +1,4 @@
-import { Anchor, Box, Divider, Grid, Group, SimpleGrid, Stack, Text } from "@mantine/core";
+import { Anchor, Box, Divider, Grid, Group, Image, SimpleGrid, Stack, Text, UnstyledButton } from "@mantine/core";
 import { IconArrowNarrowLeft, IconArrowNarrowRight } from "@tabler/icons-react";
 
 export const Friends = () => {
@@ -41,9 +41,18 @@ export const Friends = () => {
                     <Anchor href="https://me.devrals.xyz/" className="friend">
                         DevRalsei <Text component="sup" c="dimmed" fz="xs">1</Text>
                     </Anchor>
-                    <Anchor href="https://kuylar.dev/" className="friend">
-                        kuylar
-                    </Anchor>
+                    <Box className="friend" pos="relative">
+                        <Anchor href="https://kuylar.dev/" w="100%" h="100%">
+                            kuylar
+                        </Anchor>
+                        <Image
+                            src="/assets/img/trinkets/kuylars.png"
+                            pos="absolute"
+                            style={{ bottom: 0, right: 6 }}
+                            w={8}
+                            h={8}
+                        />
+                    </Box>
                     <Anchor href="https://skyrina.dev/" className="friend">
                         Sky
                     </Anchor>
@@ -53,6 +62,16 @@ export const Friends = () => {
                     <Anchor href="https://ctrl-c.club/~ath/" className="friend">
                         staphyle
                     </Anchor>
+                    <UnstyledButton
+                        w="100%"
+                        h="100%"
+                        ta="center"
+                        onClick={() => {
+                            new Audio("/assets/audio/metalpipe.mp3").play();
+                        }}
+                    >
+                        🔧
+                    </UnstyledButton>
                 </SimpleGrid>
 
                 <Text fz="sm" c="dimmed">

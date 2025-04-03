@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useCountdown } from "./useCountdown";
 
 export const relativeString = (d: Date) => {
     let formatter = new Intl.DateTimeFormat();
@@ -32,17 +33,22 @@ export const useBeatdrop = ({
     audioSrc: string;
     maxDelay?: number;
 }) => {
+    
+
     const DEFAULT_VOLUME = 0.5;
     const ref = useRef<HTMLAudioElement | null>(null);
-    const [timer, setTimer] = useState("--:--:--");
-    const [beatDidDrop, setBeatDidDrop] = useState(new Date() > beatDropOn);
     const [volume, _setVolume] = useState(DEFAULT_VOLUME);
     const [err, setErr] = useState<any>(null);
 
     useEffect(() => {
-        ref.current = new Audio(audioSrc);
-        ref.current.volume = DEFAULT_VOLUME;
-        _setVolume(ref.current.volume);
+        let audio = new Audio(audioSrc);
+        ref.current = audio;
+        audio.volume = DEFAULT_VOLUME;
+        _setVolume(audio.volume);
+
+        return () => {
+            audio.pause();
+        };
     }, [audioSrc]);
 
     const startPlaybackOn = useMemo(() => (
@@ -52,73 +58,55 @@ export const useBeatdrop = ({
         beatDropPosition,
     ]);
 
-    const update = () => {
-        const date = new Date();
-        let passed = date.getTime() > beatDropOn.getTime();
-        setBeatDidDrop(passed);
+    const {
+        countdownReached,
+        timerText,
+    } = useCountdown({
+        countdownTime: beatDropOn,
+        update: () => {
+            const date = new Date();
 
-        let diff = Math.round(Math.abs(date.getTime() - beatDropOn.getTime()) / 1000);
-
-        const h = Math.floor((diff) / (60*60));
-        const m = Math.floor(diff / 60) % 60;
-        const s = diff % 60;
-
-        setTimer([
-            h.toString().padStart(2, "0"),
-            (true) ? m.toString().padStart(2, "0") : null,
-            (true) ? s.toString().padStart(2, "0") : s.toString(),
-        ].filter(x => x).join(":"));
-
-        if(!ref.current) return;
-
-        if(!ref.current.paused) setErr(null);
-
-        const endPlaybackOn = startPlaybackOn + ((ref.current.duration + 2)*1000);
-
-        if(
-            ref.current.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
-            && startPlaybackOn < date.getTime()
-            && endPlaybackOn > date.getTime()
-        ) {
-            let approxTime = (date.getTime() - startPlaybackOn) / 1000;
-
-            try {
-                if (ref.current.paused) {
-                    ref.current.play()
-                        .catch(e => {
-                            console.log("play() error", e);
-                            setErr(e);
-                        });
-                    ref.current.currentTime = approxTime;
-                };
-
-                let { currentTime } = ref.current;
-                if(Math.abs(currentTime - approxTime) >= maxDelay) {
-                    ref.current.currentTime = approxTime;
+            if(!ref.current) return;
+            if(!ref.current.paused) setErr(null);
+    
+            const endPlaybackOn = startPlaybackOn + ((ref.current.duration + 2)*1000);
+    
+            if(
+                ref.current.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
+                && startPlaybackOn < date.getTime()
+                && endPlaybackOn > date.getTime()
+            ) {
+                let approxTime = (date.getTime() - startPlaybackOn) / 1000;
+    
+                try {
+                    if (ref.current.paused) {
+                        ref.current.play()
+                            .catch(e => {
+                                console.log("play() error", e);
+                                setErr(e);
+                            });
+                        ref.current.currentTime = approxTime;
+                    };
+    
+                    let { currentTime } = ref.current;
+                    if(Math.abs(currentTime - approxTime) >= maxDelay) {
+                        ref.current.currentTime = approxTime;
+                    }
+                } catch(e: any) {
+                    console.log("setter currentTime error", e);
+                    setErr(e);
                 }
-            } catch(e: any) {
-                console.log("setter currentTime error", e);
-                setErr(e);
             }
-        }
-    };
-
-    useEffect(() => {
-        update();
-        let i = setInterval(update, 300);
-        return () => {
-            ref.current?.pause();
-            clearInterval(i);
-        };
-    }, []);
+        },
+    });
 
     const isPlaying = ref.current && !ref.current?.paused;
 
     return {
         startPlaybackOn,
         isPlaying,
-        beatDidDrop,
-        timer,
+        countdownReached,
+        timerText,
         volume,
         setVolume: (v: number) => {
             if(ref.current) ref.current.volume = v;
