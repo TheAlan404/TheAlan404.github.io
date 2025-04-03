@@ -12,10 +12,12 @@ export const Arts: Art[] = [
             name: "@rustwww",
             link: "https://www.instagram.com/rustwww/",
         },
+        aspectRatio: 1493/1493,
     },
     {
         src: "/assets/img/me/dennis_ka.png",
         author: KiwiAsli,
+        aspectRatio: 1300/1700,
     },
     {
         src: "/assets/img/me/dennis_annatony.png",
@@ -23,6 +25,7 @@ export const Arts: Art[] = [
             name: "@planebroker12",
             link: "https://www.instagram.com/planebroker12/",
         },
+        aspectRatio: 2048/4317,
     },
     {
         src: "/assets/img/me/dennis_meka.png",
@@ -30,10 +33,12 @@ export const Arts: Art[] = [
             name: "@mekashi_moon",
             link: "https://www.instagram.com/mekashi_moon/",
         },
+        aspectRatio: 768/1024,
     },
     {
         src: "/assets/img/me/dennis_sophia_ka.png",
         author: KiwiAsli,
+        aspectRatio: 1324/1300,
     },
     {
         src: "/assets/img/me/warren_polycule.png",
@@ -41,6 +46,7 @@ export const Arts: Art[] = [
             name: "@warreneatsrats",
             link: "https://www.instagram.com/warreneatsrats/",
         },
+        aspectRatio: 3000/1881,
     },
     {
         src: "/assets/img/me/dennis_yk.png",
@@ -48,5 +54,6 @@ export const Arts: Art[] = [
             name: "@yesilkedu",
             link: "https://www.instagram.com/yesilkedu/",
         },
+        aspectRatio: 399/399,
     },
 ];

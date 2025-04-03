@@ -266,16 +266,6 @@ body[data-starry=true] .frost {
     }
 }
 
-@media screen and (max-width: 780px) {
-    /* .header {
-        height: calc(100% - 64px - 20px);
-    } */
-
-    .contain {
-        padding-bottom: 84px;
-    }
-}
-
 .contain {
     top: 100%;
     transform: translateY(-100%);

@@ -11,6 +11,7 @@ import css_mantine_carousel from "@mantine/carousel/styles.css?url";
 import css_mantine_highlight from "@mantine/code-highlight/styles.css?url";
 import css_custom_styles from "./styles/style.css?url";
 import css_custom_mixins from "./styles/mixins.css?url";
+import { ModalsProvider } from "@mantine/modals";
 
 export const meta: Route.MetaFunction = () => [
     { title: "deniz.blue 🌸🎀" },
@@ -60,27 +61,29 @@ const theme = createTheme({
 export const Layout = ({ children }: PropsWithChildren) => {
     return (
         <html lang="en">
-          <head>
-            <meta charSet="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <Meta />
-            <Links />
-          </head>
-          <body data-starry>
-            {children}
-            <ScrollRestoration />
-            <Scripts />
-          </body>
+            <head>
+                <meta charSet="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <Links />
+                <Meta />
+            </head>
+            <body data-starry>
+                {children}
+                <ScrollRestoration />
+                <Scripts />
+            </body>
         </html>
-      );
+    );
 };
 
 export default function App() {
     return (
         <MantineProvider theme={theme} forceColorScheme="dark">
-            <Notifications />
             <I18nextProvider i18n={i18next} defaultNS={"translation"}>
-                <Outlet />
+                <Notifications />
+                <ModalsProvider>
+                    <Outlet />
+                </ModalsProvider>
             </I18nextProvider>
         </MantineProvider>
     )

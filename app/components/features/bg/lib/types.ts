@@ -60,11 +60,28 @@ export class WebGLEffect<Bindings extends Record<string, number | WebGLUniformLo
         }
     }
 
-    createBuffer(data: ArrayBuffer) {
+    createBuffer() {
         const buf = this.gl.createBuffer();
+        return buf;
+    }
+
+    writeBuffer(buf: WebGLBuffer, data: ArrayBuffer) {
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buf);
         this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array(data), this.gl.STATIC_DRAW);
         return buf;
+    }
+
+    writeAndBindBuffer(
+        name: KeysMatching<Bindings, number>,
+        buf: WebGLBuffer,
+        data: ArrayBuffer,
+        size = 1,
+    ) {
+        this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buf);
+        this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array(data), this.gl.STATIC_DRAW);
+        let loc = this.bindings[name] as number;
+        this.gl.enableVertexAttribArray(loc);
+        this.gl.vertexAttribPointer(loc, size, this.gl.FLOAT, false, 0, 0);
     }
 
     bindBuffer(name: KeysMatching<Bindings, number>, buf: WebGLBuffer, size = 1) {

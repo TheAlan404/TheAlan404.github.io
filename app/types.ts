@@ -16,7 +16,7 @@ export type Art = {
         link: string;
     };
     subtitle?: React.ReactNode;
-    heart?: React.ReactNode;
+    aspectRatio: number;
 };
 
 export type NavItem = {

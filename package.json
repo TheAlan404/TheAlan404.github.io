@@ -20,6 +20,7 @@
     "@mantine/core": "^7.15.0",
     "@mantine/form": "^7.15.0",
     "@mantine/hooks": "^7.15.0",
+    "@mantine/modals": "^7.17.3",
     "@mantine/notifications": "^7.15.0",
     "@mantinex/dev-icons": "^1.0.2",
     "@mantinex/mantine-logo": "^1.0.1",

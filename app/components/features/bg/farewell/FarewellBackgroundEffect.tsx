@@ -135,12 +135,19 @@ export const starfieldConfigurations: Partial<StarfieldConfig>[] = [
 export class FarewellBackgroundEffect extends WebGLEffect<StarfieldProgramBindings> {
     id = "farewell";
     textures: WebGLTexture[];
+    buffers: {
+        position: WebGLBuffer;
+        opacity: WebGLBuffer;
+        texture: WebGLBuffer;
+    };
     starfields: Starfield[] = [];
     globalPosition: Vec2 = vec2();
     globalFlash: number = 0;
     scale = 1;
 
     deltaTimeMultiplier = 0.002;
+    speedMultiplier = 1;
+    speedMultiplierDecay = 1;
 
     constructor(gl: WebGL2RenderingContext) {
         super(gl);
@@ -168,6 +175,12 @@ export class FarewellBackgroundEffect extends WebGLEffect<StarfieldProgramBindin
         };
 
         this.createStarfields();
+
+        this.buffers = {
+            texture: this.createBuffer(),
+            opacity: this.createBuffer(),
+            position: this.createBuffer(),
+        };
     }
 
     onDimensionsChange(newDims: Vec2): void {
@@ -273,16 +286,16 @@ export class FarewellBackgroundEffect extends WebGLEffect<StarfieldProgramBindin
 
     targetOfStar({ yNodes }: StarfieldConfig, star: IncompleteStar) {
         let StepSize = this.stepSize();
-        let vector = {
+        let currentNode = {
             x: star.NodeIndex * StepSize,
             y: yNodes[star.NodeIndex],
         };
-        let vector2 = {
+        let nextNode = {
             x: (star.NodeIndex + 1) * StepSize,
             y: yNodes[star.NodeIndex + 1],
         };
-        let vector3 = vec2add(vector, vec2mul(vec2sub(vector2, vector), vec2(star.NodePercent)));
-        let vector4 = vec2normalize(vec2sub(vector2, vector));
+        let vector3 = vec2add(currentNode, vec2mul(vec2sub(nextNode, currentNode), vec2(star.NodePercent)));
+        let vector4 = vec2normalize(vec2sub(nextNode, currentNode));
 
         return {
             x: (vector3.x) + (((-vector4.x) * (star.Distance)) * (Math.sin(star.Sine))),
@@ -291,8 +304,8 @@ export class FarewellBackgroundEffect extends WebGLEffect<StarfieldProgramBindin
     }
 
     updateStar(config: StarfieldConfig, star: Star, dt: number = 1) {
-        star.Sine += dt * config.flowSpeed * this.deltaTimeMultiplier;
-        star.NodePercent += dt * 0.25 * config.flowSpeed * this.deltaTimeMultiplier;
+        star.Sine += dt * config.flowSpeed * this.deltaTimeMultiplier * this.speedMultiplier;
+        star.NodePercent += dt * 0.25 * config.flowSpeed * this.deltaTimeMultiplier * this.speedMultiplier;
         if (star.NodePercent >= 1) {
             star.NodePercent -= 1;
             star.NodeIndex++;
@@ -348,166 +361,12 @@ export class FarewellBackgroundEffect extends WebGLEffect<StarfieldProgramBindin
             starTextures.push(star.Texture);
         });
 
-        const position = this.createBuffer(new Float32Array(starPositions));
-        const opacity = this.createBuffer(new Float32Array(starOpacities));
-        const texture = this.createBuffer(new Float32Array(starTextures));
-
-        this.bindBuffer("position", position, 2);
-        this.bindBuffer("opacity", opacity);
-        this.bindBuffer("textureIndex", texture);
+        this.writeAndBindBuffer("position", this.buffers.position, new Float32Array(starPositions), 2);
+        this.writeAndBindBuffer("opacity", this.buffers.opacity, new Float32Array(starOpacities));
+        this.writeAndBindBuffer("textureIndex", this.buffers.texture, new Float32Array(starTextures));
 
         this.gl.drawArrays(this.gl.POINTS, 0, starfield.stars.length);
-
-        this.gl.deleteBuffer(opacity);
-        this.gl.deleteBuffer(position);
-        this.gl.deleteBuffer(texture);
     }
 }
-
-
-
-// export type StarfieldProgramStore = {
-//     program: WebGLProgram;
-//     bindings: StarfieldProgramBindings;
-//     textures: WebGLTexture[];
-// }
-
-
-
-// export type StarfieldProgramBuffers = {
-//     position: WebGLBuffer;
-//     opacity: WebGLBuffer;
-//     texture: WebGLBuffer;
-// }
-
-// export const initializeWebGL = (gl: WebGL2RenderingContext): StarfieldProgramStore => {
-//     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-//     gl.blendEquation(gl.FUNC_ADD);
-//     gl.enable(gl.BLEND);
-
-//     const program = createProgram(gl, [
-//         compileShader(gl, gl.VERTEX_SHADER, vertexShaderSrc)!,
-//         compileShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSrc)!,
-//     ])!;
-
-//     const bindings = Object.fromEntries([
-//         "a_position",
-//         "a_textureIndex",
-//         "a_opacity",
-//         "u_scroll",
-//         "u_dim",
-//         "u_color",
-//         "u_scrollPosition",
-//         "u_flash",
-//     ].map((v) => [v.split("_")[1], (
-//         v[0] == "a" ? gl.getAttribLocation(program, v) : gl.getUniformLocation(program, v)
-//     )])) as StarfieldProgramBindings;
-
-//     const textures = Array(4).fill(0).map((_, i) => (
-//         createGLTexture(gl, textureData[i])
-//     ));
-
-//     return {
-//         program,
-//         bindings,
-//         textures,
-//     };
-// };
-
-// export const createProgramBuffers = (
-//     gl: WebGL2RenderingContext,
-//     stars: Star[],
-// ): StarfieldProgramBuffers => {
-//     const starPositions: number[] = [];
-//     const starOpacities: number[] = [];
-//     const starTextures: number[] = [];
-
-//     stars.forEach(star => {
-//         starPositions.push(star.Position.x, star.Position.y);
-//         starOpacities.push(star.Opacity);
-//         starTextures.push(star.Texture);
-//     });
-
-//     const position = gl.createBuffer();
-//     gl.bindBuffer(gl.ARRAY_BUFFER, position);
-//     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(starPositions), gl.STATIC_DRAW);
-
-//     const opacity = gl.createBuffer();
-//     gl.bindBuffer(gl.ARRAY_BUFFER, opacity);
-//     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(starOpacities), gl.STATIC_DRAW);
-
-//     const texture = gl.createBuffer();
-//     gl.bindBuffer(gl.ARRAY_BUFFER, texture);
-//     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(starTextures), gl.STATIC_DRAW);
-
-//     return {
-//         position,
-//         opacity,
-//         texture,
-//     };
-// };
-
-// export const renderProgramBuffers = ({
-//     gl,
-//     store: {
-//         bindings,
-//         program,
-//         textures,
-//     },
-//     buffers,
-//     config,
-//     stars,
-// }: {
-//     gl: WebGL2RenderingContext;
-//     store: StarfieldProgramStore;
-//     buffers: StarfieldProgramBuffers;
-//     config: StarfieldConfig;
-//     stars: Star[];
-// }) => {
-//     gl.useProgram(program);
-
-//     // Set up resolution and scroll uniforms
-//     gl.uniform1f(bindings.flash, config.flash);
-//     gl.uniform2f(bindings.scroll, config.scroll.x, config.scroll.y);
-//     gl.uniform2f(bindings.scrollPosition, config.position.x, config.position.y);
-//     gl.uniform2f(bindings.dim, config.dim.width, config.dim.height);
-//     // Set star color with opacity
-//     const r = parseInt(config.color.slice(0, 2), 16) / 255;
-//     const g = parseInt(config.color.slice(2, 4), 16) / 255;
-//     const b = parseInt(config.color.slice(4, 6), 16) / 255;
-//     gl.uniform3f(bindings.color, r, g, b);
-
-//     // Bind textures to texture units
-//     for (let i = 0; i < textures.length; i++) {
-//         const tex = textures[i];
-//         // @ts-ignore
-//         gl.activeTexture(gl["TEXTURE" + i]);
-//         gl.bindTexture(gl.TEXTURE_2D, tex);
-//         gl.uniform1i(gl.getUniformLocation(program, `u_textures[${i}]`), i);
-//     }
-
-//     // Bind and enable position buffer
-//     gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position);
-//     gl.enableVertexAttribArray(bindings.position);
-//     gl.vertexAttribPointer(bindings.position, 2, gl.FLOAT, false, 0, 0);
-
-//     // Bind and enable opacity buffer
-//     gl.bindBuffer(gl.ARRAY_BUFFER, buffers.opacity);
-//     gl.enableVertexAttribArray(bindings.opacity);
-//     gl.vertexAttribPointer(bindings.opacity, 1, gl.FLOAT, false, 0, 0);
-
-//     gl.bindBuffer(gl.ARRAY_BUFFER, buffers.texture);
-//     gl.enableVertexAttribArray(bindings.textureIndex);
-//     gl.vertexAttribPointer(bindings.textureIndex, 1, gl.FLOAT, false, 0, 0);
-
-//     // Draw points (stars)
-//     gl.drawArrays(gl.POINTS, 0, stars.length);
-
-//     // Cleanup
-//     gl.deleteBuffer(buffers.opacity);
-//     gl.deleteBuffer(buffers.position);
-//     gl.deleteBuffer(buffers.texture);
-// };
-
 
 
