@@ -19,4 +19,12 @@ export const MUSIC_DATA: Song[] = [
         cover: "ConfessionsOfARottenGirl.png",
         file: "ConfessionsOfARottenGirl.mp3",
     },
+    {
+        title: "Medicine",
+        romanji: "Igaku",
+        artist: "Sasuke Haraguchi",
+        originalTitle: "イガク",
+        cover: "igaku.png",
+        file: "igaku.mp3",
+    },
 ];

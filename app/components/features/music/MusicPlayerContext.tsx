@@ -2,9 +2,12 @@ import { createContext, Ref, RefObject, useContext } from "react";
 
 export type Song = {
     title: string;
+    romanji?: string;
+    originalTitle?: string;
     artist: string;
     cover: string;
     file: string;
+    complete?: boolean;
 };
 
 export interface IMusicPlayer {
