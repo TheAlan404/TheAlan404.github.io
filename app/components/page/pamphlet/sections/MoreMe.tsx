@@ -50,62 +50,37 @@ export const MoreMe = () => {
             <Stack w="100%" align="start" gap={0} px="xl">
                 <Text fw="bold" fz="xs" pl={28}>I PREVIOUSLY WORKED AT</Text>
                 <Stack gap="xs">
+                    <PreviousJob
+                        icon="/assets/img/ico/lodestone.png"
+                        title="Lodepale Studios"
+                        subtitle="minecraft bedrock addons"
+                        url="https://lodepale.com"
+                    />
+                    <PreviousJob
+                        icon="/assets/img/ico/modfest_icon.svg"
+                        title="ModFest"
+                        subtitle="game jams but its minecraft mods"
+                        url="https://modfest.net"
+                    />
+                    <PreviousJob
+                        icon="/assets/img/ico/ulus_icon.ico"
+                        title="Ulus Medya"
+                        subtitle="media agency"
+                    />
                     <Group gap={4} wrap="nowrap" align="start">
                         <Image
-                            src="/assets/img/ico/lodestone.png"
-                            w={24}
-                            h={24}
-                        />
-                        <Stack gap={0}>
-                            <Group>
-                                <Anchor
-                                    c="unset"
-                                    href="https://lodepale.com"
-                                    target="_blank"
-                                >
-                                    Lodepale Studios
-                                </Anchor>
-                            </Group>
-                            <Text fz="xs" c="dimmed" inline>
-                                minecraft bedrock addons
-                            </Text>
-                        </Stack>
-                    </Group>
-                    <Group gap={4} wrap="nowrap" align="start">
-                        <Image
-                            src="/assets/img/ico/modfest_icon.svg"
-                            w={24}
-                            h={24}
-                        />
-                        <Stack gap={0}>
-                            <Group>
-                                <Anchor
-                                    c="unset"
-                                    href="https://modfest.net"
-                                    target="_blank"
-                                >
-                                    ModFest
-                                </Anchor>
-                            </Group>
-                            <Text fz="xs" c="dimmed" inline>
-                                game jams but its minecraft mods
-                            </Text>
-                        </Stack>
-                    </Group>
-                    <Group gap={4} wrap="nowrap" align="start">
-                        <Image
-                            src="/assets/img/ico/ulus_icon.ico"
+                            src=""
                             w={24}
                             h={24}
                         />
                         <Stack gap={0}>
                             <Group>
                                 <Text>
-                                    Ulus Medya
+
                                 </Text>
                             </Group>
                             <Text fz="xs" c="dimmed" inline>
-                                media agency
+
                             </Text>
                         </Stack>
                     </Group>
@@ -113,4 +88,41 @@ export const MoreMe = () => {
             </Stack>
         </Stack>
     )
+}
+
+export const PreviousJob = ({
+    title,
+    subtitle,
+    icon,
+    url,
+}: {
+    title: string;
+    subtitle?: string;
+    icon: string;
+    url?: string;
+}) => {
+    return (
+        <Group gap={4} wrap="nowrap" align="start">
+            <Image
+                src={icon}
+                style={{ imageRendering: "auto" }}
+                w={24}
+                h={24}
+            />
+            <Stack gap={0}>
+                <Group>
+                    <Anchor
+                        c="unset"
+                        href={url}
+                        target={url ? "_blank" : undefined}
+                    >
+                        {title}
+                    </Anchor>
+                </Group>
+                <Text fz="xs" c="dimmed" inline>
+                    {subtitle}
+                </Text>
+            </Stack>
+        </Group>
+    );
 }

@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { MusicPlayerContext, Song } from "./MusicPlayerContext";
 import { MUSIC_DATA } from "./data";
-import { notifications } from "@mantine/notifications";
+import { NotificationData, notifications } from "@mantine/notifications";
 
 export const MusicPlayerProvider = ({
     children,
@@ -16,7 +16,7 @@ export const MusicPlayerProvider = ({
     useEffect(() => {
         let audio = new Audio();
         ref.current = audio;
-        audio.loop = true // TODO;
+        // audio.loop = true // TODO;
         return () => {
             audioContext.current?.close();
             audio.pause();
@@ -28,10 +28,25 @@ export const MusicPlayerProvider = ({
     useEffect(() => {
         if(!ref.current) return;
 
-        ref.current.onplaying = () => {
-            notifications.hide("music");
-        };
-    }, [ref.current])
+        const abort = new AbortController();
+        const { signal } = abort;
+
+        ref.current.addEventListener("playing", () => {
+            notifications.hide("music-error");
+        }, { signal });
+
+        if (currentSong) {
+            notifications.hide("music-nowplaying");
+            notifications.show({
+                id: "music-nowplaying",
+                title: "Now Playing",
+                message: currentSong.title,
+                autoClose: 5000,
+            });
+        }
+
+        return () => abort.abort();
+    }, [currentSong])
 
     const play = () => {
         ref.current?.play()
@@ -45,9 +60,11 @@ export const MusicPlayerProvider = ({
             .catch(e => {
                 if(e instanceof DOMException && e.name == "NotAllowedError") {
                     notifications.show({
-                        id: "music",
+                        id: "music-error",
                         message: "Can't play music, please click anywhere",
                         autoClose: false,
+                        position: "top-center",
+                        color: "yellow",
                     });
 
                     const onClick = () => play();
@@ -59,11 +76,12 @@ export const MusicPlayerProvider = ({
     useEffect(() => {
         if(!ref.current) return;
         
-        ref.current.src = currentSong?.file || "";
+        ref.current.pause();
+        ref.current.src = currentSong ? `/assets/music/${currentSong.file}` : "";
         if(currentSong) play();
     }, [currentSong]);
 
-    // useEffect(() => void setCurrentSong(MUSIC_DATA[0]), []);
+    // useEffect(() => void setCurrentSong(MUSIC_DATA[1]), []);
 
     return (
         <MusicPlayerContext.Provider
@@ -74,6 +92,7 @@ export const MusicPlayerProvider = ({
                 currentSong,
                 analyser,
                 audioContext,
+                changeCurrentSong: setCurrentSong,
             }}
         >
             {children}

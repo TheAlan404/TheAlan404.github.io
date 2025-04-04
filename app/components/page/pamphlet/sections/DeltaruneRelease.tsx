@@ -79,7 +79,8 @@ export const DeltaruneRelease = () => {
                     rotate: "180deg",
                     backgroundImage: "url(/assets/img/detail/page/spirea.png)",
                     backgroundSize: "contain",
-                    maskImage: "linear-gradient(rgb(0 0 0 / 100%) 0% 50%, transparent)",
+                    maskImage: "linear-gradient(rgb(0 0 0 / 100%) 0% 10%, transparent)",
+                    imageRendering: "auto",
                 }}
             />
 
@@ -93,7 +94,8 @@ export const DeltaruneRelease = () => {
                     bottom: "-3rem",
                     backgroundImage: "url(/assets/img/detail/page/spirea.png)",
                     backgroundSize: "contain",
-                    maskImage: "linear-gradient(rgb(0 0 0 / 100%) 0% 50%, transparent)",
+                    maskImage: "linear-gradient(rgb(0 0 0 / 100%) 0% 10%, transparent)",
+                    imageRendering: "auto",
                 }}
             />
         </Stack>

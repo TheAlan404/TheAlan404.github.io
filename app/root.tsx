@@ -80,7 +80,9 @@ export default function App() {
     return (
         <MantineProvider theme={theme} forceColorScheme="dark">
             <I18nextProvider i18n={i18next} defaultNS={"translation"}>
-                <Notifications />
+                <Notifications position="top-right" classNames={{
+                    notification: "frost bordered",
+                }} />
                 <ModalsProvider>
                     <Outlet />
                 </ModalsProvider>

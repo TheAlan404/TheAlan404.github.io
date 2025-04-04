@@ -57,8 +57,6 @@ body[data-starry=true] .frost {
     transform: scale(95%);
 }
 
-
-
 .pageForeground {
     width: 100vw;
     height: 100dvh;
@@ -205,6 +203,10 @@ body[data-starry=true] .frost {
     background-color: var(--mantine-color-dark-7);
 }
 
+.shrinkonclick:active {
+    transform: scale(95%);
+}
+
 .subtlelink {
     cursor: pointer;
 }
@@ -216,13 +218,12 @@ body[data-starry=true] .frost {
 .colored-paper::before {
     content: "";
     display: block;
-    position: absolute;
     width: 6px;
     top: var(--mantine-radius-md);
     bottom: var(--mantine-radius-md);
     inset-inline-start: 6px;
     border-radius: var(--mantine-radius-md);
-    background-color: var(--color);
+    background-color: var(--color red);
 }
 
 .pamphlet_container {
@@ -264,6 +265,15 @@ body[data-starry=true] .frost {
         transform: translateX(-50%);
         width: 100%;
     }
+
+    #mobile-spacer[data-active=true] {
+        height: 110px;
+    }
+}
+
+#mobile-spacer {
+    height: 0px;
+    transition: all ease-out 200ms;
 }
 
 .contain {
@@ -312,4 +322,8 @@ body[data-starry=true] .frost {
     background: var(--mantine-color-violet-light);
     border-radius: var(--mantine-radius-sm);
     padding: 2px;
+}
+
+.bordered {
+    border: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-dark-4);
 }

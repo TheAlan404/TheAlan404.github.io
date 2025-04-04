@@ -13,4 +13,10 @@ export const MUSIC_DATA: Song[] = [
         cover: "miraclemilk.jpg",
         file: "worldexecuteme.m4a",
     },
+    {
+        title: "Confessions of a Rotten Girl",
+        artist: "SAWTOWNE",
+        cover: "ConfessionsOfARottenGirl.png",
+        file: "ConfessionsOfARottenGirl.mp3",
+    },
 ];

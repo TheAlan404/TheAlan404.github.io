@@ -12,6 +12,7 @@ export interface IMusicPlayer {
     audioContext: RefObject<AudioContext | null>;
     analyser: RefObject<AnalyserNode | null>;
     currentSong: Song | null;
+    changeCurrentSong: (s: Song | null) => void;
     playing: boolean;
     loading: boolean;
 };
@@ -23,6 +24,7 @@ export const MusicPlayerContext = createContext<IMusicPlayer>({
     currentSong: null,
     loading: true,
     playing: false,
+    changeCurrentSong: () => {},
 });
 
 export const useMusicPlayer = () => useContext(MusicPlayerContext);
