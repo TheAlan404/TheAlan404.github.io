@@ -10,7 +10,7 @@ export const StuffIUse = () => {
     const [t] = useTranslation();
 
     return (
-        <Stack align="center" w="100%">
+        <Stack align="center" w="100%" px="sm">
             <Divider
                 label="Stuff I use"
                 w="80%"

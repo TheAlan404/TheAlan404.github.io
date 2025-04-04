@@ -4,7 +4,7 @@ import { IconAffiliate, IconAlertTriangle, IconExternalLink, IconInfoCircle, Ico
 
 export const FeaturedProjects = () => {
     return (
-        <Stack align="center" w="100%">
+        <Stack align="center" w="100%" px="sm">
             <Divider
                 label="Featured Projects"
                 w="80%"

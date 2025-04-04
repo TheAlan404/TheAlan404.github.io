@@ -13,7 +13,7 @@ export const Pamphlet = () => {
             <Paper withBorder style={{
                 borderTop: "unset",
                 borderRadius: "0 0 16px 16px",
-            }} className="frost" px="sm" pb="sm">
+            }} className="frost">
                 <PamphletContent />
             </Paper>
             <Box h="40vh" />

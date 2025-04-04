@@ -3,7 +3,7 @@ import { IconArrowNarrowLeft, IconArrowNarrowRight } from "@tabler/icons-react";
 
 export const Friends = () => {
     return (
-        <Stack align="center" w="100%">
+        <Stack align="center" w="100%" px="sm">
             <Divider
                 label="Friends!"
                 w="80%"
@@ -17,8 +17,8 @@ export const Friends = () => {
                                 <Text inline span>
                                     ✨ Hosting Provider
                                 </Text>
-                                <Text span c="dimmed" fz="xs">
-                                    lifesaver tysm
+                                <Text inline span c="dimmed" fz="xs">
+                                    tysm
                                 </Text>
                             </Stack>
                             <IconArrowNarrowRight />
@@ -66,6 +66,8 @@ export const Friends = () => {
                         w="100%"
                         h="100%"
                         ta="center"
+                        bg="var(--mantine-color-gray-light)"
+                        style={{ borderRadius: "var(--mantine-radius-sm)" }}
                         onClick={() => {
                             new Audio("/assets/audio/metalpipe.mp3").play();
                         }}

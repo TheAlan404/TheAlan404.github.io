@@ -19,7 +19,7 @@ export const PamphletContent = () => {
             <DeltaruneRelease />
             <ButtonsSection />
             <Specs />
-            <Group justify="end" w="100%" pos="relative" px="md">
+            <Group justify="end" w="100%" pos="relative" px="xl">
                 <Image
                     src="/assets/img/trinkets/jumping.gif"
                     h="5rem"
@@ -34,13 +34,14 @@ export const PamphletContent = () => {
 
             <Divider
                 w="80%"
+                px="sm"
             />
 
             <Text c="dimmed">
                 Hak, Hukuk, Adalet!
             </Text>
 
-            <Group justify="space-between" w="100%" px="sm" wrap="nowrap">
+            <Group justify="space-between" w="100%" wrap="nowrap" p="sm">
                 <Text ta="center" c="yellow" fw="bold">
                     WIP
                 </Text>

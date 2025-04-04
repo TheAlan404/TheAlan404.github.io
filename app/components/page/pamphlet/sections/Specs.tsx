@@ -7,9 +7,10 @@ export const Specs = () => {
             <Divider
                 label="neofetch"
                 w="80%"
+                px="sm"
             />
 
-            <Box ff="monospace">
+            <Box ff="monospace" px={4}>
                 <Table
                     withRowBorders={false}
                     verticalSpacing={0}

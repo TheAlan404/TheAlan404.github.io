@@ -2,7 +2,7 @@ import { Box, Divider, Group, SimpleGrid, Stack, Table, Text } from "@mantine/co
 
 export const ButtonsSection = () => {
     return (
-        <Stack align="center" w="100%">
+        <Stack align="center" w="100%" px="sm">
             <Divider
                 label="Buttons!"
                 w="80%"

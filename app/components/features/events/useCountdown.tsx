@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-export const relativeString = (d: Date) => {
-    let formatter = new Intl.DateTimeFormat();
+export const relativeString = (
+    d: Date,
+    locales?: Intl.LocalesArgument,
+) => {
+    let formatter = new Intl.RelativeTimeFormat(locales);
     const diff = -((new Date().getTime() - d.getTime())/1000)|0;
 	const absDiff = Math.abs(diff);
     let f: { duration: number; unit: any };
@@ -18,17 +21,20 @@ export const relativeString = (d: Date) => {
 	} else {
         f = { duration: diff, unit: 'seconds' };
     }
-    return f.duration + " " + f.unit;
+    return formatter.format(f.duration, f.unit)
 };
 
 export const useCountdown = ({
     countdownTime,
     update: customUpdate,
+    locale,
 }: {
     countdownTime: Date;
     update?: () => void;
+    locale?: string;
 }) => {
     const [timerText, setTimer] = useState("--:--:--:--");
+    const [relativeText, setRelative] = useState("");
     const [countdownReached, setCountdownReached] = useState(new Date() > countdownTime);
 
     const update = () => {
@@ -48,9 +54,9 @@ export const useCountdown = ({
             h,
             m,
             s
-        ]
-            // .filter(x => !!x)
-            .map(x => x.toString().padStart(2, "0")).join(":"));
+        ].map(x => x.toString().padStart(2, "0")).join(":"));
+
+        setRelative(relativeString(countdownTime, locale))
 
         customUpdate?.();
     };
@@ -67,5 +73,6 @@ export const useCountdown = ({
     return {
         countdownReached,
         timerText,
+        relativeText,
     };
 };

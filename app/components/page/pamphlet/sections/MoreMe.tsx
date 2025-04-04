@@ -5,10 +5,8 @@ import { IconBrush, IconChevronCompactDown, IconChevronDown, IconChevronRight } 
 import { OCArtModal } from "~/components/modals/OCArtModal"
 
 export const MoreMe = () => {
-    const [opened, { toggle }] = useDisclosure();
-
     return (
-        <Stack align="center" w="100%">
+        <Stack align="center" w="100%" px="sm">
             <Divider
                 w="80%"
                 label="More me!"

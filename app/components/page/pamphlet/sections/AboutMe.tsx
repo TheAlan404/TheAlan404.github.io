@@ -6,6 +6,7 @@ export const AboutMe = () => {
     return (
         <Stack align="center" w="100%">
             <Divider
+                px="sm"
                 label="About me!"
                 w="80%"
             />
