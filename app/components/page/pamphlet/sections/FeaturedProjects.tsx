@@ -1,6 +1,6 @@
 import { Anchor, Box, Button, Divider, Group, SimpleGrid, Stack, Table, Text } from "@mantine/core";
 import { Badges } from "./Badges";
-import { IconAffiliate, IconAlertTriangle, IconExternalLink, IconInfoCircle, IconTerminal2 } from "@tabler/icons-react";
+import { IconAffiliate, IconAlertCircle, IconAlertTriangle, IconCalendar, IconExternalLink, IconInfoCircle, IconTerminal2 } from "@tabler/icons-react";
 
 export const FeaturedProjects = () => {
     return (
@@ -10,7 +10,9 @@ export const FeaturedProjects = () => {
                 w="80%"
             />
 
-            <Stack px="xl" w="100%" gap={4}>
+            {/* TODO: uncomment when activity is restored */}
+
+            {/* <Stack px="xl" w="100%" gap={4}>
                 <Button
                     fullWidth
                     variant="light"
@@ -36,9 +38,40 @@ export const FeaturedProjects = () => {
                     <Text fz="xs">...not to mention it's still in beta</Text>
                     <IconInfoCircle size={18} />
                 </Group>
-            </Stack>
+            </Stack> */}
 
-            <Group wrap="nowrap" align="start" px="xl" gap={4}>
+            <Group wrap="nowrap" align="start" px="lg" gap={4}>
+                <IconCalendar />
+                <Stack w="100%" gap={4} flex="1">
+                    <Text fz="sm">
+                        If you live in Turkey too, check out <Anchor
+                            href="https://events.deniz.blue"
+                            target="_blank"
+                            inherit
+                        >
+                            Deniz's Events Site
+                        </Anchor> - a website for geeky events in Turkey.
+                    </Text>
+                    <Group justify="start" ta="start" c="red" gap={4} wrap="nowrap">
+                        <IconAlertCircle size={18} />
+                        <Stack flex="1">
+                            <Text fz="xs" inline c="dimmed">
+                                Most events are however postponed due to the <Anchor
+                                    href="https://en.wikipedia.org/wiki/2025_Turkish_protests"
+                                    target="_blank"
+                                    inherit
+                                    c="dimmed"
+                                    td="underline dotted"
+                                >
+                                    recent events
+                                </Anchor>
+                            </Text>
+                        </Stack>
+                    </Group>
+                </Stack>
+            </Group>
+
+            <Group wrap="nowrap" align="start" px="lg" gap={4}>
                 <IconTerminal2 />
                 <Stack w="100%" gap={4} flex="1">
                     <Text fz="sm">
@@ -53,7 +86,7 @@ export const FeaturedProjects = () => {
                 </Stack>
             </Group>
 
-            <Group wrap="nowrap" align="start" px="xl" gap={4}>
+            <Group wrap="nowrap" align="start" px="lg" gap={4}>
                 <IconAffiliate />
                 <Stack w="100%" gap={0} flex="1">
                     <Text fz="sm">
@@ -64,7 +97,7 @@ export const FeaturedProjects = () => {
                             c="unset"
                             td="underline dotted"
                         >
-                            plural systems    
+                            plural systems
                         </Anchor>? Check <Anchor
                             href="https://poly.deniz.blue"
                             target="_blank"
@@ -78,6 +111,8 @@ export const FeaturedProjects = () => {
                             href="https://polycul.es"
                             target="_blank"
                             inherit
+                            c="dimmed"
+                            td="underline dotted"
                         >
                             polycul.es
                         </Anchor>

@@ -332,3 +332,17 @@ html {
     scrollbar-color: var(--mantine-color-violet-light) #00141b;
     scrollbar-width: thin;
 }
+
+@keyframes deltarunespire {
+    0% {
+        transform: translateY(0%);
+    }
+
+    50% {
+        transform: translateY(-20%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
