@@ -32,7 +32,27 @@ export const MUSIC_DATA: Song[] = [
         romanji: "Bake no Hana",
         originalTitle: "化けの花",
         artist: "NAKISO",
-        cover: "bakenohana.png",
+        cover: "mizu5.png",
         file: "bakenohana.mp3",
+    },
+    {
+        title: "Substitute",
+        romanji: "Hitogawari",
+        originalTitle: "ヒトガワリ",
+        artist: "KikuoHana",
+        file: "hitogawari.mp3",
+        cover: "kikuohana2.png",
+    },
+    {
+        title: "Take Me To The Beach (feat. Ado)",
+        file: "TakeMeToTheBeach.mp3",
+        cover: "TakeMeToTheBeach.png",
+        artist: "Imagine Dragons",
+    },
+    {
+        title: "A Fool Moon Night",
+        artist: "THE KOXX",
+        cover: "thekoxx.png",
+        file: "afoolmoonnight.mp3",
     },
 ];
