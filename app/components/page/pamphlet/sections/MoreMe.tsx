@@ -67,23 +67,6 @@ export const MoreMe = () => {
                         title="Ulus Medya"
                         subtitle="media agency"
                     />
-                    <Group gap={4} wrap="nowrap" align="start">
-                        <Image
-                            src=""
-                            w={24}
-                            h={24}
-                        />
-                        <Stack gap={0}>
-                            <Group>
-                                <Text>
-
-                                </Text>
-                            </Group>
-                            <Text fz="xs" c="dimmed" inline>
-
-                            </Text>
-                        </Stack>
-                    </Group>
                 </Stack>
             </Stack>
         </Stack>

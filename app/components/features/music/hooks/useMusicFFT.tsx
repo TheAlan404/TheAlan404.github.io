@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from "react";
-import { MusicPlayerContext } from "./MusicPlayerContext";
-import { useUpdateInterval } from "../bg/lib/useUpdateInterval";
+import { MusicPlayerContext } from "../MusicPlayerContext";
+import { useUpdateInterval } from "../../bg/lib/useUpdateInterval";
 
 export const useMusicFFT = () => {
     const { analyser } = useContext(MusicPlayerContext);

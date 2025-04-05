@@ -27,4 +27,12 @@ export const MUSIC_DATA: Song[] = [
         cover: "igaku.png",
         file: "igaku.mp3",
     },
+    {
+        title: "Flower of Transformation",
+        romanji: "Bake no Hana",
+        originalTitle: "化けの花",
+        artist: "NAKISO",
+        cover: "bakenohana.png",
+        file: "bakenohana.mp3",
+    },
 ];

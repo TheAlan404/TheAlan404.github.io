@@ -2,7 +2,7 @@ import { ActionIcon, Affix, Box, Stack, Transition } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
 import { IconMusic } from "@tabler/icons-react";
 import { useUIState } from "~/components/base/UIContext";
-import { MusicPickerOverlay } from "~/components/features/music/MusicPicker";
+import { MusicPickerOverlay } from "~/components/features/music/components/MusicPicker";
 import { Pamphlet } from "~/components/page/pamphlet/Pamphlet";
 
 export default function Layout() {
@@ -37,6 +37,7 @@ export const PageControlsOverlay = () => {
                             <ActionIcon
                                 style={styles}
                                 variant="light"
+                                size="lg"
                                 onClick={() => toggle("musicPopout")}
                             >
                                 <IconMusic />

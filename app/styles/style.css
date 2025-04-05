@@ -327,3 +327,8 @@ body[data-starry=true] .frost {
 .bordered {
     border: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-dark-4);
 }
+
+html {
+    scrollbar-color: var(--mantine-color-violet-light) #00141b;
+    scrollbar-width: thin;
+}
