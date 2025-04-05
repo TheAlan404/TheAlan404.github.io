@@ -3,10 +3,10 @@ import { useContext, useEffect, useRef } from "react";
 import { useUpdateInterval } from "~/components/features/bg/lib/useUpdateInterval";
 import { MusicPlayerContext } from "~/components/features/music/MusicPlayerContext";
 import { magicFunction, useAmplitude } from "~/components/features/music/temp";
-import { useMusicFFT } from "~/components/features/music/hooks/useMusicFFT";
+import { useAudioFFT } from "~/components/features/music/hooks/useAudioFFT";
 
 export const MusicPopout = () => {
-    const fft = useMusicFFT();
+    const fft = useAudioFFT();
     const amp = useAmplitude();
 
     const ref = useRef<HTMLCanvasElement | null>(null);

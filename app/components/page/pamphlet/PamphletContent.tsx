@@ -41,11 +41,7 @@ export const PamphletContent = () => {
                 Hak, Hukuk, Adalet!
             </Text>
 
-            <Group justify="space-between" w="100%" wrap="nowrap" p="sm">
-                <Text ta="center" c="yellow" fw="bold">
-                    WIP
-                </Text>
-
+            <Group justify="center" w="80%" wrap="nowrap" py="sm">
                 <Group gap={4} c="blue">
                     <Text fw="bold">I love Yağız so much</Text>
                     <IconHeart />

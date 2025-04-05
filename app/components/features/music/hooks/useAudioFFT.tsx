@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import { MusicPlayerContext } from "../MusicPlayerContext";
 import { useUpdateInterval } from "../../bg/lib/useUpdateInterval";
 
-export const useMusicFFT = () => {
+export const useAudioFFT = () => {
     const { analyser } = useContext(MusicPlayerContext);
     const fft = useRef<Uint8Array>(new Uint8Array(analyser.current?.frequencyBinCount || 0));
 

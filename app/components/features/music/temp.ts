@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
-import { useMusicFFT } from "./hooks/useMusicFFT";
+import { useAudioFFT } from "./hooks/useAudioFFT";
 import { useUpdateInterval } from "../bg/lib/useUpdateInterval";
 
 export const useAmplitude = () => {
     let value = useRef(0);
 
-    const fft = useMusicFFT();
+    const fft = useAudioFFT();
 
     useUpdateInterval({
         update(dt, elapsed) {

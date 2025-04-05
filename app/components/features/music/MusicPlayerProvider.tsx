@@ -35,18 +35,43 @@ export const MusicPlayerProvider = ({
             notifications.hide("music-error");
         }, { signal });
 
+        return () => abort.abort();
+    }, [])
+
+    useEffect(() => {
+        if(!ref.current) return;
+
+        const abort = new AbortController();
+        const { signal } = abort;
+
+        ref.current.addEventListener("ended", () => {
+            if(!currentSong) return;
+            const playlist = MUSIC_DATA;
+            let currentIndex = playlist.indexOf(currentSong);
+            if(currentIndex == -1) return;
+            let nextIndex = currentIndex + 1;
+            if(nextIndex >= playlist.length) nextIndex = 0;
+            let nextTrack = playlist[nextIndex];
+            if(!nextTrack) return;
+            setCurrentSong(nextTrack);
+        }, { signal });
+
+        return () => abort.abort();
+    }, [currentSong])
+
+    useEffect(() => {
         if (currentSong) {
-            notifications.hide("music-nowplaying");
             notifications.show({
                 id: "music-nowplaying",
                 title: "Now Playing",
                 message: currentSong.title,
-                autoClose: 5000,
             });
-        }
 
-        return () => abort.abort();
-    }, [currentSong])
+            return () => void notifications.hide("music-nowplaying");
+        } else {
+            notifications.hide("music-nowplaying");
+        }
+    }, [currentSong]);
 
     const play = () => {
         ref.current?.play()

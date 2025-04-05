@@ -56,14 +56,7 @@ export const MusicPicker = () => {
                 <Modal.CloseButton size="sm" variant="light" />
             </Group>
             <Stack gap="xs" pt={4} px={4}>
-                <ScrollArea.Autosize
-                    mah="70dvh"
-                    offsetScrollbars="y"
-                >
-                    <Stack px="xs">
-                        <MusicPlaylist />
-                    </Stack>
-                </ScrollArea.Autosize>
+                <MusicPlaylist />
             </Stack>
 
             <MusicControls />

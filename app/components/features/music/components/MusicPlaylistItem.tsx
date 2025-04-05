@@ -3,16 +3,16 @@ import { Song, useMusicPlayer } from "../MusicPlayerContext";
 
 export const MusicPlaylistItem = ({
     song,
+    onClick,
+    isActive,
 }: {
     song: Song;
+    isActive?: boolean;
+    onClick?: () => void;
 }) => {
-    const { changeCurrentSong, currentSong } = useMusicPlayer();
-
-    const isCurrent = currentSong === song;
-
     return (
         <UnstyledButton
-            onClick={() => changeCurrentSong(song)}
+            onClick={onClick}
             style={{ zIndex: 5 }}
         >
             <Paper
@@ -27,7 +27,7 @@ export const MusicPlaylistItem = ({
                         bg="violet"
                         style={{
                             borderRadius: "2px",
-                            opacity: +isCurrent,
+                            opacity: +(isActive ?? false),
                             transitionDuration: "250ms",
                         }}
                     />
@@ -45,7 +45,7 @@ export const MusicPlaylistItem = ({
                     <Stack gap={0}>
                         <Group gap={4}>
                             <Text inline>{song.romanji || song.title}</Text>
-                            <Badge size="xs" color="gray">WIP</Badge>
+                            {/* <Badge size="xs" color="gray" variant="light">WIP</Badge> */}
                         </Group>
                         <Text c="dimmed" fz="sm" inline>{song.artist}</Text>
                     </Stack>
