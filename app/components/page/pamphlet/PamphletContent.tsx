@@ -8,10 +8,13 @@ import { AboutMe } from "./sections/AboutMe";
 import { Friends } from "./sections/Friends";
 import { MoreMe } from "./sections/MoreMe";
 import { DeltaruneRelease } from "./sections/DeltaruneRelease";
+import { Experiments } from "./sections/Experiments";
+import { Motd } from "./sections/Motd";
 
 export const PamphletContent = () => {
     return (
         <Stack align="center">
+            <Motd />
             <StuffIUse />
             <AboutMe />
             <FeaturedProjects />
