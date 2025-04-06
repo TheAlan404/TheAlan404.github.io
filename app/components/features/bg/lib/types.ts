@@ -1,6 +1,22 @@
+import { Enum } from "@alan404/enum";
 import { vec2, Vec2 } from "@alan404/vec2";
 
+export type EffectsWorkerInput = Enum<{
+    init: {
+        canvas: OffscreenCanvas;
+        dimensions: Vec2;
+    };
+    dimensionsChange: {
+        dimensions: Vec2;
+    };
+    mousemove: {
+        pos: Vec2;
+    };
+}>;
 
+export type EffectsWorkerOutput = Enum<{
+    initialized: undefined;
+}>;
 
 export class Effect {
     id: string = "";

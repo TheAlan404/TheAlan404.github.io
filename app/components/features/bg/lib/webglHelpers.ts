@@ -31,24 +31,28 @@ export const createProgram = (gl: WebGL2RenderingContext, shaders: WebGLShader[]
     return program;
 }
 
-export const createGLTexture = (gl: WebGL2RenderingContext, src: string) => {
+export const createGLTexture = (
+    gl: WebGL2RenderingContext,
+    src: string
+) => {
     const texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
 
-    // Fill with a temporary color until the texture is loaded
+    // Temp data
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([0, 0, 0, 0]));
 
-    const img = new Image();
+    const load = async () => {
+        const response = await fetch(src);
+        const blob = await response.blob();
+        const imageBitmap = await createImageBitmap(blob);
 
-    img.onload = () => {
         gl.bindTexture(gl.TEXTURE_2D, texture);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
-
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, imageBitmap);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
     };
 
-    img.src = src;
+    load(); // defer
 
     return texture;
 };

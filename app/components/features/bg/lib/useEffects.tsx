@@ -1,82 +1,84 @@
-import { useRef } from "react";
-import { useWebGL } from "./useWebGL";
-import { Effect } from "./types";
+import { useEffect, useRef } from "react";
+import { Effect, EffectsWorkerInput, EffectsWorkerOutput } from "./types";
 import { vec2, Vec2, vec2eq } from "@alan404/vec2";
-import { useRequestAnimationFrame } from "./useRequestAnimationFrame";
-import { useUpdateInterval } from "./useUpdateInterval";
 import { useWindowEvent } from "@mantine/hooks";
+import EffectsWorker from './effects.worker.ts?worker';
+import { match } from "@alan404/enum";
 
-type EffectConstructor = new (gl: WebGL2RenderingContext) => Effect;
+// type EffectConstructor = new (gl: WebGL2RenderingContext) => Effect;
 
 export const useEffects = ({
-    effects,
+    // effects,
     onDimensionsChange,
     onInitialized,
 }: {
-    effects: [EffectConstructor][];
+    // effects: [string][];
     onDimensionsChange?: (dims: Vec2) => void;
     onInitialized?: () => void;
 }) => {
-    const store = useRef<Effect[]>([]);
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    const workerRef = useRef<Worker | null>(null);
 
-    const updateDimensions = (dim: Vec2) => {
-        for (let effect of store.current) {
-            if (!vec2eq(dim, effect.dimensions)) {
-                effect.onDimensionsChange(dim);
-            }
-        }
+    useEffect(() => {
+        if (!canvasRef.current) return;
 
-        onDimensionsChange?.(dim);
-    };
+        const canvas = canvasRef.current;
+        const offscreen = canvas.transferControlToOffscreen();
+        const worker = new EffectsWorker();
 
-    const { ref, gl } = useWebGL({
-        onInitialize: (gl) => {
-            store.current = effects.map(([ctor]) => (
-                new ctor(gl)
-            ));
+        workerRef.current = worker;
 
-            updateDimensions({
-                x: gl.canvas.width,
-                y: gl.canvas.height,
+        worker.postMessage({
+            type: "init",
+            data: {
+                canvas: offscreen,
+                dimensions: {
+                    x: canvas.clientWidth,
+                    y: canvas.clientHeight,
+                },
+            },
+        } as EffectsWorkerInput, [offscreen]);
+
+        worker.onmessage = (e: MessageEvent<EffectsWorkerOutput>) => {
+            const msg = e.data;
+            match(msg)({
+                initialized: () => {
+                    console.log("Effects worker initalized");
+                },
             });
+        };
 
-            onInitialized?.();
-        },
-        onDestroy: () => {
-            store.current = [];
-        },
-        onResize: (dim) => {
-            updateDimensions(dim);
-        },
-    });
-
-    useRequestAnimationFrame({
-        render: () => {
-            gl.current?.clearColor(0, 0, 0, 0);
-            gl.current?.clear(gl.current.COLOR_BUFFER_BIT);
-
-            for (let effect of store.current) {
-                effect.render();
-            }
-        },
-    });
-
-    useUpdateInterval({
-        fps: 30,
-        update: (dt) => {
-            for (let effect of store.current)
-                effect.update(1 * dt);
-        },
-    });
+        return () => {
+            worker.terminate();
+            workerRef.current = null;
+        };
+    }, []);
 
     useWindowEvent("mousemove", (e) => {
-        for (let effect of store.current)
-            effect.onMouseMove(vec2(e.clientX, e.clientY));
+        const pos = vec2(e.clientX, e.clientY);
+        workerRef.current?.postMessage({
+            type: "mousemove",
+            data: {
+                pos,
+            },
+        } as EffectsWorkerInput);
+    });
+
+    useWindowEvent("resize", () => {
+        if (!canvasRef.current) return;
+        const dimensions = vec2(
+            canvasRef.current.clientWidth,
+            canvasRef.current.clientHeight,
+        );
+        workerRef.current?.postMessage({
+            type: "dimensionsChange",
+            data: {
+                dimensions,
+            },
+        } as EffectsWorkerInput);
     });
 
     return {
-        ref,
-        gl,
-        store,
+        ref: canvasRef,
     };
 };

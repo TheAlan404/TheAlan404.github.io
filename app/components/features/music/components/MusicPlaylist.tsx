@@ -4,6 +4,7 @@ import { MusicPlaylistItem } from "./MusicPlaylistItem"
 import { Song, useMusicPlayer } from "../MusicPlayerContext"
 import { useDisclosure } from "@mantine/hooks"
 import { useMemo } from "react"
+import { useUIState } from "~/components/base/UIContext"
 
 export const MusicPlaylist = () => {
     const { currentSong, changeCurrentSong } = useMusicPlayer();

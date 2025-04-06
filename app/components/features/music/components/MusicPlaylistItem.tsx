@@ -39,6 +39,7 @@ export const MusicPlaylistItem = ({
                             src={`/assets/music/${song.cover}`}
                             w="100%"
                             h="100%"
+                            loading="lazy"
                             style={{ imageRendering: "auto" }}
                         />
                     </Box>

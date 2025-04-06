@@ -145,7 +145,7 @@ export class FarewellBackgroundEffect extends WebGLEffect<StarfieldProgramBindin
     globalFlash: number = 0;
     scale = 1;
 
-    deltaTimeMultiplier = 0.002;
+    deltaTimeMultiplier = 0.2;
     speedMultiplier = 1;
     speedMultiplierDecay = 1;
 
