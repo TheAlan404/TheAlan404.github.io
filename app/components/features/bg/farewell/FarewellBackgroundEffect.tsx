@@ -1,7 +1,7 @@
 import { WebGLEffect } from "../lib/types";
 import { compileShader, createGLTexture, createProgram } from "../lib/webglHelpers";
 import { vec2, Vec2, vec2add, vec2div, vec2mul, vec2normalize, vec2sub } from "@alan404/vec2";
-import { choose, lerp, randFloat, randInt } from "~/utils/math";
+import { choose, lerp, randFloat, randInt } from "../../../../utils/math";
 import { clamp } from "@mantine/hooks";
 
 const textureData = [
