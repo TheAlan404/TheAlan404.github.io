@@ -3,7 +3,6 @@ import { Notifications } from "@mantine/notifications";
 import { PropsWithChildren } from "react";
 import { I18nextProvider } from "react-i18next";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
-import i18next from "./i18n";
 import { Route } from "./+types/root";
 import css_mantine_core from "@mantine/core/styles.css?url";
 import css_mantine_notifications from "@mantine/notifications/styles.css?url";
@@ -12,6 +11,7 @@ import css_mantine_highlight from "@mantine/code-highlight/styles.css?url";
 import css_custom_styles from "./styles/style.css?url";
 import css_custom_mixins from "./styles/mixins.css?url";
 import { ModalsProvider } from "@mantine/modals";
+import { LocalizationProvider } from "./components/localization/LocalizationProvider";
 
 export const meta: Route.MetaFunction = () => [
     { title: "deniz.blue 🌸🎀" },
@@ -79,14 +79,14 @@ export const Layout = ({ children }: PropsWithChildren) => {
 export default function App() {
     return (
         <MantineProvider theme={theme} forceColorScheme="dark">
-            <I18nextProvider i18n={i18next} defaultNS={"translation"}>
+            <LocalizationProvider>
                 <Notifications position="top-right" classNames={{
                     notification: "frost bordered",
                 }} />
                 <ModalsProvider>
                     <Outlet />
                 </ModalsProvider>
-            </I18nextProvider>
+            </LocalizationProvider>
         </MantineProvider>
     )
 }

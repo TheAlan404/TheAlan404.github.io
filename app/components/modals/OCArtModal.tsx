@@ -1,5 +1,6 @@
 import { Arts } from "@/Arts";
 import { Anchor, Box, Flex, Grid, Group, Image, SimpleGrid, Stack, Text } from "@mantine/core";
+import { Localized } from "../localization/Localized";
 
 export const OCArtModal = () => {
     return (
@@ -14,14 +15,19 @@ export const OCArtModal = () => {
                             />
 
                             <Group justify="end" ta="end" gap={4}>
-                                <Text span inline c="dimmed">drawn by</Text>
-                                <Anchor
-                                    href={art.author.link}
-                                    target="_blank"
-                                    inline
-                                >
-                                    {art.author.name}
-                                </Anchor>
+                                <Localized
+                                    en="drawn by #AUTHOR#"
+                                    tr="çizer: #AUTHOR#"
+                                    AUTHOR={(
+                                        <Anchor
+                                            href={art.author.link}
+                                            target="_blank"
+                                            inline
+                                        >
+                                            {art.author.name}
+                                        </Anchor>
+                                    )}
+                                />
                             </Group>
                         </Stack>
                     </Box>

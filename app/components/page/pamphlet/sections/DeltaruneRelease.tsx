@@ -1,5 +1,6 @@
 import { Anchor, Box, Code, Divider, Group, Image, Stack, Text } from "@mantine/core";
 import { useCountdown } from "~/components/features/events/useCountdown";
+import { Localized } from "~/components/localization/Localized";
 
 export const DeltaruneRelease = () => {
     const RELEASE_DATE = new Date("2025-06-05T00:00:00-04:00");
@@ -54,7 +55,12 @@ export const DeltaruneRelease = () => {
                         {relativeText}
                     </Text>
                 </Group>
-                <Text fz="xs" c="dimmed">June 5, 2025</Text>
+                <Text fz="xs" c="dimmed">
+                    <Localized
+                        en="June 5, 2025"
+                        tr="5 Haziran, 2025"
+                    />
+                </Text>
             </Stack>
 
             <Box

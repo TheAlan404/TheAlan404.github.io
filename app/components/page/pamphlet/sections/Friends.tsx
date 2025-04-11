@@ -1,24 +1,36 @@
 import { Anchor, Box, Divider, Grid, Group, Image, SimpleGrid, Stack, Text, UnstyledButton } from "@mantine/core";
 import { IconArrowNarrowLeft, IconArrowNarrowRight } from "@tabler/icons-react";
+import { Localized } from "~/components/localization/Localized";
 
 export const Friends = () => {
     return (
         <Stack align="center" w="100%" px="sm">
             <Divider
-                label="Friends!"
+                label={(
+                    <Localized
+                        en="Friends!"
+                        tr="Arkadaşlarım!"
+                    />
+                )}
                 w="80%"
             />
 
-            <Stack>
+            <Stack w="100%" px="sm" gap="xs">
                 <Grid columns={3} gutter="xs">
                     <Grid.Col span={2}>
                         <Group h="100%" gap={4} align="center" justify="end" wrap="nowrap" ta="end">
                             <Stack gap={0} align="end">
                                 <Text inline span>
-                                    ✨ Hosting Provider
+                                    <Localized
+                                        en="✨ Hosting Provider"
+                                        tr="✨ Sunucu Sağlayıcım"
+                                    />
                                 </Text>
                                 <Text inline span c="dimmed" fz="xs">
-                                    tysm
+                                    <Localized
+                                        en="tysm"
+                                        tr="çok teşekkürler"
+                                    />
                                 </Text>
                             </Stack>
                             <IconArrowNarrowRight />
@@ -39,7 +51,7 @@ export const Friends = () => {
 
                 <SimpleGrid cols={3} ta="center" spacing="xs" verticalSpacing="xs">
                     <Anchor href="https://me.devrals.xyz/" className="friend">
-                        DevRalsei <Text component="sup" c="dimmed" fz="xs">1</Text>
+                        DevRalsei
                     </Anchor>
                     <Box className="friend" pos="relative">
                         <Anchor href="https://kuylar.dev/" w="100%" h="100%">
@@ -71,15 +83,16 @@ export const Friends = () => {
                         onClick={() => {
                             new Audio("/assets/audio/metalpipe.mp3").play();
                         }}
+                        fz="xs"
                     >
-                        🔧
+                        metal pipe sfx
                     </UnstyledButton>
                 </SimpleGrid>
 
-                <Text fz="sm" c="dimmed">
+                {/* <Text fz="sm" c="dimmed">
                     <Text inherit component="sup" fz="xs">1</Text>
                     <Text inherit span>: Check their website just before 11th of April!</Text>
-                </Text>
+                </Text> */}
             </Stack>
         </Stack>
     )

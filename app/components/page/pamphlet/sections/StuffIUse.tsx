@@ -5,6 +5,7 @@ import { IconBrandRust } from "@tabler/icons-react"
 import { IconBrandReact } from "@tabler/icons-react"
 import { IconBrandGithub } from "@tabler/icons-react"
 import { useTranslation } from "react-i18next"
+import { Localized } from "~/components/localization/Localized"
 
 export const StuffIUse = () => {
     const [t] = useTranslation();
@@ -12,7 +13,12 @@ export const StuffIUse = () => {
     return (
         <Stack align="center" w="100%" px="sm">
             <Divider
-                label="Stuff I use"
+                label={(
+                    <Localized
+                        en="Stuff I Use"
+                        tr="Kullandığım Şeyler"
+                    />
+                )}
                 w="80%"
             />
 

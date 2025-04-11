@@ -1,10 +1,11 @@
 import { Box, Divider, Group, SimpleGrid, Stack, Table, Text } from "@mantine/core";
+import { Localized } from "~/components/localization/Localized";
 
 export const ButtonsSection = () => {
     return (
         <Stack align="center" w="100%" px="sm">
             <Divider
-                label="Buttons!"
+                label={"88x31"}
                 w="80%"
             />
 
@@ -12,7 +13,12 @@ export const ButtonsSection = () => {
                 <Badges />
 
                 <Group justify="start" ta="start" c="dimmed" gap={4}>
-                    <Text fz="xs">I need more. Give. me. more. 88x31's!!</Text>
+                    <Text fz="xs">
+                        <Localized
+                            en="I need more. Give. me. more. 88x31's!!"
+                            tr="Daha. fazla. lazım. 88x31 verin!!"
+                        />
+                    </Text>
                 </Group>
             </Stack>
         </Stack>

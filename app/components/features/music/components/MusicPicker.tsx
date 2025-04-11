@@ -3,6 +3,7 @@ import { useUIState } from "~/components/base/UIContext";
 import { useHotkeys } from "@mantine/hooks";
 import { MusicControls } from "./MusicControls";
 import { MusicPlaylist } from "./MusicPlaylist";
+import { Localized } from "~/components/localization/Localized";
 
 export const MusicPickerOverlay = () => {
     const { musicPopout, disable, toggle } = useUIState();
@@ -49,7 +50,10 @@ export const MusicPicker = () => {
         <Stack gap="xs">
             <Group justify="space-between" pl="xs" pr={20} pt="xs">
                 <Text fz="xs" fw="bold" span>
-                    MUSIC
+                    <Localized
+                        en="MUSIC"
+                        tr="MÜZİK"
+                    />
                     {" "}
                     <Text span inline inherit c="yellow">WIP</Text>
                 </Text>

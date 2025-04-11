@@ -1,4 +1,5 @@
 import { Stack, Group, Avatar, Title, Text, Space, Box, Paper } from "@mantine/core";
+import { Localized } from "~/components/localization/Localized";
 import { Socials } from "~/components/page/pamphlet/Socials";
 
 export const PamphletHeader = () => {
@@ -33,13 +34,15 @@ export const PamphletHeader = () => {
                 />
             </Box>
 
-
             <Group wrap="nowrap" gap="xs" justify="start">
                 <Space w="5.5rem" />
                 <Stack gap={0} pt="xs">
-                    <CoolName />
+                    <MeTitle />
                     <Text c="dimmed" inline span>
-                        developer & cosplayer
+                        <Localized
+                            en="developer & cosplayer"
+                            tr="yazılımcı & cosplayer"
+                        />
                     </Text>
                 </Stack>
             </Group>
@@ -51,30 +54,36 @@ export const PamphletHeader = () => {
     )
 };
 
-export const CoolName = () => {
+export const MeTitle = () => {
     return (
         <Title order={3}>
             <Group gap={8} align="center">
-                <Text span inherit>
-                    hi, i'm
-                </Text>
-
-                <Group gap={0} align="end" className="rainbowText">
-                    {"Gökçe Deniz".split("").map((letter, i) => (
-                        <Text
-                            inherit
-                            span
-                            key={i}
-                            className="name-letter"
-                            style={{ "--i": i }}
-                            w={letter == " " ? "8px" : undefined}
-                        >
-                            {letter}
-                        </Text>
-                    ))}
-                </Group>
+                <Localized
+                    en="hi, i'm #NAME#"
+                    tr="#NAME#"
+                    NAME={<MeName />}
+                />
             </Group>
         </Title>
+    );
+};
+
+export const MeName = () => {
+    return (
+        <Group gap={0} align="end" className="rainbowText">
+            {"Gökçe Deniz".split("").map((letter, i) => (
+                <Text
+                    inherit
+                    span
+                    key={i}
+                    className="name-letter"
+                    style={{ "--i": i }}
+                    w={letter == " " ? "8px" : undefined}
+                >
+                    {letter}
+                </Text>
+            ))}
+        </Group>
     );
 };
 

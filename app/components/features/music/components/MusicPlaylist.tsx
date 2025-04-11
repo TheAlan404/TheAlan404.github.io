@@ -4,7 +4,7 @@ import { MusicPlaylistItem } from "./MusicPlaylistItem"
 import { Song, useMusicPlayer } from "../MusicPlayerContext"
 import { useDisclosure } from "@mantine/hooks"
 import { useMemo } from "react"
-import { useUIState } from "~/components/base/UIContext"
+import { Localized } from "~/components/localization/Localized"
 
 export const MusicPlaylist = () => {
     const { currentSong, changeCurrentSong } = useMusicPlayer();
@@ -88,7 +88,10 @@ export const MusicPlaylist = () => {
                     size="compact-xs"
                     fullWidth
                 >
-                    Close
+                    <Localized
+                        en="Close"
+                        tr="Küçült"
+                    />
                 </Button>
             </Collapse>
         </Stack>

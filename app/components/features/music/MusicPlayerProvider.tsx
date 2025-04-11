@@ -1,7 +1,8 @@
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { MusicPlayerContext, Song } from "./MusicPlayerContext";
 import { MUSIC_DATA } from "./data";
-import { NotificationData, notifications } from "@mantine/notifications";
+import { notifications } from "@mantine/notifications";
+import { Localized } from "~/components/localization/Localized";
 
 export const MusicPlayerProvider = ({
     children,
@@ -63,7 +64,12 @@ export const MusicPlayerProvider = ({
         if (currentSong) {
             notifications.show({
                 id: "music-nowplaying",
-                title: "Now Playing",
+                title: (
+                    <Localized
+                        en="Now Playing"
+                        tr="Şimdi Çalıyor"
+                    />
+                ),
                 message: currentSong.title,
             });
 
@@ -86,7 +92,12 @@ export const MusicPlayerProvider = ({
                 if(e instanceof DOMException && e.name == "NotAllowedError") {
                     notifications.show({
                         id: "music-error",
-                        message: "Can't play music, please click anywhere",
+                        message: (
+                            <Localized
+                                en="Can't play music, please click anywhere"
+                                tr="Müzik çalınamıyor, herhangi bir yere tıklayın"
+                            />
+                        ),
                         autoClose: false,
                         position: "top-center",
                         color: "yellow",
