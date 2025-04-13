@@ -56,12 +56,6 @@ importers:
       embla-carousel-react:
         specifier: 7.1.0
         version: 7.1.0(react@19.0.0)
-      i18next:
-        specifier: ^23.16.8
-        version: 23.16.8
-      i18next-browser-languagedetector:
-        specifier: ^8.0.2
-        version: 8.0.2
       isbot:
         specifier: ^5
         version: 5.1.17
@@ -1256,9 +1250,6 @@ packages:
   http-errors@2.0.0:
     resolution: {integrity: sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==}
     engines: {node: '>= 0.8'}
-
-  i18next-browser-languagedetector@8.0.2:
-    resolution: {integrity: sha512-shBvPmnIyZeD2VU5jVGIOWP7u9qNG3Lj7mpaiPFpbJ3LVfHZJvVzKR4v1Cb91wAOFpNw442N+LGPzHOHsten2g==}
 
   i18next@23.16.8:
     resolution: {integrity: sha512-06r/TitrM88Mg5FdUXAKL96dJMzgqLE5dv3ryBAra4KCwD9mJ4ndOTS95ZuymIGoE+2hzfdaMak2X11/es7ZWg==}
@@ -3549,10 +3540,6 @@ snapshots:
       setprototypeof: 1.2.0
       statuses: 2.0.1
       toidentifier: 1.0.1
-
-  i18next-browser-languagedetector@8.0.2:
-    dependencies:
-      '@babel/runtime': 7.26.0
 
   i18next@23.16.8:
     dependencies:

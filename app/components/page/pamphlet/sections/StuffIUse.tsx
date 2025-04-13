@@ -4,12 +4,9 @@ import { IconBrandTypescript } from "@tabler/icons-react"
 import { IconBrandRust } from "@tabler/icons-react"
 import { IconBrandReact } from "@tabler/icons-react"
 import { IconBrandGithub } from "@tabler/icons-react"
-import { useTranslation } from "react-i18next"
 import { Localized } from "~/components/localization/Localized"
 
 export const StuffIUse = () => {
-    const [t] = useTranslation();
-
     return (
         <Stack align="center" w="100%" px="sm">
             <Divider

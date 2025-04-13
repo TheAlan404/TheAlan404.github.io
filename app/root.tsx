@@ -1,7 +1,6 @@
 import { Center, createTheme, DEFAULT_THEME, Loader, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { PropsWithChildren } from "react";
-import { I18nextProvider } from "react-i18next";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import { Route } from "./+types/root";
 import css_mantine_core from "@mantine/core/styles.css?url";
