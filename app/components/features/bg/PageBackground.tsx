@@ -1,12 +1,7 @@
-import { FarewellBackgroundEffect } from "./farewell/FarewellBackgroundEffect";
 import { useEffects } from "./lib/useEffects";
 
 export const PageBackground = () => {
-    const { ref, store } = useEffects({
-        effects: [
-            [FarewellBackgroundEffect],
-        ],
-    });
+    const { ref } = useEffects({});
 
     return (
         <div

@@ -10,6 +10,7 @@ import { MoreMe } from "./sections/MoreMe";
 import { DeltaruneRelease } from "./sections/DeltaruneRelease";
 import { Experiments } from "./sections/Experiments";
 import { Motd } from "./sections/Motd";
+import { ArtPiece } from "./sections/Artpiece";
 
 export const PamphletContent = () => {
     return (
@@ -17,6 +18,7 @@ export const PamphletContent = () => {
             <Motd />
             <StuffIUse />
             <AboutMe />
+            <ArtPiece />
             <FeaturedProjects />
             <MoreMe />
             <DeltaruneRelease />

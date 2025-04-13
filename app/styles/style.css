@@ -59,7 +59,7 @@ body[data-starry=true] .frost {
 
 .pageForeground {
     width: 100vw;
-    height: 100dvh;
+    height: 100vh;
     position: fixed;
     z-index: 999;
     left: 0;
@@ -69,7 +69,7 @@ body[data-starry=true] .frost {
 
 .pageBackground {
     width: 100vw;
-    height: 100dvh;
+    height: 100vh;
     position: fixed;
     z-index: -999;
     left: 0;
