@@ -7,6 +7,14 @@ const KiwiAsli = {
 
 export const Arts: Art[] = [
     {
+        src: "/assets/img/me/dennis_meka2.png",
+        author: {
+            name: "@mekashi_moon",
+            link: "https://www.instagram.com/mekashi_moon/",
+        },
+        aspectRatio: 1280/1280,
+    },
+    {
         src: "/assets/img/me/dennis_yagiz_rust.jpeg",
         author: {
             name: "@rustwww",
