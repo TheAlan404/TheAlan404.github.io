@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from "react";
+import { Fragment, ReactNode, useContext } from "react";
 import { LocalizationContext, SupportedLanguage } from "./LocalizationProvider";
 import { Text } from "@mantine/core";
 
@@ -15,7 +15,7 @@ export type LocalizedProps = LocalizedStringsMap & ReactNodesMap & {
 
 export const LocalizedString = (props: LocalizedStringsMap) => {
     const { language } = useContext(LocalizationContext);
-    
+
     return props[language];
 };
 
@@ -25,13 +25,18 @@ export const Localized = (props: LocalizedProps) => {
     const string = props[language];
     const list = string.split(/(#\w+#)/);
 
-    const elements = list.map((value) => {
-        if(value[0] == "#" && value[value.length-1] == "#") {
-            const key = value.substring(1, value.length-1);
-            return props[key];
+    const elements = list.map((value, i) => {
+        if (value[0] == "#" && value[value.length - 1] == "#") {
+            const key = value.substring(1, value.length - 1);
+            return (
+                <Fragment
+                    key={i}
+                    children={props[key]}
+                />
+            );
         } else {
             return !props.asText ? value : (
-                <Text inline={props.inline} inherit span>
+                <Text inline={props.inline} inherit span key={i}>
                     {value}
                 </Text>
             );
@@ -39,8 +44,8 @@ export const Localized = (props: LocalizedProps) => {
     });
 
     return (
-        <>
+        <Fragment>
             {elements}
-        </>
+        </Fragment>
     );
 };

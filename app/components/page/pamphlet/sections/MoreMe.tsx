@@ -1,10 +1,11 @@
 import { Accordion, Anchor, Box, Button, Collapse, Divider, Group, Image, ScrollArea, SimpleGrid, Stack, Text } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 import { modals } from "@mantine/modals"
-import { IconBrush, IconChevronCompactDown, IconChevronDown, IconChevronRight } from "@tabler/icons-react"
+import { IconBrush, IconChevronCompactDown, IconChevronDown, IconChevronRight, IconComet, IconCrown } from "@tabler/icons-react"
 import { ReactNode } from "react"
 import { Localized } from "~/components/localization/Localized"
 import { OCArtModal } from "~/components/modals/OCArtModal"
+import { TechnobladeShrine } from "~/components/modals/TechnobladeShrine"
 
 export const MoreMe = () => {
     return (
@@ -19,7 +20,7 @@ export const MoreMe = () => {
                 )}
             />
 
-            <SimpleGrid cols={2} w="100%" px="xl">
+            <SimpleGrid cols={2} w="100%" px="sm" spacing={4} verticalSpacing={4}>
                 <Button
                     variant="light"
                     onClick={() => modals.open({
@@ -46,11 +47,29 @@ export const MoreMe = () => {
                         children: (
                             <Image
                                 src="/assets/img/other/denizcore.png"
+                                style={{ imageRendering: "auto" }}
                             />
                         ),
                     })}
+                    leftSection={<IconComet />}
                 >
-                    denizcore
+                    denizcore.png
+                </Button>
+
+                <Button
+                    variant="light"
+                    onClick={() => modals.open({
+                        title: "Technoblade Shrine",
+                        size: "xl",
+                        removeScrollProps: { removeScrollBar: false },
+                        scrollAreaComponent: ScrollArea.Autosize,
+                        children: (
+                            <TechnobladeShrine />
+                        ),
+                    })}
+                    leftSection={<IconCrown />}
+                >
+                    Technoblade
                 </Button>
             </SimpleGrid>
 

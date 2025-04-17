@@ -346,3 +346,16 @@ html {
         transform: translateY(0%);
     }
 }
+
+.emoji {
+    display: inline-block;
+    width: auto;
+    height: 1em;
+    vertical-align: -0.125em;
+    image-rendering: auto;
+}
+
+.noLabelMargin .mantine-Divider-label::before, .noLabelMargin .mantine-Divider-label::after {
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+} 

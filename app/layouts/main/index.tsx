@@ -119,6 +119,7 @@ export const LanguagePickerButton = () => {
                                             changeLanguage(lang);
                                             close();
                                         }}
+                                        key={lang}
                                     >
                                         {lang}
                                     </ActionIcon>

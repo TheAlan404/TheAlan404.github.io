@@ -5,20 +5,20 @@ import { Localized } from "../localization/Localized";
 export const OCArtModal = () => {
     return (
         <Stack w="100%">
-            <Box style={{ columnCount: 2, columnGap: "var(--mantine-spacing-md)" }}>
+            <Box style={{ columnCount: 2, columnGap: 0 }}>
                 {Arts.map((art, i) => (
                     <Box key={i} display="inline-block" style={{ lineHeight: 1 }}>
-                        <Stack mb="md" p="xs" gap="xs" bg="dark">
+                        <Stack mb={2} p={2} gap={2} align="center" bg="dark">
                             <Image
                                 src={art.src}
                                 fit="contain"
                             />
 
-                            <Group justify="end" ta="end" gap={4}>
-                                <Localized
+                            <Group justify="center" ta="center" gap={4}>
+                                {/* <Localized
                                     en="drawn by #AUTHOR#"
                                     tr="çizer: #AUTHOR#"
-                                    AUTHOR={(
+                                    AUTHOR={( */}
                                         <Anchor
                                             href={art.author.link}
                                             target="_blank"
@@ -26,8 +26,8 @@ export const OCArtModal = () => {
                                         >
                                             {art.author.name}
                                         </Anchor>
-                                    )}
-                                />
+                                    {/* )}
+                                /> */}
                             </Group>
                         </Stack>
                     </Box>
