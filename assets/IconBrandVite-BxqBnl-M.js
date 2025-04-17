@@ -8,7 +8,7 @@ import{j as z}from"./jsx-runtime-BjG_zV1W.js";import{l as dt,r as d,t as fn}from
  *
  * This source code is licensed under the MIT license.
  * See the LICENSE file in the root directory of this source tree.
- */const Y=(e,t,n,o)=>{const r=d.forwardRef(({color:s="currentColor",size:i=24,stroke:c=2,title:u,className:l,children:p,...f},h)=>d.createElement("svg",{ref:h,...rr[e],width:i,height:i,className:["tabler-icon",`tabler-icon-${t}`,l].join(" "),strokeWidth:c,stroke:s,...f},[u&&d.createElement("title",{key:"svg-title"},u),...o.map(([a,g])=>d.createElement(a,g)),...Array.isArray(p)?p:[p]]));return r.displayName=`${n}`,r};/**
+ */const Y=(e,t,n,o)=>{const r=d.forwardRef(({color:s="currentColor",size:i=24,stroke:c=2,title:u,className:l,children:p,...f},h)=>d.createElement("svg",{ref:h,...rr[e],width:i,height:i,className:["tabler-icon",`tabler-icon-${t}`,l].join(" "),...e==="filled"?{fill:s}:{strokeWidth:c,stroke:s},...f},[u&&d.createElement("title",{key:"svg-title"},u),...o.map(([a,g])=>d.createElement(a,g)),...Array.isArray(p)?p:[p]]));return r.displayName=`${n}`,r};/**
  * @license @tabler/icons-react v3.31.0 - MIT
  *
  * This source code is licensed under the MIT license.
