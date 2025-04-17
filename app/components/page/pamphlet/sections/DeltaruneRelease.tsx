@@ -1,10 +1,11 @@
-import { Anchor, Box, Code, Divider, Group, Image, Stack, Text } from "@mantine/core";
+import { Anchor, Box, Code, Divider, Group, Image, Progress, Stack, Text } from "@mantine/core";
 import { useCountdown } from "~/components/features/events/useCountdown";
 import { Localized } from "~/components/localization/Localized";
 
 export const DeltaruneRelease = () => {
+    const ANNOUNCEMENT_DATE = new Date("2025-04-02T00:00:00-03:00");
     const RELEASE_DATE = new Date("2025-06-05T00:00:00-04:00");
-    const MAX_RETENTION = new Date("2025-06-10T00:00:00-04:00")
+    const MAX_RETENTION = new Date("2025-06-10T00:00:00-04:00");
 
     const {
         countdownReached,
@@ -62,6 +63,11 @@ export const DeltaruneRelease = () => {
                     />
                 </Text>
             </Stack>
+
+            <Progress
+                value={100 - (Date.now() - ANNOUNCEMENT_DATE.getTime()) / (RELEASE_DATE.getTime() - ANNOUNCEMENT_DATE.getTime()) * 100}
+                w="80%"
+            />
 
             <Box
                 w="100%"

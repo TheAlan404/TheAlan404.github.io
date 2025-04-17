@@ -1,6 +1,6 @@
-import { Anchor, Divider, Group, Image, Stack, Text, UnstyledButton } from "@mantine/core";
+import { Anchor, Box, Divider, Group, Image, Stack, Text, UnstyledButton } from "@mantine/core";
 import { StuffIUse } from "./sections/StuffIUse";
-import { IconHeart } from "@tabler/icons-react";
+import { IconHeart, IconHeartFilled } from "@tabler/icons-react";
 import { ButtonsSection } from "~/components/page/pamphlet/sections/Badges";
 import { FeaturedProjects } from "./sections/FeaturedProjects";
 import { Specs } from "./sections/Specs";
@@ -42,15 +42,20 @@ export const PamphletContent = () => {
                 px="sm"
             />
 
-            <Text c="dimmed">
+            <Text c="dimmed" fz="xs">
                 Hak, Hukuk, Adalet!
             </Text>
 
-            <Group justify="center" w="80%" wrap="nowrap" py="sm">
-                <Group gap={4} c="blue">
-                    <Text fw="bold">I love Yağız so much</Text>
-                    <IconHeart />
-                </Group>
+            <Group justify="center" gap={4} w="80%" wrap="nowrap" py="sm">
+                <Box c="blue">
+                    <IconHeartFilled size={18} />
+                </Box>
+                <Box c="violet">
+                    <IconHeartFilled size={18} />
+                </Box>
+                <Box c="black">
+                    <IconHeartFilled size={18} />
+                </Box>
             </Group>
         </Stack>
     );
