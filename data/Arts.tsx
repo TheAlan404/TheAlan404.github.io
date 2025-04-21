@@ -43,19 +43,19 @@ export const Arts: Art[] = [
         },
         aspectRatio: 768/1024,
     },
-    {
-        src: "/assets/img/me/dennis_sophia_ka.png",
-        author: KiwiAsli,
-        aspectRatio: 1324/1300,
-    },
-    {
-        src: "/assets/img/me/warren_polycule.png",
-        author: {
-            name: "@warreneatsrats",
-            link: "https://www.instagram.com/warreneatsrats/",
-        },
-        aspectRatio: 3000/1881,
-    },
+    // {
+    //     src: "/assets/img/me/dennis_sophia_ka.png",
+    //     author: KiwiAsli,
+    //     aspectRatio: 1324/1300,
+    // },
+    // {
+    //     src: "/assets/img/me/warren_polycule.png",
+    //     author: {
+    //         name: "@warreneatsrats",
+    //         link: "https://www.instagram.com/warreneatsrats/",
+    //     },
+    //     aspectRatio: 3000/1881,
+    // },
     {
         src: "/assets/img/me/dennis_yk.png",
         author: {
