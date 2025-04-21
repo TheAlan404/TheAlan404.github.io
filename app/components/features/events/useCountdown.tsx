@@ -1,5 +1,5 @@
+import { useLanguage } from "@alan404/react-localization";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
-import { LocalizationContext } from "~/components/localization/LocalizationProvider";
 
 export const relativeString = (
     d: Date,
@@ -34,7 +34,7 @@ export const useCountdown = ({
     update?: () => void;
     locale?: string;
 }) => {
-    const { language } = useContext(LocalizationContext);
+    const { language } = useLanguage();
     const [timerText, setTimer] = useState("--:--:--:--");
     const [relativeText, setRelative] = useState("");
     const [countdownReached, setCountdownReached] = useState(new Date() > countdownTime);

@@ -11,6 +11,9 @@ importers:
       '@alan404/enum':
         specifier: ^0.2.3
         version: 0.2.3
+      '@alan404/react-localization':
+        specifier: ^0.1.3
+        version: 0.1.3(react@19.0.0)
       '@alan404/vec2':
         specifier: ^0.0.5
         version: 0.0.5
@@ -116,6 +119,11 @@ packages:
 
   '@alan404/enum@0.2.3':
     resolution: {integrity: sha512-vLb0wVUaWqvGLoIPQauRMoylZ1psGCfv9GFNii5cJ6VyIFb0wgUp0Viw5ewpUz054YYj30FQc5NdNlTGw65PSQ==}
+
+  '@alan404/react-localization@0.1.3':
+    resolution: {integrity: sha512-HYtn9gt977GN6ajl29vBqEDQCJwqMFGQTGQ1g/8viRNxAtxlqPHLxzbn+sNT8M/JfBkpFlvBZlvHQY+iz+MIeA==}
+    peerDependencies:
+      react: '>=17.0.0'
 
   '@alan404/vec2@0.0.5':
     resolution: {integrity: sha512-0wXXU/5X0oIgtlSmmnbJH+nr4UX8IRid30wd2B033nfn+Z36KFxU49IvtUVm64jd8zrC3VM0ouOBgDzxjEWmTw==}
@@ -2296,6 +2304,10 @@ packages:
 snapshots:
 
   '@alan404/enum@0.2.3': {}
+
+  '@alan404/react-localization@0.1.3(react@19.0.0)':
+    dependencies:
+      react: 19.0.0
 
   '@alan404/vec2@0.0.5': {}
 

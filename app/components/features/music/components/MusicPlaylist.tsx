@@ -4,7 +4,7 @@ import { MusicPlaylistItem } from "./MusicPlaylistItem"
 import { Song, useMusicPlayer } from "../MusicPlayerContext"
 import { useDisclosure } from "@mantine/hooks"
 import { useMemo } from "react"
-import { Localized } from "~/components/localization/Localized"
+import { Localized } from "@alan404/react-localization"
 
 export const MusicPlaylist = () => {
     const { currentSong, changeCurrentSong } = useMusicPlayer();

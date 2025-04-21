@@ -3,7 +3,7 @@ import { useDisclosure } from "@mantine/hooks"
 import { modals } from "@mantine/modals"
 import { IconBrush, IconChevronCompactDown, IconChevronDown, IconChevronRight, IconComet, IconCrown } from "@tabler/icons-react"
 import { ReactNode } from "react"
-import { Localized } from "~/components/localization/Localized"
+import { Localized } from "@alan404/react-localization"
 import { OCArtModal } from "~/components/modals/OCArtModal"
 import { TechnobladeShrine } from "~/components/modals/TechnobladeShrine"
 

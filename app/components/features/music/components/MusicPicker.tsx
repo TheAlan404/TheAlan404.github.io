@@ -3,7 +3,7 @@ import { useUIState } from "~/components/base/UIContext";
 import { useHotkeys } from "@mantine/hooks";
 import { MusicControls } from "./MusicControls";
 import { MusicPlaylist } from "./MusicPlaylist";
-import { Localized } from "~/components/localization/Localized";
+import { Localized } from "@alan404/react-localization";
 
 export const MusicPickerOverlay = () => {
     const { musicPopout, disable, toggle } = useUIState();

@@ -6,8 +6,7 @@ import { useUIState } from "~/components/base/UIContext";
 import { MusicSeekbarOverlay } from "~/components/features/music/components/MusicDebugSeekbar";
 import { MusicPickerOverlay } from "~/components/features/music/components/MusicPicker";
 import { useAudioState } from "~/components/features/music/hooks/useAudioState";
-import { LocalizationContext, SupportedLanguages } from "~/components/localization/LocalizationProvider";
-import { Localized } from "~/components/localization/Localized";
+import { Localized, useLanguage } from "@alan404/react-localization";
 import { Pamphlet } from "~/components/page/pamphlet/Pamphlet";
 
 export default function Layout() {
@@ -85,7 +84,7 @@ export const PageControlsOverlay = () => {
 
 export const LanguagePickerButton = () => {
     const [opened, { toggle, close }] = useDisclosure();
-    const { language, changeLanguage } = useContext(LocalizationContext);
+    const { language, setLanguage, supportedLanguages } = useLanguage();
 
     return (
         <Stack align="end">
@@ -110,13 +109,13 @@ export const LanguagePickerButton = () => {
                     >
                         {(styles) => (
                             <Group gap={4} style={styles}>
-                                {SupportedLanguages.map((lang) => (
+                                {supportedLanguages.map((lang) => (
                                     <ActionIcon
                                         variant="light"
                                         color={language == lang ? "green" : "gray"}
                                         size="lg"
                                         onClick={() => {
-                                            changeLanguage(lang);
+                                            setLanguage(lang);
                                             close();
                                         }}
                                         key={lang}

@@ -4,7 +4,7 @@ import { IconBrandTypescript } from "@tabler/icons-react"
 import { IconBrandRust } from "@tabler/icons-react"
 import { IconBrandReact } from "@tabler/icons-react"
 import { IconBrandGithub } from "@tabler/icons-react"
-import { Localized } from "~/components/localization/Localized"
+import { Localized } from "@alan404/react-localization"
 
 export const StuffIUse = () => {
     return (

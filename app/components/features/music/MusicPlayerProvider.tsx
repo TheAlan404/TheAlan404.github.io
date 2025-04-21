@@ -2,7 +2,7 @@ import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { MusicPlayerContext, Song } from "./MusicPlayerContext";
 import { MUSIC_DATA } from "./data";
 import { notifications } from "@mantine/notifications";
-import { Localized } from "~/components/localization/Localized";
+import { Localized } from "@alan404/react-localization";
 
 export const MusicPlayerProvider = ({
     children,

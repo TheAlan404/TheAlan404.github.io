@@ -1,11 +1,9 @@
+import { useLanguage, Localized } from "@alan404/react-localization";
 import { Anchor, Divider, Group, Stack, Text } from "@mantine/core";
 import { IconAffiliate, IconAlertCircle, IconCalendar, IconTerminal2 } from "@tabler/icons-react";
-import { useContext } from "react";
-import { LocalizationContext } from "~/components/localization/LocalizationProvider";
-import { Localized, LocalizedString } from "~/components/localization/Localized";
 
 export const FeaturedProjects = () => {
-    const { language } = useContext(LocalizationContext);
+    const { language } = useLanguage();
 
     return (
         <Stack align="center" w="100%" px="sm">

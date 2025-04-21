@@ -1,6 +1,6 @@
 import { Anchor, Box, Divider, Grid, Group, Image, SimpleGrid, Stack, Text, UnstyledButton } from "@mantine/core";
 import { IconArrowNarrowLeft, IconArrowNarrowRight } from "@tabler/icons-react";
-import { Localized } from "~/components/localization/Localized";
+import { Localized } from "@alan404/react-localization";
 
 export const Friends = () => {
     return (

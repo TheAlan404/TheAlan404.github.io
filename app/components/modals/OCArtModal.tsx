@@ -1,6 +1,6 @@
 import { Arts } from "@/Arts";
 import { Anchor, Box, Flex, Grid, Group, Image, SimpleGrid, Stack, Text } from "@mantine/core";
-import { Localized } from "../localization/Localized";
+import { Localized } from "@alan404/react-localization";
 
 export const OCArtModal = () => {
     return (

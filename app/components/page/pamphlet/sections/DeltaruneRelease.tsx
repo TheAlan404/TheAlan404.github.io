@@ -1,6 +1,6 @@
 import { Anchor, Box, Code, Divider, Group, Image, Progress, Stack, Text } from "@mantine/core";
 import { useCountdown } from "~/components/features/events/useCountdown";
-import { Localized } from "~/components/localization/Localized";
+import { Localized } from "@alan404/react-localization";
 
 export const DeltaruneRelease = () => {
     const ANNOUNCEMENT_DATE = new Date("2025-04-02T00:00:00-03:00");

@@ -1,7 +1,7 @@
 import { Divider, Stack, SimpleGrid, Anchor, Text, Group, Image } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import { TRFlagSvg } from "../TRFlagSvg";
-import { Localized } from "~/components/localization/Localized";
+import { Localized } from "@alan404/react-localization";
 
 export const AboutMe = () => {
     return (

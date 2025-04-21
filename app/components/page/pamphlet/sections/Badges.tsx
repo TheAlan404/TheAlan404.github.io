@@ -1,5 +1,5 @@
 import { Box, Divider, Group, SimpleGrid, Stack, Table, Text } from "@mantine/core";
-import { Localized } from "~/components/localization/Localized";
+import { Localized } from "@alan404/react-localization";
 
 export const ButtonsSection = () => {
     return (
