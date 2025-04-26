@@ -29,6 +29,7 @@ export const Badges = () => {
     return (
         <SimpleGrid cols={3} spacing={4} className="badges-container">
             <Badge src="https://split.pet/88x31/split.png" />
+            <Badge src="https://wamwoowam.co.uk/88x31.png" />
             <Badge src="https://dimden.dev/services/images/88x31.gif" />
             <Badge src="https://vea.st/button.png" />
             <Badge src="https://such.blue/res/button.png" />
