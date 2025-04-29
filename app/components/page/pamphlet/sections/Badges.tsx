@@ -28,13 +28,17 @@ export const ButtonsSection = () => {
 export const Badges = () => {
     return (
         <SimpleGrid cols={3} spacing={4} className="badges-container">
-            <Badge src="https://split.pet/88x31/split.png" />
+            {/* Me */}
+            <Badge src="/assets/88x31v0.png" href={null} />
+
+            {/* People I know */}
             <Badge src="https://wamwoowam.co.uk/88x31.png" />
-            <Badge src="https://dimden.dev/services/images/88x31.gif" />
+            <Badge src="https://uwx.github.io/uwx.png" />
+            <Badge src="https://oat.zone/badges/oatzone.gif" />
             <Badge src="https://vea.st/button.png" />
             <Badge src="https://such.blue/res/button.png" />
-            <Badge src="https://maia.crimew.gay/badges/maia.crimew.gay.png" />
-            <Badge src="https://oat.zone/badges/oatzone.gif" />
+
+            {/* Fun */}
             <Badge src="/assets/img/88x31/kris-where-tf-are-we.png" href={null} />
             <Badge src="https://badge.les.bi/88x31/pan/trans/75-degree/outset.svg" />
             <iframe
@@ -45,15 +49,22 @@ export const Badges = () => {
                 height="31"
             />
             <Badge src="/assets/img/88x31/tidalwave.gif" href={null} />
+            <Badge src="/assets/img/88x31/bad-apple-optimized.gif" href={null} />
+            <Badge src="/assets/img/88x31/tested-on-firefox.gif" href={null} />
             <Badge src="https://s.mew.gay/88x31/crouton.gif" href="https://crouton.net" />
+
+            {/* Inspired Sites */}
+            <Badge src="https://split.pet/88x31/split.png" />
+            <Badge src="https://dimden.dev/services/images/88x31.gif" />
+
+            {/* Other Sites */}
+            <Badge src="https://aspyn.gay/88x31.gif" />
+            <Badge src="https://maia.crimew.gay/badges/maia.crimew.gay.png" />
             <Badge src="https://ruby.gay/88x31/gif.gif" />
             <Badge src="https://badges.easrng.net/easrng.gif" href="https://easrng.net" />
             <Badge src="https://lily.pet/assets/badges/lily_pet.gif" />
             <Badge src="https://zptr.cc/88x31/webring/zeroptr.png" />
-            <Badge src="https://uwx.github.io/uwx.png" />
-            <Badge src="/assets/img/88x31/bad-apple-optimized.gif" href={null} />
-            <Badge src="/assets/img/88x31/tested-on-firefox.gif" href={null} />
-            <Badge src="https://aspyn.gay/88x31.gif" />
+
             {/* <iframe
                 src="/badge"
                 style={{ border: "unset" }}
