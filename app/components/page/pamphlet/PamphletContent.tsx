@@ -11,15 +11,17 @@ import { DeltaruneRelease } from "./sections/DeltaruneRelease";
 import { Experiments } from "./sections/Experiments";
 import { Motd } from "./sections/Motd";
 import { ArtPiece } from "./sections/Artpiece";
+import { Socials } from "./sections/Socials";
 
 export const PamphletContent = () => {
     return (
         <Stack align="center">
+            <Socials />
             <Motd />
-            <StuffIUse />
             <AboutMe />
             <ArtPiece />
             <FeaturedProjects />
+            <StuffIUse />
             <MoreMe />
             <DeltaruneRelease />
             <ButtonsSection />

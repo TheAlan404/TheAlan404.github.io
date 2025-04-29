@@ -8,9 +8,11 @@ export const ArtPiece = () => {
         <Stack align="center" py="sm">
             <Stack pos="relative" w="20rem" h="5rem" style={{ pointerEvents: "none", userSelect: "none" }}>
                 <Stack pos="absolute" align="center" justify="center" w="100%" h="100%">
-                    <Group gap={2}>
-                        <Twemoji emoji="🐈" />
-                        <Divider w="2rem" label="♡" className="noLabelMargin" />
+                    <Group gap={4}>
+                        <div style={{ transform: "scaleX(-1)" }}>
+                            <Twemoji emoji="🐈" />
+                        </div>
+                        <Divider color="white" w="2rem" label="♡" className="noLabelMargin" />
                         <Space w="9rem" />
                         <Group gap={2} style={{ opacity: 0.05 }}>
                             <Divider w="2rem" label="🌩" className="noLabelMargin" />

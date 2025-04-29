@@ -1,6 +1,6 @@
 import { useLanguage, Localized } from "@alan404/react-localization";
 import { Anchor, Divider, Group, Stack, Text } from "@mantine/core";
-import { IconAffiliate, IconAlertCircle, IconCalendar, IconTerminal2 } from "@tabler/icons-react";
+import { IconAffiliate, IconAlertCircle, IconBrandReact, IconCalendar, IconTerminal2 } from "@tabler/icons-react";
 
 export const FeaturedProjects = () => {
     const { language } = useLanguage();
@@ -158,7 +158,7 @@ export const FeaturedProjects = () => {
                     <Text fz="xs" c="dimmed" inline>
                         <Localized
                             en="Yes, it's inspired from #POLYCULES#"
-                            tr="Evet, #POLYCULES#'den esinlendim"
+                            tr="#POLYCULES#'den esinlendim"
                             POLYCULES={(
                                 <Anchor
                                     href="https://polycul.es"
@@ -170,6 +170,33 @@ export const FeaturedProjects = () => {
                                     polycul.es
                                 </Anchor>
                             )}
+                        />
+                    </Text>
+                </Stack>
+            </Group>
+
+            <Group wrap="nowrap" align="start" px="lg" gap={4}>
+                <IconBrandReact />
+                <Stack w="100%" gap={0} flex="1">
+                    <Text fz="sm">
+                        <Localized
+                            en="Making Discord bots? Do you like React? You might find #LINK# interesting."
+                            tr="Discord botları kodluyorsan ve React seviyorsan #LINK#'i ilginç bulabilirsin."
+                            LINK={(
+                                <Anchor
+                                    href="https://github.com/deniz-blue/discordjsx"
+                                    target="_blank"
+                                    inherit
+                                >
+                                    discord-jsx-renderer
+                                </Anchor>
+                            )}
+                        />
+                    </Text>
+                    <Text fz="xs" c="dimmed" inline>
+                        <Localized
+                            en="this is horrifying"
+                            tr="korkunç"
                         />
                     </Text>
                 </Stack>

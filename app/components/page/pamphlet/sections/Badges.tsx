@@ -35,7 +35,7 @@ export const Badges = () => {
             <Badge src="https://such.blue/res/button.png" />
             <Badge src="https://maia.crimew.gay/badges/maia.crimew.gay.png" />
             <Badge src="https://oat.zone/badges/oatzone.gif" />
-            <Badge src="https://oat.zone/badges/krisbtn.png" href={null} />
+            <Badge src="/assets/img/88x31/kris-where-tf-are-we.png" href={null} />
             <Badge src="https://badge.les.bi/88x31/pan/trans/75-degree/outset.svg" />
             <iframe
                 src="https://incr.easrng.net/badge?key=deniz.blue"
@@ -44,13 +44,16 @@ export const Badges = () => {
                 width="88"
                 height="31"
             />
-            <Badge src="https://oat.zone/badges/tidalwave.gif" href={null} />
+            <Badge src="/assets/img/88x31/tidalwave.gif" href={null} />
             <Badge src="https://s.mew.gay/88x31/crouton.gif" href="https://crouton.net" />
             <Badge src="https://ruby.gay/88x31/gif.gif" />
             <Badge src="https://badges.easrng.net/easrng.gif" href="https://easrng.net" />
             <Badge src="https://lily.pet/assets/badges/lily_pet.gif" />
             <Badge src="https://zptr.cc/88x31/webring/zeroptr.png" />
-            <Badge src="https://palaiologos.rocks/static/8831/-1.gif" href={null} />
+            <Badge src="https://uwx.github.io/uwx.png" />
+            <Badge src="/assets/img/88x31/bad-apple-optimized.gif" href={null} />
+            <Badge src="/assets/img/88x31/tested-on-firefox.gif" href={null} />
+            <Badge src="https://aspyn.gay/88x31.gif" />
             {/* <iframe
                 src="/badge"
                 style={{ border: "unset" }}
@@ -71,7 +74,7 @@ export const Badge = ({
     title?: string;
     href?: string | null;
 }) => {
-    const { hostname, origin } = new URL(src);
+    const { hostname, origin } = src.startsWith("http") ? new URL(src) : { hostname: "", origin: "" };
 
     let img = (
         <img

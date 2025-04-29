@@ -1,4 +1,5 @@
-import { ActionIcon, Box, Group } from "@mantine/core";
+import { Localized } from "@alan404/react-localization";
+import { ActionIcon, Box, Divider, Group, Stack } from "@mantine/core";
 import { IconBrandDiscord, IconBrandGithub, IconBrandMinecraft, IconBrandReddit, IconBrandSteam, IconBrandTelegram, IconBrandX, IconMail, TablerIcon } from "@tabler/icons-react";
 import { ComponentType } from "react";
 
@@ -44,20 +45,22 @@ export const Socials = () => {
     ];
 
     return (
-        <Group gap={4}>
-            {socials.map((social, i) => (
-                <ActionIcon
-                    key={i}
-                    component="a"
-                    href={social.url}
-                    target="_blank"
-                    color="gray"
-                    variant="subtle"
-                >
-                    <social.icon />
-                </ActionIcon>
-            ))}
-        </Group>
+        <Stack align="center" w="100%" px="sm">
+            <Group gap={4}>
+                {socials.map((social, i) => (
+                    <ActionIcon
+                        key={i}
+                        component="a"
+                        href={social.url}
+                        target="_blank"
+                        color="gray"
+                        variant="subtle"
+                    >
+                        <social.icon />
+                    </ActionIcon>
+                ))}
+            </Group>
+        </Stack>
     );
 };
 

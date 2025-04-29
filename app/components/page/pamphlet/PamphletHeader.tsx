@@ -1,6 +1,6 @@
 import { Stack, Group, Avatar, Title, Text, Space, Box, Paper } from "@mantine/core";
 import { Localized } from "@alan404/react-localization";
-import { Socials } from "~/components/page/pamphlet/Socials";
+import { Socials } from "~/components/page/pamphlet/sections/Socials";
 
 export const PamphletHeader = () => {
     return (
@@ -36,7 +36,7 @@ export const PamphletHeader = () => {
 
             <Group wrap="nowrap" gap="xs" justify="start">
                 <Space w="5.5rem" />
-                <Stack gap={0} pt="xs">
+                <Stack gap={0} pt={8}>
                     <MeTitle />
                     <Text c="dimmed" inline span>
                         <Localized
@@ -46,10 +46,6 @@ export const PamphletHeader = () => {
                     </Text>
                 </Stack>
             </Group>
-
-            <Stack align="center">
-                <Socials />
-            </Stack>
         </Stack>
     )
 };
@@ -57,10 +53,10 @@ export const PamphletHeader = () => {
 export const MeTitle = () => {
     return (
         <Title order={3}>
-            <Group gap={8} align="center">
+            <Group gap={0} align="center">
                 <Localized
                     en="hi, i'm #NAME#"
-                    tr="#NAME#"
+                    tr="#NAME#'in sitesi"
                     NAME={<MeName />}
                 />
             </Group>
@@ -71,14 +67,22 @@ export const MeTitle = () => {
 export const MeName = () => {
     return (
         <Group gap={0} align="end" className="rainbowText">
+            <Localized
+                tr=""
+                en="#GAP#"
+                GAP={(
+                    <Box ml={7} />
+                )}
+            />
+
             {"Gökçe Deniz".split("").map((letter, i) => (
                 <Text
                     inherit
                     span
                     key={i}
                     className="name-letter"
-                    style={{ "--i": i }}
-                    w={letter == " " ? "8px" : undefined}
+                    style={{ "--i": i, whiteSpace: "pre" }}
+                    w={letter == " " ? "7px" : undefined}
                 >
                     {letter}
                 </Text>
