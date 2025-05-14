@@ -25,7 +25,7 @@ export const PamphletHeader = () => {
                 <Avatar
                     pos="absolute"
                     size="5rem"
-                    src="/assets/img/me/dennis_yagiz_rust_pfp.jpg"
+                    src="/assets/img/me/pfp-2.webp"
                     style={{
                         top: "0.5rem",
                         left: "0.5rem",

@@ -3,6 +3,8 @@ import { Alert, Anchor, Box, Code, Divider, Group, Image, Paper, Stack, Text, To
 import { IconArrowNarrowRight, IconBrandGithub, IconInfoCircle } from "@tabler/icons-react";
 
 export const Motd = () => {
+    return null;
+
     return (
         <Stack align="center" w="100%" px="sm">
             <Divider
