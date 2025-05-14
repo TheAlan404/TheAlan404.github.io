@@ -10,7 +10,7 @@
     "build": "cross-env NODE_ENV=production react-router build"
   },
   "keywords": [],
-  "author": "github:TheAlan404",
+  "author": "github:deniz-blue",
   "license": "ISC",
   "dependencies": {
     "@alan404/enum": "^0.2.3",
@@ -30,7 +30,7 @@
     "@react-router/serve": "^7.0.2",
     "@tabler/icons-react": "^3.24.0",
     "embla-carousel-react": "7.1.0",
-    "isbot": "^5",
+    "isbot": "^5.1.17",
     "mantine-flagpack": "4.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

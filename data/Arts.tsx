@@ -7,34 +7,34 @@ const KiwiAsli = {
 
 export const Arts: Art[] = [
     {
-        src: "/assets/img/me/dennis_meka2.png",
+        src: "/assets/img/me/dennis_meka2.jpg",
         author: {
             name: "@mekashi_moon",
             link: "https://www.instagram.com/mekashi_moon/",
         },
         aspectRatio: 1280/1280,
     },
-    {
-        src: "/assets/img/me/dennis_yagiz_rust.jpeg",
-        author: {
-            name: "@rustwww",
-            link: "https://www.instagram.com/rustwww/",
-        },
-        aspectRatio: 1493/1493,
-    },
+    // {
+    //     src: "/assets/img/me/dennis_yagiz_rust.jpeg",
+    //     author: {
+    //         name: "@rustwww",
+    //         link: "https://www.instagram.com/rustwww/",
+    //     },
+    //     aspectRatio: 1493/1493,
+    // },
     {
         src: "/assets/img/me/dennis_ka.png",
         author: KiwiAsli,
         aspectRatio: 1300/1700,
     },
-    {
-        src: "/assets/img/me/dennis_annatony.png",
-        author: {
-            name: "@planebroker12",
-            link: "https://www.instagram.com/planebroker12/",
-        },
-        aspectRatio: 2048/4317,
-    },
+    // {
+    //     src: "/assets/img/me/dennis_annatony.png",
+    //     author: {
+    //         name: "@planebroker12",
+    //         link: "https://www.instagram.com/planebroker12/",
+    //     },
+    //     aspectRatio: 2048/4317,
+    // },
     {
         src: "/assets/img/me/dennis_meka.png",
         author: {

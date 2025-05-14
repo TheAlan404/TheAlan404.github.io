@@ -24,7 +24,6 @@ export const PamphletContent = () => {
             <StuffIUse />
             <MoreMe />
             <DeltaruneRelease />
-            <ButtonsSection />
             <Specs />
             <Group justify="end" w="100%" pos="relative" px="xl">
                 <Image
@@ -36,6 +35,7 @@ export const PamphletContent = () => {
                 />
             </Group>
             <Friends />
+            <ButtonsSection />
 
             {/* <Experiments /> */}
 
@@ -48,16 +48,21 @@ export const PamphletContent = () => {
                 Hak, Hukuk, Adalet!
             </Text>
 
-            <Group justify="center" gap={4} w="80%" wrap="nowrap" py="sm">
-                <Box c="blue">
-                    <IconHeartFilled size={18} />
-                </Box>
-                <Box c="violet">
-                    <IconHeartFilled size={18} />
-                </Box>
-                <Box c="black">
-                    <IconHeartFilled size={18} />
-                </Box>
+            <Group gap={4} pb="sm">
+                <Image
+                    src="/assets/img/me/dennis_nokia.png"
+                    style={{ imageRendering: "pixelated" }}
+                    w="24px"
+                    h="24px"
+                    radius="md"
+                />
+                <Image
+                    src="/assets/img/me/bulut_nokia.png"
+                    style={{ imageRendering: "pixelated" }}
+                    w="24px"
+                    h="24px"
+                    radius="md"
+                />
             </Group>
         </Stack>
     );

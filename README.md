@@ -1,4 +1,4 @@
-# [My personal website](https://thealan404.github.io/)
+# [My personal website](https://deniz.blue/)
 
 I have no clue why you would want to contribute to it...
 

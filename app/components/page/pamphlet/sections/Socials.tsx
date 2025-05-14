@@ -1,6 +1,6 @@
 import { Localized } from "@alan404/react-localization";
 import { ActionIcon, Box, Divider, Group, Stack } from "@mantine/core";
-import { IconBrandDiscord, IconBrandGithub, IconBrandMinecraft, IconBrandReddit, IconBrandSteam, IconBrandTelegram, IconBrandX, IconMail, TablerIcon } from "@tabler/icons-react";
+import { IconBrandDiscord, IconBrandGithub, IconBrandInstagram, IconBrandMinecraft, IconBrandReddit, IconBrandSteam, IconBrandTelegram, IconBrandX, IconMail, TablerIcon } from "@tabler/icons-react";
 import { ComponentType } from "react";
 
 type Social = {
@@ -12,7 +12,7 @@ export const Socials = () => {
     const socials: Social[] = [
         {
             icon: IconBrandGithub,
-            url: "https://github.com/TheAlan404",
+            url: "https://github.com/deniz-blue",
         },
         {
             icon: IconBrandDiscord,
@@ -21,6 +21,10 @@ export const Socials = () => {
         {
             icon: IconBrandTelegram,
             url: "https://t.me/TheDennis",
+        },
+        {
+            icon: IconBrandInstagram,
+            url: "https://www.instagram.com/neko_deniz/",
         },
         {
             icon: IconBrandX,
