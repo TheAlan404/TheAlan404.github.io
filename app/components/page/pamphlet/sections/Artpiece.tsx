@@ -16,9 +16,9 @@ export const ArtPiece = () => {
                             <Divider color="white" w="2rem" label="♡" className="noLabelMargin" />
                         </Group>
                         <Space w="9rem" />
-                        <Group gap={4} style={{ opacity: 0.2 }}>
+                        <Group gap={4} style={{ opacity: 0 }}>
                             <Divider w="2rem" label="🌩" className="noLabelMargin" />
-                            <Twemoji emoji="🦝" />
+                            <Twemoji emoji="⬛" />
                         </Group>
                     </Group>
                 </Stack>
